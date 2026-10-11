@@ -1,0 +1,868 @@
+{
+    "meta": {
+        "region": "Full body; detailed notes for the thigh and knee",
+        "side": "Right",
+        "status": "draft",
+        "note": "Every record is a draft written from general anatomy references. It must be checked against the course textbook and approved by a reviewer before it is treated as correct.",
+        "modelCredit": "3D models: Z-Anatomy (CC BY-SA 4.0), derived from BodyParts3D, The Database Center for Life Science (CC BY-SA 2.1 Japan)."
+    },
+    "sites": {
+        "aiis": {
+            "name": "Anterior inferior iliac spine",
+            "patches": [
+                "Rectus femoris muscle.or"
+            ]
+        },
+        "asis": {
+            "name": "Anterior superior iliac spine",
+            "patches": [
+                "Sartorius muscle.or"
+            ]
+        },
+        "pubis": {
+            "name": "Body of pubis and inferior pubic ramus",
+            "patches": [
+                "Gracilis muscle.or"
+            ]
+        },
+        "ischial-tuberosity": {
+            "name": "Ischial tuberosity",
+            "patches": [
+                "Semitendinosus muscle.or",
+                "Semimembranosus muscle.or",
+                "Long head of biceps femoris.or"
+            ]
+        },
+        "femur-lateral": {
+            "name": "Greater trochanter and lateral lip of linea aspera",
+            "patches": [
+                "Vastus lateralis muscle.or"
+            ]
+        },
+        "femur-medial": {
+            "name": "Intertrochanteric line and medial lip of linea aspera",
+            "patches": [
+                "Vastus medialis muscle.or"
+            ]
+        },
+        "femur-shaft": {
+            "name": "Anterior and lateral surfaces of the femoral shaft",
+            "patches": [
+                "Vastus intermedius muscle.or"
+            ]
+        },
+        "linea-aspera-lateral": {
+            "name": "Lateral lip of linea aspera",
+            "patches": [],
+            "landmark": "Lateral lip of linea apera"
+        },
+        "lateral-femoral-condyle": {
+            "name": "Lateral surface of the lateral femoral condyle",
+            "patches": [
+                "Popliteus muscle.or"
+            ]
+        },
+        "above-medial-condyle": {
+            "name": "Posterior femur above the medial condyle",
+            "patches": [
+                "Medial head of gastrocnemius.or"
+            ]
+        },
+        "lateral-condyle-posterior": {
+            "name": "Posterolateral surface of the lateral femoral condyle",
+            "patches": [
+                "Lateral head of gastrocnemius.or"
+            ]
+        },
+        "patella-base": {
+            "name": "Base of patella (quadriceps tendon)",
+            "patches": [
+                "Quadriceps femoris muscle.er"
+            ]
+        },
+        "patella-apex": {
+            "name": "Apex of patella",
+            "patches": [
+                "Patellar ligament.or"
+            ]
+        },
+        "tibial-tuberosity": {
+            "name": "Tibial tuberosity",
+            "patches": [
+                "Patellar ligament.er"
+            ]
+        },
+        "pes-anserinus": {
+            "name": "Pes anserinus (upper medial tibia)",
+            "patches": [
+                "Sartorius muscle.er",
+                "Gracilis muscle.er",
+                "Semitendinosus muscle.er"
+            ]
+        },
+        "medial-tibial-condyle": {
+            "name": "Posterior surface of the medial tibial condyle",
+            "patches": [
+                "Semimembranosus muscle.er"
+            ]
+        },
+        "posterior-tibia": {
+            "name": "Posterior tibia above the soleal line",
+            "patches": [
+                "Popliteus muscle.er"
+            ]
+        },
+        "fibular-head": {
+            "name": "Head of fibula",
+            "patches": [
+                "Biceps femoris muscle.er"
+            ]
+        },
+        "calcaneus-posterior": {
+            "name": "Posterior surface of calcaneus (calcaneal tendon)",
+            "patches": [
+                "Triceps surae muscle.er"
+            ]
+        }
+    },
+    "nerves": {
+        "femoral": {
+            "name": "Femoral nerve",
+            "roots": "L2–L4",
+            "injury": "Weak knee extension, so the knee may buckle when standing or climbing stairs. The patellar reflex is reduced or lost. Hip flexion is also weakened.",
+            "outsideRegion": "Also supplies iliacus and pectineus, which arrive with the hip region."
+        },
+        "obturator": {
+            "name": "Obturator nerve",
+            "roots": "L2–L4",
+            "injury": "Weak hip adduction. The leg may swing outward when walking.",
+            "outsideRegion": "Also supplies the adductor group and obturator externus, which arrive with the hip region."
+        },
+        "sciatic": {
+            "name": "Sciatic nerve",
+            "roots": "L4–S3",
+            "injury": "Weak knee flexion and hip extension from loss of the hamstrings, plus loss of every muscle below the knee, including foot drop.",
+            "outsideRegion": "Divides into the tibial and common fibular nerves, usually just above the knee."
+        },
+        "tibial": {
+            "name": "Tibial nerve",
+            "parent": "sciatic",
+            "roots": "L4–S3",
+            "injury": "In the thigh (tibial division): weak hamstrings. Below the knee: weak plantarflexion, so pushing off and rising onto the toes become difficult.",
+            "outsideRegion": "Also supplies soleus and the deep calf muscles, which arrive with the leg region."
+        },
+        "common-fibular": {
+            "name": "Common fibular nerve",
+            "parent": "sciatic",
+            "roots": "L4–S2",
+            "injury": "Foot drop: the foot cannot be pulled up (dorsiflexed) or turned out (everted). It wraps around the neck of the fibula, where it is easily injured.",
+            "outsideRegion": "Supplies the anterior and lateral leg muscles, which arrive with the leg region."
+        }
+    },
+    "movements": {
+        "knee-extension": {
+            "name": "Knee extension",
+            "joint": "knee",
+            "rig": {
+                "control": "knee",
+                "from": 90,
+                "to": 0
+            },
+            "prime": [
+                "rectus-femoris",
+                "vastus-lateralis",
+                "vastus-medialis",
+                "vastus-intermedius"
+            ],
+            "assist": [],
+            "control": [
+                "knee",
+                -1
+            ]
+        },
+        "knee-flexion": {
+            "name": "Knee flexion",
+            "joint": "knee",
+            "rig": {
+                "control": "knee",
+                "from": 0,
+                "to": 90
+            },
+            "prime": [
+                "semitendinosus",
+                "semimembranosus",
+                "biceps-femoris-long",
+                "biceps-femoris-short"
+            ],
+            "assist": [
+                "gracilis",
+                "sartorius",
+                "gastrocnemius-medial",
+                "gastrocnemius-lateral",
+                "popliteus"
+            ],
+            "control": [
+                "knee",
+                1
+            ]
+        },
+        "hip-flexion": {
+            "name": "Hip flexion",
+            "joint": "hip",
+            "rig": {
+                "control": "hipFlex",
+                "from": 0,
+                "to": 70
+            },
+            "prime": [],
+            "assist": [
+                "rectus-femoris",
+                "sartorius"
+            ],
+            "note": "Iliopsoas, the main hip flexor, arrives with the hip region.",
+            "control": [
+                "hipFlex",
+                1
+            ]
+        },
+        "hip-extension": {
+            "name": "Hip extension",
+            "joint": "hip",
+            "rig": {
+                "control": "hipFlex",
+                "from": 30,
+                "to": -15
+            },
+            "prime": [
+                "semitendinosus",
+                "semimembranosus",
+                "biceps-femoris-long"
+            ],
+            "assist": [],
+            "note": "Gluteus maximus, the other main hip extensor, arrives with the hip region.",
+            "control": [
+                "hipFlex",
+                -1
+            ]
+        },
+        "hip-abduction": {
+            "name": "Hip abduction",
+            "joint": "hip",
+            "rig": {
+                "control": "hipAbd",
+                "from": 0,
+                "to": 30
+            },
+            "prime": [],
+            "assist": [
+                "sartorius"
+            ],
+            "note": "Gluteus medius and minimus, the main abductors, arrive with the hip region.",
+            "control": [
+                "hipAbd",
+                1
+            ]
+        },
+        "hip-adduction": {
+            "name": "Hip adduction",
+            "joint": "hip",
+            "rig": {
+                "control": "hipAbd",
+                "from": 25,
+                "to": -10
+            },
+            "prime": [],
+            "assist": [
+                "gracilis"
+            ],
+            "note": "The adductor group, the main adductors, arrives with the hip region.",
+            "control": [
+                "hipAbd",
+                -1
+            ]
+        },
+        "hip-lateral-rotation": {
+            "name": "Hip lateral rotation",
+            "joint": "hip",
+            "rig": null,
+            "prime": [],
+            "assist": [
+                "sartorius"
+            ],
+            "note": "Not animated yet. The deep gluteal muscles, the main lateral rotators, arrive with the hip region.",
+            "control": [
+                "hipRot",
+                -1
+            ]
+        },
+        "tibial-medial-rotation": {
+            "name": "Medial rotation of the tibia",
+            "joint": "knee",
+            "rig": null,
+            "prime": [],
+            "assist": [
+                "semitendinosus",
+                "semimembranosus",
+                "gracilis",
+                "sartorius",
+                "popliteus"
+            ],
+            "note": "Not animated yet. Only possible with the knee bent."
+        },
+        "tibial-lateral-rotation": {
+            "name": "Lateral rotation of the tibia",
+            "joint": "knee",
+            "rig": null,
+            "prime": [
+                "biceps-femoris-long",
+                "biceps-femoris-short"
+            ],
+            "assist": [],
+            "note": "Not animated yet. Only possible with the knee bent."
+        },
+        "knee-unlocking": {
+            "name": "Unlocking the extended knee",
+            "joint": "knee",
+            "rig": {
+                "control": "knee",
+                "from": 0,
+                "to": 25
+            },
+            "prime": [
+                "popliteus"
+            ],
+            "assist": [],
+            "note": "Popliteus rotates the femur laterally on the planted tibia to start flexion from full extension. The rotation itself is not animated yet."
+        },
+        "ankle-plantarflexion": {
+            "name": "Ankle plantarflexion",
+            "joint": "ankle",
+            "rig": null,
+            "prime": [
+                "gastrocnemius-medial",
+                "gastrocnemius-lateral"
+            ],
+            "assist": [],
+            "note": "Not animated yet. Soleus, the other half of the calcaneal tendon, arrives with the leg region.",
+            "control": [
+                "ankle",
+                1
+            ]
+        }
+    },
+    "muscles": {
+        "rectus-femoris": {
+            "name": "Rectus femoris",
+            "mesh": "Rectus femoris muscle.r",
+            "group": "anterior-thigh",
+            "layer": 0,
+            "origin": [
+                "aiis"
+            ],
+            "originText": "Anterior inferior iliac spine (straight head) and the ilium just above the acetabulum (reflected head).",
+            "insertion": [
+                "patella-base",
+                "tibial-tuberosity"
+            ],
+            "insertionText": "Base of the patella through the quadriceps tendon, then the tibial tuberosity through the patellar ligament.",
+            "via": [
+                "patella-base",
+                "patella-apex"
+            ],
+            "nerve": "femoral",
+            "roots": "L2–L4",
+            "actions": [
+                "knee-extension",
+                "hip-flexion"
+            ],
+            "note": "The only quadriceps muscle that crosses the hip, so it is a two-joint muscle."
+        },
+        "vastus-lateralis": {
+            "name": "Vastus lateralis",
+            "mesh": "Vastus lateralis muscle.r",
+            "group": "anterior-thigh",
+            "layer": 0,
+            "origin": [
+                "femur-lateral"
+            ],
+            "originText": "Greater trochanter, upper intertrochanteric line and the lateral lip of the linea aspera.",
+            "insertion": [
+                "patella-base",
+                "tibial-tuberosity"
+            ],
+            "insertionText": "Base and lateral border of the patella through the quadriceps tendon, then the tibial tuberosity through the patellar ligament.",
+            "via": [
+                "patella-base",
+                "patella-apex"
+            ],
+            "nerve": "femoral",
+            "roots": "L2–L4",
+            "actions": [
+                "knee-extension"
+            ],
+            "note": "The largest part of the quadriceps."
+        },
+        "vastus-medialis": {
+            "name": "Vastus medialis",
+            "mesh": "Vastus medialis muscle.r",
+            "group": "anterior-thigh",
+            "layer": 0,
+            "origin": [
+                "femur-medial"
+            ],
+            "originText": "Intertrochanteric line and the medial lip of the linea aspera.",
+            "insertion": [
+                "patella-base",
+                "tibial-tuberosity"
+            ],
+            "insertionText": "Base and medial border of the patella through the quadriceps tendon, then the tibial tuberosity through the patellar ligament.",
+            "via": [
+                "patella-base",
+                "patella-apex"
+            ],
+            "nerve": "femoral",
+            "roots": "L2–L4",
+            "actions": [
+                "knee-extension"
+            ],
+            "note": "Its lowest fibres (often called VMO) pull the patella medially and help it track in the femoral groove."
+        },
+        "vastus-intermedius": {
+            "name": "Vastus intermedius",
+            "mesh": "Vastus intermedius muscle.r",
+            "group": "anterior-thigh",
+            "layer": 1,
+            "origin": [
+                "femur-shaft"
+            ],
+            "originText": "Anterior and lateral surfaces of the femoral shaft.",
+            "insertion": [
+                "patella-base",
+                "tibial-tuberosity"
+            ],
+            "insertionText": "Base of the patella through the quadriceps tendon, then the tibial tuberosity through the patellar ligament.",
+            "via": [
+                "patella-base",
+                "patella-apex"
+            ],
+            "nerve": "femoral",
+            "roots": "L2–L4",
+            "actions": [
+                "knee-extension"
+            ],
+            "note": "Lies deep to rectus femoris, directly on the femur."
+        },
+        "sartorius": {
+            "name": "Sartorius",
+            "mesh": "Sartorius muscle.r",
+            "group": "anterior-thigh",
+            "layer": 0,
+            "origin": [
+                "asis"
+            ],
+            "originText": "Anterior superior iliac spine.",
+            "insertion": [
+                "pes-anserinus"
+            ],
+            "insertionText": "Upper medial surface of the tibia, as part of the pes anserinus.",
+            "nerve": "femoral",
+            "roots": "L2–L3",
+            "actions": [
+                "hip-flexion",
+                "hip-abduction",
+                "hip-lateral-rotation",
+                "knee-flexion",
+                "tibial-medial-rotation"
+            ],
+            "note": "The longest muscle in the body. Its combined actions put the leg in the cross-legged sitting position."
+        },
+        "gracilis": {
+            "name": "Gracilis",
+            "mesh": "Gracilis muscle.r",
+            "group": "medial-thigh",
+            "layer": 0,
+            "origin": [
+                "pubis"
+            ],
+            "originText": "Body of the pubis and the inferior pubic ramus.",
+            "insertion": [
+                "pes-anserinus"
+            ],
+            "insertionText": "Upper medial surface of the tibia, as part of the pes anserinus.",
+            "nerve": "obturator",
+            "roots": "L2–L3",
+            "actions": [
+                "hip-adduction",
+                "knee-flexion",
+                "tibial-medial-rotation"
+            ],
+            "note": "The only adductor that crosses the knee."
+        },
+        "semitendinosus": {
+            "name": "Semitendinosus",
+            "mesh": "Semitendinosus muscle.r",
+            "group": "posterior-thigh",
+            "layer": 0,
+            "origin": [
+                "ischial-tuberosity"
+            ],
+            "originText": "Ischial tuberosity.",
+            "insertion": [
+                "pes-anserinus"
+            ],
+            "insertionText": "Upper medial surface of the tibia, as part of the pes anserinus.",
+            "nerve": "tibial",
+            "nerveNote": "Tibial division of the sciatic nerve",
+            "roots": "L5–S2",
+            "actions": [
+                "hip-extension",
+                "knee-flexion",
+                "tibial-medial-rotation"
+            ],
+            "note": "Its long tendon makes up the lower half of the muscle."
+        },
+        "semimembranosus": {
+            "name": "Semimembranosus",
+            "mesh": "Semimembranosus muscle.r",
+            "group": "posterior-thigh",
+            "layer": 1,
+            "origin": [
+                "ischial-tuberosity"
+            ],
+            "originText": "Ischial tuberosity.",
+            "insertion": [
+                "medial-tibial-condyle"
+            ],
+            "insertionText": "Posterior surface of the medial tibial condyle.",
+            "nerve": "tibial",
+            "nerveNote": "Tibial division of the sciatic nerve",
+            "roots": "L5–S2",
+            "actions": [
+                "hip-extension",
+                "knee-flexion",
+                "tibial-medial-rotation"
+            ],
+            "note": "Lies deep to semitendinosus. Its flat upper tendon gives it its name."
+        },
+        "biceps-femoris-long": {
+            "name": "Biceps femoris, long head",
+            "mesh": "Long head of biceps femoris.r",
+            "group": "posterior-thigh",
+            "layer": 0,
+            "origin": [
+                "ischial-tuberosity"
+            ],
+            "originText": "Ischial tuberosity.",
+            "insertion": [
+                "fibular-head"
+            ],
+            "insertionText": "Lateral side of the head of the fibula.",
+            "nerve": "tibial",
+            "nerveNote": "Tibial division of the sciatic nerve",
+            "roots": "L5–S2",
+            "actions": [
+                "hip-extension",
+                "knee-flexion",
+                "tibial-lateral-rotation"
+            ],
+            "note": "The lateral hamstring."
+        },
+        "biceps-femoris-short": {
+            "name": "Biceps femoris, short head",
+            "mesh": "Short head of biceps femoris.r",
+            "group": "posterior-thigh",
+            "layer": 1,
+            "origin": [
+                "linea-aspera-lateral"
+            ],
+            "originText": "Lateral lip of the linea aspera and the lateral supracondylar line of the femur.",
+            "insertion": [
+                "fibular-head"
+            ],
+            "insertionText": "Lateral side of the head of the fibula, shared with the long head.",
+            "nerve": "common-fibular",
+            "nerveNote": "Common fibular division of the sciatic nerve",
+            "roots": "L5–S2",
+            "actions": [
+                "knee-flexion",
+                "tibial-lateral-rotation"
+            ],
+            "note": "The only hamstring part that does not cross the hip and is not supplied by the tibial division. A classic exam question."
+        },
+        "popliteus": {
+            "name": "Popliteus",
+            "mesh": "Popliteus muscle.r",
+            "group": "posterior-knee",
+            "layer": 1,
+            "origin": [
+                "lateral-femoral-condyle"
+            ],
+            "originText": "Lateral surface of the lateral femoral condyle, with attachment to the lateral meniscus.",
+            "insertion": [
+                "posterior-tibia"
+            ],
+            "insertionText": "Posterior surface of the tibia above the soleal line.",
+            "nerve": "tibial",
+            "roots": "L4–S1",
+            "actions": [
+                "knee-unlocking",
+                "knee-flexion",
+                "tibial-medial-rotation"
+            ],
+            "note": "Called the key that unlocks the knee."
+        },
+        "gastrocnemius-medial": {
+            "name": "Gastrocnemius, medial head",
+            "mesh": "Medial head of gastrocnemius.r",
+            "extraMeshes": [
+                "Calcaneal tendon.r"
+            ],
+            "group": "posterior-knee",
+            "layer": 0,
+            "origin": [
+                "above-medial-condyle"
+            ],
+            "originText": "Posterior surface of the femur just above the medial condyle.",
+            "insertion": [
+                "calcaneus-posterior"
+            ],
+            "insertionText": "Posterior surface of the calcaneus through the calcaneal (Achilles) tendon.",
+            "nerve": "tibial",
+            "roots": "S1–S2",
+            "actions": [
+                "ankle-plantarflexion",
+                "knee-flexion"
+            ],
+            "note": "Crosses both the knee and the ankle, so it plantarflexes best with the knee straight."
+        },
+        "gastrocnemius-lateral": {
+            "name": "Gastrocnemius, lateral head",
+            "mesh": "Lateral head of gastrocnemius.r",
+            "extraMeshes": [
+                "Calcaneal tendon.r"
+            ],
+            "group": "posterior-knee",
+            "layer": 0,
+            "origin": [
+                "lateral-condyle-posterior"
+            ],
+            "originText": "Lateral surface of the lateral femoral condyle.",
+            "insertion": [
+                "calcaneus-posterior"
+            ],
+            "insertionText": "Posterior surface of the calcaneus through the calcaneal (Achilles) tendon.",
+            "nerve": "tibial",
+            "roots": "S1–S2",
+            "actions": [
+                "ankle-plantarflexion",
+                "knee-flexion"
+            ],
+            "note": "Crosses both the knee and the ankle, so it plantarflexes best with the knee straight."
+        }
+    },
+    "ligaments": {
+        "acl": {
+            "name": "Anterior cruciate ligament",
+            "short": "ACL",
+            "mesh": "Anterior cruciate ligament.r",
+            "attachments": [
+                "Anterior intercondylar area",
+                "Intercondylar fossa"
+            ],
+            "attachmentText": "Anterior intercondylar area of the tibia, running up and back to the inner (medial) surface of the lateral femoral condyle.",
+            "function": "Stops the tibia sliding forward on the femur and limits hyperextension.",
+            "tautText": "Tight in full extension. Its anteromedial band stays fairly tight as the knee bends.",
+            "taut": [
+                [
+                    0,
+                    1.0
+                ],
+                [
+                    20,
+                    0.7
+                ],
+                [
+                    60,
+                    0.55
+                ],
+                [
+                    120,
+                    0.6
+                ]
+            ]
+        },
+        "pcl": {
+            "name": "Posterior cruciate ligament",
+            "short": "PCL",
+            "mesh": "Posterior cruciate ligament.r",
+            "attachments": [
+                "Posterior intercondylar area",
+                "Intercondylar fossa"
+            ],
+            "attachmentText": "Posterior intercondylar area of the tibia, running up and forward to the outer (lateral) surface of the medial femoral condyle.",
+            "function": "Stops the tibia sliding backward on the femur. Stronger than the ACL.",
+            "tautText": "Tightens as the knee bends; tightest in flexion.",
+            "taut": [
+                [
+                    0,
+                    0.35
+                ],
+                [
+                    30,
+                    0.5
+                ],
+                [
+                    90,
+                    1.0
+                ],
+                [
+                    120,
+                    1.0
+                ]
+            ]
+        },
+        "mcl": {
+            "name": "Tibial collateral ligament",
+            "short": "MCL",
+            "mesh": "Superficial part of tibial collateral ligament.r",
+            "extraMeshes": [
+                "Deep part of tibial collateral ligament.r"
+            ],
+            "attachments": [
+                "Medial epicondyle of femur",
+                "Medial condyle of tibia"
+            ],
+            "attachmentText": "Medial epicondyle of the femur to the medial condyle and upper medial shaft of the tibia. Its deep fibres attach to the medial meniscus.",
+            "function": "Resists valgus stress (the knee being pushed inward).",
+            "tautText": "Tight in full extension; slackens as the knee bends.",
+            "taut": [
+                [
+                    0,
+                    1.0
+                ],
+                [
+                    20,
+                    0.75
+                ],
+                [
+                    60,
+                    0.4
+                ],
+                [
+                    120,
+                    0.3
+                ]
+            ]
+        },
+        "lcl": {
+            "name": "Fibular collateral ligament",
+            "short": "LCL",
+            "mesh": "Fibular collateral ligament.r",
+            "attachments": [
+                "Lateral epicondyle of femur",
+                "Head of fibula"
+            ],
+            "attachmentText": "Lateral epicondyle of the femur to the lateral surface of the head of the fibula. It is cord-like and stands clear of the joint capsule and the lateral meniscus.",
+            "function": "Resists varus stress (the knee being pushed outward).",
+            "tautText": "Tight in full extension; slackens as the knee bends.",
+            "taut": [
+                [
+                    0,
+                    1.0
+                ],
+                [
+                    20,
+                    0.7
+                ],
+                [
+                    60,
+                    0.3
+                ],
+                [
+                    120,
+                    0.25
+                ]
+            ]
+        },
+        "patellar-ligament": {
+            "name": "Patellar ligament",
+            "short": "Patellar lig.",
+            "between": [
+                "patella-apex",
+                "tibial-tuberosity"
+            ],
+            "attachments": [
+                "Tibial tuberosity"
+            ],
+            "attachmentText": "Apex of the patella to the tibial tuberosity.",
+            "function": "Carries the pull of the quadriceps from the patella to the tibia. It is really the continuation of the quadriceps tendon.",
+            "tautText": "Under load whenever the quadriceps contracts; stretched further as the knee bends.",
+            "taut": [
+                [
+                    0,
+                    0.45
+                ],
+                [
+                    60,
+                    0.75
+                ],
+                [
+                    120,
+                    0.95
+                ]
+            ]
+        }
+    },
+    "structures": {
+        "medial-meniscus": {
+            "name": "Medial meniscus",
+            "mesh": "Medial meniscus.r",
+            "text": "C-shaped fibrocartilage pad on the medial tibial plateau. Firmly attached to the deep part of the MCL, so it moves less and is torn more often than the lateral meniscus."
+        },
+        "lateral-meniscus": {
+            "name": "Lateral meniscus",
+            "mesh": "Lateral meniscus.r",
+            "text": "Nearly circular fibrocartilage pad on the lateral tibial plateau. Not attached to the LCL, so it is more mobile than the medial meniscus."
+        }
+    },
+    "glossary": {
+        "origin": "Where a muscle attaches to the bone that stays relatively still.",
+        "insertion": "Where a muscle attaches to the bone it moves.",
+        "innervation": "The nerve that controls a muscle, with the spinal cord levels (roots) its fibres come from.",
+        "action": "The movement a muscle produces when it pulls its insertion toward its origin.",
+        "prime mover": "The muscle that does most of the work in a movement.",
+        "two-joint muscle": "A muscle that crosses two joints and acts on both, like rectus femoris or the hamstrings.",
+        "flexion": "Bending a joint so the angle between the bones gets smaller.",
+        "extension": "Straightening a joint so the angle between the bones gets larger.",
+        "abduction": "Moving a limb away from the midline of the body.",
+        "adduction": "Moving a limb toward the midline of the body.",
+        "plantarflexion": "Pointing the foot downward, as when standing on tiptoe.",
+        "condyle": "A rounded knob at the end of a bone that forms part of a joint.",
+        "epicondyle": "A bump on the side of a condyle where ligaments and muscles attach.",
+        "tuberosity": "A large, rough raised area where a tendon attaches.",
+        "linea aspera": "The vertical ridge on the back of the femur shaft where several thigh muscles attach.",
+        "pes anserinus": "The shared insertion of sartorius, gracilis and semitendinosus on the upper medial tibia. Latin for goose's foot.",
+        "taut": "Stretched tight, so the ligament is resisting motion.",
+        "valgus": "A force or position that pushes the knee inward (toward the other knee).",
+        "varus": "A force or position that pushes the knee outward.",
+        "roots": "The spinal nerve levels (for example L2–L4) whose fibres make up a nerve.",
+        "intercondylar area": "The space between the two condyles of the tibia, where the cruciate ligaments attach.",
+        "acetabulum": "The socket of the hip bone that holds the head of the femur."
+    },
+    "groups": {
+        "knee-joint": {
+            "name": "Knee ligaments",
+            "area": "thigh-knee",
+            "summary": "The ligaments that hold the femur and tibia together, and the menisci that sit between them.",
+            "children": [
+                "acl",
+                "pcl",
+                "mcl",
+                "lcl",
+                "patellar-ligament",
+                "medial-meniscus",
+                "lateral-meniscus"
+            ]
+        }
+    }
+}

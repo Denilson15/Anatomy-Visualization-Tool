@@ -20,7 +20,7 @@ written notes; see `notes/attachment-report.md`.
 ## Folders
 
 ```
-app2/                  the full-body app (source)
+app/                   the app (source)
     index.html         page and styles
     app.js             all app logic
     anatomy.json       generated from notes/ by build_content.py
@@ -35,12 +35,11 @@ notes/                 the written notes (edit these)
     base.json          meta, sites, knee ligaments, glossary
     attachment-report.md  which atlas patches were kept, relabelled or dropped
 dist/                  what gets published (app.js inlined, meshes as base64 .txt)
-app/                   the first knee-only prototype, kept for reference
 tools/
-    build_content.py   merges notes/ into app2/anatomy.json and checks them
+    build_content.py   merges notes/ into app/anatomy.json and checks them
     export_body.py     pulls bones, muscles, patches, nerves, landmarks from Z-Anatomy
     prep_body.py       decimates meshes, builds the rig, skin weights and region files
-    build.py           makes dist/ from app2/
+    build.py           makes dist/ from app/
     smoke_body.py      headless browser test that screenshots each mode
     debug_page.py      runs JavaScript against the app in a headless browser
 ```
@@ -49,12 +48,25 @@ tools/
 
 ```
 python3 tools/build_content.py .
-python3 tools/build.py app2 dist
+python3 tools/build.py app dist
 cd dist
 python3 -m http.server 8000
 ```
 
 Then open http://localhost:8000.
+
+## Put it on GitHub Pages
+
+The live site is in `docs/`. In the repo open Settings → Pages, choose
+"Deploy from a branch", pick `main` and `/docs`, and save. The site appears at
+`https://<username>.github.io/<repo>/` a minute or two later.
+
+After editing notes, rebuild straight into it:
+
+```
+python3 tools/build_content.py .
+python3 tools/build.py app docs
+```
 
 ## Rebuild the 3D data
 
@@ -64,8 +76,8 @@ git clone --depth 1 https://github.com/Z-Anatomy/Models-of-human-anatomy
 unzip Models-of-human-anatomy/Z-Anatomy.zip -d zanat
 
 python tools/export_body.py zanat/Z-Anatomy/Startup.blend export
-python tools/prep_body.py export/raw_body.json app2
-python tools/build.py app2 dist
+python tools/prep_body.py export/raw_body.json app
+python tools/build.py app dist
 ```
 
 ## Editing the notes

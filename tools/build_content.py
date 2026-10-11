@@ -3,11 +3,11 @@ Merge the written notes into the app's content files and check them.
 
 Reads:
     notes/base.json, notes/<region>.json, notes/movements.json, notes/nerves.json
-    app2/body.json (generated from the atlas)
+    app/body.json (generated from the atlas)
 
 Writes:
-    app2/anatomy.json      merged notes for the app
-    app2/attachments.json  corrected origin/insertion patches per muscle
+    app/anatomy.json      merged notes for the app
+    app/attachments.json  corrected origin/insertion patches per muscle
     notes/attachment-report.md  what was swapped or dropped, for reviewers
 
 The attachment correction compares each atlas patch with the bones the notes
@@ -28,7 +28,7 @@ from pathlib import Path
 
 ROOT = Path(sys.argv[1])
 NOTES = ROOT / "notes"
-APP = ROOT / "app2"
+APP = ROOT / "app"
 
 REGION_FILES = ["lower-limb.json", "upper-limb.json", "trunk.json", "head-neck.json"]
 

@@ -1,11 +1,11 @@
 <meta charset="utf-8">
-<title>Knee Atlas</title>
+<title>PT Anatomy Atlas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&family=Literata:opsz,wght@7..72,500;7..72,650&display=swap">
 <style>
     /*
-     * Layout: a dark dissection-table stage (3D model) beside a light study panel.
+     * Layout: a dark dissection-table stage (3D body) beside a light study panel.
      * The stage stays dark in both themes so bone and colour codes read the same;
      * the panel follows the viewer's theme. On phones the stage sits on top.
      */
@@ -27,6 +27,8 @@
         --taut: #d23a2c;
         --slack: #a39f96;
         --good: #2c8a52;
+        --draft: #9a5a17;
+        --draft-line: #e7c79f;
         --font-display: "Literata", "Iowan Old Style", Georgia, serif;
         --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
         --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -47,6 +49,8 @@
             --taut: #ef5a4b;
             --slack: #8d8a83;
             --good: #4fbf7d;
+            --draft: #f1c08a;
+            --draft-line: #6b4a2c;
             color-scheme: dark;
         }
     }
@@ -65,6 +69,8 @@
         --taut: #ef5a4b;
         --slack: #8d8a83;
         --good: #4fbf7d;
+        --draft: #f1c08a;
+        --draft-line: #6b4a2c;
         color-scheme: dark;
     }
 
@@ -170,22 +176,38 @@
         font-size: 12px;
     }
 
-    .draft-pill {
+    .stage-pills {
         margin-left: auto;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+    }
+
+    .pill {
         font-size: 11px;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: #f1c8a0;
-        border: 1px solid #6b4a2c;
         border-radius: 999px;
         padding: 3px 9px;
         pointer-events: auto;
+        white-space: nowrap;
+    }
+
+    .pill.draft {
+        color: #f1c8a0;
+        border: 1px solid #6b4a2c;
+    }
+
+    .pill.progress {
+        color: var(--stage-muted);
+        border: 1px solid var(--stage-line);
     }
 
     .hint {
         position: absolute;
         left: 12px;
         top: 52px;
+        margin: 0;
         font-size: 12px;
         color: var(--stage-muted);
         pointer-events: none;
@@ -202,7 +224,6 @@
         position: absolute;
         left: 0;
         top: 0;
-        transform-origin: 0 0;
         white-space: nowrap;
         font-size: 12px;
         font-weight: 700;
@@ -229,6 +250,7 @@
         color: var(--stage-muted);
         font-size: 14px;
         background: var(--stage);
+        padding-inline: 16px;
     }
 
     .loading strong {
@@ -257,7 +279,7 @@
     .ctl {
         display: grid;
         gap: 2px;
-        min-width: 132px;
+        min-width: 136px;
         flex: 0 0 auto;
     }
 
@@ -343,6 +365,30 @@
         border-bottom-color: var(--accent);
     }
 
+    .scope-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        font-size: 13px;
+        color: var(--muted);
+        border-bottom: 1px solid var(--line);
+        flex: 0 0 auto;
+    }
+
+    .scope-bar b {
+        color: var(--ink);
+    }
+
+    .scope-bar button {
+        margin-left: auto;
+        border: 1px solid var(--line);
+        background: var(--paper-raised);
+        border-radius: 999px;
+        padding: 2px 10px;
+        font-size: 12.5px;
+    }
+
     .views {
         flex: 1 1 auto;
         overflow-y: auto;
@@ -368,7 +414,6 @@
         flex-wrap: wrap;
     }
 
-    h1,
     h2,
     h3 {
         margin: 0;
@@ -412,15 +457,19 @@
     }
 
     .badge.draft {
-        color: #9a5a17;
-        border-color: #e7c79f;
-        background: color-mix(in srgb, #e7c79f 25%, transparent);
+        color: var(--draft);
+        border-color: var(--draft-line);
+    }
+
+    .badge.notes {
+        color: var(--good);
+        border-color: color-mix(in srgb, var(--good) 45%, transparent);
     }
 
     .facts {
         display: grid;
-        gap: 0;
         border-top: 1px solid var(--line);
+        margin: 0;
     }
 
     .fact {
@@ -446,6 +495,8 @@
     .fact dd {
         margin: 0;
         min-width: 0;
+        display: grid;
+        gap: 6px;
     }
 
     .key {
@@ -498,6 +549,13 @@
         margin-right: 4px;
     }
 
+    .chip .pct {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--muted);
+        margin-left: 6px;
+    }
+
     .cards {
         display: grid;
         gap: 8px;
@@ -513,7 +571,7 @@
         padding: 11px 13px;
     }
 
-    .card:hover:not(:disabled) {
+    .card:hover {
         border-color: var(--muted);
     }
 
@@ -530,10 +588,11 @@
         font-size: 13px;
     }
 
-    .card:disabled {
-        cursor: default;
-        opacity: 0.6;
-        background: transparent;
+    .card .count {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--muted);
+        font-weight: 400;
     }
 
     .meter {
@@ -650,10 +709,6 @@
         color: var(--accent);
     }
 
-    .listbtn.child {
-        padding-left: 18px;
-    }
-
     .switch {
         display: flex;
         align-items: center;
@@ -752,7 +807,7 @@
 
     .gloss {
         display: grid;
-        gap: 0;
+        margin: 0;
     }
 
     .gloss div {
@@ -776,6 +831,7 @@
         padding: 10px 18px calc(10px + env(safe-area-inset-bottom, 0px));
         border-top: 1px solid var(--line);
         flex: 0 0 auto;
+        margin: 0;
     }
 
     .legend {
@@ -793,10 +849,6 @@
     }
 
     @media (max-width: 760px) {
-        body {
-            overflow: hidden;
-        }
-
         .app {
             grid-template-columns: minmax(0, 1fr);
             grid-template-rows: 54% 46%;
@@ -807,10 +859,7 @@
             border-top: 1px solid var(--line);
         }
 
-        .credit {
-            display: none;
-        }
-
+        .credit,
         .hint {
             display: none;
         }
@@ -820,7 +869,11 @@
         }
 
         .ctl {
-            min-width: 118px;
+            min-width: 120px;
+        }
+
+        .pill.progress {
+            display: none;
         }
     }
 
@@ -838,29 +891,18 @@
 
         <div class="stage-top">
             <nav class="crumbs" id="crumbs" aria-label="Location"></nav>
-            <span class="draft-pill" title="Not yet checked by a reviewer">Draft content</span>
+            <div class="stage-pills">
+                <span class="pill progress" id="progress" hidden></span>
+                <span class="pill draft" title="Not yet checked by a reviewer">Draft content</span>
+            </div>
         </div>
-        <p class="hint">Drag to turn · pinch or scroll to zoom · tap a structure to open it</p>
+        <p class="hint" id="hint">Drag to turn · pinch or scroll to zoom · tap the body to narrow your focus</p>
 
         <div class="dock" id="dock">
-            <div class="ctl">
-                <label for="ctl-knee">Knee flexion <output id="out-knee">0°</output></label>
-                <input id="ctl-knee" type="range" min="0" max="120" value="0" step="1">
-            </div>
-            <div class="ctl">
-                <label for="ctl-hipFlex">Hip flexion <output id="out-hipFlex">0°</output></label>
-                <input id="ctl-hipFlex" type="range" min="-20" max="100" value="0" step="1">
-            </div>
-            <div class="ctl">
-                <label for="ctl-hipAbd">Hip abduction <output id="out-hipAbd">0°</output></label>
-                <input id="ctl-hipAbd" type="range" min="-15" max="40" value="0" step="1">
-            </div>
-            <div class="ctl">
-                <label for="ctl-spread">Peel layers <output id="out-spread">0</output></label>
-                <input id="ctl-spread" type="range" min="0" max="100" value="0" step="1">
-            </div>
+            <div id="controls" style="display: contents"></div>
             <div class="toggles">
                 <button class="chipbtn" id="tg-muscles" type="button" aria-pressed="true">Muscles</button>
+                <button class="chipbtn" id="tg-deep" type="button" aria-pressed="false">Deep layer</button>
                 <button class="chipbtn" id="tg-cords" type="button" aria-pressed="false">Lines of pull</button>
                 <button class="chipbtn" id="tg-sites" type="button" aria-pressed="false">Attachments</button>
                 <button class="chipbtn" id="tg-reset" type="button">Reset pose</button>
@@ -869,8 +911,8 @@
 
         <div class="loading" id="loading">
             <div>
-                <strong>Knee Atlas</strong>
-                <span id="loading-text">Loading the 3D models…</span>
+                <strong>PT Anatomy Atlas</strong>
+                <span id="loading-text">Loading the skeleton…</span>
             </div>
         </div>
     </section>
@@ -878,15 +920,16 @@
     <aside class="panel" aria-label="Study panel">
         <div class="tabs" role="tablist">
             <button class="tab" role="tab" id="tab-explore" aria-selected="true" type="button">Explore</button>
-            <button class="tab" role="tab" id="tab-nerves" aria-selected="false" type="button">Nerves</button>
             <button class="tab" role="tab" id="tab-movements" aria-selected="false" type="button">Movements</button>
+            <button class="tab" role="tab" id="tab-nerves" aria-selected="false" type="button">Nerves</button>
             <button class="tab" role="tab" id="tab-quiz" aria-selected="false" type="button">Quiz</button>
             <button class="tab" role="tab" id="tab-terms" aria-selected="false" type="button">Terms</button>
         </div>
+        <div class="scope-bar" id="scope-bar"></div>
         <div class="views" id="views">
             <div class="pane" id="pane-explore"></div>
-            <div class="pane" id="pane-nerves" hidden></div>
             <div class="pane" id="pane-movements" hidden></div>
+            <div class="pane" id="pane-nerves" hidden></div>
             <div class="pane" id="pane-quiz" hidden></div>
             <div class="pane" id="pane-terms" hidden></div>
         </div>
@@ -905,2490 +948,4 @@
     }
 </script>
 
-<script type="module">
-import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-
-/* ==========================================================================
- * Constants
- * ======================================================================== */
-
-const REDUCED_MOTION = matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-const COLORS = {
-    bone: 0xe6dfd2,
-    boneContext: 0xb9b3a8,
-    muscle: 0xb34a3f,
-    tendon: 0xd9cdbd,
-    ligament: 0xcfc8bb,
-    meniscus: 0xa8c4cf,
-    origin: 0x3a86e0,
-    insertion: 0xf08a2a,
-    neutralSite: 0x8e9aa2,
-    nerve: 0xf2c230,
-    prime: 0xd8483a,
-    assist: 0xe99a8c,
-    lost: 0x5d6368,
-    selected: 0xd8483a,
-    slack: 0xbfb8aa,
-    amber: 0xf0a43a,
-    taut: 0xe23c2d,
-    correct: 0x3cbf74,
-};
-
-const CONTROL_LIMITS = {
-    knee: [0, 120],
-    hipFlex: [-20, 100],
-    hipAbd: [-15, 40],
-};
-
-/* ==========================================================================
- * State
- * ======================================================================== */
-
-const state = {
-    data: null,
-    geo: null,
-    pose: { knee: 0, hipFlex: 0, hipAbd: 0 },
-    signs: { knee: 1, hipFlex: 1, hipAbd: 1 },
-    spread: 0,
-    show: { muscles: true, cords: false, sites: false },
-    tab: "explore",
-    node: "thigh-knee",
-    selection: null,
-    nerve: { id: null, injury: false },
-    movement: null,
-    quiz: null,
-    dirty: true,
-    animation: null,
-};
-
-/* ==========================================================================
- * Small helpers
- * ======================================================================== */
-
-const $ = (selector) => document.querySelector(selector);
-
-const escapeHtml = (value) =>
-    String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-
-const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
-
-function decodeBase64(text) {
-    const binary = atob(text);
-    const bytes = new Uint8Array(binary.length);
-    for (let i = 0; i < binary.length; i++) {
-        bytes[i] = binary.charCodeAt(i);
-    }
-    return bytes.buffer;
-}
-
-function interpolate(points, x) {
-    if (x <= points[0][0]) {
-        return points[0][1];
-    }
-    for (let i = 1; i < points.length; i++) {
-        const [x1, y1] = points[i];
-        const [x0, y0] = points[i - 1];
-        if (x <= x1) {
-            return y0 + ((x - x0) / (x1 - x0)) * (y1 - y0);
-        }
-    }
-    return points[points.length - 1][1];
-}
-
-function storageGet(key, fallback) {
-    try {
-        const raw = localStorage.getItem(key);
-        return raw ? JSON.parse(raw) : fallback;
-    } catch (error) {
-        return fallback;
-    }
-}
-
-function storageSet(key, value) {
-    try {
-        localStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-        /* storage is optional */
-    }
-}
-
-function shuffle(list) {
-    const copy = list.slice();
-    for (let i = copy.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [copy[i], copy[j]] = [copy[j], copy[i]];
-    }
-    return copy;
-}
-
-/* ==========================================================================
- * Scene
- * ======================================================================== */
-
-const canvas = $("#view");
-const stage = $("#stage");
-
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.setClearColor(0x14181b, 1);
-
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(32, 1, 1, 2000);
-const orbit = new OrbitControls(camera, canvas);
-orbit.enableDamping = !REDUCED_MOTION;
-orbit.dampingFactor = 0.08;
-orbit.minDistance = 15;
-orbit.maxDistance = 400;
-
-scene.add(new THREE.HemisphereLight(0xf4f1ea, 0x30363b, 1.15));
-
-const keyLight = new THREE.DirectionalLight(0xffffff, 1.6);
-keyLight.position.set(80, 140, 160);
-scene.add(keyLight);
-
-const rimLight = new THREE.DirectionalLight(0xbcd4ff, 0.7);
-rimLight.position.set(-120, 60, -140);
-scene.add(rimLight);
-
-const fillLight = new THREE.DirectionalLight(0xffffff, 0.35);
-fillLight.position.set(-60, -40, 120);
-scene.add(fillLight);
-
-let cameraGoal = null;
-
-function resize() {
-    const width = stage.clientWidth;
-    const height = stage.clientHeight;
-    if (!width || !height) {
-        return;
-    }
-    renderer.setSize(width, height, false);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-}
-
-new ResizeObserver(resize).observe(stage);
-
-/* ==========================================================================
- * Geometry registry
- * ======================================================================== */
-
-/** name -> { mesh, kind, segment?, base?, weights?, owner } */
-const parts = {};
-
-/** entity id -> list of mesh names it owns */
-const ownedMeshes = {};
-
-/** patch mesh name -> { site, role } */
-const patchInfo = {};
-
-/** rest-pose centroid of each patch mesh */
-const patchCentroid = {};
-
-const SEGMENT_INDEX = { pelvis: 0, femur: 1, patella: 2, tibia: 3 };
-const segmentMatrices = [
-    new THREE.Matrix4(),
-    new THREE.Matrix4(),
-    new THREE.Matrix4(),
-    new THREE.Matrix4(),
-];
-
-const cordGroup = new THREE.Group();
-const nerveGroup = new THREE.Group();
-scene.add(cordGroup);
-scene.add(nerveGroup);
-
-function buildGeometry() {
-    const { meshes } = state.geo;
-
-    for (const [name, info] of Object.entries(meshes)) {
-        const positions = new Float32Array(decodeBase64(info.positions));
-        const indices = info.indexType === "u16"
-            ? new Uint16Array(decodeBase64(info.indices))
-            : new Uint32Array(decodeBase64(info.indices));
-
-        const geometry = new THREE.BufferGeometry();
-        geometry.setAttribute("position", new THREE.BufferAttribute(positions.slice(), 3));
-        geometry.setIndex(new THREE.BufferAttribute(indices, 1));
-        geometry.computeVertexNormals();
-        geometry.computeBoundingBox();
-
-        const material = new THREE.MeshStandardMaterial({
-            color: COLORS.bone,
-            roughness: 0.75,
-            metalness: 0.0,
-        });
-
-        const mesh = new THREE.Mesh(geometry, material);
-        mesh.userData.part = name;
-        mesh.matrixAutoUpdate = false;
-        scene.add(mesh);
-
-        const part = {
-            name,
-            mesh,
-            kind: info.kind,
-            base: positions,
-            segment: info.segment ?? null,
-            weights: info.weights ? new Uint8Array(decodeBase64(info.weights)) : null,
-            owner: null,
-            offsetDir: new THREE.Vector3(),
-            layer: 0,
-        };
-        parts[name] = part;
-
-        if (info.kind === "patch") {
-            const centroid = new THREE.Vector3();
-            for (let i = 0; i < positions.length; i += 3) {
-                centroid.x += positions[i];
-                centroid.y += positions[i + 1];
-                centroid.z += positions[i + 2];
-            }
-            centroid.divideScalar(positions.length / 3);
-            patchCentroid[name] = centroid;
-
-            material.polygonOffset = true;
-            material.polygonOffsetFactor = -2;
-            material.polygonOffsetUnits = -2;
-            mesh.renderOrder = 2;
-        }
-    }
-}
-
-function claim(entityId, meshName, ownerType) {
-    const part = parts[meshName];
-    if (!part) {
-        return;
-    }
-    if (!part.owner) {
-        part.owner = { type: ownerType, id: entityId };
-    }
-    (ownedMeshes[entityId] ||= []).push(meshName);
-}
-
-function linkEntities() {
-    const { data } = state;
-
-    for (const [id, bone] of Object.entries(data.bones)) {
-        claim(id, bone.mesh, "bone");
-    }
-
-    for (const [id, muscle] of Object.entries(data.muscles)) {
-        claim(id, muscle.mesh, "muscle");
-        for (const extra of muscle.extraMeshes ?? []) {
-            claim(id, extra, "muscle");
-        }
-    }
-
-    for (const [id, ligament] of Object.entries(data.ligaments)) {
-        if (ligament.mesh) {
-            claim(id, ligament.mesh, "ligament");
-        }
-        for (const extra of ligament.extraMeshes ?? []) {
-            claim(id, extra, "ligament");
-        }
-    }
-
-    for (const [id, structure] of Object.entries(data.structures)) {
-        claim(id, structure.mesh, "structure");
-    }
-
-    for (const [siteId, site] of Object.entries(data.sites)) {
-        for (const patch of site.patches) {
-            const role = patch.endsWith(".or") ? "origin" : "insertion";
-            patchInfo[patch] = { site: siteId, role };
-            claim(siteId, patch, "site");
-        }
-    }
-
-    // Peel-away direction for each muscle: outward from the femoral shaft.
-    const hip = new THREE.Vector3(...state.geo.rig.hip.pivot);
-    const knee = new THREE.Vector3(...state.geo.rig.knee.pivot);
-    const shaft = knee.clone().sub(hip).normalize();
-
-    for (const [id, muscle] of Object.entries(data.muscles)) {
-        for (const name of ownedMeshes[id] ?? []) {
-            const part = parts[name];
-            const box = part.mesh.geometry.boundingBox;
-            const centre = box.getCenter(new THREE.Vector3());
-            const fromHip = centre.clone().sub(hip);
-            const outward = fromHip.sub(shaft.clone().multiplyScalar(fromHip.dot(shaft)));
-            outward.y = 0;
-            part.offsetDir.copy(outward.lengthSq() > 0.01 ? outward.normalize() : new THREE.Vector3(0, 0, 1));
-            part.layer = muscle.layer ?? 0;
-        }
-    }
-}
-
-/* ==========================================================================
- * Rig
- * ======================================================================== */
-
-const tmpMatrix = new THREE.Matrix4();
-const rotation = new THREE.Matrix4();
-
-function aroundPivot(pivot, axis, degrees) {
-    const radians = THREE.MathUtils.degToRad(degrees);
-    return new THREE.Matrix4()
-        .makeTranslation(pivot.x, pivot.y, pivot.z)
-        .multiply(rotation.makeRotationAxis(axis, radians))
-        .multiply(tmpMatrix.makeTranslation(-pivot.x, -pivot.y, -pivot.z));
-}
-
-const rig = {
-    hip: null,
-    kneePivot: null,
-    kneeAxis: null,
-    flexAxis: null,
-    abdAxis: new THREE.Vector3(0, 0, 1),
-};
-
-function setupRig() {
-    const { hip, knee } = state.geo.rig;
-    rig.hip = new THREE.Vector3(...hip.pivot);
-    rig.kneePivot = new THREE.Vector3(...knee.pivot);
-    rig.kneeAxis = new THREE.Vector3(...knee.axis).normalize();
-    rig.flexAxis = new THREE.Vector3(rig.kneeAxis.x, 0, rig.kneeAxis.z).normalize();
-
-    // Work out the rotation directions from anatomy instead of guessing.
-    const ankle = new THREE.Vector3(...state.geo.rig.ankle);
-
-    const kneeTest = ankle.clone().applyMatrix4(aroundPivot(rig.kneePivot, rig.kneeAxis, 30));
-    state.signs.knee = kneeTest.z < ankle.z ? 1 : -1;
-
-    const hipTest = rig.kneePivot.clone().applyMatrix4(aroundPivot(rig.hip, rig.flexAxis, 30));
-    state.signs.hipFlex = hipTest.z > rig.kneePivot.z ? 1 : -1;
-
-    // The right limb sits at negative x, so lateral means more negative x.
-    const abdTest = rig.kneePivot.clone().applyMatrix4(aroundPivot(rig.hip, rig.abdAxis, 20));
-    state.signs.hipAbd = abdTest.x < rig.kneePivot.x ? 1 : -1;
-}
-
-function computeSegmentMatrices() {
-    const { pose, signs } = state;
-
-    const hipMatrix = aroundPivot(rig.hip, rig.abdAxis, signs.hipAbd * pose.hipAbd)
-        .multiply(aroundPivot(rig.hip, rig.flexAxis, signs.hipFlex * pose.hipFlex));
-
-    const kneeMatrix = aroundPivot(rig.kneePivot, rig.kneeAxis, signs.knee * pose.knee);
-    const patellaMatrix = aroundPivot(rig.kneePivot, rig.kneeAxis, signs.knee * pose.knee * 0.55);
-
-    segmentMatrices[0].identity();
-    segmentMatrices[1].copy(hipMatrix);
-    segmentMatrices[2].copy(hipMatrix).multiply(patellaMatrix);
-    segmentMatrices[3].copy(hipMatrix).multiply(kneeMatrix);
-}
-
-function skin(part) {
-    const base = part.base;
-    const weights = part.weights;
-    const attribute = part.mesh.geometry.attributes.position;
-    const out = attribute.array;
-    const m = segmentMatrices.map((matrix) => matrix.elements);
-
-    for (let v = 0, n = base.length / 3; v < n; v++) {
-        const x = base[v * 3];
-        const y = base[v * 3 + 1];
-        const z = base[v * 3 + 2];
-        let ox = 0;
-        let oy = 0;
-        let oz = 0;
-
-        for (let s = 0; s < 4; s++) {
-            const w = weights[v * 4 + s];
-            if (w === 0) {
-                continue;
-            }
-            const e = m[s];
-            const k = w / 255;
-            ox += k * (e[0] * x + e[4] * y + e[8] * z + e[12]);
-            oy += k * (e[1] * x + e[5] * y + e[9] * z + e[13]);
-            oz += k * (e[2] * x + e[6] * y + e[10] * z + e[14]);
-        }
-
-        out[v * 3] = ox;
-        out[v * 3 + 1] = oy;
-        out[v * 3 + 2] = oz;
-    }
-
-    attribute.needsUpdate = true;
-    part.mesh.geometry.computeVertexNormals();
-    part.mesh.geometry.computeBoundingSphere();
-}
-
-function skinPoint(point, weights) {
-    const out = new THREE.Vector3();
-    const v = new THREE.Vector3();
-    for (let s = 0; s < 4; s++) {
-        if (!weights[s]) {
-            continue;
-        }
-        v.set(point[0], point[1], point[2]).applyMatrix4(segmentMatrices[s]);
-        out.addScaledVector(v, weights[s] / 255);
-    }
-    return out;
-}
-
-function applyPose() {
-    computeSegmentMatrices();
-
-    for (const part of Object.values(parts)) {
-        if (part.segment) {
-            part.mesh.matrix.copy(segmentMatrices[SEGMENT_INDEX[part.segment]]);
-        } else if (part.weights) {
-            skin(part);
-            part.mesh.matrix.identity();
-        }
-
-        if (part.kind === "muscle" && state.spread > 0) {
-            const distance = state.spread * (part.layer === 0 ? 7 : 2.5);
-            part.mesh.matrix.makeTranslation(
-                part.offsetDir.x * distance,
-                part.offsetDir.y * distance,
-                part.offsetDir.z * distance,
-            );
-        }
-
-        part.mesh.matrixWorldNeedsUpdate = true;
-    }
-
-    rebuildCords();
-    rebuildNerves();
-    updateLiveReadouts();
-}
-
-/* ==========================================================================
- * Points that follow the rig: sites, landmarks, lines of pull
- * ======================================================================== */
-
-function sitePoint(siteId) {
-    const site = state.data.sites[siteId];
-    const total = new THREE.Vector3();
-    let count = 0;
-
-    for (const patch of site.patches) {
-        const part = parts[patch];
-        if (!part) {
-            continue;
-        }
-        const point = patchCentroid[patch].clone().applyMatrix4(segmentMatrices[SEGMENT_INDEX[part.segment]]);
-        total.add(point);
-        count++;
-    }
-
-    if (count === 0 && site.landmark) {
-        return landmarkPoint(site.landmark);
-    }
-    return total.divideScalar(Math.max(count, 1));
-}
-
-function landmarkPoint(name) {
-    const landmark = state.geo.landmarks[name];
-    if (!landmark) {
-        return new THREE.Vector3();
-    }
-    return new THREE.Vector3(...landmark.point).applyMatrix4(segmentMatrices[SEGMENT_INDEX[landmark.segment]]);
-}
-
-function cordPath(muscleId) {
-    const muscle = state.data.muscles[muscleId];
-    const points = [sitePoint(muscle.origin[0])];
-
-    for (const via of muscle.via ?? []) {
-        points.push(sitePoint(via));
-    }
-    points.push(sitePoint(muscle.insertion[muscle.insertion.length - 1]));
-    return points;
-}
-
-function pathLength(points) {
-    let length = 0;
-    for (let i = 1; i < points.length; i++) {
-        length += points[i].distanceTo(points[i - 1]);
-    }
-    return length;
-}
-
-const restLength = {};
-
-function muscleLengthRatio(muscleId) {
-    return pathLength(cordPath(muscleId)) / restLength[muscleId];
-}
-
-function ligamentTension(ligamentId) {
-    return clamp(interpolate(state.data.ligaments[ligamentId].taut, state.pose.knee), 0, 1);
-}
-
-function tensionColor(tension) {
-    const slack = new THREE.Color(COLORS.slack);
-    const amber = new THREE.Color(COLORS.amber);
-    const taut = new THREE.Color(COLORS.taut);
-    if (tension < 0.55) {
-        return slack.lerp(amber, clamp((tension - 0.3) / 0.25, 0, 1));
-    }
-    return amber.lerp(taut, clamp((tension - 0.55) / 0.35, 0, 1));
-}
-
-function tubeAlong(points, radius) {
-    const path = new THREE.CurvePath();
-    for (let i = 1; i < points.length; i++) {
-        path.add(new THREE.LineCurve3(points[i - 1], points[i]));
-    }
-    return new THREE.TubeGeometry(path, 24 * (points.length - 1), radius, 10, false);
-}
-
-function clearGroup(group) {
-    for (const child of [...group.children]) {
-        child.geometry?.dispose();
-        child.material?.dispose();
-        group.remove(child);
-    }
-}
-
-function visibleCordMuscles() {
-    const { data, selection } = state;
-    const ids = new Set();
-
-    if (selection?.type === "muscle") {
-        ids.add(selection.id);
-    }
-    if (state.show.cords) {
-        for (const id of muscleIdsInView()) {
-            ids.add(id);
-        }
-    }
-    if (state.tab === "movements" && state.movement) {
-        // Only prime movers get a line of pull, to keep the view readable.
-        for (const id of data.movements[state.movement].prime) {
-            ids.add(id);
-        }
-    }
-    return [...ids];
-}
-
-function rebuildCords() {
-    clearGroup(cordGroup);
-    const { data, selection } = state;
-
-    for (const id of visibleCordMuscles()) {
-        const points = cordPath(id);
-        const selected = selection?.type === "muscle" && selection.id === id;
-        const color = selected ? 0xff7a66 : 0xf09c8f;
-
-        const material = new THREE.MeshStandardMaterial({
-            color,
-            emissive: color,
-            emissiveIntensity: 0.35,
-            roughness: 0.4,
-            depthTest: false,
-            transparent: true,
-            opacity: selected ? 0.95 : 0.75,
-        });
-        const tube = new THREE.Mesh(tubeAlong(points, selected ? 0.32 : 0.22), material);
-        tube.renderOrder = 10;
-        tube.userData.cord = id;
-        cordGroup.add(tube);
-
-        // Arrowhead near the insertion, pointing back toward the origin:
-        // the insertion is pulled toward the origin.
-        const end = points[points.length - 1];
-        const before = points[points.length - 2];
-        const direction = before.clone().sub(end).normalize();
-        const cone = new THREE.Mesh(
-            new THREE.ConeGeometry(selected ? 0.9 : 0.65, selected ? 2.4 : 1.8, 14),
-            material.clone(),
-        );
-        cone.position.copy(end).addScaledVector(direction, 3.2);
-        cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), direction);
-        cone.renderOrder = 10;
-        cone.userData.cord = id;
-        cordGroup.add(cone);
-    }
-
-    // Patellar ligament has no mesh in the atlas, so draw it as a band.
-    const ligament = data.ligaments["patellar-ligament"];
-    const [from, to] = ligament.between.map(sitePoint);
-    const tension = ligamentTension("patellar-ligament");
-    const band = new THREE.Mesh(
-        tubeAlong([from, to], 0.75),
-        new THREE.MeshStandardMaterial({ color: tensionColor(tension), roughness: 0.6 }),
-    );
-    band.scale.set(1, 1, 1);
-    band.userData.ligament = "patellar-ligament";
-    band.userData.band = true;
-    cordGroup.add(band);
-    applyBandAppearance(band);
-}
-
-function nerveIdsToShow() {
-    const { data, selection, nerve, tab } = state;
-    const ids = new Set();
-    if (tab === "nerves" && nerve.id) {
-        ids.add(nerve.id);
-        for (const [id, item] of Object.entries(data.nerves)) {
-            if (item.parent === nerve.id) {
-                ids.add(id);
-            }
-        }
-    }
-    if (selection?.type === "muscle") {
-        const muscleNerve = data.muscles[selection.id].nerve;
-        ids.add(muscleNerve);
-        const parent = data.nerves[muscleNerve].parent;
-        if (parent) {
-            ids.add(parent);
-        }
-    }
-    if (selection?.type === "nerve") {
-        ids.add(selection.id);
-    }
-    return [...ids];
-}
-
-function rebuildNerves() {
-    clearGroup(nerveGroup);
-    const { data } = state;
-
-    for (const id of nerveIdsToShow()) {
-        for (const curveName of data.nerves[id].curves) {
-            for (const path of state.geo.nerves[curveName] ?? []) {
-                const points = path.points.map((point, i) => skinPoint(point, path.weights[i]));
-                if (points.length < 2) {
-                    continue;
-                }
-                const curve = new THREE.CatmullRomCurve3(points);
-                const geometry = new THREE.TubeGeometry(curve, points.length * 8, 0.42, 8, false);
-                const material = new THREE.MeshStandardMaterial({
-                    color: COLORS.nerve,
-                    emissive: COLORS.nerve,
-                    emissiveIntensity: 0.45,
-                    roughness: 0.5,
-                    depthTest: false,
-                    transparent: true,
-                    opacity: 0.9,
-                });
-                const tube = new THREE.Mesh(geometry, material);
-                tube.renderOrder = 9;
-                nerveGroup.add(tube);
-            }
-        }
-    }
-}
-
-/* ==========================================================================
- * Appearance
- * ======================================================================== */
-
-function muscleIdsInView() {
-    const { data, node } = state;
-    const ids = [];
-    const visit = (id) => {
-        if (data.muscles[id]) {
-            ids.push(id);
-            return;
-        }
-        for (const child of data.tree[id]?.children ?? []) {
-            visit(child);
-        }
-    };
-    visit(node);
-    if (ids.length === 0) {
-        return Object.keys(data.muscles);
-    }
-    return ids;
-}
-
-function setLook(part, look) {
-    const material = part.mesh.material;
-    const settings = {
-        visible: true,
-        color: COLORS.bone,
-        opacity: 1,
-        emissive: 0x000000,
-        emissiveIntensity: 0,
-    };
-
-    Object.assign(settings, look);
-    part.mesh.visible = settings.visible;
-    material.color.setHex(settings.color);
-    material.emissive.setHex(settings.emissive);
-    material.emissiveIntensity = settings.emissiveIntensity;
-
-    const transparent = settings.opacity < 0.999;
-    if (material.transparent !== transparent) {
-        material.transparent = transparent;
-        material.needsUpdate = true;
-    }
-    material.opacity = settings.opacity;
-    material.depthWrite = !transparent || settings.opacity > 0.5;
-}
-
-function highlightSets() {
-    const { data, selection, tab, nerve, movement, quiz } = state;
-    const result = {
-        focus: new Set(),
-        prime: new Set(),
-        assist: new Set(),
-        nerve: new Set(),
-        lost: new Set(),
-        sites: new Map(),
-        dimOthers: false,
-        hideMuscles: false,
-    };
-
-    if (tab === "quiz" && quiz?.current?.tap) {
-        result.hideMuscles = true;
-        for (const [patch, info] of Object.entries(patchInfo)) {
-            result.sites.set(patch, quiz.current.revealed?.has(patch) ? "correct" : "neutral");
-        }
-        return result;
-    }
-
-    if (tab === "nerves" && nerve.id) {
-        const nerveIds = new Set([nerve.id]);
-        for (const [id, item] of Object.entries(data.nerves)) {
-            if (item.parent === nerve.id) {
-                nerveIds.add(id);
-            }
-        }
-        for (const [id, muscle] of Object.entries(data.muscles)) {
-            if (nerveIds.has(muscle.nerve)) {
-                (nerve.injury ? result.lost : result.nerve).add(id);
-            }
-        }
-        result.dimOthers = true;
-        return result;
-    }
-
-    if (tab === "movements" && movement) {
-        const item = data.movements[movement];
-        item.prime.forEach((id) => result.prime.add(id));
-        item.assist.forEach((id) => result.assist.add(id));
-        result.dimOthers = true;
-        return result;
-    }
-
-    if (!selection) {
-        return result;
-    }
-
-    if (selection.type === "muscle") {
-        const muscle = data.muscles[selection.id];
-        result.focus.add(selection.id);
-        result.dimOthers = true;
-        for (const siteId of muscle.origin) {
-            for (const patch of data.sites[siteId].patches) {
-                result.sites.set(patch, "origin");
-            }
-        }
-        for (const siteId of muscle.insertion) {
-            for (const patch of data.sites[siteId].patches) {
-                result.sites.set(patch, "insertion");
-            }
-        }
-    } else if (selection.type === "ligament" || selection.type === "structure") {
-        result.focus.add(selection.id);
-        result.dimOthers = true;
-        result.hideMuscles = true;
-    } else if (selection.type === "site" || selection.type === "bone") {
-        const siteIds = selection.type === "site"
-            ? [selection.id]
-            : Object.entries(data.sites)
-                .filter(([, site]) => site.bone === selection.id)
-                .map(([id]) => id);
-        for (const siteId of siteIds) {
-            for (const patch of data.sites[siteId].patches) {
-                result.sites.set(patch, patchInfo[patch].role);
-            }
-        }
-        if (selection.type === "bone") {
-            result.focus.add(selection.id);
-        }
-        result.hideMuscles = true;
-    }
-
-    return result;
-}
-
-function applyAppearance() {
-    const { data, show } = state;
-    const sets = highlightSets();
-    const inView = new Set(muscleIdsInView());
-    const kneeGroupOpen = state.node === "knee-joint";
-
-    for (const part of Object.values(parts)) {
-        const owner = part.owner;
-
-        if (part.kind === "bone") {
-            const focused = owner && sets.focus.has(owner.id);
-            setLook(part, {
-                color: owner ? COLORS.bone : COLORS.boneContext,
-                emissive: focused ? 0x3a3020 : 0x000000,
-                emissiveIntensity: focused ? 1 : 0,
-            });
-            continue;
-        }
-
-        if (part.kind === "patch") {
-            const role = sets.sites.get(part.name);
-            const always = show.sites && !sets.hideMuscles;
-            if (!role && !always) {
-                setLook(part, { visible: false });
-                continue;
-            }
-            const finalRole = role ?? patchInfo[part.name]?.role ?? "neutral";
-            const color = {
-                origin: COLORS.origin,
-                insertion: COLORS.insertion,
-                neutral: COLORS.neutralSite,
-                correct: COLORS.correct,
-            }[finalRole] ?? COLORS.neutralSite;
-            setLook(part, { color, emissive: color, emissiveIntensity: 0.25 });
-            continue;
-        }
-
-        if (part.kind === "muscle") {
-            const id = owner?.id;
-            const isTendon = part.name.startsWith("Calcaneal tendon");
-            const baseColor = isTendon ? COLORS.tendon : COLORS.muscle;
-
-            if (!show.muscles || sets.hideMuscles) {
-                setLook(part, { visible: false });
-                continue;
-            }
-
-            if (sets.focus.has(id)) {
-                setLook(part, { color: baseColor, emissive: 0x401010, emissiveIntensity: 1 });
-            } else if (sets.prime.has(id)) {
-                setLook(part, { color: COLORS.prime, emissive: COLORS.prime, emissiveIntensity: 0.25 });
-            } else if (sets.assist.has(id)) {
-                setLook(part, { color: COLORS.assist, opacity: 0.85 });
-            } else if (sets.nerve.has(id)) {
-                setLook(part, { color: baseColor, emissive: 0x3a1408, emissiveIntensity: 1, opacity: 0.92 });
-            } else if (sets.lost.has(id)) {
-                setLook(part, { color: COLORS.lost, opacity: 0.9 });
-            } else if (sets.dimOthers || !inView.has(id) || kneeGroupOpen) {
-                setLook(part, { color: baseColor, opacity: kneeGroupOpen ? 0.06 : 0.1 });
-            } else {
-                setLook(part, { color: baseColor });
-            }
-            continue;
-        }
-
-        if (part.kind === "ligament") {
-            const id = owner?.id;
-            if (owner?.type === "structure") {
-                const focused = sets.focus.has(id);
-                setLook(part, {
-                    color: COLORS.meniscus,
-                    emissive: focused ? 0x204050 : 0x000000,
-                    emissiveIntensity: focused ? 1 : 0,
-                    opacity: sets.dimOthers && !focused ? 0.35 : 1,
-                });
-                continue;
-            }
-            const tension = id ? ligamentTension(id) : 0;
-            const focused = sets.focus.has(id);
-            const color = tensionColor(tension).getHex();
-            setLook(part, {
-                color,
-                emissive: focused ? color : 0x000000,
-                emissiveIntensity: focused ? 0.35 : 0,
-                opacity: sets.dimOthers && !focused ? 0.3 : 1,
-            });
-        }
-    }
-
-    for (const child of cordGroup.children) {
-        if (child.userData.band) {
-            applyBandAppearance(child);
-        }
-    }
-
-    renderCrumbs();
-    rebuildLabels();
-}
-
-function applyBandAppearance(band) {
-    const { selection } = state;
-    const focused = selection?.type === "ligament" && selection.id === "patellar-ligament";
-    const dim = selection && !focused && (selection.type === "ligament" || selection.type === "structure");
-    band.material.transparent = Boolean(dim);
-    band.material.opacity = dim ? 0.3 : 1;
-    band.material.emissive.copy(focused ? band.material.color : new THREE.Color(0));
-    band.material.emissiveIntensity = focused ? 0.35 : 0;
-}
-
-/* ==========================================================================
- * Labels pinned to the model
- * ======================================================================== */
-
-const labelsEl = $("#labels");
-let labels = [];
-
-function rebuildLabels() {
-    labelsEl.innerHTML = "";
-    labels = [];
-    const { data, selection, tab } = state;
-
-    const add = (text, sub, color, getPoint) => {
-        const el = document.createElement("div");
-        el.className = "tag";
-        el.style.setProperty("--c", color);
-        el.innerHTML = `${escapeHtml(text)}${sub ? `<small>${escapeHtml(sub)}</small>` : ""}`;
-        labelsEl.appendChild(el);
-        labels.push({ el, getPoint });
-    };
-
-    if (tab !== "explore" && tab !== "terms") {
-        return;
-    }
-
-    if (selection?.type === "muscle") {
-        const muscle = data.muscles[selection.id];
-        add(
-            data.sites[muscle.origin[0]].name,
-            "Origin",
-            "var(--origin)",
-            () => sitePoint(muscle.origin[0]),
-        );
-        const last = muscle.insertion[muscle.insertion.length - 1];
-        add(data.sites[last].name, "Insertion", "var(--insertion)", () => sitePoint(last));
-        return;
-    }
-
-    if (selection?.type === "site") {
-        add(data.sites[selection.id].name, "Attachment site", "#c8d0d4", () => sitePoint(selection.id));
-        return;
-    }
-
-    if (tab === "explore" && (state.node === "knee-joint" || selection?.type === "ligament")) {
-        for (const [id, ligament] of Object.entries(data.ligaments)) {
-            if (selection?.type === "ligament" && selection.id !== id) {
-                continue;
-            }
-            add(
-                ligament.short,
-                null,
-                "#" + tensionColor(ligamentTension(id)).getHexString(),
-                () => ligamentAnchor(id),
-            );
-        }
-    }
-}
-
-function ligamentAnchor(id) {
-    const ligament = state.data.ligaments[id];
-    if (ligament.between) {
-        const [a, b] = ligament.between.map(sitePoint);
-        return a.add(b).multiplyScalar(0.5);
-    }
-    const geometry = parts[ligament.mesh].mesh.geometry;
-    geometry.computeBoundingBox();
-    return geometry.boundingBox.getCenter(new THREE.Vector3());
-}
-
-function placeLabels() {
-    const width = stage.clientWidth;
-    const height = stage.clientHeight;
-    const placed = [];
-
-    for (const label of labels) {
-        const point = label.getPoint().project(camera);
-        if (point.z > 1) {
-            label.el.hidden = true;
-            continue;
-        }
-        label.el.hidden = false;
-        let x = (point.x * 0.5 + 0.5) * width + 10;
-        let y = (-point.y * 0.5 + 0.5) * height - 12;
-
-        const w = label.el.offsetWidth;
-        const h = label.el.offsetHeight;
-        x = clamp(x, 6, width - w - 6);
-        for (const other of placed) {
-            if (Math.abs(other.x - x) < w && Math.abs(other.y - y) < h + 2) {
-                y = other.y + h + 4;
-            }
-        }
-        y = clamp(y, 50, height - h - 90);
-        placed.push({ x, y });
-        label.el.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`;
-    }
-}
-
-/* ==========================================================================
- * Camera framing
- * ======================================================================== */
-
-function framePartsBox(names, padding = 1.25, view = null) {
-    const box = new THREE.Box3();
-    for (const name of names) {
-        const part = parts[name];
-        if (!part) {
-            continue;
-        }
-        part.mesh.updateMatrixWorld(true);
-        part.mesh.geometry.computeBoundingBox();
-        box.union(part.mesh.geometry.boundingBox.clone().applyMatrix4(part.mesh.matrixWorld));
-    }
-    if (box.isEmpty()) {
-        return;
-    }
-
-    const centre = box.getCenter(new THREE.Vector3());
-    const size = box.getSize(new THREE.Vector3());
-
-    // Fit the box's bounding sphere inside the narrower of the two view angles,
-    // leaving room for the joint dock along the bottom of the stage.
-    const radius = Math.max(size.length() / 2, 5) * padding;
-    const verticalFov = THREE.MathUtils.degToRad(camera.fov);
-    const horizontalFov = 2 * Math.atan(Math.tan(verticalFov / 2) * camera.aspect);
-    const distance = radius / Math.sin(Math.min(verticalFov, horizontalFov) / 2);
-    centre.y -= radius * 0.08;
-
-    const direction = view
-        ? new THREE.Vector3(...view).normalize()
-        : camera.position.clone().sub(orbit.target).normalize();
-    if (direction.lengthSq() < 0.5) {
-        direction.set(-0.45, 0.15, 1).normalize();
-    }
-
-    cameraGoal = {
-        target: centre,
-        position: centre.clone().addScaledVector(direction, distance),
-    };
-
-    if (REDUCED_MOTION) {
-        orbit.target.copy(cameraGoal.target);
-        camera.position.copy(cameraGoal.position);
-        cameraGoal = null;
-    }
-}
-
-function meshNamesFor(id) {
-    const { data } = state;
-    if (ownedMeshes[id]) {
-        return ownedMeshes[id];
-    }
-    const names = [];
-    const visit = (nodeId) => {
-        if (ownedMeshes[nodeId]) {
-            names.push(...ownedMeshes[nodeId]);
-            return;
-        }
-        for (const child of data.tree[nodeId]?.children ?? []) {
-            visit(child);
-        }
-    };
-    visit(id);
-    return names;
-}
-
-/* Camera directions that put each structure in front of the viewer.
- * The right limb sits at negative x, so +x is medial and -x is lateral;
- * +z is anterior. */
-const VIEWS = {
-    front: [-0.35, 0.12, 1],
-    medial: [1, 0.12, 0.3],
-    lateral: [-1, 0.12, 0.3],
-    back: [-0.25, 0.12, -1],
-};
-
-const GROUP_VIEW = {
-    "anterior-thigh": VIEWS.front,
-    "medial-thigh": VIEWS.medial,
-    "posterior-thigh": VIEWS.back,
-    "posterior-knee": VIEWS.back,
-    "knee-joint": VIEWS.front,
-};
-
-const LIGAMENT_VIEW = {
-    acl: VIEWS.front,
-    pcl: VIEWS.back,
-    mcl: VIEWS.medial,
-    lcl: VIEWS.lateral,
-    "patellar-ligament": VIEWS.lateral,
-    "medial-meniscus": [0.2, 1, 0.5],
-    "lateral-meniscus": [-0.2, 1, 0.5],
-};
-
-/** Direction from the femoral shaft out to a point, used to face a site. */
-function viewToward(point) {
-    const out = point.clone().sub(new THREE.Vector3(rig.hip.x, point.y, rig.hip.z));
-    out.y = 0;
-    if (out.lengthSq() < 0.01) {
-        return VIEWS.front;
-    }
-    out.normalize();
-    return [out.x, 0.15, out.z];
-}
-
-function frameCurrent() {
-    const { data, selection, node } = state;
-    if (selection) {
-        let names = meshNamesFor(selection.id);
-        if (selection.type === "site") {
-            const site = data.sites[selection.id];
-            names = site.patches.length ? site.patches : [data.bones[site.bone].mesh];
-            framePartsBox(names, 3.2, viewToward(sitePoint(selection.id)));
-            return;
-        }
-        if (selection.type === "ligament" || selection.type === "structure") {
-            const view = LIGAMENT_VIEW[selection.id] ?? VIEWS.front;
-            if (data.ligaments[selection.id]?.between) {
-                framePartsBox(["Patella.r"], 2.6, view);
-                return;
-            }
-            framePartsBox(names, 2.6, view);
-            return;
-        }
-        if (selection.type === "muscle") {
-            framePartsBox(names, 1.2, GROUP_VIEW[data.muscles[selection.id].group]);
-            return;
-        }
-        framePartsBox(names, 1.15, VIEWS.front);
-        return;
-    }
-    if (node === "knee-joint") {
-        framePartsBox(meshNamesFor("knee-joint"), 1.9, VIEWS.front);
-        return;
-    }
-    if (node === "body" || node === "lower-limb") {
-        framePartsBox(Object.keys(parts).filter((name) => parts[name].kind === "bone"), 1.05, VIEWS.front);
-        return;
-    }
-    framePartsBox(meshNamesFor(node), 1.1, GROUP_VIEW[node] ?? VIEWS.front);
-}
-
-/* ==========================================================================
- * Navigation
- * ======================================================================== */
-
-function entityType(id) {
-    const { data } = state;
-    if (data.tree[id]) return "node";
-    if (data.muscles[id]) return "muscle";
-    if (data.ligaments[id]) return "ligament";
-    if (data.structures[id]) return "structure";
-    if (data.bones[id]) return "bone";
-    if (data.sites[id]) return "site";
-    if (data.nerves[id]) return "nerve";
-    return null;
-}
-
-function entityName(id) {
-    const { data } = state;
-    return (
-        data.tree[id]?.name ??
-        data.muscles[id]?.name ??
-        data.ligaments[id]?.name ??
-        data.structures[id]?.name ??
-        data.bones[id]?.name ??
-        data.sites[id]?.name ??
-        data.nerves[id]?.name ??
-        id
-    );
-}
-
-function parentNodeOf(id) {
-    const { data } = state;
-    if (data.tree[id]) {
-        return data.tree[id].parent ?? null;
-    }
-    for (const [nodeId, node] of Object.entries(data.tree)) {
-        if (node.children?.includes(id)) {
-            return nodeId;
-        }
-    }
-    if (data.sites[id]) {
-        return "bones";
-    }
-    return "thigh-knee";
-}
-
-function openEntity(id, options = {}) {
-    const type = entityType(id);
-    if (!type) {
-        return;
-    }
-    hidePop();
-
-    if (type === "node") {
-        if (state.data.tree[id].comingIn) {
-            return;
-        }
-        state.node = id;
-        state.selection = null;
-    } else if (type === "nerve") {
-        showTab("nerves");
-        selectNerve(id);
-        return;
-    } else {
-        state.node = parentNodeOf(id);
-        state.selection = { type, id };
-    }
-
-    if (options.tab !== false && state.tab !== "explore") {
-        showTab("explore", { keepView: true });
-    }
-
-    state.dirty = true;
-    applyAppearance();
-    renderExplore();
-    if (options.frame !== false) {
-        frameCurrent();
-    }
-    $("#views").scrollTop = 0;
-}
-
-function goUp() {
-    if (state.selection) {
-        openEntity(state.node);
-        return;
-    }
-    const parent = state.data.tree[state.node]?.parent;
-    if (parent) {
-        openEntity(parent);
-    }
-}
-
-function renderCrumbs() {
-    const { data, selection } = state;
-    const trail = [];
-    let id = state.node;
-    while (id) {
-        trail.unshift(id);
-        id = data.tree[id]?.parent;
-    }
-    if (selection) {
-        trail.push(selection.id);
-    }
-
-    const crumbs = $("#crumbs");
-    crumbs.innerHTML = trail
-        .map((item, index) => {
-            const last = index === trail.length - 1;
-            const name = escapeHtml(entityName(item));
-            const separator = index > 0 ? '<span class="sep" aria-hidden="true">›</span>' : "";
-            if (last) {
-                return `${separator}<span class="here">${name}</span>`;
-            }
-            return `${separator}<button type="button" data-open="${escapeHtml(item)}">${name}</button>`;
-        })
-        .join("");
-}
-
-/* ==========================================================================
- * Text with glossary links
- * ======================================================================== */
-
-let glossaryPattern = null;
-
-function linkTerms(text, seen = new Set()) {
-    if (!glossaryPattern) {
-        const terms = Object.keys(state.data.glossary).sort((a, b) => b.length - a.length);
-        glossaryPattern = new RegExp(`\\b(${terms.map((t) => t.replace(/[-]/g, "\\-")).join("|")})\\b`, "gi");
-    }
-    return escapeHtml(text).replace(glossaryPattern, (match) => {
-        const key = match.toLowerCase();
-        if (seen.has(key)) {
-            return match;
-        }
-        seen.add(key);
-        return `<button type="button" class="term" data-term="${escapeHtml(key)}">${match}</button>`;
-    });
-}
-
-const pop = $("#pop");
-
-function showTerm(term, anchor) {
-    const definition = state.data.glossary[term];
-    if (!definition) {
-        return;
-    }
-    pop.innerHTML = `<b>${escapeHtml(term)}</b>${escapeHtml(definition)}`;
-    pop.hidden = false;
-    const rect = anchor.getBoundingClientRect();
-    const width = pop.offsetWidth;
-    const height = pop.offsetHeight;
-    let left = clamp(rect.left, 12, innerWidth - width - 12);
-    let top = rect.bottom + 8;
-    if (top + height > innerHeight - 12) {
-        top = rect.top - height - 8;
-    }
-    pop.style.left = `${left}px`;
-    pop.style.top = `${top}px`;
-}
-
-function hidePop() {
-    pop.hidden = true;
-}
-
-/* ==========================================================================
- * Explore panel
- * ======================================================================== */
-
-const paneExplore = $("#pane-explore");
-
-function nerveLabel(muscle) {
-    const nerve = state.data.nerves[muscle.nerve];
-    return muscle.nerveNote ?? nerve.name;
-}
-
-function card(id, description, extra = "") {
-    const { data } = state;
-    const node = data.tree[id];
-    if (node?.comingIn) {
-        return `
-            <button class="card" type="button" disabled>
-                <span class="nm">${escapeHtml(node.name)} <span class="badge">${escapeHtml(node.comingIn)}</span></span>
-                <span class="ds">Planned for a later phase.</span>
-            </button>`;
-    }
-    return `
-        <button class="card" type="button" data-open="${escapeHtml(id)}">
-            <span class="nm">${escapeHtml(entityName(id))} ${extra}</span>
-            ${description ? `<span class="ds">${escapeHtml(description)}</span>` : ""}
-        </button>`;
-}
-
-function describeChild(id) {
-    const { data } = state;
-    if (data.muscles[id]) {
-        const muscle = data.muscles[id];
-        return `${nerveLabel(muscle)} · ${muscle.roots}`;
-    }
-    if (data.ligaments[id]) {
-        return data.ligaments[id].function;
-    }
-    if (data.structures[id]) {
-        return "Fibrocartilage pad between femur and tibia";
-    }
-    if (data.bones[id]) {
-        const count = Object.values(data.sites).filter((site) => site.bone === id).length;
-        return count ? `${count} attachment site${count === 1 ? "" : "s"} in this region` : "";
-    }
-    if (data.tree[id]) {
-        return data.tree[id].summary ?? "";
-    }
-    return "";
-}
-
-function renderNodePane(id) {
-    const { data } = state;
-    const node = data.tree[id];
-    let html = `
-        <div class="eyebrow">${id === "body" ? "Start here" : "Region"}</div>
-        <h2>${escapeHtml(node.name)}</h2>`;
-
-    if (node.summary) {
-        html += `<p class="lede">${linkTerms(node.summary)}</p>`;
-    }
-
-    if (id === "body") {
-        html += `<p class="lede">The lower limb is the first region built. Choose it to go one level deeper, or tap any bone or muscle on the model.</p>`;
-    }
-
-    if (id === "knee-joint") {
-        html += `
-            <div class="legend">
-                <span><i class="key" style="--k: var(--slack)"></i>Slack</span>
-                <span><i class="key" style="--k: #f0a43a"></i>Tightening</span>
-                <span><i class="key" style="--k: var(--taut)"></i>Taut</span>
-            </div>
-            <p class="lede">Bend the knee with the slider and watch the ligament colours change.</p>
-            <div class="actions-row">
-                <button class="btn" type="button" data-sweep="knee">Bend and straighten the knee</button>
-            </div>`;
-    }
-
-    html += `<h3>${id === "bones" ? "Bones" : "Inside"}</h3><div class="cards">`;
-    for (const child of node.children ?? []) {
-        html += card(child, describeChild(child));
-    }
-    html += `</div>`;
-
-    if (id === "thigh-knee") {
-        html += `
-            <div class="legend">
-                <span><i class="key" style="--k: var(--origin)"></i>Origin</span>
-                <span><i class="key" style="--k: var(--insertion)"></i>Insertion</span>
-                <span><i class="key" style="--k: var(--nerve)"></i>Nerve</span>
-            </div>`;
-    }
-    return html;
-}
-
-function actionChips(muscle) {
-    const { data } = state;
-    return muscle.actions
-        .map((actionId) => {
-            const movement = data.movements[actionId];
-            const prime = movement.prime.includes(state.selection?.id);
-            const playable = Boolean(movement.rig);
-            return `
-                <button class="chip${prime ? " prime" : ""}" type="button" data-play="${escapeHtml(actionId)}">
-                    ${playable ? '<span class="play" aria-hidden="true">▶</span>' : ""}${escapeHtml(movement.name)}
-                </button>`;
-        })
-        .join("");
-}
-
-function renderMusclePane(id) {
-    const { data } = state;
-    const muscle = data.muscles[id];
-    const nerve = data.nerves[muscle.nerve];
-    const seen = new Set();
-
-    return `
-        <div class="eyebrow">
-            ${escapeHtml(data.tree[muscle.group].name)}
-            <span class="badge draft">Draft · unreviewed</span>
-        </div>
-        <h2>${escapeHtml(muscle.name)}</h2>
-        <dl class="facts">
-            <div class="fact">
-                <dt><i class="key ring" style="--k: var(--origin)"></i>Origin</dt>
-                <dd>${linkTerms(muscle.originText, seen)}</dd>
-            </div>
-            <div class="fact">
-                <dt><i class="key" style="--k: var(--insertion)"></i>Insertion</dt>
-                <dd>${linkTerms(muscle.insertionText, seen)}</dd>
-            </div>
-            <div class="fact">
-                <dt><i class="key" style="--k: var(--nerve)"></i>Nerve</dt>
-                <dd>
-                    <button class="chip" type="button" data-nerve="${escapeHtml(muscle.nerve)}">${escapeHtml(nerveLabel(muscle))}</button>
-                    <span class="roots">${escapeHtml(muscle.roots)}</span>
-                </dd>
-            </div>
-            <div class="fact">
-                <dt>Actions</dt>
-                <dd><div class="chips">${actionChips(muscle)}</div></dd>
-            </div>
-        </dl>
-        <div class="meter" id="length-meter">
-            <div class="meter-row">
-                <span>Line of pull, compared with standing</span>
-                <strong id="length-value">100%</strong>
-            </div>
-            <div class="bar"><i id="length-bar"></i></div>
-            <span class="lede" id="length-text">Move a joint, or tap an action above to watch it.</span>
-        </div>
-        ${muscle.note ? `<p class="note">${linkTerms(muscle.note, seen)}</p>` : ""}
-        <div class="actions-row">
-            <button class="btn ghost" type="button" data-quiz-on="${escapeHtml(id)}">Quiz me on ${escapeHtml(muscle.name)}</button>
-        </div>`;
-}
-
-function renderLigamentPane(id) {
-    const { data } = state;
-    const ligament = data.ligaments[id];
-    const seen = new Set();
-
-    return `
-        <div class="eyebrow">Knee ligament <span class="badge draft">Draft · unreviewed</span></div>
-        <h2>${escapeHtml(ligament.name)}</h2>
-        <dl class="facts">
-            <div class="fact">
-                <dt>Attaches</dt>
-                <dd>${linkTerms(ligament.attachmentText, seen)}</dd>
-            </div>
-            <div class="fact">
-                <dt>Job</dt>
-                <dd>${linkTerms(ligament.function, seen)}</dd>
-            </div>
-            <div class="fact">
-                <dt>Taut in</dt>
-                <dd>${linkTerms(ligament.tautText, seen)}</dd>
-            </div>
-        </dl>
-        <div class="meter">
-            <div class="meter-row">
-                <span>Tension at <b id="tension-angle">0°</b> of knee flexion</span>
-                <strong id="tension-word">Taut</strong>
-            </div>
-            <div class="bar"><i id="tension-bar"></i></div>
-            <span class="lede">Colours follow the reviewer-set rule for this ligament, not a physics simulation.</span>
-        </div>
-        <div class="actions-row">
-            <button class="btn" type="button" data-sweep="knee">Bend and straighten the knee</button>
-        </div>`;
-}
-
-function renderStructurePane(id) {
-    const structure = state.data.structures[id];
-    return `
-        <div class="eyebrow">Knee joint <span class="badge draft">Draft · unreviewed</span></div>
-        <h2>${escapeHtml(structure.name)}</h2>
-        <p>${linkTerms(structure.text)}</p>`;
-}
-
-function siteMuscles(siteId) {
-    const { data } = state;
-    const starts = [];
-    const ends = [];
-    for (const [id, muscle] of Object.entries(data.muscles)) {
-        if (muscle.origin.includes(siteId)) {
-            starts.push(id);
-        }
-        if (muscle.insertion.includes(siteId)) {
-            ends.push(id);
-        }
-    }
-    const ligaments = Object.entries(data.ligaments)
-        .filter(([, ligament]) => ligament.between?.includes(siteId))
-        .map(([id]) => id);
-    return { starts, ends, ligaments };
-}
-
-function siteBlock(siteId, withTitle) {
-    const { data } = state;
-    const { starts, ends, ligaments } = siteMuscles(siteId);
-    const chipList = (ids) =>
-        ids.map((id) => `<button class="chip" type="button" data-open="${escapeHtml(id)}">${escapeHtml(entityName(id))}</button>`).join("");
-
-    let html = withTitle
-        ? `<button class="listbtn" type="button" data-open="${escapeHtml(siteId)}"><span>${escapeHtml(data.sites[siteId].name)}</span><span aria-hidden="true">›</span></button>`
-        : "";
-    html += `<div class="facts">`;
-    if (starts.length) {
-        html += `<div class="fact"><dt><i class="key ring" style="--k: var(--origin)"></i>Starts here</dt><dd><div class="chips">${chipList(starts)}</div></dd></div>`;
-    }
-    if (ends.length) {
-        html += `<div class="fact"><dt><i class="key" style="--k: var(--insertion)"></i>Ends here</dt><dd><div class="chips">${chipList(ends)}</div></dd></div>`;
-    }
-    if (ligaments.length) {
-        html += `<div class="fact"><dt>Ligament</dt><dd><div class="chips">${chipList(ligaments)}</div></dd></div>`;
-    }
-    html += `</div>`;
-    return html;
-}
-
-function renderSitePane(siteId) {
-    const { data } = state;
-    const site = data.sites[siteId];
-    return `
-        <div class="eyebrow">Attachment site on the ${escapeHtml(data.bones[site.bone].name.toLowerCase())}</div>
-        <h2>${escapeHtml(site.name)}</h2>
-        ${siteBlock(siteId, false)}
-        <p class="lede">Exams often ask this in reverse: given a landmark, name everything attached to it.</p>`;
-}
-
-function renderBonePane(boneId) {
-    const { data } = state;
-    const sites = Object.entries(data.sites).filter(([, site]) => site.bone === boneId);
-    let html = `
-        <div class="eyebrow">Bone</div>
-        <h2>${escapeHtml(data.bones[boneId].name)}</h2>`;
-    if (!sites.length) {
-        html += `<p class="lede">No muscle in this region attaches here yet.</p>`;
-        return html;
-    }
-    html += `<p class="lede">Blue marks where muscles start; orange marks where they end.</p>`;
-    for (const [siteId] of sites) {
-        html += `<div>${siteBlock(siteId, true)}</div>`;
-    }
-    return html;
-}
-
-function renderExplore() {
-    const { selection } = state;
-    let html;
-    if (!selection) {
-        html = renderNodePane(state.node);
-    } else if (selection.type === "muscle") {
-        html = renderMusclePane(selection.id);
-    } else if (selection.type === "ligament") {
-        html = renderLigamentPane(selection.id);
-    } else if (selection.type === "structure") {
-        html = renderStructurePane(selection.id);
-    } else if (selection.type === "site") {
-        html = renderSitePane(selection.id);
-    } else if (selection.type === "bone") {
-        html = renderBonePane(selection.id);
-    }
-    paneExplore.innerHTML = html;
-    updateLiveReadouts();
-}
-
-function updateLiveReadouts() {
-    const { selection, pose } = state;
-    if (!selection) {
-        return;
-    }
-
-    if (selection.type === "muscle") {
-        const value = $("#length-value");
-        if (!value) {
-            return;
-        }
-        const ratio = muscleLengthRatio(selection.id);
-        const percent = Math.round(ratio * 100);
-        value.textContent = `${percent}%`;
-        const bar = $("#length-bar");
-        bar.style.setProperty("--w", `${clamp((ratio - 0.6) / 0.8, 0, 1) * 100}%`);
-        bar.style.setProperty("--c", ratio < 0.98 ? "var(--good)" : ratio > 1.02 ? "var(--taut)" : "var(--muted)");
-        let text = "At resting length. Move a joint to see it shorten or stretch.";
-        if (ratio < 0.98) {
-            text = "Shorter than standing: this pose is in the direction the muscle pulls.";
-        } else if (ratio > 1.02) {
-            text = "Stretched: this pose is the opposite of what the muscle does.";
-        }
-        $("#length-text").textContent = text;
-    }
-
-    if (selection.type === "ligament") {
-        const bar = $("#tension-bar");
-        if (!bar) {
-            return;
-        }
-        const tension = ligamentTension(selection.id);
-        $("#tension-angle").textContent = `${Math.round(pose.knee)}°`;
-        $("#tension-word").textContent = tension > 0.85 ? "Taut" : tension > 0.55 ? "Tightening" : "Slack";
-        bar.style.setProperty("--w", `${tension * 100}%`);
-        bar.style.setProperty("--c", "#" + tensionColor(tension).getHexString());
-    }
-}
-
-/* ==========================================================================
- * Nerves panel
- * ======================================================================== */
-
-const paneNerves = $("#pane-nerves");
-
-function selectNerve(id) {
-    state.nerve.id = id;
-    state.dirty = true;
-    applyAppearance();
-    renderNerves();
-    const view = { femoral: VIEWS.front, obturator: VIEWS.medial }[id] ?? VIEWS.back;
-    framePartsBox(meshNamesFor("thigh-knee"), 1.1, view);
-}
-
-function renderNerves() {
-    const { data, nerve } = state;
-    let html = `
-        <div class="eyebrow">Nerve mode</div>
-        <h2>Which nerve runs what?</h2>
-        <p class="lede">Pick a nerve to light up its path and every muscle it supplies in this region.</p>
-        <div>`;
-
-    for (const [id, item] of Object.entries(data.nerves)) {
-        const child = Boolean(item.parent);
-        html += `
-            <button class="listbtn${child ? " child" : ""}" type="button" data-select-nerve="${escapeHtml(id)}" aria-current="${nerve.id === id}">
-                <span>${escapeHtml(item.name)}</span>
-                <span class="roots">${escapeHtml(item.roots)}</span>
-            </button>`;
-    }
-    html += `</div>`;
-
-    if (nerve.id) {
-        const item = data.nerves[nerve.id];
-        const ids = new Set([nerve.id]);
-        for (const [id, other] of Object.entries(data.nerves)) {
-            if (other.parent === nerve.id) {
-                ids.add(id);
-            }
-        }
-        const supplied = Object.entries(data.muscles).filter(([, muscle]) => ids.has(muscle.nerve));
-
-        html += `
-            <h3>${escapeHtml(item.name)} supplies</h3>
-            <div class="chips">
-                ${supplied.length
-                    ? supplied.map(([id, muscle]) => `<button class="chip" type="button" data-open="${escapeHtml(id)}">${escapeHtml(muscle.name)}</button>`).join("")
-                    : '<span class="lede">No muscles in this region.</span>'}
-            </div>
-            <label class="switch" for="injury-toggle">
-                <input type="checkbox" id="injury-toggle" ${nerve.injury ? "checked" : ""}>
-                Show what is lost if this nerve is injured
-            </label>
-            ${nerve.injury ? `<p class="note">${linkTerms(item.injury)}</p>` : ""}
-            <p class="lede">${linkTerms(item.outsideRegion)}</p>`;
-    }
-
-    paneNerves.innerHTML = html;
-}
-
-/* ==========================================================================
- * Movements panel
- * ======================================================================== */
-
-const paneMovements = $("#pane-movements");
-
-function selectMovement(id) {
-    state.movement = id;
-    state.dirty = true;
-    applyAppearance();
-    renderMovements();
-    const movement = state.data.movements[id];
-    if (movement.rig) {
-        playMotion(movement.rig);
-    }
-    // Flexion and extension happen in the sagittal plane, so watch from the side;
-    // abduction and adduction read best from the front.
-    const view = movement.rig?.control === "hipAbd" ? VIEWS.front : VIEWS.lateral;
-    framePartsBox(meshNamesFor("thigh-knee"), 1.25, view);
-}
-
-function renderMovements() {
-    const { data, movement } = state;
-    const groups = { hip: "Hip", knee: "Knee", ankle: "Ankle" };
-
-    let html = `
-        <div class="eyebrow">Movement mode</div>
-        <h2>What produces each motion?</h2>
-        <p class="lede">Pick a motion. Prime movers turn red, helpers turn pink, and the joint moves through it.</p>`;
-
-    for (const [joint, label] of Object.entries(groups)) {
-        html += `<h3>${label}</h3><div>`;
-        for (const [id, item] of Object.entries(data.movements)) {
-            if (item.joint !== joint) {
-                continue;
-            }
-            html += `
-                <button class="listbtn" type="button" data-select-movement="${escapeHtml(id)}" aria-current="${movement === id}">
-                    <span>${escapeHtml(item.name)}</span>
-                    <span class="roots">${item.rig ? "▶" : ""}</span>
-                </button>`;
-        }
-        html += `</div>`;
-    }
-
-    if (movement) {
-        const item = data.movements[movement];
-        const chipList = (ids, prime) =>
-            ids.map((id) => `<button class="chip${prime ? " prime" : ""}" type="button" data-open="${escapeHtml(id)}">${escapeHtml(entityName(id))}</button>`).join("");
-
-        html += `
-            <h3>${escapeHtml(item.name)}</h3>
-            <dl class="facts">
-                <div class="fact"><dt>Prime</dt><dd><div class="chips">${item.prime.length ? chipList(item.prime, true) : '<span class="lede">None in this region</span>'}</div></dd></div>
-                <div class="fact"><dt>Assist</dt><dd><div class="chips">${item.assist.length ? chipList(item.assist, false) : '<span class="lede">None</span>'}</div></dd></div>
-            </dl>
-            ${item.note ? `<p class="note">${escapeHtml(item.note)}</p>` : ""}
-            ${item.rig ? `<div class="actions-row"><button class="btn" type="button" data-select-movement="${escapeHtml(movement)}">Play again</button></div>` : ""}`;
-    }
-
-    paneMovements.innerHTML = html;
-}
-
-/* ==========================================================================
- * Motion playback
- * ======================================================================== */
-
-function setPose(control, value) {
-    const [lo, hi] = CONTROL_LIMITS[control];
-    state.pose[control] = clamp(value, lo, hi);
-    const input = $(`#ctl-${control}`);
-    input.value = Math.round(state.pose[control]);
-    $(`#out-${control}`).textContent = `${Math.round(state.pose[control])}°`;
-    state.dirty = true;
-}
-
-function playMotion(rigStep) {
-    const { control, from, to } = rigStep;
-    const legs = [
-        [state.pose[control], from, 450],
-        [from, to, 1300],
-        [to, from, 1100],
-        [from, to, 1300],
-    ];
-
-    if (REDUCED_MOTION) {
-        setPose(control, to);
-        return;
-    }
-
-    state.animation = { control, legs, leg: 0, start: performance.now() };
-}
-
-function stepAnimation(now) {
-    const animation = state.animation;
-    if (!animation) {
-        return;
-    }
-    const [a, b, duration] = animation.legs[animation.leg];
-    const t = clamp((now - animation.start) / duration, 0, 1);
-    const eased = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-    setPose(animation.control, a + (b - a) * eased);
-
-    if (t >= 1) {
-        animation.leg++;
-        animation.start = now;
-        if (animation.leg >= animation.legs.length) {
-            state.animation = null;
-        }
-    }
-}
-
-/* ==========================================================================
- * Quiz
- * ======================================================================== */
-
-const paneQuiz = $("#pane-quiz");
-const QUIZ_KEY = "knee-atlas-quiz-v1";
-
-function quizItems() {
-    const { data } = state;
-    const items = [];
-    for (const id of Object.keys(data.muscles)) {
-        items.push({ key: `insertion:${id}`, kind: "tap", role: "insertion", muscle: id });
-        items.push({ key: `origin:${id}`, kind: "tap", role: "origin", muscle: id });
-        items.push({ key: `nerve:${id}`, kind: "nerve", muscle: id });
-        items.push({ key: `action:${id}`, kind: "action", muscle: id });
-    }
-    for (const id of Object.keys(data.ligaments)) {
-        items.push({ key: `ligament:${id}`, kind: "ligament", ligament: id });
-        if (id !== "patellar-ligament") {
-            items.push({ key: `taut:${id}`, kind: "taut", ligament: id });
-        }
-    }
-    for (const id of Object.keys(data.nerves)) {
-        if (!["sciatic"].includes(id)) {
-            items.push({ key: `injury:${id}`, kind: "injury", nerve: id });
-        }
-    }
-    return items;
-}
-
-function loadBoxes() {
-    return storageGet(QUIZ_KEY, {});
-}
-
-function pickQuestion(focusMuscle = null) {
-    const boxes = loadBoxes();
-    let items = quizItems();
-    if (focusMuscle) {
-        items = items.filter((item) => item.muscle === focusMuscle);
-    }
-    const last = state.quiz?.current?.key;
-    const weighted = [];
-    for (const item of items) {
-        if (item.key === last && items.length > 1) {
-            continue;
-        }
-        const box = boxes[item.key] ?? 1;
-        const weight = [0, 8, 5, 3, 2, 1][box] ?? 1;
-        for (let i = 0; i < weight; i++) {
-            weighted.push(item);
-        }
-    }
-    const item = weighted[Math.floor(Math.random() * weighted.length)];
-    return buildQuestion(item);
-}
-
-function multipleChoice(correct, pool, count = 4) {
-    const wrong = shuffle(pool.filter((value) => value !== correct)).slice(0, count - 1);
-    return shuffle([correct, ...wrong]);
-}
-
-function buildQuestion(item) {
-    const { data } = state;
-    const question = { key: item.key, item, answered: false };
-
-    if (item.kind === "tap") {
-        const muscle = data.muscles[item.muscle];
-        const sites = item.role === "insertion"
-            ? muscle.insertion
-            : muscle.origin;
-        const patches = sites.flatMap((siteId) => data.sites[siteId].patches);
-        if (patches.length === 0) {
-            return buildQuestion({ ...item, kind: "nerve", key: `nerve:${item.muscle}` });
-        }
-        question.tap = true;
-        question.text = `Tap the ${item.role} of ${muscle.name} on the model.`;
-        question.answerPatches = new Set(patches);
-        question.revealed = new Set();
-        question.explain = item.role === "insertion" ? muscle.insertionText : muscle.originText;
-        return question;
-    }
-
-    if (item.kind === "nerve") {
-        const muscle = data.muscles[item.muscle];
-        const correct = nerveLabel(muscle);
-        const pool = [
-            "Femoral nerve",
-            "Obturator nerve",
-            "Tibial division of the sciatic nerve",
-            "Common fibular division of the sciatic nerve",
-            "Tibial nerve",
-        ];
-        question.text = `Which nerve supplies ${muscle.name}?`;
-        question.options = multipleChoice(correct, pool);
-        question.correct = correct;
-        question.explain = `${correct}, roots ${muscle.roots}.`;
-        return question;
-    }
-
-    if (item.kind === "action") {
-        const muscle = data.muscles[item.muscle];
-        const own = muscle.actions.map((id) => data.movements[id].name);
-        const correct = own[0];
-        const pool = Object.values(data.movements)
-            .map((movement) => movement.name)
-            .filter((name) => !own.includes(name));
-        question.text = `Which of these is an action of ${muscle.name}?`;
-        question.options = shuffle([correct, ...shuffle(pool).slice(0, 3)]);
-        question.correct = correct;
-        question.explain = `${muscle.name}: ${own.join(", ").toLowerCase()}.`;
-        return question;
-    }
-
-    if (item.kind === "ligament") {
-        const ligament = data.ligaments[item.ligament];
-        const correct = ligament.name;
-        const pool = Object.values(data.ligaments).map((other) => other.name);
-        question.text = `Which ligament does this job? ${ligament.function}`;
-        question.options = multipleChoice(correct, pool);
-        question.correct = correct;
-        question.explain = `${ligament.name}. ${ligament.tautText}`;
-        return question;
-    }
-
-    if (item.kind === "taut") {
-        const ligament = data.ligaments[item.ligament];
-        const angle = Math.random() < 0.5 ? 0 : 90;
-        const tension = interpolate(ligament.taut, angle);
-        const correct = tension > 0.7 ? "Taut" : "Slack";
-        question.text = `With the knee ${angle === 0 ? "fully straight" : "bent to 90°"}, is the ${ligament.short} taut or slack?`;
-        question.options = ["Taut", "Slack"];
-        question.correct = correct;
-        question.explain = ligament.tautText;
-        question.pose = angle;
-        return question;
-    }
-
-    const nerve = data.nerves[item.nerve];
-    const supplied = Object.values(data.muscles).filter((muscle) => muscle.nerve === item.nerve);
-    if (!supplied.length) {
-        return buildQuestion({ key: "nerve:rectus-femoris", kind: "nerve", muscle: "rectus-femoris" });
-    }
-    const correctMuscle = supplied[Math.floor(Math.random() * supplied.length)];
-    const others = Object.values(data.muscles)
-        .filter((muscle) => muscle.nerve !== item.nerve)
-        .map((muscle) => muscle.name);
-    question.text = `An injury to the ${nerve.name.toLowerCase()} would weaken which muscle?`;
-    question.options = shuffle([correctMuscle.name, ...shuffle(others).slice(0, 3)]);
-    question.correct = correctMuscle.name;
-    question.explain = nerve.injury;
-    return question;
-}
-
-function recordAnswer(key, right) {
-    const boxes = loadBoxes();
-    const box = boxes[key] ?? 1;
-    boxes[key] = right ? Math.min(5, box + 1) : 1;
-    storageSet(QUIZ_KEY, boxes);
-}
-
-function startQuiz(focusMuscle = null) {
-    state.quiz = {
-        focusMuscle,
-        current: null,
-        score: { right: 0, total: 0 },
-        ...(state.quiz?.focusMuscle === focusMuscle ? { score: state.quiz.score } : {}),
-    };
-    nextQuestion();
-}
-
-function nextQuestion() {
-    state.quiz.current = pickQuestion(state.quiz.focusMuscle);
-    const current = state.quiz.current;
-    state.animation = null;
-    if (current.pose !== undefined || current.tap) {
-        setPose("knee", 0);
-        setPose("hipFlex", 0);
-        setPose("hipAbd", 0);
-    }
-    state.selection = null;
-    state.dirty = true;
-    applyPose();
-    applyAppearance();
-    renderQuiz();
-    if (current.tap) {
-        const target = new THREE.Vector3();
-        for (const patch of current.answerPatches) {
-            target.add(patchCentroid[patch]);
-        }
-        target.divideScalar(current.answerPatches.size);
-        framePartsBox(
-            meshNamesFor("bones").filter((name) => name !== "Calcaneus.r"),
-            1.0,
-            viewToward(target),
-        );
-    }
-}
-
-function answerQuiz(choice) {
-    const current = state.quiz.current;
-    if (current.answered) {
-        return;
-    }
-    current.answered = true;
-    current.choice = choice;
-    current.right = choice === current.correct;
-    state.quiz.score.total++;
-    if (current.right) {
-        state.quiz.score.right++;
-    }
-    recordAnswer(current.key, current.right);
-    renderQuiz();
-}
-
-function answerTap(patch) {
-    const current = state.quiz.current;
-    if (!current?.tap || current.answered) {
-        return;
-    }
-    current.answered = true;
-    current.right = current.answerPatches.has(patch);
-    current.tapped = patchInfo[patch] ? state.data.sites[patchInfo[patch].site].name : null;
-    current.revealed = current.answerPatches;
-    state.quiz.score.total++;
-    if (current.right) {
-        state.quiz.score.right++;
-    }
-    recordAnswer(current.key, current.right);
-    applyAppearance();
-    renderQuiz();
-}
-
-function renderQuiz() {
-    const quiz = state.quiz;
-    const boxes = loadBoxes();
-    const items = quizItems();
-    const counts = [0, 0, 0, 0, 0];
-    for (const item of items) {
-        counts[(boxes[item.key] ?? 1) - 1]++;
-    }
-
-    let html = `
-        <div class="eyebrow">Quiz · spaced repetition</div>
-        <h2>${quiz?.focusMuscle ? escapeHtml(state.data.muscles[quiz.focusMuscle].name) : "Thigh and knee"}</h2>`;
-
-    if (!quiz?.current) {
-        html += `
-            <p class="lede">Questions you miss come back sooner; ones you know fade out. Some questions ask you to tap the answer on the model.</p>
-            <div class="actions-row"><button class="btn" type="button" data-quiz-start>Start the quiz</button></div>`;
-    } else {
-        const current = quiz.current;
-        html += `<div class="q"><div class="q-text">${escapeHtml(current.text)}</div>`;
-
-        if (current.tap) {
-            if (!current.answered) {
-                html += `<p class="lede">Muscles are hidden so you can see the bone. Grey patches are attachment sites.</p>`;
-            }
-        } else {
-            html += `<div class="options">`;
-            for (const option of current.options) {
-                let cls = "";
-                if (current.answered) {
-                    if (option === current.correct) cls = " right";
-                    else if (option === current.choice) cls = " wrong";
-                }
-                html += `<button class="opt${cls}" type="button" data-answer="${escapeHtml(option)}" ${current.answered ? "disabled" : ""}>${escapeHtml(option)}</button>`;
-            }
-            html += `</div>`;
-        }
-
-        if (current.answered) {
-            const tappedText = current.tap && !current.right && current.tapped
-                ? ` You tapped the ${current.tapped.toLowerCase()}. The answer is now shown in green.`
-                : current.tap && !current.right
-                    ? " The answer is now shown in green."
-                    : "";
-            html += `
-                <p class="feedback ${current.right ? "right" : "wrong"}">${current.right ? "Correct." : "Not quite."}${escapeHtml(tappedText)}</p>
-                <p>${linkTerms(current.explain)}</p>
-                <div class="actions-row"><button class="btn" type="button" data-quiz-next>Next question</button></div>`;
-        }
-        html += `</div>`;
-        html += `<p class="lede">This session: <b>${quiz.score.right}</b> of ${quiz.score.total} right.</p>`;
-    }
-
-    html += `
-        <h3>Your boxes</h3>
-        <div class="boxes">
-            ${counts.map((count, i) => `<div class="box"><strong>${count}</strong>${i === 0 ? "New or missed" : i === 4 ? "Mastered" : `Box ${i + 1}`}</div>`).join("")}
-        </div>
-        <p class="lede">Progress is saved in this browser only.</p>`;
-
-    paneQuiz.innerHTML = html;
-}
-
-/* ==========================================================================
- * Terms panel
- * ======================================================================== */
-
-const paneTerms = $("#pane-terms");
-
-function renderTerms(filter = "") {
-    const entries = Object.entries(state.data.glossary)
-        .filter(([term, definition]) => !filter || term.includes(filter) || definition.toLowerCase().includes(filter))
-        .sort(([a], [b]) => a.localeCompare(b));
-
-    paneTerms.innerHTML = `
-        <div class="eyebrow">Terms</div>
-        <h2>Vocabulary</h2>
-        <label class="eyebrow" for="term-search">Search</label>
-        <input class="search" id="term-search" type="search" value="${escapeHtml(filter)}" placeholder="e.g. valgus, tuberosity" autocomplete="off">
-        <dl class="gloss">
-            ${entries.length
-                ? entries.map(([term, definition]) => `<div><dt>${escapeHtml(term)}</dt><dd>${escapeHtml(definition)}</dd></div>`).join("")
-                : `<div><dd>No term matches “${escapeHtml(filter)}”.</dd></div>`}
-        </dl>`;
-
-    const input = $("#term-search");
-    input.addEventListener("input", () => {
-        const value = input.value.trim().toLowerCase();
-        const position = input.selectionStart;
-        renderTerms(value);
-        const next = $("#term-search");
-        next.focus();
-        next.setSelectionRange(position, position);
-    });
-}
-
-/* ==========================================================================
- * Tabs
- * ======================================================================== */
-
-const TABS = ["explore", "nerves", "movements", "quiz", "terms"];
-
-function showTab(name, options = {}) {
-    if (name !== state.tab) {
-        state.animation = null;
-    }
-    state.tab = name;
-    for (const tab of TABS) {
-        $(`#tab-${tab}`).setAttribute("aria-selected", String(tab === name));
-        $(`#pane-${tab}`).hidden = tab !== name;
-    }
-    hidePop();
-
-    if (name === "explore" && !options.keepView) {
-        renderExplore();
-    }
-    if (name === "nerves") renderNerves();
-    if (name === "movements") renderMovements();
-    if (name === "quiz") renderQuiz();
-    if (name === "terms") renderTerms();
-
-    state.dirty = true;
-    applyAppearance();
-}
-
-/* ==========================================================================
- * Picking on the model
- * ======================================================================== */
-
-const raycaster = new THREE.Raycaster();
-const pointer = new THREE.Vector2();
-let pointerDown = null;
-
-function pickAt(event) {
-    const rect = canvas.getBoundingClientRect();
-    pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-    pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-    raycaster.setFromCamera(pointer, camera);
-
-    const candidates = [
-        ...Object.values(parts).map((part) => part.mesh).filter((mesh) => mesh.visible && (mesh.material.opacity > 0.2)),
-        ...cordGroup.children,
-    ];
-    const hits = raycaster.intersectObjects(candidates, false);
-    if (!hits.length) {
-        return null;
-    }
-
-    // Prefer an attachment patch or cord if one is hit near the front.
-    const front = hits[0].distance;
-    const special = hits.find((hit) =>
-        hit.distance < front + 1.5 &&
-        (hit.object.userData.cord || parts[hit.object.userData.part]?.kind === "patch"),
-    );
-    return (special ?? hits[0]).object;
-}
-
-canvas.addEventListener("pointerdown", (event) => {
-    pointerDown = { x: event.clientX, y: event.clientY, t: performance.now() };
-});
-
-canvas.addEventListener("pointerup", (event) => {
-    if (!pointerDown) {
-        return;
-    }
-    const moved = Math.hypot(event.clientX - pointerDown.x, event.clientY - pointerDown.y);
-    const quick = performance.now() - pointerDown.t < 600;
-    pointerDown = null;
-    if (moved > 6 || !quick) {
-        return;
-    }
-
-    const object = pickAt(event);
-
-    if (state.tab === "quiz" && state.quiz?.current?.tap) {
-        const name = object?.userData.part;
-        if (name && parts[name].kind === "patch") {
-            answerTap(name);
-        }
-        return;
-    }
-
-    if (!object) {
-        goUp();
-        return;
-    }
-
-    if (object.userData.cord) {
-        openEntity(object.userData.cord);
-        return;
-    }
-    if (object.userData.ligament) {
-        openEntity(object.userData.ligament);
-        return;
-    }
-
-    const part = parts[object.userData.part];
-    if (part?.owner) {
-        openEntity(part.owner.id);
-    }
-});
-
-/* ==========================================================================
- * Event wiring
- * ======================================================================== */
-
-document.addEventListener("click", (event) => {
-    const target = event.target.closest("button, input");
-    if (!target) {
-        if (!event.target.closest(".pop")) {
-            hidePop();
-        }
-        return;
-    }
-
-    const data = target.dataset;
-
-    if (data.term) {
-        event.stopPropagation();
-        showTerm(data.term, target);
-        return;
-    }
-    if (data.open) {
-        openEntity(data.open);
-        return;
-    }
-    if (data.nerve) {
-        showTab("nerves");
-        selectNerve(data.nerve);
-        return;
-    }
-    if (data.selectNerve) {
-        selectNerve(data.selectNerve);
-        return;
-    }
-    if (data.selectMovement) {
-        selectMovement(data.selectMovement);
-        return;
-    }
-    if (data.play) {
-        const movement = state.data.movements[data.play];
-        if (movement.rig) {
-            playMotion(movement.rig);
-        }
-        return;
-    }
-    if (data.sweep) {
-        playMotion({ control: "knee", from: 0, to: 110 });
-        return;
-    }
-    if ("quizStart" in data) {
-        startQuiz(null);
-        return;
-    }
-    if (data.quizOn) {
-        showTab("quiz");
-        startQuiz(data.quizOn);
-        return;
-    }
-    if ("quizNext" in data) {
-        nextQuestion();
-        return;
-    }
-    if (data.answer !== undefined && target.classList.contains("opt")) {
-        answerQuiz(data.answer);
-        return;
-    }
-    if (target.id === "injury-toggle") {
-        state.nerve.injury = target.checked;
-        state.dirty = true;
-        applyAppearance();
-        renderNerves();
-        return;
-    }
-    hidePop();
-});
-
-for (const tab of TABS) {
-    $(`#tab-${tab}`).addEventListener("click", () => {
-        showTab(tab);
-        if (tab === "quiz" && !state.quiz) {
-            renderQuiz();
-        }
-    });
-}
-
-for (const control of Object.keys(CONTROL_LIMITS)) {
-    $(`#ctl-${control}`).addEventListener("input", (event) => {
-        state.animation = null;
-        setPose(control, Number(event.target.value));
-    });
-}
-
-$("#ctl-spread").addEventListener("input", (event) => {
-    state.spread = Number(event.target.value) / 100;
-    $("#out-spread").textContent = event.target.value;
-    state.dirty = true;
-});
-
-function toggle(id, key) {
-    $(id).addEventListener("click", (event) => {
-        state.show[key] = !state.show[key];
-        event.currentTarget.setAttribute("aria-pressed", String(state.show[key]));
-        state.dirty = true;
-        applyAppearance();
-    });
-}
-
-toggle("#tg-muscles", "muscles");
-toggle("#tg-cords", "cords");
-toggle("#tg-sites", "sites");
-
-$("#tg-reset").addEventListener("click", () => {
-    state.animation = null;
-    setPose("knee", 0);
-    setPose("hipFlex", 0);
-    setPose("hipAbd", 0);
-    $("#ctl-spread").value = 0;
-    $("#out-spread").textContent = "0";
-    state.spread = 0;
-    state.dirty = true;
-});
-
-document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-        if (!pop.hidden) {
-            hidePop();
-            return;
-        }
-        if (!event.target.closest?.("input")) {
-            goUp();
-        }
-    }
-});
-
-/* ==========================================================================
- * Loop
- * ======================================================================== */
-
-let lastFrame = performance.now();
-
-function tick(now) {
-    const dt = Math.min((now - lastFrame) / 1000, 0.1);
-    lastFrame = now;
-    stepAnimation(now);
-
-    if (state.dirty) {
-        state.dirty = false;
-        applyPose();
-        if (state.selection?.type === "ligament" || state.node === "knee-joint") {
-            applyAppearance();
-        } else {
-            for (const part of Object.values(parts)) {
-                if (part.kind === "ligament" && part.owner?.type === "ligament") {
-                    const tension = ligamentTension(part.owner.id);
-                    part.mesh.material.color.copy(tensionColor(tension));
-                }
-            }
-        }
-    }
-
-    if (cameraGoal) {
-        const ease = 1 - Math.exp(-dt * 7);
-        camera.position.lerp(cameraGoal.position, ease);
-        orbit.target.lerp(cameraGoal.target, ease);
-        if (camera.position.distanceTo(cameraGoal.position) < 0.05) {
-            cameraGoal = null;
-        }
-    }
-
-    orbit.update();
-    renderer.render(scene, camera);
-    placeLabels();
-    requestAnimationFrame(tick);
-}
-
-orbit.addEventListener("start", () => {
-    cameraGoal = null;
-});
-
-/* ==========================================================================
- * Boot
- * ======================================================================== */
-
-async function boot() {
-    try {
-        const [data, geo] = await Promise.all([
-            fetch("anatomy.json").then((response) => response.json()),
-            fetch("geometry.json").then((response) => response.json()),
-        ]);
-        state.data = data;
-        state.geo = geo;
-    } catch (error) {
-        $("#loading-text").textContent = "The model files could not be loaded. Reload the page to try again.";
-        return;
-    }
-
-    $("#credit").textContent = `${state.data.meta.modelCredit} Content is a draft awaiting review.`;
-
-    buildGeometry();
-    linkEntities();
-    setupRig();
-    computeSegmentMatrices();
-
-    for (const id of Object.keys(state.data.muscles)) {
-        restLength[id] = pathLength(cordPath(id));
-    }
-
-    resize();
-    camera.position.set(-75, 78, 150);
-    orbit.target.set(-8, 60, 0);
-
-    applyPose();
-    openEntity("thigh-knee");
-    if (cameraGoal) {
-        orbit.target.copy(cameraGoal.target);
-        camera.position.copy(cameraGoal.position);
-        cameraGoal = null;
-    }
-
-    $("#loading").hidden = true;
-    requestAnimationFrame(tick);
-
-    // Hook for automated checks; harmless for viewers.
-    window.__atlas = { state, camera, orbit, setPose, openEntity };
-}
-
-boot();
-</script>
+<script type="module" src="app.js"></script>

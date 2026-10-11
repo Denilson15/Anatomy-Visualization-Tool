@@ -1,1 +1,227 @@
-
+{
+    "meta": {
+        "status": "draft",
+        "note": "Every note is a draft written from standard anatomy references. Check it against the course textbook; a reviewer should approve it before it is treated as correct.",
+        "modelCredit": "3D models: Z-Anatomy (CC BY-SA 4.0), derived from BodyParts3D, The Database Center for Life Science (CC BY-SA 2.1 Japan)."
+    },
+    "sites": {
+        "patella-apex": {
+            "name": "Apex of patella",
+            "patches": [
+                "Patellar ligament.or"
+            ]
+        },
+        "tibial-tuberosity": {
+            "name": "Tibial tuberosity",
+            "patches": [
+                "Patellar ligament.er"
+            ]
+        }
+    },
+    "ligaments": {
+        "acl": {
+            "name": "Anterior cruciate ligament",
+            "short": "ACL",
+            "mesh": "Anterior cruciate ligament.r",
+            "attachments": [
+                "Anterior intercondylar area",
+                "Intercondylar fossa"
+            ],
+            "attachmentText": "Anterior intercondylar area of the tibia, running up and back to the inner (medial) surface of the lateral femoral condyle.",
+            "function": "Stops the tibia sliding forward on the femur and limits hyperextension.",
+            "tautText": "Tight in full extension. Its anteromedial band stays fairly tight as the knee bends.",
+            "taut": [
+                [
+                    0,
+                    1.0
+                ],
+                [
+                    20,
+                    0.7
+                ],
+                [
+                    60,
+                    0.55
+                ],
+                [
+                    120,
+                    0.6
+                ]
+            ]
+        },
+        "pcl": {
+            "name": "Posterior cruciate ligament",
+            "short": "PCL",
+            "mesh": "Posterior cruciate ligament.r",
+            "attachments": [
+                "Posterior intercondylar area",
+                "Intercondylar fossa"
+            ],
+            "attachmentText": "Posterior intercondylar area of the tibia, running up and forward to the outer (lateral) surface of the medial femoral condyle.",
+            "function": "Stops the tibia sliding backward on the femur. Stronger than the ACL.",
+            "tautText": "Tightens as the knee bends; tightest in flexion.",
+            "taut": [
+                [
+                    0,
+                    0.35
+                ],
+                [
+                    30,
+                    0.5
+                ],
+                [
+                    90,
+                    1.0
+                ],
+                [
+                    120,
+                    1.0
+                ]
+            ]
+        },
+        "mcl": {
+            "name": "Tibial collateral ligament",
+            "short": "MCL",
+            "mesh": "Superficial part of tibial collateral ligament.r",
+            "extraMeshes": [
+                "Deep part of tibial collateral ligament.r"
+            ],
+            "attachments": [
+                "Medial epicondyle of femur",
+                "Medial condyle of tibia"
+            ],
+            "attachmentText": "Medial epicondyle of the femur to the medial condyle and upper medial shaft of the tibia. Its deep fibres attach to the medial meniscus.",
+            "function": "Resists valgus stress (the knee being pushed inward).",
+            "tautText": "Tight in full extension; slackens as the knee bends.",
+            "taut": [
+                [
+                    0,
+                    1.0
+                ],
+                [
+                    20,
+                    0.75
+                ],
+                [
+                    60,
+                    0.4
+                ],
+                [
+                    120,
+                    0.3
+                ]
+            ]
+        },
+        "lcl": {
+            "name": "Fibular collateral ligament",
+            "short": "LCL",
+            "mesh": "Fibular collateral ligament.r",
+            "attachments": [
+                "Lateral epicondyle of femur",
+                "Head of fibula"
+            ],
+            "attachmentText": "Lateral epicondyle of the femur to the lateral surface of the head of the fibula. It is cord-like and stands clear of the joint capsule and the lateral meniscus.",
+            "function": "Resists varus stress (the knee being pushed outward).",
+            "tautText": "Tight in full extension; slackens as the knee bends.",
+            "taut": [
+                [
+                    0,
+                    1.0
+                ],
+                [
+                    20,
+                    0.7
+                ],
+                [
+                    60,
+                    0.3
+                ],
+                [
+                    120,
+                    0.25
+                ]
+            ]
+        },
+        "patellar-ligament": {
+            "name": "Patellar ligament",
+            "short": "Patellar lig.",
+            "between": [
+                "patella-apex",
+                "tibial-tuberosity"
+            ],
+            "attachments": [
+                "Tibial tuberosity"
+            ],
+            "attachmentText": "Apex of the patella to the tibial tuberosity.",
+            "function": "Carries the pull of the quadriceps from the patella to the tibia. It is really the continuation of the quadriceps tendon.",
+            "tautText": "Under load whenever the quadriceps contracts; stretched further as the knee bends.",
+            "taut": [
+                [
+                    0,
+                    0.45
+                ],
+                [
+                    60,
+                    0.75
+                ],
+                [
+                    120,
+                    0.95
+                ]
+            ]
+        }
+    },
+    "structures": {
+        "medial-meniscus": {
+            "name": "Medial meniscus",
+            "mesh": "Medial meniscus.r",
+            "text": "C-shaped fibrocartilage pad on the medial tibial plateau. Firmly attached to the deep part of the MCL, so it moves less and is torn more often than the lateral meniscus."
+        },
+        "lateral-meniscus": {
+            "name": "Lateral meniscus",
+            "mesh": "Lateral meniscus.r",
+            "text": "Nearly circular fibrocartilage pad on the lateral tibial plateau. Not attached to the LCL, so it is more mobile than the medial meniscus."
+        }
+    },
+    "glossary": {
+        "origin": "Where a muscle attaches to the bone that stays relatively still.",
+        "insertion": "Where a muscle attaches to the bone it moves.",
+        "innervation": "The nerve that controls a muscle, with the spinal cord levels (roots) its fibres come from.",
+        "action": "The movement a muscle produces when it pulls its insertion toward its origin.",
+        "prime mover": "The muscle that does most of the work in a movement.",
+        "two-joint muscle": "A muscle that crosses two joints and acts on both, like rectus femoris or the hamstrings.",
+        "flexion": "Bending a joint so the angle between the bones gets smaller.",
+        "extension": "Straightening a joint so the angle between the bones gets larger.",
+        "abduction": "Moving a limb away from the midline of the body.",
+        "adduction": "Moving a limb toward the midline of the body.",
+        "plantarflexion": "Pointing the foot downward, as when standing on tiptoe.",
+        "condyle": "A rounded knob at the end of a bone that forms part of a joint.",
+        "epicondyle": "A bump on the side of a condyle where ligaments and muscles attach.",
+        "tuberosity": "A large, rough raised area where a tendon attaches.",
+        "linea aspera": "The vertical ridge on the back of the femur shaft where several thigh muscles attach.",
+        "pes anserinus": "The shared insertion of sartorius, gracilis and semitendinosus on the upper medial tibia. Latin for goose's foot.",
+        "taut": "Stretched tight, so the ligament is resisting motion.",
+        "valgus": "A force or position that pushes the knee inward (toward the other knee).",
+        "varus": "A force or position that pushes the knee outward.",
+        "roots": "The spinal nerve levels (for example L2–L4) whose fibres make up a nerve.",
+        "intercondylar area": "The space between the two condyles of the tibia, where the cruciate ligaments attach.",
+        "acetabulum": "The socket of the hip bone that holds the head of the femur.",
+        "protraction": "Moving the scapula forward around the chest wall, as when reaching or punching.",
+        "retraction": "Pulling the scapula back toward the spine.",
+        "upward rotation": "Turning the scapula so its glenoid faces up, needed to raise the arm overhead.",
+        "opposition": "Bringing the thumb across the palm to touch the pad of another finger.",
+        "inversion": "Turning the sole of the foot inward.",
+        "eversion": "Turning the sole of the foot outward.",
+        "pronation": "Turning the forearm so the palm faces down or back.",
+        "supination": "Turning the forearm so the palm faces up or forward.",
+        "dorsiflexion": "Pulling the foot up toward the shin.",
+        "posterior rami": "The branches of each spinal nerve that supply the deep back muscles and the skin over them.",
+        "anterior rami": "The branches of the spinal nerves that form the plexuses and supply the limbs and the front of the trunk.",
+        "brachial plexus": "The network formed by the anterior rami of C5–T1 that supplies the upper limb.",
+        "aponeurosis": "A flat sheet of tendon.",
+        "modiolus": "The knot of muscle fibres at each corner of the mouth where several facial muscles meet.",
+        "myotome": "The muscles supplied by a single spinal nerve root, used to test that root.",
+        "trendelenburg sign": "The pelvis dropping on the unsupported side when standing on one leg, a sign of weak hip abductors.",
+        "winged scapula": "The medial border of the scapula lifting off the chest wall, usually from serratus anterior weakness."
+    }
+}

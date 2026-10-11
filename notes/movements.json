@@ -1,0 +1,439 @@
+{
+    "movements": {
+        "trunkFlex:+": {
+            "prime": ["rectus-abdominis"],
+            "assist": ["external-abdominal-oblique", "internal-abdominal-oblique", "psoas-major"],
+            "note": "From lying down, psoas and iliacus lift the trunk once the abdominals have curled the spine."
+        },
+        "trunkFlex:-": {
+            "prime": ["iliocostalis-lumborum", "iliocostalis-thoracis", "longissimus-thoracis", "spinalis-thoracis"],
+            "assist": ["multifidus-lumborum", "multifidus-thoracis", "semispinalis-thoracis", "quadratus-lumborum", "interspinales-lumborum-muscles", "interspinales-thoracis-muscles"],
+            "note": "Bending forward from standing is controlled by the same extensors working eccentrically; gravity provides the flexion."
+        },
+        "trunkLat:+": {
+            "prime": ["quadratus-lumborum", "external-abdominal-oblique", "internal-abdominal-oblique"],
+            "assist": ["iliocostalis-lumborum", "iliocostalis-thoracis", "longissimus-thoracis", "psoas-major", "dorsal-parts-of-lateral-intertransversarii-lumborum-muscles", "ventral-parts-of-lateral-intertransversarii-lumborum-muscles", "levatores-breves-costarum", "levatores-longi-costarum"],
+            "note": "Side bending to the right uses the right-side muscles shown in the model."
+        },
+        "trunkLat:-": {
+            "prime": [],
+            "assist": [],
+            "note": "Side bending to the left uses the same muscles on the left side (the mirror image of the right side in the model)."
+        },
+        "trunkRot:+": {
+            "prime": ["internal-abdominal-oblique"],
+            "assist": [],
+            "note": "Rotation to the right pairs the right internal oblique with the left external oblique, helped by the left-side multifidus and rotatores."
+        },
+        "trunkRot:-": {
+            "prime": ["external-abdominal-oblique"],
+            "assist": ["multifidus-lumborum", "multifidus-thoracis", "rotatores", "semispinalis-thoracis"],
+            "note": "Rotation to the left pairs the right external oblique with the left internal oblique. The right-side transversospinales also turn the spine to the left."
+        },
+        "neckFlex:+": {
+            "prime": ["sternocleidomastoid", "longus-colli", "longus-capitis"],
+            "assist": ["rectus-anterior-capitis", "scalenus-anterior"],
+            "note": "Lifting the head off a pillow starts with the deep flexors (longus colli and capitis) tucking the chin; sternocleidomastoid then flexes the neck."
+        },
+        "neckFlex:-": {
+            "prime": ["splenius-capitis", "splenius-colli", "semispinalis-colli", "descending-part-of-trapezius"],
+            "assist": ["longissimus-capitis", "longissimus-colli", "iliocostalis-colli", "spinalis-capitis", "spinalis-colli", "multifidus-colli", "rectus-posterior-major-capitis", "rectus-posterior-minor-capitis", "obliquus-superior-capitis", "interspinales-colli-muscles"]
+        },
+        "neckRot:+": {
+            "prime": ["splenius-capitis", "obliquus-inferior-capitis"],
+            "assist": ["splenius-colli", "longissimus-capitis", "rectus-posterior-major-capitis"],
+            "note": "Turning to the right also uses the left sternocleidomastoid. Most rotation happens at the atlanto-axial joint (C1–C2)."
+        },
+        "neckRot:-": {
+            "prime": ["sternocleidomastoid"],
+            "assist": ["semispinalis-colli", "multifidus-colli"],
+            "note": "Turning to the left also uses the left splenius capitis and the left suboccipital muscles."
+        },
+        "shoulderFlex:+": {
+            "prime": ["clavicular-part-of-deltoid", "clavicular-head-of-pectoralis-major"],
+            "assist": ["coracobrachialis", "long-head-of-biceps-brachii", "short-head-of-biceps-brachii"],
+            "note": "Above about 90° the scapula must rotate upward (trapezius and serratus anterior). The model moves only the humerus."
+        },
+        "shoulderFlex:-": {
+            "prime": ["latissimus-dorsi", "scapular-spinal-part-of-deltoid"],
+            "assist": ["teres-major", "long-head-of-triceps-brachii", "sternocostal-head-of-pectoralis-major", "abdominal-part-of-pectoralis-major"],
+            "note": "The sternocostal head of pectoralis major extends the shoulder only from a flexed position."
+        },
+        "shoulderAbd:+": {
+            "prime": ["acromial-part-of-deltoid", "supraspinatus"],
+            "assist": ["clavicular-part-of-deltoid"],
+            "note": "Supraspinatus starts the movement and keeps the humeral head seated while deltoid lifts. Beyond about 90° the scapula rotates upward (trapezius and serratus anterior: the scapulohumeral rhythm). The model moves only the humerus."
+        },
+        "shoulderAbd:-": {
+            "prime": ["sternocostal-head-of-pectoralis-major", "latissimus-dorsi"],
+            "assist": ["teres-major", "clavicular-head-of-pectoralis-major", "abdominal-part-of-pectoralis-major", "long-head-of-triceps-brachii", "coracobrachialis", "subscapularis"]
+        },
+        "shoulderRot:+": {
+            "prime": ["subscapularis"],
+            "assist": ["sternocostal-head-of-pectoralis-major", "clavicular-head-of-pectoralis-major", "latissimus-dorsi", "teres-major", "clavicular-part-of-deltoid"],
+            "note": "Medial rotators far outnumber lateral rotators, which is one reason the shoulder rests in medial rotation after injury."
+        },
+        "shoulderRot:-": {
+            "prime": ["infraspinatus", "teres-minor"],
+            "assist": ["scapular-spinal-part-of-deltoid"]
+        },
+        "elbowFlex:+": {
+            "prime": ["brachialis", "long-head-of-biceps-brachii", "short-head-of-biceps-brachii"],
+            "assist": ["brachioradialis", "superficial-head-of-pronator-teres", "extensor-carpi-radialis-longus"],
+            "note": "Brachialis works in every forearm position; biceps is strongest with the forearm supinated, brachioradialis with it half-way."
+        },
+        "elbowFlex:-": {
+            "prime": ["long-head-of-triceps-brachii", "lateral-head-of-triceps-brachii", "medial-head-of-triceps-brachii"],
+            "assist": ["anconeus"]
+        },
+        "forearmPro:+": {
+            "prime": ["pronator-quadratus", "superficial-head-of-pronator-teres", "deep-head-of-pronator-teres"],
+            "assist": ["brachioradialis", "flexor-carpi-radialis"],
+            "note": "Pronator quadratus starts pronation; pronator teres adds power, especially against resistance. Brachioradialis only brings the forearm back to mid-position."
+        },
+        "forearmPro:-": {
+            "prime": ["supinator", "long-head-of-biceps-brachii", "short-head-of-biceps-brachii"],
+            "assist": ["brachioradialis"],
+            "note": "Supinator works alone in slow or unresisted supination with the elbow straight; biceps joins in when the elbow is bent and there is resistance (turning a screwdriver)."
+        },
+        "wristFlex:+": {
+            "prime": ["flexor-carpi-radialis", "humeral-head-of-flexor-carpi-ulnaris", "ulnar-head-of-flexor-carpi-ulnaris"],
+            "assist": ["palmaris-longus", "humero-ulnar-head-of-flexor-digitorum-superficialis", "radial-head-of-flexor-digitorum-superficialis", "flexor-digitorum-profundus", "flexor-pollicis-longus", "abductor-pollicis-longus"]
+        },
+        "wristFlex:-": {
+            "prime": ["extensor-carpi-radialis-longus", "extensor-carpi-radialis-brevis", "humeral-head-of-extensor-carpi-ulnaris", "ulnar-head-of-extensor-carpi-ulnaris"],
+            "assist": ["extensor-digitorum", "extensor-digiti-minimi", "extensor-indicis", "extensor-pollicis-longus"],
+            "note": "The wrist extensors also stabilise the wrist in slight extension during every power grip."
+        },
+        "wristDev:+": {
+            "prime": ["humeral-head-of-flexor-carpi-ulnaris", "ulnar-head-of-flexor-carpi-ulnaris", "humeral-head-of-extensor-carpi-ulnaris", "ulnar-head-of-extensor-carpi-ulnaris"],
+            "assist": [],
+            "note": "Ulnar deviation pairs a flexor and an extensor so their flexion and extension cancel out."
+        },
+        "wristDev:-": {
+            "prime": ["flexor-carpi-radialis", "extensor-carpi-radialis-longus", "extensor-carpi-radialis-brevis"],
+            "assist": ["abductor-pollicis-longus", "extensor-pollicis-brevis"]
+        },
+        "hipFlex:+": {
+            "prime": ["psoas-major", "iliacus"],
+            "assist": ["rectus-femoris", "sartorius", "tensor-fasciae-latae", "pectineus", "adductor-longus", "adductor-brevis"]
+        },
+        "hipFlex:-": {
+            "prime": ["gluteus-maximus", "semitendinosus", "semimembranosus", "long-head-of-biceps-femoris"],
+            "assist": ["adductor-magnus"],
+            "note": "In normal walking the hamstrings do most of the work; gluteus maximus takes over for forceful extension such as climbing or rising from a chair."
+        },
+        "hipAbd:+": {
+            "prime": ["gluteus-medius", "gluteus-minimus"],
+            "assist": ["tensor-fasciae-latae", "sartorius", "piriformis"],
+            "note": "Their most important job is keeping the pelvis level when the opposite foot is off the ground."
+        },
+        "hipAbd:-": {
+            "prime": ["adductor-longus", "adductor-brevis", "adductor-magnus"],
+            "assist": ["adductor-minimus", "gracilis", "pectineus"]
+        },
+        "hipRot:+": {
+            "prime": ["gluteus-medius", "gluteus-minimus", "tensor-fasciae-latae"],
+            "assist": ["semitendinosus", "semimembranosus"]
+        },
+        "hipRot:-": {
+            "prime": ["piriformis", "obturator-internus", "superior-gemellus", "inferior-gemellus", "quadratus-femoris", "obturator-externus", "gluteus-maximus"],
+            "assist": ["sartorius", "long-head-of-biceps-femoris", "adductor-minimus"]
+        },
+        "knee:+": {
+            "prime": ["semitendinosus", "semimembranosus", "long-head-of-biceps-femoris", "short-head-of-biceps-femoris"],
+            "assist": ["gracilis", "sartorius", "medial-head-of-gastrocnemius", "lateral-head-of-gastrocnemius", "popliteus", "plantaris"]
+        },
+        "knee:-": {
+            "prime": ["rectus-femoris", "vastus-lateralis", "vastus-medialis", "vastus-intermedius"],
+            "assist": ["tensor-fasciae-latae"],
+            "note": "Tensor fasciae latae steadies the extended knee through the iliotibial tract rather than extending it."
+        },
+        "ankle:+": {
+            "prime": ["medial-head-of-gastrocnemius", "lateral-head-of-gastrocnemius", "soleus"],
+            "assist": ["plantaris", "tibialis-posterior", "flexor-hallucis-longus", "flexor-digitorum-longus", "fibularis-longus", "fibularis-brevis"]
+        },
+        "ankle:-": {
+            "prime": ["tibialis-anterior"],
+            "assist": ["extensor-hallucis-longus", "extensor-digitorum-longus", "fibularis-tertius"]
+        },
+
+        "scapular-elevation": {
+            "name": "Scapular elevation (shrug)",
+            "areas": ["shoulder", "back", "neck"],
+            "prime": ["descending-part-of-trapezius", "levator-scapulae"],
+            "assist": ["rhomboid-major"]
+        },
+        "scapular-depression": {
+            "name": "Scapular depression",
+            "areas": ["shoulder", "back", "thorax-area"],
+            "prime": ["ascending-part-of-trapezius", "pectoralis-minor"],
+            "assist": ["subclavius"]
+        },
+        "scapular-retraction": {
+            "name": "Scapular retraction",
+            "areas": ["shoulder", "back"],
+            "prime": ["transverse-part-of-trapezius", "rhomboid-major", "rhomboid-minor"],
+            "assist": []
+        },
+        "scapular-protraction": {
+            "name": "Scapular protraction",
+            "areas": ["shoulder", "thorax-area"],
+            "prime": ["serratus-anterior"],
+            "assist": ["pectoralis-minor"]
+        },
+        "scapular-upward-rotation": {
+            "name": "Upward rotation of the scapula",
+            "areas": ["shoulder", "back", "thorax-area"],
+            "prime": ["descending-part-of-trapezius", "ascending-part-of-trapezius", "serratus-anterior"],
+            "assist": [],
+            "note": "Needed for the arm to go overhead. Upper trapezius pulls the acromion up, lower trapezius pulls the medial spine down, and the lower serratus pulls the inferior angle forward: a force couple."
+        },
+        "scapular-downward-rotation": {
+            "name": "Downward rotation of the scapula",
+            "areas": ["shoulder", "back", "thorax-area"],
+            "prime": ["rhomboid-major", "rhomboid-minor", "levator-scapulae", "pectoralis-minor"],
+            "assist": []
+        },
+        "neck-lateral-flexion": {
+            "name": "Lateral flexion of the neck (to the right)",
+            "areas": ["neck", "back", "head"],
+            "prime": ["sternocleidomastoid", "scalenus-anterior", "scalenus-medius", "scalenus-posterior"],
+            "assist": ["splenius-capitis", "splenius-colli", "levator-scapulae", "descending-part-of-trapezius", "longissimus-capitis", "iliocostalis-colli", "longissimus-colli", "rectus-lateralis-capitis", "obliquus-superior-capitis", "longus-colli"]
+        },
+        "jaw-elevation": {
+            "name": "Closing the jaw (elevation)",
+            "areas": ["head", "neck"],
+            "prime": ["superficial-part-of-masseter", "deep-part-of-masseter", "temporalis", "medial-pterygoid"],
+            "assist": []
+        },
+        "jaw-depression": {
+            "name": "Opening the jaw (depression)",
+            "areas": ["head", "neck"],
+            "prime": ["inferior-head-of-lateral-pterygoid", "anterior-belly-of-digastric", "mylohyoid", "geniohyoid"],
+            "assist": ["posterior-belly-of-digastric", "platysma"],
+            "note": "Gravity does much of the work; lateral pterygoid pulls the condyle forward so the jaw can open wide."
+        },
+        "jaw-protrusion": {
+            "name": "Jaw protrusion",
+            "areas": ["head"],
+            "prime": ["inferior-head-of-lateral-pterygoid", "superior-head-of-lateral-pterygoid", "medial-pterygoid"],
+            "assist": ["superficial-part-of-masseter"]
+        },
+        "jaw-retraction": {
+            "name": "Jaw retraction",
+            "areas": ["head"],
+            "prime": ["temporalis"],
+            "assist": ["deep-part-of-masseter"],
+            "note": "The horizontal back fibres of temporalis do this."
+        },
+        "jaw-side-to-side": {
+            "name": "Side-to-side grinding",
+            "areas": ["head"],
+            "prime": ["medial-pterygoid", "inferior-head-of-lateral-pterygoid"],
+            "assist": ["temporalis", "superior-head-of-lateral-pterygoid"],
+            "note": "Moving the jaw to the left uses the right pterygoids with the left temporalis, and the reverse."
+        },
+        "quiet-inspiration": {
+            "name": "Quiet breathing in",
+            "areas": ["thorax-area", "abdomen"],
+            "prime": ["diaphragm"],
+            "assist": ["external-intercostal-muscles"],
+            "note": "Quiet breathing out is passive: the lungs and chest wall recoil."
+        },
+        "forced-inspiration": {
+            "name": "Forced breathing in",
+            "areas": ["thorax-area", "neck", "back"],
+            "prime": ["diaphragm", "external-intercostal-muscles", "sternocleidomastoid", "scalenus-anterior", "scalenus-medius", "scalenus-posterior"],
+            "assist": ["pectoralis-minor", "serratus-posterior-superior", "levatores-breves-costarum", "levatores-longi-costarum"],
+            "note": "The accessory muscles of respiration (sternocleidomastoid, scalenes, pectoralis minor) are visibly active in people in respiratory distress."
+        },
+        "forced-expiration": {
+            "name": "Forced breathing out",
+            "areas": ["thorax-area", "abdomen", "back"],
+            "prime": ["external-abdominal-oblique", "internal-abdominal-oblique", "transversus-abdominis", "rectus-abdominis"],
+            "assist": ["internal-intercostal-muscles", "innermost-intercostal-muscles", "transversus-thoracis", "serratus-posterior-inferior"],
+            "note": "The abdominal muscles push the abdominal contents up against the diaphragm, as in coughing."
+        },
+        "abdominal-compression": {
+            "name": "Raising abdominal pressure",
+            "areas": ["abdomen", "thorax-area"],
+            "prime": ["transversus-abdominis", "external-abdominal-oblique", "internal-abdominal-oblique", "rectus-abdominis"],
+            "assist": ["diaphragm", "pubococcygeus", "iliococcygeus", "pyramidalis"],
+            "note": "Used in coughing, lifting, defecation and childbirth, with the diaphragm and pelvic floor closing the top and bottom of the cylinder."
+        },
+        "pelvic-floor-support": {
+            "name": "Supporting the pelvic organs",
+            "areas": ["abdomen", "hip-gluteal"],
+            "prime": ["pubococcygeus", "pubo-analis", "iliococcygeus"],
+            "assist": ["coccygeus"]
+        },
+        "finger-flexion": {
+            "name": "Finger flexion",
+            "areas": ["forearm", "hand-area"],
+            "prime": ["humero-ulnar-head-of-flexor-digitorum-superficialis", "radial-head-of-flexor-digitorum-superficialis", "flexor-digitorum-profundus"],
+            "assist": ["lumbrical-muscles-of-hand", "palmar-interossei-muscles", "dorsal-interossei-muscles-of-hand", "flexor-digiti-minimi-of-hand"],
+            "note": "Profundus bends the fingertips (DIP), superficialis the middle joints (PIP); lumbricals and interossei bend the knuckles (MCP)."
+        },
+        "finger-extension": {
+            "name": "Finger extension",
+            "areas": ["forearm", "hand-area"],
+            "prime": ["extensor-digitorum"],
+            "assist": ["extensor-indicis", "extensor-digiti-minimi", "lumbrical-muscles-of-hand", "palmar-interossei-muscles", "dorsal-interossei-muscles-of-hand"],
+            "note": "Extensor digitorum mainly extends the knuckles; the lumbricals and interossei extend the finger joints beyond them."
+        },
+        "finger-abduction": {
+            "name": "Spreading the fingers",
+            "areas": ["hand-area"],
+            "prime": ["dorsal-interossei-muscles-of-hand", "abductor-digiti-minimi-of-hand"],
+            "assist": []
+        },
+        "finger-adduction": {
+            "name": "Closing the fingers",
+            "areas": ["hand-area"],
+            "prime": ["palmar-interossei-muscles"],
+            "assist": []
+        },
+        "thumb-flexion": {
+            "name": "Thumb flexion",
+            "areas": ["forearm", "hand-area"],
+            "prime": ["flexor-pollicis-longus", "superficial-head-of-flexor-pollicis-brevis", "deep-head-of-flexor-pollicis-brevis"],
+            "assist": []
+        },
+        "thumb-extension": {
+            "name": "Thumb extension",
+            "areas": ["forearm", "hand-area"],
+            "prime": ["extensor-pollicis-longus", "extensor-pollicis-brevis"],
+            "assist": ["abductor-pollicis-longus"]
+        },
+        "thumb-abduction": {
+            "name": "Thumb abduction",
+            "areas": ["forearm", "hand-area"],
+            "prime": ["abductor-pollicis-brevis", "abductor-pollicis-longus"],
+            "assist": []
+        },
+        "thumb-adduction": {
+            "name": "Thumb adduction",
+            "areas": ["hand-area"],
+            "prime": ["oblique-head-of-adductor-pollicis", "transverse-head-of-adductor-pollicis"],
+            "assist": []
+        },
+        "thumb-opposition": {
+            "name": "Opposition (thumb to little finger)",
+            "areas": ["hand-area"],
+            "prime": ["opponens-pollicis"],
+            "assist": ["abductor-pollicis-brevis", "superficial-head-of-flexor-pollicis-brevis", "opponens-digiti-minimi-of-hand"]
+        },
+        "toe-flexion": {
+            "name": "Toe flexion",
+            "areas": ["leg-ankle", "foot-area"],
+            "prime": ["flexor-digitorum-longus", "flexor-digitorum-brevis"],
+            "assist": ["quadratus-plantae", "lumbrical-muscles-of-foot", "flexor-digiti-minimi-of-foot", "abductor-digiti-minimi-of-foot"]
+        },
+        "toe-extension": {
+            "name": "Toe extension",
+            "areas": ["leg-ankle", "foot-area"],
+            "prime": ["extensor-digitorum-longus", "extensor-digitorum-brevis"],
+            "assist": []
+        },
+        "big-toe-flexion": {
+            "name": "Big toe flexion",
+            "areas": ["leg-ankle", "foot-area"],
+            "prime": ["flexor-hallucis-longus", "medial-head-of-flexor-hallucis-brevis", "lateral-head-of-flexor-hallucis-brevis"],
+            "assist": ["abductor-hallucis", "oblique-head-of-adductor-hallucis"]
+        },
+        "big-toe-extension": {
+            "name": "Big toe extension",
+            "areas": ["leg-ankle", "foot-area"],
+            "prime": ["extensor-hallucis-longus", "extensor-hallucis-brevis"],
+            "assist": []
+        },
+        "toe-abduction": {
+            "name": "Spreading the toes",
+            "areas": ["foot-area"],
+            "prime": ["dorsal-interossei-muscles-of-foot", "abductor-hallucis", "abductor-digiti-minimi-of-foot"],
+            "assist": []
+        },
+        "toe-adduction": {
+            "name": "Closing the toes",
+            "areas": ["foot-area"],
+            "prime": ["plantar-interossei-muscles", "oblique-head-of-adductor-hallucis", "transverse-head-of-adductor-hallucis"],
+            "assist": []
+        },
+        "foot-inversion": {
+            "name": "Inversion",
+            "areas": ["leg-ankle", "foot-area"],
+            "prime": ["tibialis-anterior", "tibialis-posterior"],
+            "assist": ["flexor-hallucis-longus", "flexor-digitorum-longus"],
+            "note": "Happens mainly at the subtalar and transverse tarsal joints, not the ankle."
+        },
+        "foot-eversion": {
+            "name": "Eversion",
+            "areas": ["leg-ankle", "foot-area"],
+            "prime": ["fibularis-longus", "fibularis-brevis"],
+            "assist": ["fibularis-tertius"]
+        },
+        "tibial-medial-rotation": {
+            "name": "Medial rotation of the tibia",
+            "areas": ["thigh-knee", "leg-ankle"],
+            "prime": [],
+            "assist": ["semitendinosus", "semimembranosus", "gracilis", "sartorius", "popliteus"],
+            "note": "Not animated yet. Only possible with the knee bent."
+        },
+        "tibial-lateral-rotation": {
+            "name": "Lateral rotation of the tibia",
+            "areas": ["thigh-knee", "leg-ankle"],
+            "prime": ["long-head-of-biceps-femoris", "short-head-of-biceps-femoris"],
+            "assist": [],
+            "note": "Not animated yet. Only possible with the knee bent."
+        },
+        "knee-unlocking": {
+            "name": "Unlocking the extended knee",
+            "areas": ["thigh-knee", "leg-ankle"],
+            "rig": {
+                "control": "knee",
+                "from": 0,
+                "to": 25
+            },
+            "prime": ["popliteus"],
+            "assist": [],
+            "note": "Popliteus rotates the femur laterally on the planted tibia to start flexion from full extension. The rotation itself is not animated yet."
+        },
+        "eye-abduction": {
+            "name": "Turning the eye outward",
+            "areas": ["head"],
+            "prime": ["lateral-rectus"],
+            "assist": []
+        },
+        "eye-depression": {
+            "name": "Looking down and in",
+            "areas": ["head"],
+            "prime": ["superior-oblique"],
+            "assist": []
+        },
+        "tongue-protrusion": {
+            "name": "Sticking out the tongue",
+            "areas": ["head", "neck"],
+            "prime": ["genioglossus"],
+            "assist": []
+        },
+        "tongue-retraction": {
+            "name": "Pulling the tongue down and back",
+            "areas": ["head", "neck"],
+            "prime": ["hyoglossus"],
+            "assist": []
+        },
+        "hyoid-elevation": {
+            "name": "Raising the hyoid (swallowing)",
+            "areas": ["neck", "head"],
+            "prime": ["mylohyoid", "anterior-belly-of-digastric", "posterior-belly-of-digastric", "stylohyoid", "geniohyoid"],
+            "assist": []
+        },
+        "hyoid-depression": {
+            "name": "Lowering the hyoid and larynx",
+            "areas": ["neck"],
+            "prime": ["sternohyoid", "omohyoid", "sternothyroid", "thyrohyoid"],
+            "assist": []
+        }
+    }
+}

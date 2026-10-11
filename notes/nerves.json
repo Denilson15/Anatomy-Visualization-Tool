@@ -1,0 +1,344 @@
+{
+    "nerves": {
+        "femoral": {
+            "name": "Femoral nerve",
+            "roots": "L2–L4",
+            "atlas": ["Femoral nerve"],
+            "injury": "Weak knee extension, so the knee buckles on stairs or slopes; weak hip flexion; reduced or absent patellar reflex; numbness over the front of the thigh and medial leg.",
+            "note": "Lumbar plexus. Enters the thigh under the inguinal ligament, lateral to the femoral artery."
+        },
+        "obturator": {
+            "name": "Obturator nerve",
+            "roots": "L2–L4",
+            "atlas": ["Obturator nerve", "Anterior branch of obturator nerve", "Posterior branch of obturator nerve"],
+            "injury": "Weak hip adduction, so the leg swings outward when walking; numbness over the medial thigh.",
+            "note": "Lumbar plexus. Leaves the pelvis through the obturator foramen."
+        },
+        "lumbar-plexus-direct": {
+            "name": "Direct branches of the lumbar plexus",
+            "roots": "T12–L4",
+            "atlas": [],
+            "injury": "Rarely injured alone; lumbar root problems weaken psoas and quadratus lumborum together with the other lumbar-supplied muscles.",
+            "note": "Short branches straight from the anterior rami to psoas, quadratus lumborum and the intertransversarii."
+        },
+        "superior-gluteal": {
+            "name": "Superior gluteal nerve",
+            "roots": "L4–S1",
+            "atlas": ["Superior gluteal nerve"],
+            "injury": "Weak hip abduction: when standing on the affected leg the pelvis drops on the other side (positive Trendelenburg sign), giving a waddling or lurching gait.",
+            "note": "Sacral plexus. Leaves the pelvis above piriformis. Can be injured by a badly placed gluteal injection."
+        },
+        "inferior-gluteal": {
+            "name": "Inferior gluteal nerve",
+            "roots": "L5–S2",
+            "atlas": [],
+            "injury": "Weak hip extension: difficulty rising from a chair, climbing stairs or jumping; the trunk lurches backward at heel strike.",
+            "note": "Sacral plexus. Leaves the pelvis below piriformis and supplies only gluteus maximus."
+        },
+        "nerve-to-piriformis": {
+            "name": "Nerve to piriformis",
+            "roots": "S1–S2",
+            "atlas": ["Nerve to piriformis muscle"],
+            "injury": "Isolated injury is rare and of little functional consequence.",
+            "note": "Sacral plexus."
+        },
+        "nerve-to-obturator-internus": {
+            "name": "Nerve to obturator internus",
+            "roots": "L5–S2",
+            "atlas": [],
+            "injury": "Isolated injury is rare; weak lateral rotation is masked by the other rotators.",
+            "note": "Sacral plexus. Also supplies superior gemellus."
+        },
+        "nerve-to-quadratus-femoris": {
+            "name": "Nerve to quadratus femoris",
+            "roots": "L4–S1",
+            "atlas": [],
+            "injury": "Isolated injury is rare; weak lateral rotation is masked by the other rotators.",
+            "note": "Sacral plexus. Also supplies inferior gemellus."
+        },
+        "sciatic": {
+            "name": "Sciatic nerve",
+            "roots": "L4–S3",
+            "atlas": ["Sciatic nerve"],
+            "injury": "Weak knee flexion and hip extension from loss of the hamstrings, and loss of every muscle below the knee: foot drop and inability to stand on the toes.",
+            "note": "The largest nerve in the body. Two divisions in one sheath (tibial and common fibular) that usually separate above the knee."
+        },
+        "tibial": {
+            "name": "Tibial nerve",
+            "parent": "sciatic",
+            "roots": "L4–S3",
+            "atlas": ["Tibial nerve"],
+            "injury": "In the thigh (tibial division): weak hamstrings. Below the knee: weak plantarflexion and toe flexion, so push-off fails and the person cannot rise onto the toes; numb sole.",
+            "note": "Continues behind the medial malleolus into the foot as the medial and lateral plantar nerves."
+        },
+        "common-fibular": {
+            "name": "Common fibular nerve",
+            "parent": "sciatic",
+            "roots": "L4–S2",
+            "atlas": ["Common fibular nerve"],
+            "injury": "Foot drop: the foot cannot be dorsiflexed or everted and the toes cannot be extended, giving a high-stepping or slapping gait; numbness of the lateral leg and dorsum of the foot.",
+            "note": "Wraps around the neck of the fibula, where it is the most frequently injured nerve of the lower limb (fractures, tight casts, crossed legs)."
+        },
+        "deep-fibular": {
+            "name": "Deep fibular nerve",
+            "parent": "common-fibular",
+            "roots": "L4–S1",
+            "atlas": ["Deep fibular nerve", "Muscular branches of deep fibular nerve"],
+            "injury": "Foot drop and weak toe extension; numbness only in the web space between the first and second toes.",
+            "note": "Supplies the anterior compartment of the leg and the dorsum of the foot."
+        },
+        "superficial-fibular": {
+            "name": "Superficial fibular nerve",
+            "parent": "common-fibular",
+            "roots": "L5–S2",
+            "atlas": ["Superficial fibular nerve"],
+            "injury": "Weak eversion (the foot tends to invert, risking ankle sprains); numbness over most of the dorsum of the foot.",
+            "note": "Supplies the lateral compartment of the leg."
+        },
+        "medial-plantar": {
+            "name": "Medial plantar nerve",
+            "parent": "tibial",
+            "roots": "S2–S3",
+            "atlas": ["Medial plantar nerve"],
+            "injury": "Weak big-toe flexion and abduction; numbness over the medial sole.",
+            "note": "Supplies abductor hallucis, flexor digitorum brevis, flexor hallucis brevis and the first lumbrical."
+        },
+        "lateral-plantar": {
+            "name": "Lateral plantar nerve",
+            "parent": "tibial",
+            "roots": "S2–S3",
+            "atlas": ["Lateral plantar nerve"],
+            "injury": "Weak intrinsic foot muscles, with clawing of the lateral toes; numbness of the lateral sole.",
+            "note": "Supplies most of the intrinsic muscles of the sole."
+        },
+        "axillary": {
+            "name": "Axillary nerve",
+            "parent": null,
+            "roots": "C5–C6",
+            "atlas": ["Axillary nerve", "Muscular branches of axillary nerve"],
+            "injury": "Weak shoulder abduction beyond the first few degrees, with a flattened deltoid; numbness over the lower deltoid (the regimental badge area).",
+            "note": "Posterior cord of the brachial plexus. Winds around the surgical neck of the humerus, where fractures and dislocations injure it."
+        },
+        "suprascapular": {
+            "name": "Suprascapular nerve",
+            "roots": "C5–C6",
+            "atlas": ["Suprascapular nerve"],
+            "injury": "Weak initiation of abduction and weak lateral rotation, with wasting above and below the spine of the scapula.",
+            "note": "Upper trunk of the brachial plexus. Passes through the suprascapular notch."
+        },
+        "subscapular": {
+            "name": "Upper and lower subscapular nerves",
+            "roots": "C5–C6",
+            "atlas": ["Superior subscapular nerve", "Inferior subscapular nerve"],
+            "injury": "Weak medial rotation of the shoulder.",
+            "note": "Posterior cord of the brachial plexus."
+        },
+        "lower-subscapular": {
+            "name": "Lower subscapular nerve",
+            "parent": "subscapular",
+            "roots": "C5–C6",
+            "atlas": ["Inferior subscapular nerve"],
+            "injury": "Weak medial rotation and adduction of the shoulder.",
+            "note": "Supplies teres major and the lower part of subscapularis."
+        },
+        "thoracodorsal": {
+            "name": "Thoracodorsal nerve",
+            "roots": "C6–C8",
+            "atlas": ["Thoracodorsal nerve"],
+            "injury": "Weak shoulder extension and adduction: difficulty with climbing, crutch walking and pushing up from a chair.",
+            "note": "Posterior cord of the brachial plexus."
+        },
+        "musculocutaneous": {
+            "name": "Musculocutaneous nerve",
+            "roots": "C5–C7",
+            "atlas": ["Musculocutaneous nerve"],
+            "injury": "Weak elbow flexion and supination (brachioradialis still flexes the elbow); reduced biceps reflex; numbness along the lateral forearm.",
+            "note": "Lateral cord of the brachial plexus. Pierces coracobrachialis."
+        },
+        "radial": {
+            "name": "Radial nerve",
+            "roots": "C5–T1",
+            "atlas": ["Radial nerve", "Muscular branches of radial nerve"],
+            "injury": "Above the elbow (for example a mid-shaft humerus fracture): wrist drop, with no extension of the wrist, fingers or thumb; triceps usually spared because its branches leave higher up. Numbness over the back of the hand near the thumb.",
+            "note": "Posterior cord of the brachial plexus. Runs in the radial groove of the humerus."
+        },
+        "posterior-interosseous": {
+            "name": "Posterior interosseous nerve (deep branch of radial)",
+            "parent": "radial",
+            "roots": "C7–C8",
+            "atlas": ["Deep branch of radial nerve", "Posterior interosseous nerve of forearm"],
+            "injury": "Finger and thumb drop with the wrist still able to extend (extensor carpi radialis longus is spared), deviating toward the radial side. No sensory loss.",
+            "note": "Passes through supinator, where it can be compressed."
+        },
+        "median": {
+            "name": "Median nerve",
+            "roots": "C6–T1",
+            "atlas": ["Median nerve", "Muscular branches of median nerve"],
+            "injury": "At the wrist (carpal tunnel syndrome): weak, wasted thenar muscles, poor opposition, and numbness of the thumb, index, middle and half the ring finger. At the elbow: also weak pronation, wrist flexion and index and middle finger flexion (the 'hand of benediction' when making a fist).",
+            "note": "Lateral and medial cords of the brachial plexus."
+        },
+        "anterior-interosseous": {
+            "name": "Anterior interosseous nerve",
+            "parent": "median",
+            "roots": "C7–C8",
+            "atlas": ["Anterior interosseous nerve of forearm"],
+            "injury": "Cannot make an 'OK' sign: the tips of the thumb and index finger cannot bend. Weak pronation with the elbow bent. No sensory loss.",
+            "note": "A purely motor branch of the median nerve in the forearm."
+        },
+        "ulnar": {
+            "name": "Ulnar nerve",
+            "roots": "C8–T1",
+            "atlas": ["Ulnar nerve", "Deep branch of ulnar nerve", "Muscular branches of ulnar nerve"],
+            "injury": "Clawing of the ring and little fingers, wasted interossei, weak finger spreading and closing, a positive Froment's sign (weak adductor pollicis), and numbness of the little finger and half the ring finger.",
+            "note": "Medial cord of the brachial plexus. Exposed behind the medial epicondyle (the funny bone) and in the cubital tunnel."
+        },
+        "accessory": {
+            "name": "Accessory nerve (XI)",
+            "roots": "CN XI",
+            "atlas": ["Accessory nerve (XI)"],
+            "injury": "Weak shoulder shrug and difficulty raising the arm overhead, a drooping shoulder, and weak head turning to the opposite side.",
+            "note": "Crosses the posterior triangle of the neck superficially, where it can be cut in lymph node surgery."
+        },
+        "dorsal-scapular": {
+            "name": "Dorsal scapular nerve",
+            "roots": "C4–C5",
+            "atlas": ["Dorsal scapular nerve"],
+            "injury": "Weak scapular retraction; the medial border of the scapula may drift away from the spine.",
+            "note": "Directly from the C5 root of the brachial plexus."
+        },
+        "long-thoracic": {
+            "name": "Long thoracic nerve",
+            "roots": "C5–C7",
+            "atlas": ["Long thoracic nerve"],
+            "injury": "Winged scapula: the medial border lifts off the chest wall when pushing forward, and raising the arm overhead is difficult.",
+            "note": "Directly from the C5–C7 roots; runs on the outer surface of serratus anterior, exposed in the axilla."
+        },
+        "lateral-pectoral": {
+            "name": "Lateral pectoral nerve",
+            "roots": "C5–C7",
+            "atlas": ["Lateral pectoral nerve"],
+            "injury": "Weak shoulder adduction and medial rotation (mainly the clavicular head of pectoralis major).",
+            "note": "Lateral cord of the brachial plexus."
+        },
+        "medial-pectoral": {
+            "name": "Medial pectoral nerve",
+            "roots": "C8–T1",
+            "atlas": ["Medial pectoral nerve"],
+            "injury": "Weak pectoralis minor and sternocostal pectoralis major.",
+            "note": "Medial cord of the brachial plexus. Named for its cord, so it lies lateral to the lateral pectoral nerve."
+        },
+        "nerve-to-subclavius": {
+            "name": "Nerve to subclavius",
+            "roots": "C5–C6",
+            "atlas": ["Subclavian nerve"],
+            "injury": "Little functional loss.",
+            "note": "Upper trunk of the brachial plexus."
+        },
+        "phrenic": {
+            "name": "Phrenic nerve",
+            "roots": "C3–C5",
+            "atlas": [],
+            "injury": "Paralysis of half the diaphragm, which rises on that side; breathlessness when lying down or exercising.",
+            "note": "Runs down over scalenus anterior. Its C3–C5 origin is why high cervical cord injuries stop breathing."
+        },
+        "intercostal": {
+            "name": "Intercostal nerves",
+            "roots": "T1–T11",
+            "atlas": ["Intercostal nerves"],
+            "injury": "Segmental weakness of the chest wall and a band of numbness around the chest (as in shingles, which follows one nerve).",
+            "note": "Anterior rami of T1–T11, running in the groove under each rib."
+        },
+        "thoracoabdominal": {
+            "name": "Thoracoabdominal nerves",
+            "roots": "T7–T11",
+            "atlas": ["Intercostal nerves"],
+            "injury": "Weakness or bulging of part of the abdominal wall and a band of numbness on the abdomen.",
+            "note": "The lower intercostal nerves (T7–T11) continuing into the abdominal wall. T10 supplies the skin at the umbilicus."
+        },
+        "subcostal": {
+            "name": "Subcostal nerve",
+            "roots": "T12",
+            "atlas": [],
+            "injury": "Weakness of the lowest part of the abdominal wall.",
+            "note": "Anterior ramus of T12, running below the twelfth rib."
+        },
+        "posterior-rami": {
+            "name": "Posterior rami of spinal nerves",
+            "roots": "C1–S5 (segmental)",
+            "atlas": [],
+            "injury": "Segmental weakness of the deep back muscles and numbness over the back next to the spine.",
+            "note": "Every true (deep) back muscle is supplied by posterior rami, one of the features that defines them."
+        },
+        "suboccipital": {
+            "name": "Suboccipital nerve",
+            "roots": "C1",
+            "atlas": [],
+            "injury": "Rarely injured; weak fine control of head position.",
+            "note": "Posterior ramus of C1. Purely motor."
+        },
+        "nerve-to-levator-ani": {
+            "name": "Nerve to levator ani",
+            "roots": "S3–S4",
+            "atlas": [],
+            "injury": "Weak pelvic floor: urinary and faecal incontinence and pelvic organ prolapse. Often stretched during childbirth.",
+            "note": "Branches of the anterior rami of S3–S4 (with contributions from the pudendal nerve)."
+        },
+        "facial": {
+            "name": "Facial nerve (VII)",
+            "roots": "CN VII",
+            "atlas": ["Facial nerve (VII)"],
+            "injury": "Facial palsy on that side: cannot raise the eyebrow, close the eye or smile evenly; the mouth droops. A forehead that still moves suggests a stroke rather than a nerve lesion.",
+            "note": "Five branches in the face: temporal, zygomatic, buccal, marginal mandibular and cervical."
+        },
+        "trigeminal-mandibular": {
+            "name": "Trigeminal nerve, mandibular division (V3)",
+            "roots": "CN V3",
+            "atlas": ["Trigeminal nerve (V)", "Anterior division of mandibular nerve", "Posterior division of mandibular nerve", "Nerve to mylohyoid muscle"],
+            "injury": "Weak chewing on that side; the jaw deviates toward the weak side on opening; numbness of the lower face and chin.",
+            "note": "The only division of the trigeminal nerve with motor fibres."
+        },
+        "abducens": {
+            "name": "Abducens nerve (VI)",
+            "roots": "CN VI",
+            "atlas": ["Abducens nerve (VI)"],
+            "injury": "The eye cannot turn outward; double vision when looking to that side.",
+            "note": "Supplies only lateral rectus."
+        },
+        "trochlear": {
+            "name": "Trochlear nerve (IV)",
+            "roots": "CN IV",
+            "atlas": ["Trochlear nerve (IV)"],
+            "injury": "Vertical double vision, worst when looking down and inward (reading, going downstairs); the head tilts away from the affected side.",
+            "note": "Supplies only superior oblique."
+        },
+        "hypoglossal": {
+            "name": "Hypoglossal nerve (XII)",
+            "roots": "CN XII",
+            "atlas": ["Hypoglossal nerve (XII)"],
+            "injury": "The protruded tongue deviates toward the weak side, which wastes over time; speech and swallowing are affected.",
+            "note": "Supplies all tongue muscles except palatoglossus."
+        },
+        "c1-via-hypoglossal": {
+            "name": "C1 fibres carried by the hypoglossal nerve",
+            "parent": "ansa-cervicalis",
+            "roots": "C1",
+            "atlas": ["Hypoglossal nerve (XII)"],
+            "injury": "Rarely injured alone.",
+            "note": "Spinal nerve fibres that hitch a ride with CN XII to reach geniohyoid and thyrohyoid."
+        },
+        "ansa-cervicalis": {
+            "name": "Ansa cervicalis",
+            "roots": "C1–C3",
+            "atlas": [],
+            "injury": "Weak infrahyoid muscles; usually little noticeable effect.",
+            "note": "A loop from the cervical plexus lying on the carotid sheath."
+        },
+        "cervical-anterior-rami": {
+            "name": "Anterior rami of cervical nerves",
+            "roots": "C1–C8",
+            "atlas": [],
+            "injury": "Segmental weakness of the deep neck flexors and scalenes, as with cervical root compression.",
+            "note": "Short direct branches to the prevertebral muscles and scalenes."
+        }
+    }
+}

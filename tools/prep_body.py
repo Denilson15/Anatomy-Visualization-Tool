@@ -27,6 +27,7 @@ from scipy.spatial import cKDTree
 
 RAW = json.loads(Path(sys.argv[1]).read_text())
 OUT = Path(sys.argv[2])
+NOTES = Path(__file__).resolve().parent.parent / "notes"
 OUT.mkdir(parents=True, exist_ok=True)
 
 
@@ -717,16 +718,34 @@ def main():
             key = "origins" if info["role"] == "origin" else "insertions"
             muscle_meta[mesh_to_id[muscle]][key].append(name)
 
+    # Ligaments, capsules, discs, labra, menisci and membranes. The written
+    # notes say which joint (and so which area and region) each mesh belongs to.
+    ligament_area = {}
+    for path in sorted(NOTES.glob("ligaments-*.json")):
+        notes = json.loads(path.read_text())
+        for entry in notes["ligaments"].values():
+            area = notes["joints"][entry["joint"]]["area"]
+            for mesh_name in entry["meshes"]:
+                ligament_area[mesh_name] = area
+    unplaced = sorted(set(ligaments) - set(ligament_area))
+    assert not unplaced, f"ligament meshes with no notes: {unplaced}"
+
     for name, entry in ligaments.items():
-        packer = region_packers["lower-limb"]
+        region = AREA_REGION[ligament_area[name]]
+        packer = region_packers[region]
         mesh = pack_mesh(packer, entry["positions"], entry["indices"])
-        if "meniscus" in name:
+        if "meniscus" in name or "meniscotibial" in name:
+            # The menisci ride on the tibial plateau.
             mesh["segment"] = "tibia"
         else:
             segs, weight = weights_for(entry["positions"], 0.8)
             mesh["segs"] = packer.add(segs)
             mesh["w"] = packer.add(weight)
-        mesh.update({"file": "region-lower-limb.bin", "kind": "ligament"})
+        mesh.update({
+            "file": f"region-{region}.bin",
+            "kind": "ligament",
+            "centroid": entry["positions"].mean(axis=0).round(2).tolist(),
+        })
         mesh_index[name] = mesh
 
     for region, packer in region_packers.items():

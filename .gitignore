@@ -1,0 +1,6 @@
+__pycache__/
+app/*.bin
+dist/
+dist-artifact/
+export/
+zanat/

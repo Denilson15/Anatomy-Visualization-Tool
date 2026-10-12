@@ -10,7 +10,7 @@ Output (OUT_DIR/raw_body.json):
         "bones":     { name: {positions, indices, collections} },
         "muscles":   { name: {positions, indices, collections} },
         "patches":   { name: {positions, indices} },
-        "ligaments": { name: {positions, indices} },
+        "ligaments": { name: {positions, indices, collections} },
         "nerves":    { name: {paths, collections} },
         "landmarks": { name: {bone, point} }
     }
@@ -53,15 +53,12 @@ SKIP_MUSCLE_COLLECTIONS = {
     "Digestive system",
 }
 
-KNEE_LIGAMENTS = [
-    "Anterior cruciate ligament.r",
-    "Posterior cruciate ligament.r",
-    "Fibular collateral ligament.r",
-    "Superficial part of tibial collateral ligament.r",
-    "Deep part of tibial collateral ligament.r",
-    "Medial meniscus.r",
-    "Lateral meniscus.r",
-]
+LIGAMENT_RATIO = 0.4
+
+# Joint structures that are not exported: a label group, and a growth cartilage
+# that is bone in an adult.
+SKIP_JOINT_NAMES = {"Joints.g", "Triradiate cartilage.r"}
+LABEL_SUFFIXES = (".j", ".g", ".i", ".t")
 
 PATCH_PATTERN = re.compile(r"\.(o|e)\d*r$")
 
@@ -151,8 +148,16 @@ def main():
         elif "2: Muscular insertions" in names and PATCH_PATTERN.search(obj.name):
             out["patches"][obj.name] = mesh_data(obj, depsgraph)
 
-        elif obj.name in KNEE_LIGAMENTS:
-            out["ligaments"][obj.name] = mesh_data(obj, depsgraph)
+        elif "3: Joints" in names:
+            # Every ligament, capsule, disc, labrum, meniscus and membrane:
+            # right side and midline only, like the muscles.
+            if obj.name.endswith(".l") or obj.name.endswith(LABEL_SUFFIXES):
+                continue
+            if obj.name in SKIP_JOINT_NAMES or len(obj.data.vertices) < 3:
+                continue
+            entry = mesh_data(obj, depsgraph, LIGAMENT_RATIO)
+            entry["collections"] = names
+            out["ligaments"][obj.name] = entry
 
     for obj in objects:
         if obj.type != "CURVE":

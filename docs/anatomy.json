@@ -18,171 +18,6 @@
             ]
         }
     },
-    "ligaments": {
-        "acl": {
-            "name": "Anterior cruciate ligament",
-            "short": "ACL",
-            "mesh": "Anterior cruciate ligament.r",
-            "attachments": [
-                "Anterior intercondylar area",
-                "Intercondylar fossa"
-            ],
-            "attachmentText": "Anterior intercondylar area of the tibia, running up and back to the inner (medial) surface of the lateral femoral condyle.",
-            "function": "Stops the tibia sliding forward on the femur and limits hyperextension.",
-            "tautText": "Tight in full extension. Its anteromedial band stays fairly tight as the knee bends.",
-            "taut": [
-                [
-                    0,
-                    1.0
-                ],
-                [
-                    20,
-                    0.7
-                ],
-                [
-                    60,
-                    0.55
-                ],
-                [
-                    120,
-                    0.6
-                ]
-            ]
-        },
-        "pcl": {
-            "name": "Posterior cruciate ligament",
-            "short": "PCL",
-            "mesh": "Posterior cruciate ligament.r",
-            "attachments": [
-                "Posterior intercondylar area",
-                "Intercondylar fossa"
-            ],
-            "attachmentText": "Posterior intercondylar area of the tibia, running up and forward to the outer (lateral) surface of the medial femoral condyle.",
-            "function": "Stops the tibia sliding backward on the femur. Stronger than the ACL.",
-            "tautText": "Tightens as the knee bends; tightest in flexion.",
-            "taut": [
-                [
-                    0,
-                    0.35
-                ],
-                [
-                    30,
-                    0.5
-                ],
-                [
-                    90,
-                    1.0
-                ],
-                [
-                    120,
-                    1.0
-                ]
-            ]
-        },
-        "mcl": {
-            "name": "Tibial collateral ligament",
-            "short": "MCL",
-            "mesh": "Superficial part of tibial collateral ligament.r",
-            "extraMeshes": [
-                "Deep part of tibial collateral ligament.r"
-            ],
-            "attachments": [
-                "Medial epicondyle of femur",
-                "Medial condyle of tibia"
-            ],
-            "attachmentText": "Medial epicondyle of the femur to the medial condyle and upper medial shaft of the tibia. Its deep fibres attach to the medial meniscus.",
-            "function": "Resists valgus stress (the knee being pushed inward).",
-            "tautText": "Tight in full extension; slackens as the knee bends.",
-            "taut": [
-                [
-                    0,
-                    1.0
-                ],
-                [
-                    20,
-                    0.75
-                ],
-                [
-                    60,
-                    0.4
-                ],
-                [
-                    120,
-                    0.3
-                ]
-            ]
-        },
-        "lcl": {
-            "name": "Fibular collateral ligament",
-            "short": "LCL",
-            "mesh": "Fibular collateral ligament.r",
-            "attachments": [
-                "Lateral epicondyle of femur",
-                "Head of fibula"
-            ],
-            "attachmentText": "Lateral epicondyle of the femur to the lateral surface of the head of the fibula. It is cord-like and stands clear of the joint capsule and the lateral meniscus.",
-            "function": "Resists varus stress (the knee being pushed outward).",
-            "tautText": "Tight in full extension; slackens as the knee bends.",
-            "taut": [
-                [
-                    0,
-                    1.0
-                ],
-                [
-                    20,
-                    0.7
-                ],
-                [
-                    60,
-                    0.3
-                ],
-                [
-                    120,
-                    0.25
-                ]
-            ]
-        },
-        "patellar-ligament": {
-            "name": "Patellar ligament",
-            "short": "Patellar lig.",
-            "between": [
-                "patella-apex",
-                "tibial-tuberosity"
-            ],
-            "attachments": [
-                "Tibial tuberosity"
-            ],
-            "attachmentText": "Apex of the patella to the tibial tuberosity.",
-            "function": "Carries the pull of the quadriceps from the patella to the tibia. It is really the continuation of the quadriceps tendon.",
-            "tautText": "Under load whenever the quadriceps contracts; stretched further as the knee bends.",
-            "taut": [
-                [
-                    0,
-                    0.45
-                ],
-                [
-                    60,
-                    0.75
-                ],
-                [
-                    120,
-                    0.95
-                ]
-            ]
-        }
-    },
-    "structures": {
-        "medial-meniscus": {
-            "name": "Medial meniscus",
-            "mesh": "Medial meniscus.r",
-            "text": "C-shaped fibrocartilage pad on the medial tibial plateau. Firmly attached to the deep part of the MCL, so it moves less and is torn more often than the lateral meniscus."
-        },
-        "lateral-meniscus": {
-            "name": "Lateral meniscus",
-            "mesh": "Lateral meniscus.r",
-            "text": "Nearly circular fibrocartilage pad on the lateral tibial plateau. Not attached to the LCL, so it is more mobile than the medial meniscus."
-        }
-    },
     "glossary": {
         "origin": "Where a muscle attaches to the bone that stays relatively still.",
         "insertion": "Where a muscle attaches to the bone it moves.",
@@ -223,6 +58,3286 @@
         "myotome": "The muscles supplied by a single spinal nerve root, used to test that root.",
         "trendelenburg sign": "The pelvis dropping on the unsupported side when standing on one leg, a sign of weak hip abductors.",
         "winged scapula": "The medial border of the scapula lifting off the chest wall, usually from serratus anterior weakness."
+    },
+    "joints": {
+        "hip-joint": {
+            "name": "Hip joint",
+            "area": "hip-gluteal",
+            "type": "Synovial ball-and-socket joint",
+            "summary": "The femoral head sits deep in the acetabulum, deepened by the labrum. Three capsular ligaments spiral around the neck of the femur and wind tight in extension, which is why standing upright takes so little muscle work.",
+            "closePacked": "Full extension, medial rotation and abduction.",
+            "resting": "About 30° flexion, 30° abduction and slight lateral rotation.",
+            "capsularPattern": "Flexion, abduction and medial rotation most limited (medial rotation is sometimes the most limited).",
+            "views": [
+                0,
+                0.2,
+                1
+            ]
+        },
+        "knee-joint": {
+            "name": "Knee joint",
+            "area": "thigh-knee",
+            "type": "Synovial modified hinge joint (tibiofemoral), plus the patellofemoral joint",
+            "summary": "The femur rolls and glides on the tibial plateaus, cushioned by the menisci. The cruciates control front-to-back sliding, the collaterals control side-to-side gapping, and the posterior capsule and its ligaments stop hyperextension.",
+            "closePacked": "Full extension with lateral rotation of the tibia (the screw-home position).",
+            "resting": "About 25° flexion.",
+            "capsularPattern": "Flexion more limited than extension.",
+            "views": [
+                0.3,
+                0.1,
+                1
+            ]
+        },
+        "superior-tibiofibular": {
+            "name": "Superior (proximal) tibiofibular joint",
+            "area": "leg-ankle",
+            "type": "Synovial plane joint",
+            "summary": "The head of the fibula glides on the lateral condyle of the tibia. It moves a little whenever the ankle moves, because the fibula shifts as the talus spreads the ankle mortise.",
+            "closePacked": "Not described.",
+            "resting": "About 25° knee flexion and 10° plantarflexion.",
+            "capsularPattern": "Pain when the joint is stressed.",
+            "views": [
+                1,
+                0.1,
+                0.4
+            ]
+        },
+        "tibiofibular-syndesmosis": {
+            "name": "Interosseous membrane and distal tibiofibular syndesmosis",
+            "area": "leg-ankle",
+            "type": "Fibrous joint (syndesmosis)",
+            "summary": "A sheet of fibres binds the tibia and fibula along their whole length, and strong ligaments hold their lower ends together to form the roof and walls of the ankle mortise.",
+            "closePacked": "Full dorsiflexion (the wide front of the talus spreads the mortise).",
+            "resting": "Plantarflexion.",
+            "views": [
+                0.6,
+                0.1,
+                1
+            ]
+        },
+        "ankle-joint": {
+            "name": "Ankle (talocrural) joint",
+            "area": "leg-ankle",
+            "type": "Synovial hinge joint",
+            "summary": "The talus sits in the mortise formed by the tibia and fibula. Lateral ligaments (three separate bands) and the fan-shaped medial (deltoid) ligament stop the talus tipping or sliding.",
+            "closePacked": "Maximal dorsiflexion.",
+            "resting": "About 10° plantarflexion, midway between full inversion and eversion.",
+            "capsularPattern": "Plantarflexion more limited than dorsiflexion.",
+            "views": [
+                1,
+                0.2,
+                0.6
+            ]
+        },
+        "subtalar-joint": {
+            "name": "Subtalar (talocalcaneal) joint",
+            "area": "foot-area",
+            "type": "Synovial plane joint",
+            "summary": "The talus sits on the calcaneus. Together with the talocalcaneonavicular joint it produces inversion and eversion of the foot.",
+            "closePacked": "Supination (inversion).",
+            "resting": "Midway between the extremes of range.",
+            "capsularPattern": "Limited varus (inversion) range.",
+            "views": [
+                1,
+                0.3,
+                0.3
+            ]
+        },
+        "talocalcaneonavicular-joint": {
+            "name": "Talocalcaneonavicular joint",
+            "area": "foot-area",
+            "type": "Synovial ball-and-socket-like joint",
+            "summary": "The head of the talus sits in a socket formed by the navicular, the calcaneus and the spring ligament between them. It is the medial half of the transverse tarsal (midtarsal) joint.",
+            "closePacked": "Supination.",
+            "resting": "Midway between the extremes of range.",
+            "capsularPattern": "Dorsiflexion, plantarflexion, adduction and medial rotation limited (midtarsal pattern).",
+            "views": [
+                -1,
+                0.4,
+                0.4
+            ]
+        },
+        "calcaneocuboid-joint": {
+            "name": "Calcaneocuboid joint",
+            "area": "foot-area",
+            "type": "Synovial saddle joint",
+            "summary": "The lateral half of the transverse tarsal joint. The long and short plantar ligaments underneath it are major supports of the lateral longitudinal arch.",
+            "closePacked": "Supination.",
+            "resting": "Midway between the extremes of range.",
+            "capsularPattern": "Dorsiflexion, plantarflexion, adduction and medial rotation limited (midtarsal pattern).",
+            "views": [
+                0.6,
+                -0.6,
+                0.3
+            ]
+        },
+        "intertarsal-joints": {
+            "name": "Other intertarsal joints",
+            "area": "foot-area",
+            "type": "Synovial plane joints (and fibrous interosseous links)",
+            "summary": "Small gliding joints between the navicular, cuboid and three cuneiforms. Each has dorsal, plantar and often interosseous ligaments, and together they let the midfoot twist slightly while staying a rigid lever for push-off.",
+            "views": [
+                0.2,
+                1,
+                0.4
+            ]
+        },
+        "tarsometatarsal-joints": {
+            "name": "Tarsometatarsal (Lisfranc) joints",
+            "area": "foot-area",
+            "type": "Synovial plane joints",
+            "summary": "The bases of the metatarsals meet the cuneiforms and cuboid. The second metatarsal base is recessed between the cuneiforms like a keystone.",
+            "closePacked": "Supination.",
+            "resting": "Midway between supination and pronation.",
+            "capsularPattern": "None described.",
+            "views": [
+                0.2,
+                1,
+                0.4
+            ]
+        },
+        "intermetatarsal-joints": {
+            "name": "Intermetatarsal joints",
+            "area": "foot-area",
+            "type": "Synovial plane joints",
+            "summary": "The bases of the lateral four metatarsals glide on each other. There is usually no ligament joining the bases of the first and second metatarsals.",
+            "views": [
+                0.2,
+                1,
+                0.4
+            ]
+        },
+        "mtp-joints": {
+            "name": "Metatarsophalangeal (MTP) joints",
+            "area": "foot-area",
+            "type": "Synovial condyloid joints",
+            "summary": "The heads of the metatarsals meet the toes. A thick plantar plate under each joint and the deep transverse metatarsal ligament between them take load at push-off.",
+            "closePacked": "Full extension.",
+            "resting": "Neutral (great toe about 10° extension).",
+            "capsularPattern": "Great toe: extension more limited than flexion. Lesser toes: variable, tending toward limited flexion.",
+            "views": [
+                0.2,
+                1,
+                0.6
+            ]
+        },
+        "foot-ip-joints": {
+            "name": "Interphalangeal joints of the foot",
+            "area": "foot-area",
+            "type": "Synovial hinge joints",
+            "summary": "Hinges between the phalanges of the toes, each with a capsule, two collateral ligaments and a plantar plate.",
+            "closePacked": "Full extension.",
+            "resting": "Slight flexion.",
+            "capsularPattern": "Flexion more limited than extension.",
+            "views": [
+                0.2,
+                1,
+                0.6
+            ]
+        },
+        "sternoclavicular-joint": {
+            "name": "Sternoclavicular joint",
+            "area": "shoulder",
+            "type": "Synovial saddle joint with an articular disc",
+            "summary": "The only bony joint between the upper limb and the trunk. The clavicle sits on the manubrium and first costal cartilage, and a disc between them acts as a shock absorber and a hinge.",
+            "closePacked": "Full arm elevation.",
+            "resting": "Arm resting by the side.",
+            "capsularPattern": "Pain at the extremes of range, especially horizontal adduction and full elevation.",
+            "views": [
+                0,
+                0.2,
+                1
+            ]
+        },
+        "acromioclavicular-joint": {
+            "name": "Acromioclavicular joint",
+            "area": "shoulder",
+            "type": "Synovial plane joint",
+            "summary": "The outer end of the clavicle meets the acromion. The joint's own ligament is weak; the coracoclavicular ligaments below it do most of the work of holding the scapula to the clavicle.",
+            "closePacked": "Arm abducted to 90°.",
+            "resting": "Arm resting by the side.",
+            "capsularPattern": "Pain at the extremes of range, especially horizontal adduction and full elevation.",
+            "views": [
+                0.5,
+                -0.15,
+                1
+            ]
+        },
+        "scapular-ligaments": {
+            "name": "Ligaments of the scapula",
+            "area": "shoulder",
+            "type": "Ligaments that bridge parts of one bone (not a joint)",
+            "summary": "Bands that run between two points on the scapula: one forms a roof over the shoulder joint, and two bridge notches that nerves pass through.",
+            "views": [
+                0.5,
+                0.5,
+                -1
+            ]
+        },
+        "glenohumeral-joint": {
+            "name": "Glenohumeral (shoulder) joint",
+            "area": "shoulder",
+            "type": "Synovial ball-and-socket joint",
+            "summary": "A large head on a small, shallow socket: the most mobile and most often dislocated joint in the body. The labrum deepens the socket, the capsule is loose, and thickenings of the front of the capsule (the glenohumeral ligaments) limit lateral rotation and abduction.",
+            "closePacked": "Full abduction and lateral rotation.",
+            "resting": "About 40–55° abduction and 30° horizontal adduction (the scapular plane).",
+            "capsularPattern": "Lateral rotation most limited, then abduction, then medial rotation.",
+            "views": [
+                0.6,
+                0.2,
+                1
+            ]
+        },
+        "elbow-joint": {
+            "name": "Elbow joint (with proximal radio-ulnar joint)",
+            "area": "arm",
+            "type": "Synovial hinge joint (humero-ulnar and humeroradial), sharing a capsule with the pivot joint between radius and ulna",
+            "summary": "The ulna hinges on the trochlea of the humerus, the radial head turns against the capitulum, and the annular ligament holds the radial head against the ulna so the forearm can pronate and supinate.",
+            "closePacked": "Full extension and supination (humero-ulnar).",
+            "resting": "About 70° flexion and 10° supination.",
+            "capsularPattern": "Flexion more limited than extension. At the proximal radio-ulnar joint, pronation and supination equally limited.",
+            "views": [
+                -0.6,
+                0.2,
+                1
+            ]
+        },
+        "radio-ulnar-syndesmosis": {
+            "name": "Interosseous membrane of forearm",
+            "area": "forearm",
+            "type": "Fibrous joint (syndesmosis)",
+            "summary": "A sheet of fibres between the radius and ulna. Most fibres run down and medially from radius to ulna, so force pushed up through the hand onto the radius is passed to the ulna and on to the humerus.",
+            "views": [
+                0,
+                0.1,
+                1
+            ]
+        },
+        "distal-radio-ulnar-joint": {
+            "name": "Distal radio-ulnar joint",
+            "area": "forearm",
+            "type": "Synovial pivot joint",
+            "summary": "The radius swings around the head of the ulna in pronation and supination. A triangular disc of fibrocartilage (part of the TFCC) binds the two bones and cushions the ulnar side of the wrist.",
+            "closePacked": "About 5° supination.",
+            "resting": "About 10° supination.",
+            "capsularPattern": "Pain at the extremes of pronation and supination.",
+            "views": [
+                0.2,
+                -0.3,
+                1
+            ]
+        },
+        "wrist-joint": {
+            "name": "Wrist (radiocarpal) joint",
+            "area": "forearm",
+            "type": "Synovial condyloid (ellipsoid) joint",
+            "summary": "The radius and the TFCC disc form a socket for the scaphoid, lunate and triquetrum. The palmar ligaments are thicker and more important than the dorsal ones, and most run obliquely, so the carpus moves with the radius when the forearm turns.",
+            "closePacked": "Extension with radial deviation.",
+            "resting": "Neutral with slight ulnar deviation.",
+            "capsularPattern": "Flexion and extension equally limited.",
+            "views": [
+                0,
+                -0.2,
+                1
+            ]
+        },
+        "midcarpal-joints": {
+            "name": "Midcarpal and intercarpal joints",
+            "area": "hand-area",
+            "type": "Synovial plane joints",
+            "summary": "Joints between the carpal bones of each row, and between the two rows (the midcarpal joint). About half of wrist flexion and extension happens here.",
+            "closePacked": "Extension.",
+            "resting": "Neutral or slight flexion with ulnar deviation.",
+            "capsularPattern": "Flexion and extension equally limited.",
+            "views": [
+                0,
+                -0.2,
+                1
+            ]
+        },
+        "pisiform-joint": {
+            "name": "Pisiform joint",
+            "area": "hand-area",
+            "type": "Synovial plane joint",
+            "summary": "The pisiform, a sesamoid in the tendon of flexor carpi ulnaris, glides on the triquetrum. Two ligaments carry the pull of flexor carpi ulnaris on to the hamate and fifth metacarpal.",
+            "views": [
+                0.4,
+                -0.2,
+                1
+            ]
+        },
+        "carpometacarpal-joints": {
+            "name": "Carpometacarpal and intermetacarpal joints",
+            "area": "hand-area",
+            "type": "Thumb: synovial saddle joint. Fingers: synovial plane joints",
+            "summary": "The thumb's joint with the trapezium is a saddle that allows opposition. The second and third finger joints barely move; the fourth and fifth move more, letting the palm cup.",
+            "closePacked": "Thumb: full opposition. Fingers: full flexion.",
+            "resting": "Thumb: midway between abduction and adduction, and between flexion and extension. Fingers: midway between flexion and extension.",
+            "capsularPattern": "Thumb: abduction more limited than extension. Fingers: equally limited in all directions.",
+            "views": [
+                0,
+                -0.3,
+                1
+            ]
+        },
+        "mcp-joints": {
+            "name": "Metacarpophalangeal (MCP) joints",
+            "area": "hand-area",
+            "type": "Synovial condyloid joints",
+            "summary": "The knuckles. Each has a palmar plate in front and two collateral ligaments that are slack in extension and tight in flexion, which is why a hand is splinted with the MCP joints flexed.",
+            "closePacked": "Fingers: full flexion. Thumb: full opposition.",
+            "resting": "Slight flexion with ulnar deviation.",
+            "capsularPattern": "Flexion more limited than extension.",
+            "views": [
+                0,
+                -0.3,
+                1
+            ]
+        },
+        "hand-ip-joints": {
+            "name": "Interphalangeal joints of the hand",
+            "area": "hand-area",
+            "type": "Synovial hinge joints",
+            "summary": "The PIP and DIP joints of the fingers and the single IP joint of the thumb. Each has a palmar plate and two collateral ligaments.",
+            "closePacked": "Full extension.",
+            "resting": "Slight flexion.",
+            "capsularPattern": "Flexion more limited than extension.",
+            "views": [
+                0,
+                -0.3,
+                1
+            ]
+        },
+        "vertebral-joints": {
+            "name": "Joints of the vertebral column",
+            "area": "back",
+            "type": "Intervertebral discs (secondary cartilaginous joints) between the bodies, synovial plane facet (zygapophyseal) joints between the arches, and fibrous ligaments linking the arches",
+            "summary": "Each pair of vertebrae is joined by a disc in front and two facet joints behind, held together by long ligaments running the length of the column and short ones between neighbouring arches. Ligaments behind the bodies tighten in flexion; the anterior longitudinal ligament tightens in extension.",
+            "closePacked": "Full extension (facet joints).",
+            "resting": "Midway between flexion and extension.",
+            "capsularPattern": "Side flexion and rotation equally limited, then extension.",
+            "views": [
+                1,
+                0.1,
+                -0.6
+            ]
+        },
+        "costovertebral-joints": {
+            "name": "Costovertebral and costotransverse joints",
+            "area": "thorax-area",
+            "type": "Synovial plane joints",
+            "summary": "Each rib's head meets the bodies of two vertebrae and the disc between them, and its tubercle meets the transverse process of the lower vertebra. Together they set the axis for the bucket-handle and pump-handle movements of breathing.",
+            "views": [
+                1,
+                0.3,
+                -0.6
+            ]
+        },
+        "intercostal-membranes": {
+            "name": "Intercostal membranes",
+            "area": "thorax-area",
+            "type": "Membranes of the thoracic wall (not a joint)",
+            "summary": "Thin aponeurotic sheets that continue the intercostal muscles where the muscle fibres stop: the external membrane in front near the sternum, the internal membrane at the back near the spine.",
+            "views": [
+                0.6,
+                0.1,
+                1
+            ]
+        },
+        "sacro-iliac-joint": {
+            "name": "Sacro-iliac joint",
+            "area": "abdomen",
+            "type": "Synovial plane joint in front, with a strong fibrous (syndesmosis) part behind",
+            "summary": "The sacrum is wedged between the two ilia and held mainly by ligaments. It moves only a few degrees: the sacral base nods forward (nutation) and back (counternutation).",
+            "capsularPattern": "Pain when the joint is stressed.",
+            "views": [
+                0.4,
+                0.2,
+                -1
+            ]
+        },
+        "pubic-symphysis-joint": {
+            "name": "Pubic symphysis",
+            "area": "abdomen",
+            "type": "Secondary cartilaginous joint (symphysis)",
+            "summary": "The two pubic bones meet in the midline across a fibrocartilage disc. It allows very small movements that let the pelvic ring flex under load, and it widens slightly in pregnancy.",
+            "views": [
+                0,
+                -0.2,
+                1
+            ]
+        },
+        "pelvic-ligaments": {
+            "name": "Ligaments of the pelvis",
+            "area": "abdomen",
+            "type": "Fibrous ligaments and membranes",
+            "summary": "Ligaments that bind the sacrum to the ilium and ischium, the lumbar spine to the pelvis, and close the obturator foramen. The sacrotuberous and sacrospinous ligaments turn the sciatic notches into the greater and lesser sciatic foramina.",
+            "views": [
+                0.5,
+                0.1,
+                -1
+            ]
+        },
+        "sacrococcygeal-joint": {
+            "name": "Sacrococcygeal joint",
+            "area": "abdomen",
+            "type": "Secondary cartilaginous joint (symphysis)",
+            "summary": "The coccyx meets the apex of the sacrum. It flexes slightly forward and back, more so during childbirth and sitting.",
+            "views": [
+                0.3,
+                -0.3,
+                -1
+            ]
+        },
+        "temporomandibular-joint": {
+            "name": "Temporomandibular joint",
+            "area": "head",
+            "type": "Synovial modified hinge joint with an articular disc",
+            "summary": "The mandibular condyle sits in the mandibular fossa of the temporal bone, with a disc between them. Opening starts as a hinge in the lower compartment, then the condyle and disc glide forward onto the articular eminence in the upper compartment.",
+            "closePacked": "Maximal retrusion (teeth clenched).",
+            "resting": "Mouth slightly open, lips together, teeth not touching.",
+            "capsularPattern": "Limited mouth opening.",
+            "views": [
+                1,
+                0,
+                0.3
+            ]
+        },
+        "craniovertebral-joints": {
+            "name": "Craniovertebral joints and nuchal ligament",
+            "area": "neck",
+            "type": "Atlanto-occipital: synovial condyloid. Atlanto-axial: synovial pivot (median) and plane (lateral)",
+            "summary": "The skull rocks on the atlas for nodding (yes), and the atlas turns around the dens of the axis for about half of all neck rotation (no). There are no discs here, so ligaments do all the work of holding the joints together, and several of them protect the spinal cord.",
+            "views": [
+                1,
+                0.2,
+                -0.5
+            ]
+        },
+        "hyoid-larynx": {
+            "name": "Ligaments of the hyoid and larynx",
+            "area": "neck",
+            "type": "Fibrous ligaments and membranes",
+            "summary": "Ligaments and membranes that hang the hyoid from the skull and bind the cartilages of the larynx to the hyoid and to each other.",
+            "views": [
+                0.8,
+                0,
+                1
+            ]
+        }
+    },
+    "ligaments": {
+        "hip-capsule": {
+            "name": "Articular capsule of hip joint",
+            "kind": "capsule",
+            "joint": "hip-joint",
+            "meshes": [
+                "Articular capsule of hip joint.r",
+                "Frenula capsulae.r"
+            ],
+            "attachmentText": "Rim of the acetabulum and transverse acetabular ligament, down to the intertrochanteric line in front and about halfway along the back of the femoral neck.",
+            "function": "Encloses the joint and carries the three capsular ligaments. The back of the neck is only partly covered, so the lateral half of the posterior neck is outside the capsule.",
+            "note": "The retinacular fibres (frenula) running up the neck carry the retinacular arteries to the femoral head. Displaced intracapsular neck fractures tear them, risking avascular necrosis."
+        },
+        "iliofemoral-ligament": {
+            "name": "Iliofemoral ligament",
+            "short": "Iliofemoral",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": [
+                "Descending part of iliofemoral ligament.r",
+                "Transverse part of iliofemoral ligament.r"
+            ],
+            "attachmentText": "Anterior inferior iliac spine and acetabular rim, fanning out in an inverted Y to the intertrochanteric line.",
+            "function": "Stops hyperextension of the hip. The strongest ligament in the body; it lets you stand by hanging on it with almost no muscle work.",
+            "tautText": "Taut in hip extension and lateral rotation; slack in flexion.",
+            "taut": [
+                {
+                    "control": "hipFlex",
+                    "points": [
+                        [
+                            -20,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.75
+                        ],
+                        [
+                            30,
+                            0.35
+                        ],
+                        [
+                            110,
+                            0.1
+                        ]
+                    ]
+                },
+                {
+                    "control": "hipRot",
+                    "points": [
+                        [
+                            -40,
+                            0.95
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            40,
+                            0.2
+                        ]
+                    ]
+                }
+            ],
+            "note": "Also called the Y ligament of Bigelow."
+        },
+        "pubofemoral-ligament": {
+            "name": "Pubofemoral ligament",
+            "short": "Pubofemoral",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": [
+                "Pubofemoral ligament.r"
+            ],
+            "attachmentText": "Obturator crest and superior pubic ramus, blending with the capsule and the medial part of the iliofemoral ligament.",
+            "function": "Limits abduction and helps limit extension.",
+            "tautText": "Taut in abduction, extension and lateral rotation.",
+            "taut": [
+                {
+                    "control": "hipAbd",
+                    "points": [
+                        [
+                            -15,
+                            0.2
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            40,
+                            1.0
+                        ]
+                    ]
+                },
+                {
+                    "control": "hipFlex",
+                    "points": [
+                        [
+                            -20,
+                            0.8
+                        ],
+                        [
+                            0,
+                            0.5
+                        ],
+                        [
+                            60,
+                            0.2
+                        ]
+                    ]
+                },
+                {
+                    "control": "hipRot",
+                    "points": [
+                        [
+                            -40,
+                            0.8
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            40,
+                            0.2
+                        ]
+                    ]
+                }
+            ]
+        },
+        "ischiofemoral-ligament": {
+            "name": "Ischiofemoral ligament",
+            "short": "Ischiofemoral",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": [
+                "Ischiofemoral ligament.r"
+            ],
+            "attachmentText": "Ischium behind the acetabulum, spiralling up and laterally over the back of the neck to the greater trochanter.",
+            "function": "The weakest of the three capsular ligaments. Limits medial rotation and extension.",
+            "tautText": "Taut in medial rotation and extension (and in adduction with the hip flexed).",
+            "taut": [
+                {
+                    "control": "hipRot",
+                    "points": [
+                        [
+                            -40,
+                            0.2
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            40,
+                            1.0
+                        ]
+                    ]
+                },
+                {
+                    "control": "hipFlex",
+                    "points": [
+                        [
+                            -20,
+                            0.85
+                        ],
+                        [
+                            0,
+                            0.5
+                        ],
+                        [
+                            90,
+                            0.3
+                        ]
+                    ]
+                }
+            ]
+        },
+        "zona-orbicularis": {
+            "name": "Zona orbicularis",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": [
+                "Zona orbicularis.r"
+            ],
+            "attachmentText": "Deep circular fibres of the capsule, ringing the narrowest part of the femoral neck.",
+            "function": "Acts like a buttonhole that keeps the femoral head in the acetabulum."
+        },
+        "ligament-of-head-of-femur": {
+            "name": "Ligament of head of femur",
+            "short": "Lig. teres",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": [
+                "Ligament of head of femur.r"
+            ],
+            "attachmentText": "Acetabular notch and transverse acetabular ligament to the fovea on the femoral head.",
+            "function": "Weak; adds little stability. Carries a small branch of the obturator artery to the femoral head.",
+            "tautText": "Taut when the hip is semi-flexed and adducted (and laterally rotated).",
+            "taut": [
+                {
+                    "control": "hipAbd",
+                    "points": [
+                        [
+                            -15,
+                            0.9
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            40,
+                            0.1
+                        ]
+                    ]
+                }
+            ],
+            "note": "Also called the ligamentum teres. Its artery matters in children; in adults it supplies little."
+        },
+        "acetabular-labrum": {
+            "name": "Acetabular labrum",
+            "kind": "labrum",
+            "joint": "hip-joint",
+            "meshes": [
+                "Acetabular labrum.r"
+            ],
+            "attachmentText": "Rim of the acetabulum, continuing across the acetabular notch as the transverse acetabular ligament.",
+            "function": "Fibrocartilage ring that deepens the socket and seals in joint fluid.",
+            "note": "Labral tears are common with femoroacetabular impingement; they cause groin pain and clicking with flexion and rotation."
+        },
+        "transverse-acetabular-ligament": {
+            "name": "Transverse acetabular ligament",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": [
+                "Transverse acetabular ligament.r"
+            ],
+            "attachmentText": "Bridges the acetabular notch at the bottom of the socket.",
+            "function": "Completes the ring of the labrum. Vessels and nerves enter the joint through the gap beneath it."
+        },
+        "acl": {
+            "name": "Anterior cruciate ligament",
+            "short": "ACL",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Anterior cruciate ligament.r"
+            ],
+            "attachments": [
+                "Anterior intercondylar area",
+                "Intercondylar fossa"
+            ],
+            "attachmentText": "Anterior intercondylar area of the tibia, running up and back to the inner (medial) surface of the lateral femoral condyle.",
+            "function": "Stops the tibia sliding forward on the femur and limits hyperextension.",
+            "tautText": "Tight in full extension. Its anteromedial band stays fairly tight as the knee bends.",
+            "taut": [
+                {
+                    "control": "knee",
+                    "points": [
+                        [
+                            0,
+                            1.0
+                        ],
+                        [
+                            20,
+                            0.7
+                        ],
+                        [
+                            60,
+                            0.55
+                        ],
+                        [
+                            120,
+                            0.6
+                        ]
+                    ]
+                }
+            ],
+            "note": "Tested with the Lachman and anterior drawer tests. Often torn in non-contact pivoting or landing."
+        },
+        "pcl": {
+            "name": "Posterior cruciate ligament",
+            "short": "PCL",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Posterior cruciate ligament.r"
+            ],
+            "attachments": [
+                "Posterior intercondylar area",
+                "Intercondylar fossa"
+            ],
+            "attachmentText": "Posterior intercondylar area of the tibia, running up and forward to the outer (lateral) surface of the medial femoral condyle.",
+            "function": "Stops the tibia sliding backward on the femur. Stronger than the ACL.",
+            "tautText": "Tightens as the knee bends; tightest in flexion.",
+            "taut": [
+                {
+                    "control": "knee",
+                    "points": [
+                        [
+                            0,
+                            0.35
+                        ],
+                        [
+                            30,
+                            0.5
+                        ],
+                        [
+                            90,
+                            1.0
+                        ],
+                        [
+                            120,
+                            1.0
+                        ]
+                    ]
+                }
+            ],
+            "note": "Tested with the posterior drawer test and posterior sag sign. Classic injury: dashboard impact on a bent knee."
+        },
+        "mcl": {
+            "name": "Tibial collateral ligament",
+            "short": "MCL",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Superficial part of tibial collateral ligament.r",
+                "Deep part of tibial collateral ligament.r"
+            ],
+            "attachments": [
+                "Medial epicondyle of femur",
+                "Medial condyle of tibia"
+            ],
+            "attachmentText": "Medial epicondyle of the femur to the medial condyle and upper medial shaft of the tibia. Its deep fibres attach to the medial meniscus.",
+            "function": "Resists valgus stress (the knee being pushed inward).",
+            "tautText": "Tight in full extension; slackens as the knee bends.",
+            "taut": [
+                {
+                    "control": "knee",
+                    "points": [
+                        [
+                            0,
+                            1.0
+                        ],
+                        [
+                            20,
+                            0.75
+                        ],
+                        [
+                            60,
+                            0.4
+                        ],
+                        [
+                            120,
+                            0.3
+                        ]
+                    ]
+                }
+            ],
+            "note": "Tested with the valgus stress test at 0° and 30°. Because it is joined to the medial meniscus, the two are often injured together."
+        },
+        "lcl": {
+            "name": "Fibular collateral ligament",
+            "short": "LCL",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Fibular collateral ligament.r"
+            ],
+            "attachments": [
+                "Lateral epicondyle of femur",
+                "Head of fibula"
+            ],
+            "attachmentText": "Lateral epicondyle of the femur to the lateral surface of the head of the fibula. It is cord-like and stands clear of the joint capsule and the lateral meniscus.",
+            "function": "Resists varus stress (the knee being pushed outward).",
+            "tautText": "Tight in full extension; slackens as the knee bends.",
+            "taut": [
+                {
+                    "control": "knee",
+                    "points": [
+                        [
+                            0,
+                            1.0
+                        ],
+                        [
+                            20,
+                            0.7
+                        ],
+                        [
+                            60,
+                            0.3
+                        ],
+                        [
+                            120,
+                            0.25
+                        ]
+                    ]
+                }
+            ],
+            "note": "Tested with the varus stress test at 0° and 30°."
+        },
+        "patellar-ligament": {
+            "name": "Patellar ligament",
+            "short": "Patellar lig.",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [],
+            "between": [
+                "patella-apex",
+                "tibial-tuberosity"
+            ],
+            "attachments": [
+                "Tibial tuberosity"
+            ],
+            "attachmentText": "Apex of the patella to the tibial tuberosity.",
+            "function": "Carries the pull of the quadriceps from the patella to the tibia. It is really the continuation of the quadriceps tendon.",
+            "tautText": "Under load whenever the quadriceps contracts; stretched further as the knee bends.",
+            "taut": [
+                {
+                    "control": "knee",
+                    "points": [
+                        [
+                            0,
+                            0.45
+                        ],
+                        [
+                            60,
+                            0.75
+                        ],
+                        [
+                            120,
+                            0.95
+                        ]
+                    ]
+                }
+            ],
+            "note": "Tapped for the knee-jerk (L3–L4) reflex. Overuse pain at its upper end is patellar tendinopathy (jumper's knee)."
+        },
+        "medial-meniscus": {
+            "name": "Medial meniscus",
+            "kind": "meniscus",
+            "joint": "knee-joint",
+            "meshes": [
+                "Medial meniscus.r"
+            ],
+            "attachmentText": "C-shaped pad on the medial tibial plateau; its horns attach to the intercondylar area, and its rim is bound to the capsule and the deep part of the MCL.",
+            "function": "Spreads load across the joint, deepens the plateau and helps guide rolling and gliding.",
+            "note": "Firmly attached to the deep MCL, so it moves less and is torn more often than the lateral meniscus. Tested with McMurray's and Thessaly tests."
+        },
+        "lateral-meniscus": {
+            "name": "Lateral meniscus",
+            "kind": "meniscus",
+            "joint": "knee-joint",
+            "meshes": [
+                "Lateral meniscus.r"
+            ],
+            "attachmentText": "Nearly circular pad on the lateral tibial plateau; its horns attach to the intercondylar area. Not attached to the LCL, and the popliteus tendon separates it from the capsule.",
+            "function": "Spreads load across the lateral compartment. More mobile than the medial meniscus; popliteus pulls it back during unlocking."
+        },
+        "coronary-ligaments": {
+            "name": "Coronary (meniscotibial) ligaments",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Anterior meniscotibial ligament (Medial meniscus).r",
+                "Posterior meniscotibial ligament (Medial meniscus).r",
+                "Anterior meniscotibial ligament (Lateral meniscus).r",
+                "Posterior meniscotibial ligament (Lateral meniscus).r"
+            ],
+            "attachmentText": "Short capsular fibres from the outer rims and horns of the menisci to the edges of the tibial plateaus.",
+            "function": "Anchor the menisci to the tibia while letting them shift a little as the knee moves."
+        },
+        "transverse-ligament-of-knee": {
+            "name": "Transverse ligament of knee",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Transverse ligament of knee.r"
+            ],
+            "attachmentText": "Anterior horn of the medial meniscus to the anterior horn of the lateral meniscus.",
+            "function": "Ties the front ends of the two menisci together so they move as a unit."
+        },
+        "meniscopatellar-ligament": {
+            "name": "Meniscopatellar ligament",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Meniscopatellar ligament.r"
+            ],
+            "attachmentText": "Edge of the patella to the anterior horn of the meniscus, in the capsule beside the patellar ligament.",
+            "function": "Pulls the menisci forward as the knee straightens, keeping them under the femoral condyles."
+        },
+        "knee-capsule": {
+            "name": "Articular capsule of knee joint",
+            "kind": "capsule",
+            "joint": "knee-joint",
+            "meshes": [
+                "Articular capsule of knee joint.r"
+            ],
+            "attachmentText": "Margins of the femoral and tibial articular surfaces, open in front where the patella and patellar ligament replace it.",
+            "function": "Encloses the joint. Its posterior part, thickened by the oblique popliteal ligament, stops hyperextension.",
+            "tautText": "Posterior capsule taut in full extension."
+        },
+        "oblique-popliteal-ligament": {
+            "name": "Oblique popliteal ligament",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Oblique popliteal ligament.r"
+            ],
+            "attachmentText": "An expansion of the semimembranosus tendon behind the medial tibial condyle, running up and laterally across the back of the capsule to the lateral femoral condyle.",
+            "function": "Strengthens the back of the capsule and resists hyperextension.",
+            "tautText": "Taut in full extension.",
+            "taut": [
+                {
+                    "control": "knee",
+                    "points": [
+                        [
+                            0,
+                            1.0
+                        ],
+                        [
+                            30,
+                            0.4
+                        ],
+                        [
+                            90,
+                            0.2
+                        ]
+                    ]
+                }
+            ]
+        },
+        "arcuate-popliteal-ligament": {
+            "name": "Arcuate popliteal ligament",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Arcuate popliteal ligament.r"
+            ],
+            "attachmentText": "Head of the fibula, arching up and medially over the popliteus tendon to the back of the capsule.",
+            "function": "Part of the posterolateral corner. Resists varus and lateral rotation of the tibia.",
+            "tautText": "Taut in extension.",
+            "taut": [
+                {
+                    "control": "knee",
+                    "points": [
+                        [
+                            0,
+                            0.9
+                        ],
+                        [
+                            30,
+                            0.6
+                        ],
+                        [
+                            90,
+                            0.3
+                        ]
+                    ]
+                }
+            ]
+        },
+        "popliteofibular-ligament": {
+            "name": "Popliteofibular ligament",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Popliteofibular ligament.r"
+            ],
+            "attachmentText": "Popliteus tendon to the head of the fibula.",
+            "function": "Key part of the posterolateral corner. Resists lateral rotation of the tibia and varus.",
+            "tautText": "Resists lateral rotation most at about 30° of flexion.",
+            "note": "Posterolateral corner injuries are tested with the dial test at 30° and 90°."
+        },
+        "infrapatellar-fat-pad": {
+            "name": "Infrapatellar fat pad",
+            "kind": "fat-pad",
+            "joint": "knee-joint",
+            "meshes": [
+                "Infrapatellar fat pad.r"
+            ],
+            "attachmentText": "Fills the space behind the patellar ligament, below the patella and in front of the joint.",
+            "function": "Cushions the front of the knee and fills space as the joint changes shape.",
+            "note": "Painful when pinched (Hoffa's fat pad syndrome), often with hyperextension."
+        },
+        "superior-tibiofibular-capsule": {
+            "name": "Articular capsule of superior tibiofibular joint",
+            "kind": "capsule",
+            "joint": "superior-tibiofibular",
+            "meshes": [
+                "Articular capsule of superior tibiofibular joint.r"
+            ],
+            "attachmentText": "Margins of the facets on the head of the fibula and the lateral condyle of the tibia.",
+            "function": "Encloses the joint."
+        },
+        "anterior-ligament-of-fibular-head": {
+            "name": "Anterior ligament of fibular head",
+            "kind": "ligament",
+            "joint": "superior-tibiofibular",
+            "meshes": [
+                "Anterior ligament of fibular head.r"
+            ],
+            "attachmentText": "Front of the fibular head, up and medially to the front of the lateral tibial condyle.",
+            "function": "Holds the fibular head against the tibia."
+        },
+        "posterior-ligament-of-fibular-head": {
+            "name": "Posterior ligament of fibular head",
+            "kind": "ligament",
+            "joint": "superior-tibiofibular",
+            "meshes": [
+                "Posterior ligament of fibular head.r"
+            ],
+            "attachmentText": "Back of the fibular head to the back of the lateral tibial condyle.",
+            "function": "Holds the fibular head against the tibia from behind."
+        },
+        "interosseous-membrane-of-leg": {
+            "name": "Interosseous membrane of leg",
+            "kind": "membrane",
+            "joint": "tibiofibular-syndesmosis",
+            "meshes": [
+                "Interosseous membrane of leg.r"
+            ],
+            "attachmentText": "Interosseous borders of the tibia and fibula, its fibres running mostly down and laterally from tibia to fibula.",
+            "function": "Binds the two bones, divides the anterior and posterior compartments and gives origin to leg muscles."
+        },
+        "anterior-tibiofibular-ligament": {
+            "name": "Anterior inferior tibiofibular ligament",
+            "short": "AITFL",
+            "kind": "ligament",
+            "joint": "tibiofibular-syndesmosis",
+            "meshes": [
+                "Anterior tibiofibular ligament.r"
+            ],
+            "attachmentText": "Front of the lower tibia, down and laterally to the front of the lateral malleolus.",
+            "function": "Holds the ankle mortise together at the front.",
+            "tautText": "Taut in dorsiflexion and lateral rotation of the foot, when the wide front of the talus spreads the mortise.",
+            "taut": [
+                {
+                    "control": "ankle",
+                    "points": [
+                        [
+                            -20,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.5
+                        ],
+                        [
+                            45,
+                            0.2
+                        ]
+                    ]
+                }
+            ],
+            "note": "Injured in a high ankle sprain (forced dorsiflexion with lateral rotation). Tested with the squeeze and external rotation tests."
+        },
+        "posterior-tibiofibular-ligament": {
+            "name": "Posterior inferior tibiofibular ligament",
+            "short": "PITFL",
+            "kind": "ligament",
+            "joint": "tibiofibular-syndesmosis",
+            "meshes": [
+                "Posterior tibiofibular ligament.r"
+            ],
+            "attachmentText": "Back of the lower tibia to the back of the lateral malleolus.",
+            "function": "Holds the mortise together at the back. Stronger than the AITFL.",
+            "tautText": "Taut in dorsiflexion.",
+            "taut": [
+                {
+                    "control": "ankle",
+                    "points": [
+                        [
+                            -20,
+                            0.9
+                        ],
+                        [
+                            0,
+                            0.45
+                        ],
+                        [
+                            45,
+                            0.2
+                        ]
+                    ]
+                }
+            ]
+        },
+        "transverse-tibiofibular-ligament": {
+            "name": "Transverse tibiofibular ligament",
+            "kind": "ligament",
+            "joint": "tibiofibular-syndesmosis",
+            "meshes": [
+                "Transverse tibiofibular ligament.r"
+            ],
+            "attachmentText": "Deep part of the posterior tibiofibular ligament, from the back of the tibia's lower edge to the lateral malleolus.",
+            "function": "Deepens the back of the mortise, acting like a labrum for the talus."
+        },
+        "atfl": {
+            "name": "Anterior talofibular ligament",
+            "short": "ATFL",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": [
+                "Anterior talofibular ligament.r"
+            ],
+            "attachmentText": "Front of the lateral malleolus, forward and medially to the neck of the talus.",
+            "function": "Stops the talus sliding forward and limits inversion when the foot is pointed.",
+            "tautText": "Taut in plantarflexion, especially with inversion.",
+            "taut": [
+                {
+                    "control": "ankle",
+                    "points": [
+                        [
+                            -20,
+                            0.15
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            45,
+                            1.0
+                        ]
+                    ]
+                }
+            ],
+            "note": "The weakest lateral ligament and the most often sprained (plantarflexion with inversion). Tested with the anterior drawer test of the ankle."
+        },
+        "cfl": {
+            "name": "Calcaneofibular ligament",
+            "short": "CFL",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": [
+                "Calcaneofibular ligament.r"
+            ],
+            "attachmentText": "Tip of the lateral malleolus, down and back to the lateral surface of the calcaneus. It crosses both the ankle and subtalar joints.",
+            "function": "Limits inversion, especially with the ankle in neutral or dorsiflexion.",
+            "tautText": "Taut in dorsiflexion and inversion.",
+            "taut": [
+                {
+                    "control": "ankle",
+                    "points": [
+                        [
+                            -20,
+                            0.8
+                        ],
+                        [
+                            0,
+                            0.55
+                        ],
+                        [
+                            45,
+                            0.3
+                        ]
+                    ]
+                }
+            ],
+            "note": "Usually the second lateral ligament to tear after the ATFL. Tested with the talar tilt test."
+        },
+        "ptfl": {
+            "name": "Posterior talofibular ligament",
+            "short": "PTFL",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": [
+                "Posterior talofibular ligament.r"
+            ],
+            "attachmentText": "Malleolar fossa on the back of the lateral malleolus, running almost horizontally to the lateral tubercle of the talus.",
+            "function": "Stops the talus sliding backward. The strongest lateral ligament.",
+            "tautText": "Taut in dorsiflexion.",
+            "taut": [
+                {
+                    "control": "ankle",
+                    "points": [
+                        [
+                            -20,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            45,
+                            0.1
+                        ]
+                    ]
+                }
+            ],
+            "note": "Rarely torn, except in ankle dislocation."
+        },
+        "tibionavicular-ligament": {
+            "name": "Tibionavicular part of deltoid ligament",
+            "short": "Tibionavicular",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": [
+                "Tibionavicular ligament.r"
+            ],
+            "attachmentText": "Front of the medial malleolus, forward to the tuberosity of the navicular, blending with the spring ligament.",
+            "function": "Superficial anterior band of the deltoid ligament. Limits eversion and abduction of the foot.",
+            "tautText": "Taut in plantarflexion and eversion.",
+            "taut": [
+                {
+                    "control": "ankle",
+                    "points": [
+                        [
+                            -20,
+                            0.2
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            45,
+                            0.9
+                        ]
+                    ]
+                }
+            ]
+        },
+        "tibiocalcaneal-ligament": {
+            "name": "Tibiocalcaneal part of deltoid ligament",
+            "short": "Tibiocalcaneal",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": [
+                "Tibiocalcaneal ligament.r"
+            ],
+            "attachmentText": "Medial malleolus, straight down to the sustentaculum tali of the calcaneus.",
+            "function": "Middle band of the deltoid ligament. Limits eversion.",
+            "tautText": "Taut in eversion."
+        },
+        "posterior-tibiotalar-ligament": {
+            "name": "Posterior tibiotalar part of deltoid ligament",
+            "short": "Post. tibiotalar",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": [
+                "Posterior tibiotalar ligament.r"
+            ],
+            "attachmentText": "Back of the medial malleolus to the medial side and medial tubercle of the talus.",
+            "function": "The strongest band of the deltoid ligament. Limits eversion and backward sliding of the talus.",
+            "tautText": "Taut in dorsiflexion and eversion.",
+            "taut": [
+                {
+                    "control": "ankle",
+                    "points": [
+                        [
+                            -20,
+                            0.9
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            45,
+                            0.15
+                        ]
+                    ]
+                }
+            ],
+            "note": "The deltoid ligament is so strong that eversion injuries often fracture the medial malleolus instead of tearing it."
+        },
+        "talocalcaneal-interosseous-ligament": {
+            "name": "Talocalcaneal interosseous ligament",
+            "kind": "ligament",
+            "joint": "subtalar-joint",
+            "meshes": [
+                "Talocalcaneal interosseous ligament.r"
+            ],
+            "attachmentText": "Fills the tarsal sinus and canal, from the groove under the talus to the groove on top of the calcaneus.",
+            "function": "The main bond between talus and calcaneus; the axis the subtalar joint turns around.",
+            "tautText": "Taut in eversion (its anterior fibres) and inversion (its posterior fibres)."
+        },
+        "talocalcaneal-ligaments": {
+            "name": "Anterior, lateral, medial and posterior talocalcaneal ligaments",
+            "kind": "ligament",
+            "joint": "subtalar-joint",
+            "meshes": [
+                "Anterior talocalcaneal ligament.r",
+                "Lateral talocalcaneal ligament.r",
+                "Medial talocalcaneal ligament.r",
+                "Posterior talocalcaneal ligament.r"
+            ],
+            "attachmentText": "Short bands around the subtalar joint, each from the talus to the calcaneus on its own side.",
+            "function": "Thicken the subtalar capsule and hold the talus on the calcaneus."
+        },
+        "talonavicular-ligament": {
+            "name": "Dorsal talonavicular ligament",
+            "kind": "ligament",
+            "joint": "talocalcaneonavicular-joint",
+            "meshes": [
+                "Talonavicular ligament.r"
+            ],
+            "attachmentText": "Neck of the talus to the upper surface of the navicular.",
+            "function": "Thickens the top of the talonavicular capsule."
+        },
+        "spring-ligament": {
+            "name": "Plantar calcaneonavicular (spring) ligament",
+            "short": "Spring lig.",
+            "kind": "ligament",
+            "joint": "talocalcaneonavicular-joint",
+            "meshes": [
+                "Plantar calcaneonavicular ligament.r"
+            ],
+            "attachmentText": "Sustentaculum tali of the calcaneus forward to the plantar surface of the navicular.",
+            "function": "Forms part of the socket for the head of the talus and holds up the medial longitudinal arch.",
+            "note": "Stretching or tearing it, often with tibialis posterior dysfunction, leads to acquired flatfoot."
+        },
+        "dorsal-calcaneocuboid-ligament": {
+            "name": "Dorsal calcaneocuboid ligament",
+            "kind": "ligament",
+            "joint": "calcaneocuboid-joint",
+            "meshes": [
+                "Dorsal calcaneocuboid ligament.r"
+            ],
+            "attachmentText": "Upper surface of the calcaneus to the upper surface of the cuboid.",
+            "function": "Thickens the top of the calcaneocuboid capsule."
+        },
+        "bifurcate-ligament": {
+            "name": "Bifurcate ligament",
+            "kind": "ligament",
+            "joint": "calcaneocuboid-joint",
+            "meshes": [
+                "Calcaneonavicular ligament.r",
+                "Calcaneocuboid ligament.r"
+            ],
+            "attachmentText": "Upper front of the calcaneus, splitting in a Y to the navicular (calcaneonavicular part) and the cuboid (calcaneocuboid part).",
+            "function": "Binds the calcaneus to both bones in front of it, across the transverse tarsal joint.",
+            "note": "Can be sprained with lateral ankle sprains (inversion with plantarflexion)."
+        },
+        "short-plantar-ligament": {
+            "name": "Plantar calcaneocuboid (short plantar) ligament",
+            "short": "Short plantar",
+            "kind": "ligament",
+            "joint": "calcaneocuboid-joint",
+            "meshes": [
+                "Plantar calcaneocuboid ligament.r"
+            ],
+            "attachmentText": "Front of the underside of the calcaneus to the underside of the cuboid, deep to the long plantar ligament.",
+            "function": "Supports the lateral longitudinal arch."
+        },
+        "long-plantar-ligament": {
+            "name": "Long plantar ligament",
+            "short": "Long plantar",
+            "kind": "ligament",
+            "joint": "calcaneocuboid-joint",
+            "meshes": [
+                "Long plantar ligament.r"
+            ],
+            "attachmentText": "Underside of the calcaneus in front of its tubercles, forward to the ridge of the cuboid and on to the bases of the lateral metatarsals.",
+            "function": "The longest ligament of the foot. Supports the lateral longitudinal arch and roofs the tunnel for the fibularis longus tendon."
+        },
+        "cuboideonavicular-ligaments": {
+            "name": "Dorsal and plantar cuboideonavicular ligaments",
+            "kind": "ligament",
+            "joint": "intertarsal-joints",
+            "meshes": [
+                "Dorsal cuboideonavicular ligament.r",
+                "Plantar cuboideonavicular ligament.r"
+            ],
+            "attachmentText": "Navicular to cuboid, on the upper and lower surfaces.",
+            "function": "Bind the navicular to the cuboid."
+        },
+        "cuneonavicular-ligaments": {
+            "name": "Dorsal and plantar cuneonavicular ligaments",
+            "kind": "ligament",
+            "joint": "intertarsal-joints",
+            "meshes": [
+                "Dorsal cuneonavicular ligaments.r",
+                "Plantar cuneonavicular ligaments.r"
+            ],
+            "attachmentText": "Navicular to each of the three cuneiforms, on the upper and lower surfaces.",
+            "function": "Bind the navicular to the cuneiforms in front of it."
+        },
+        "intercuneiform-ligaments": {
+            "name": "Intercuneiform ligaments",
+            "kind": "ligament",
+            "joint": "intertarsal-joints",
+            "meshes": [
+                "Dorsal intercuneiform ligaments.r",
+                "Plantar intercuneiform ligaments.r",
+                "Intercuneiform interosseous ligaments.r"
+            ],
+            "attachmentText": "Between neighbouring cuneiforms: dorsal, plantar and interosseous sets.",
+            "function": "Bind the three cuneiforms into a firm transverse arch."
+        },
+        "cuneocuboid-ligaments": {
+            "name": "Cuneocuboid ligaments",
+            "kind": "ligament",
+            "joint": "intertarsal-joints",
+            "meshes": [
+                "Dorsal cuneocuboid ligament.r",
+                "Plantar cuneocuboid ligament.r",
+                "Cuneocuboid interosseous ligament.r"
+            ],
+            "attachmentText": "Lateral cuneiform to cuboid: dorsal, plantar and interosseous sets.",
+            "function": "Bind the lateral cuneiform to the cuboid across the transverse arch."
+        },
+        "tarsometatarsal-ligaments": {
+            "name": "Dorsal and plantar tarsometatarsal ligaments",
+            "kind": "ligament",
+            "joint": "tarsometatarsal-joints",
+            "meshes": [
+                "Dorsal tarsometatarsal ligaments.r",
+                "Plantar tarsometatarsal ligaments.r"
+            ],
+            "attachmentText": "Cuneiforms and cuboid to the bases of the metatarsals, on the upper and lower surfaces.",
+            "function": "Bind the metatarsal bases to the tarsus."
+        },
+        "cuneometatarsal-interosseous-ligaments": {
+            "name": "Cuneometatarsal interosseous ligaments",
+            "kind": "ligament",
+            "joint": "tarsometatarsal-joints",
+            "meshes": [
+                "Cuneometatarsal interosseous ligaments.r"
+            ],
+            "attachmentText": "Cuneiforms to the sides of the metatarsal bases. The strongest runs from the medial cuneiform to the base of the second metatarsal (the Lisfranc ligament).",
+            "function": "Lock the second metatarsal base in its recess, the keystone of the midfoot.",
+            "note": "Lisfranc injuries tear this ligament; suspect one with midfoot pain and plantar bruising after a twist on a pointed foot."
+        },
+        "metatarsal-ligaments": {
+            "name": "Dorsal, plantar and interosseous metatarsal ligaments",
+            "kind": "ligament",
+            "joint": "intermetatarsal-joints",
+            "meshes": [
+                "Dorsal metatarsal ligaments.r",
+                "Plantar metatarsal ligaments.r",
+                "Metatarsal interosseous ligaments.r"
+            ],
+            "attachmentText": "Between the bases of neighbouring lateral metatarsals (second to fifth).",
+            "function": "Bind the metatarsal bases together."
+        },
+        "mtp-capsules": {
+            "name": "Articular capsules of metatarsophalangeal joints",
+            "kind": "capsule",
+            "joint": "mtp-joints",
+            "meshes": [
+                "Articular capsules of metatarsophalangeal joints.r"
+            ],
+            "attachmentText": "Around the margins of each metatarsal head and the base of its proximal phalanx.",
+            "function": "Enclose the MTP joints."
+        },
+        "mtp-collateral-ligaments": {
+            "name": "Collateral ligaments of MTP joints",
+            "kind": "ligament",
+            "joint": "mtp-joints",
+            "meshes": [
+                "Collateral metatarsophalangeal ligaments.r"
+            ],
+            "attachmentText": "Tubercles on the sides of each metatarsal head, down and forward to the sides of the proximal phalanx base.",
+            "function": "Resist side-to-side bending of the toes.",
+            "tautText": "Tightest in flexion."
+        },
+        "mtp-plantar-plates": {
+            "name": "Plantar plates of MTP joints",
+            "kind": "ligament",
+            "joint": "mtp-joints",
+            "meshes": [
+                "Plantar metatarsophalangeal ligaments.r"
+            ],
+            "attachmentText": "Thick fibrocartilage under each MTP joint, firmly fixed to the proximal phalanx and loosely to the metatarsal neck.",
+            "function": "Limit hyperextension of the toes and protect the joint under load.",
+            "tautText": "Taut in toe extension (as at push-off).",
+            "note": "Tears cause pain under the second MTP joint and can let the toe drift upward. Turf toe is a sprain of the first MTP plantar complex."
+        },
+        "deep-transverse-metatarsal-ligament": {
+            "name": "Deep transverse metatarsal ligament",
+            "kind": "ligament",
+            "joint": "mtp-joints",
+            "meshes": [
+                "Deep transverse metatarsal ligament.r"
+            ],
+            "attachmentText": "Joins the plantar plates of all five MTP joints.",
+            "function": "Ties the metatarsal heads together. The digital nerves pass below it.",
+            "note": "Compression of a digital nerve under it, often between the third and fourth heads, is Morton's neuroma."
+        },
+        "intersesamoid-ligament": {
+            "name": "Intersesamoid ligament",
+            "kind": "ligament",
+            "joint": "mtp-joints",
+            "meshes": [
+                "Intersesamoid ligament.r"
+            ],
+            "attachmentText": "Between the two sesamoid bones under the first metatarsal head.",
+            "function": "Holds the sesamoids together in their grooves under the great toe."
+        },
+        "foot-ip-capsules": {
+            "name": "Articular capsules of interphalangeal joints of foot",
+            "kind": "capsule",
+            "joint": "foot-ip-joints",
+            "meshes": [
+                "Articular capsule of interphalangeal joint of great toe.r",
+                "Articular capsules of proximal interphalangeal joints of foot.r",
+                "Articular capsules of distal interphalangeal joints of foot.r"
+            ],
+            "attachmentText": "Around the margins of each interphalangeal joint of the toes.",
+            "function": "Enclose the joints of the toes."
+        },
+        "foot-ip-collateral-ligaments": {
+            "name": "Collateral ligaments of interphalangeal joints of foot",
+            "kind": "ligament",
+            "joint": "foot-ip-joints",
+            "meshes": [
+                "Collateral interphalangeal ligaments of foot.r"
+            ],
+            "attachmentText": "Sides of each phalanx head to the sides of the next phalanx base.",
+            "function": "Stop the toes bending sideways."
+        },
+        "foot-ip-plantar-plates": {
+            "name": "Plantar ligaments of interphalangeal joints of foot",
+            "kind": "ligament",
+            "joint": "foot-ip-joints",
+            "meshes": [
+                "Plantar interphalangeal ligaments.r"
+            ],
+            "attachmentText": "Fibrocartilage plates under each interphalangeal joint of the toes.",
+            "function": "Limit hyperextension of the toes."
+        },
+        "sternoclavicular-capsule": {
+            "name": "Articular capsule of sternoclavicular joint",
+            "kind": "capsule",
+            "joint": "sternoclavicular-joint",
+            "meshes": [
+                "Articular capsule of sternoclavicular joint.r"
+            ],
+            "attachmentText": "Margins of the sternal end of the clavicle, the clavicular notch of the manubrium and the first costal cartilage.",
+            "function": "Encloses the joint; thickened in front and behind by the sternoclavicular ligaments."
+        },
+        "anterior-sternoclavicular-ligament": {
+            "name": "Anterior sternoclavicular ligament",
+            "kind": "ligament",
+            "joint": "sternoclavicular-joint",
+            "meshes": [
+                "Anterior sternoclavicular ligament.r"
+            ],
+            "attachmentText": "Front of the sternal end of the clavicle, down and medially to the front of the manubrium.",
+            "function": "Limits forward movement of the medial clavicle."
+        },
+        "posterior-sternoclavicular-ligament": {
+            "name": "Posterior sternoclavicular ligament",
+            "kind": "ligament",
+            "joint": "sternoclavicular-joint",
+            "meshes": [
+                "Posterior sternoclavicular ligament.r"
+            ],
+            "attachmentText": "Back of the sternal end of the clavicle to the back of the manubrium.",
+            "function": "The strongest restraint of the joint; stops the medial clavicle moving backward.",
+            "note": "A posterior SC dislocation can press on the great vessels and trachea, so it is an emergency."
+        },
+        "interclavicular-ligament": {
+            "name": "Interclavicular ligament",
+            "kind": "ligament",
+            "joint": "sternoclavicular-joint",
+            "meshes": [
+                "Interclavicular ligament.r"
+            ],
+            "attachmentText": "Across the top of the jugular notch, from one clavicle to the other, attaching to the manubrium.",
+            "function": "Limits downward movement (depression) of the clavicle."
+        },
+        "costoclavicular-ligament": {
+            "name": "Costoclavicular ligament",
+            "kind": "ligament",
+            "joint": "sternoclavicular-joint",
+            "meshes": [
+                "Costoclavicular ligament.r"
+            ],
+            "attachmentText": "First rib and its costal cartilage, up to the impression on the underside of the medial clavicle.",
+            "function": "The main stabiliser of the SC joint. Limits elevation of the clavicle and acts as the pivot the clavicle turns around.",
+            "tautText": "Taut when the clavicle is elevated (shrugging) and at the extremes of protraction and retraction."
+        },
+        "sternoclavicular-disc": {
+            "name": "Articular disc of sternoclavicular joint",
+            "kind": "disc",
+            "joint": "sternoclavicular-joint",
+            "meshes": [
+                "Articular disc of sternoclavicular joint.r"
+            ],
+            "attachmentText": "Upper back of the clavicle's sternal end, down to the first costal cartilage, dividing the joint into two cavities.",
+            "function": "Absorbs force passed along the clavicle from the upper limb and stops the clavicle riding up over the manubrium."
+        },
+        "acromioclavicular-capsule": {
+            "name": "Articular capsule of acromioclavicular joint",
+            "kind": "capsule",
+            "joint": "acromioclavicular-joint",
+            "meshes": [
+                "Articular capsule of acromioclavicular joint.r"
+            ],
+            "attachmentText": "Margins of the acromial end of the clavicle and the medial edge of the acromion.",
+            "function": "Encloses the joint."
+        },
+        "acromioclavicular-ligament": {
+            "name": "Acromioclavicular ligament",
+            "kind": "ligament",
+            "joint": "acromioclavicular-joint",
+            "meshes": [
+                "Acromioclavicular ligament.r"
+            ],
+            "attachmentText": "Top of the acromion to the top of the lateral end of the clavicle, over the joint.",
+            "function": "Controls front-to-back (horizontal) stability of the joint.",
+            "note": "A grade I AC sprain stretches this ligament; higher grades also tear the coracoclavicular ligaments."
+        },
+        "acromioclavicular-disc": {
+            "name": "Articular disc of acromioclavicular joint",
+            "kind": "disc",
+            "joint": "acromioclavicular-joint",
+            "meshes": [
+                "Articular disc of acromioclavicular joint.r"
+            ],
+            "attachmentText": "A small, often incomplete wedge hanging from the top of the capsule.",
+            "function": "Cushions the joint; it often wears away in adults."
+        },
+        "conoid-ligament": {
+            "name": "Conoid ligament",
+            "kind": "ligament",
+            "joint": "acromioclavicular-joint",
+            "meshes": [
+                "Conoid ligament.r"
+            ],
+            "attachmentText": "Root of the coracoid process, up to the conoid tubercle on the underside of the clavicle. Shaped like an inverted cone.",
+            "function": "The medial part of the coracoclavicular ligament. Stops the scapula dropping away from the clavicle and limits its forward tilt.",
+            "tautText": "Taut when the scapula is depressed (the arm pulled down) or tilts forward.",
+            "note": "The coracoclavicular ligaments are torn in grade III and higher AC separations, letting the clavicle ride up (step deformity)."
+        },
+        "trapezoid-ligament": {
+            "name": "Trapezoid ligament",
+            "kind": "ligament",
+            "joint": "acromioclavicular-joint",
+            "meshes": [
+                "Trapezoid ligament.r"
+            ],
+            "attachmentText": "Upper surface of the coracoid process, up and laterally to the trapezoid line on the underside of the clavicle.",
+            "function": "The lateral part of the coracoclavicular ligament. Stops the acromion being driven under the clavicle.",
+            "tautText": "Taut when the scapula rotates or is pushed in toward the clavicle."
+        },
+        "coraco-acromial-ligament": {
+            "name": "Coraco-acromial ligament",
+            "kind": "ligament",
+            "joint": "scapular-ligaments",
+            "meshes": [
+                "Coraco-acromial ligament.r"
+            ],
+            "attachmentText": "Lateral edge of the coracoid process to the tip of the acromion.",
+            "function": "With the acromion and coracoid it forms the coraco-acromial arch, a roof that stops the humeral head moving up.",
+            "note": "The supraspinatus tendon and subacromial bursa run under the arch; narrowing the space can cause subacromial pain (impingement)."
+        },
+        "superior-transverse-scapular-ligament": {
+            "name": "Superior transverse scapular ligament",
+            "kind": "ligament",
+            "joint": "scapular-ligaments",
+            "meshes": [
+                "Superior transverse scapular ligament.r"
+            ],
+            "attachmentText": "Bridges the suprascapular notch on the upper border of the scapula.",
+            "function": "Turns the notch into a foramen. The suprascapular nerve passes under it; the artery passes over it.",
+            "note": "The nerve can be trapped here, weakening supraspinatus and infraspinatus."
+        },
+        "inferior-transverse-scapular-ligament": {
+            "name": "Inferior transverse scapular (spinoglenoid) ligament",
+            "kind": "ligament",
+            "joint": "scapular-ligaments",
+            "meshes": [
+                "Inferior transverse scapular ligament.r"
+            ],
+            "attachmentText": "Lateral edge of the scapular spine to the back of the glenoid margin, bridging the spinoglenoid notch.",
+            "function": "Covers the suprascapular nerve and vessels as they pass to infraspinatus.",
+            "note": "Compression here (for example by a cyst) weakens infraspinatus alone."
+        },
+        "glenohumeral-capsule": {
+            "name": "Articular capsule of glenohumeral joint",
+            "kind": "capsule",
+            "joint": "glenohumeral-joint",
+            "meshes": [
+                "Articular capsule of glenohumeral joint.r"
+            ],
+            "attachmentText": "Edge of the glenoid outside the labrum, to the anatomical neck of the humerus (lower on the medial side).",
+            "function": "Loose enough to let the humerus move freely. Its slack lower part (axillary pouch) tightens in abduction.",
+            "note": "In adhesive capsulitis (frozen shoulder) the capsule thickens and contracts, giving the capsular pattern: lateral rotation most limited."
+        },
+        "glenoid-labrum": {
+            "name": "Glenoid labrum",
+            "kind": "labrum",
+            "joint": "glenohumeral-joint",
+            "meshes": [
+                "Glenoid labrum.r"
+            ],
+            "attachmentText": "Rim of the glenoid fossa; at the top it blends with the tendon of the long head of biceps.",
+            "function": "Fibrocartilage ring that deepens the socket and gives the capsule something to attach to.",
+            "note": "A Bankart lesion is a tear of the anterior-inferior labrum after anterior dislocation. A SLAP lesion is a tear at the top where the biceps attaches."
+        },
+        "superior-glenohumeral-ligament": {
+            "name": "Superior glenohumeral ligament",
+            "short": "SGHL",
+            "kind": "ligament",
+            "joint": "glenohumeral-joint",
+            "meshes": [
+                "Superior glenohumeral ligament.r"
+            ],
+            "attachmentText": "Top of the glenoid and labrum, near the coracoid root, to the top of the lesser tubercle.",
+            "function": "Limits downward sliding of the humeral head and lateral rotation with the arm at the side.",
+            "tautText": "Taut in adduction and lateral rotation (arm by the side).",
+            "taut": [
+                {
+                    "control": "shoulderAbd",
+                    "points": [
+                        [
+                            -10,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.8
+                        ],
+                        [
+                            45,
+                            0.4
+                        ],
+                        [
+                            90,
+                            0.15
+                        ]
+                    ]
+                },
+                {
+                    "control": "shoulderRot",
+                    "points": [
+                        [
+                            -60,
+                            0.9
+                        ],
+                        [
+                            0,
+                            0.45
+                        ],
+                        [
+                            70,
+                            0.2
+                        ]
+                    ]
+                }
+            ]
+        },
+        "middle-glenohumeral-ligament": {
+            "name": "Middle glenohumeral ligament",
+            "short": "MGHL",
+            "kind": "ligament",
+            "joint": "glenohumeral-joint",
+            "meshes": [
+                "Middle glenohumeral ligament.r"
+            ],
+            "attachmentText": "Front of the glenoid below the SGHL, to the front of the lesser tubercle.",
+            "function": "Limits lateral rotation and forward sliding of the humeral head in the middle range of abduction.",
+            "tautText": "Taut in lateral rotation with the arm at about 45° abduction.",
+            "taut": [
+                {
+                    "control": "shoulderRot",
+                    "points": [
+                        [
+                            -60,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            70,
+                            0.15
+                        ]
+                    ]
+                }
+            ]
+        },
+        "inferior-glenohumeral-ligament": {
+            "name": "Inferior glenohumeral ligament",
+            "short": "IGHL",
+            "kind": "ligament",
+            "joint": "glenohumeral-joint",
+            "meshes": [
+                "Inferior glenohumeral ligament.r"
+            ],
+            "attachmentText": "Lower front of the glenoid and labrum, slinging under the head to the lower anatomical neck. It has an anterior band, a posterior band and the axillary pouch between them.",
+            "function": "The most important stabiliser against anterior dislocation when the arm is raised.",
+            "tautText": "Taut in abduction above 90°; its anterior band tightens with lateral rotation, its posterior band with medial rotation.",
+            "taut": [
+                {
+                    "control": "shoulderAbd",
+                    "points": [
+                        [
+                            -10,
+                            0.1
+                        ],
+                        [
+                            45,
+                            0.35
+                        ],
+                        [
+                            90,
+                            0.75
+                        ],
+                        [
+                            150,
+                            1.0
+                        ]
+                    ]
+                }
+            ],
+            "note": "Stressed in the apprehension test (abduction and lateral rotation)."
+        },
+        "coracohumeral-ligament": {
+            "name": "Coracohumeral ligament",
+            "kind": "ligament",
+            "joint": "glenohumeral-joint",
+            "meshes": [
+                "Coracohumeral ligament.r"
+            ],
+            "attachmentText": "Lateral edge of the coracoid base, to the greater and lesser tubercles on either side of the bicipital groove.",
+            "function": "Strengthens the top of the capsule, covering the rotator interval. Limits lateral rotation and downward sliding with the arm at the side.",
+            "tautText": "Taut in adduction and lateral rotation.",
+            "taut": [
+                {
+                    "control": "shoulderAbd",
+                    "points": [
+                        [
+                            -10,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.8
+                        ],
+                        [
+                            45,
+                            0.4
+                        ],
+                        [
+                            90,
+                            0.15
+                        ]
+                    ]
+                },
+                {
+                    "control": "shoulderRot",
+                    "points": [
+                        [
+                            -60,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.45
+                        ],
+                        [
+                            70,
+                            0.2
+                        ]
+                    ]
+                }
+            ],
+            "note": "Thickened and contracted early in frozen shoulder."
+        },
+        "transverse-humeral-ligament": {
+            "name": "Transverse humeral ligament",
+            "kind": "ligament",
+            "joint": "glenohumeral-joint",
+            "meshes": [
+                "Transverse humeral ligament.r"
+            ],
+            "attachmentText": "Bridges the intertubercular (bicipital) groove, from the greater to the lesser tubercle.",
+            "function": "Holds the tendon of the long head of biceps in its groove."
+        },
+        "elbow-capsule": {
+            "name": "Articular capsule of elbow joint",
+            "kind": "capsule",
+            "joint": "elbow-joint",
+            "meshes": [
+                "Articular capsule of elbow joint.r"
+            ],
+            "attachmentText": "Above the coronoid and radial fossae in front and the olecranon fossa behind, down to the coronoid process, the annular ligament and the olecranon.",
+            "function": "Thin in front and behind so the joint can bend; thickened at the sides into the collateral ligaments."
+        },
+        "ucl-elbow": {
+            "name": "Ulnar collateral ligament of elbow",
+            "short": "UCL",
+            "kind": "ligament",
+            "joint": "elbow-joint",
+            "meshes": [
+                "Ulnar collateral ligament.r"
+            ],
+            "attachmentText": "Medial epicondyle of the humerus, fanning to the coronoid process (anterior band) and the olecranon (posterior band), with a transverse band between them.",
+            "function": "Resists valgus stress (the forearm being pushed outward). The anterior band is the main restraint.",
+            "tautText": "The anterior band is taut through most of the range; the posterior band tightens in flexion.",
+            "taut": [
+                {
+                    "control": "elbowFlex",
+                    "points": [
+                        [
+                            0,
+                            0.65
+                        ],
+                        [
+                            60,
+                            0.75
+                        ],
+                        [
+                            145,
+                            1.0
+                        ]
+                    ]
+                }
+            ],
+            "note": "Overloaded in throwing; reconstruction is called Tommy John surgery. Tested with the valgus stress and moving valgus tests."
+        },
+        "rcl-elbow": {
+            "name": "Radial collateral ligament of elbow",
+            "short": "RCL",
+            "kind": "ligament",
+            "joint": "elbow-joint",
+            "meshes": [
+                "Radial collateral ligament.r"
+            ],
+            "attachmentText": "Lateral epicondyle of the humerus, down to blend with the annular ligament. A lateral ulnar collateral band continues to the supinator crest of the ulna.",
+            "function": "Resists varus stress. Its lateral ulnar band stops the radius and ulna rotating off the humerus (posterolateral instability).",
+            "tautText": "Taut through the whole range of flexion."
+        },
+        "annular-ligament": {
+            "name": "Annular ligament of radius",
+            "kind": "ligament",
+            "joint": "elbow-joint",
+            "meshes": [
+                "Annular ligament of radius.r"
+            ],
+            "attachmentText": "Front and back edges of the radial notch of the ulna, encircling the head of the radius.",
+            "function": "Holds the radial head against the ulna while it turns in pronation and supination.",
+            "note": "In young children the radial head can slip out of it when the arm is pulled (pulled elbow, nursemaid's elbow)."
+        },
+        "quadrate-ligament": {
+            "name": "Quadrate ligament",
+            "kind": "ligament",
+            "joint": "elbow-joint",
+            "meshes": [
+                "Quadrate ligament.r"
+            ],
+            "attachmentText": "Lower edge of the radial notch of the ulna to the neck of the radius.",
+            "function": "Strengthens the bottom of the proximal radio-ulnar joint and limits spinning of the radial head.",
+            "tautText": "Taut at the extremes of rotation, especially supination.",
+            "taut": [
+                {
+                    "control": "forearmPro",
+                    "points": [
+                        [
+                            0,
+                            1.0
+                        ],
+                        [
+                            80,
+                            0.35
+                        ],
+                        [
+                            160,
+                            0.65
+                        ]
+                    ]
+                }
+            ]
+        },
+        "interosseous-membrane-of-forearm": {
+            "name": "Interosseous membrane of forearm",
+            "kind": "membrane",
+            "joint": "radio-ulnar-syndesmosis",
+            "meshes": [
+                "Interosseous membrane of forearm.r"
+            ],
+            "attachmentText": "Interosseous borders of the radius and ulna; most fibres run down and medially from radius to ulna.",
+            "function": "Binds the bones, passes load from the radius to the ulna, and gives origin to deep forearm muscles.",
+            "tautText": "Tightest with the forearm in mid-position (between pronation and supination).",
+            "taut": [
+                {
+                    "control": "forearmPro",
+                    "points": [
+                        [
+                            0,
+                            0.5
+                        ],
+                        [
+                            80,
+                            1.0
+                        ],
+                        [
+                            160,
+                            0.45
+                        ]
+                    ]
+                }
+            ]
+        },
+        "oblique-cord": {
+            "name": "Oblique cord",
+            "kind": "ligament",
+            "joint": "radio-ulnar-syndesmosis",
+            "meshes": [
+                "Oblique cord.r"
+            ],
+            "attachmentText": "Tuberosity of the ulna, down and laterally to the radius just below its tuberosity. Its fibres run opposite to those of the membrane.",
+            "function": "Binds the upper radius and ulna above the membrane.",
+            "tautText": "Taut in supination.",
+            "taut": [
+                {
+                    "control": "forearmPro",
+                    "points": [
+                        [
+                            0,
+                            1.0
+                        ],
+                        [
+                            80,
+                            0.4
+                        ],
+                        [
+                            160,
+                            0.2
+                        ]
+                    ]
+                }
+            ]
+        },
+        "dorsal-radio-ulnar-ligament": {
+            "name": "Dorsal radio-ulnar ligament",
+            "kind": "ligament",
+            "joint": "distal-radio-ulnar-joint",
+            "meshes": [
+                "Dorsal radio-ulnar ligament.r"
+            ],
+            "attachmentText": "Dorsal edge of the ulnar notch of the radius to the ulnar styloid region, forming the back edge of the TFCC.",
+            "function": "Holds the distal radius and ulna together on the back.",
+            "tautText": "Classically taught as taut in pronation (some studies find the deep fibres act the other way).",
+            "taut": [
+                {
+                    "control": "forearmPro",
+                    "points": [
+                        [
+                            0,
+                            0.2
+                        ],
+                        [
+                            80,
+                            0.45
+                        ],
+                        [
+                            160,
+                            1.0
+                        ]
+                    ]
+                }
+            ]
+        },
+        "palmar-radio-ulnar-ligament": {
+            "name": "Palmar radio-ulnar ligament",
+            "kind": "ligament",
+            "joint": "distal-radio-ulnar-joint",
+            "meshes": [
+                "Palmar radio-ulnar ligament.r"
+            ],
+            "attachmentText": "Palmar edge of the ulnar notch of the radius to the ulnar styloid region, forming the front edge of the TFCC.",
+            "function": "Holds the distal radius and ulna together on the front.",
+            "tautText": "Classically taught as taut in supination.",
+            "taut": [
+                {
+                    "control": "forearmPro",
+                    "points": [
+                        [
+                            0,
+                            1.0
+                        ],
+                        [
+                            80,
+                            0.45
+                        ],
+                        [
+                            160,
+                            0.2
+                        ]
+                    ]
+                }
+            ]
+        },
+        "druj-disc": {
+            "name": "Articular disc of distal radio-ulnar joint (TFCC)",
+            "short": "TFCC disc",
+            "kind": "disc",
+            "joint": "distal-radio-ulnar-joint",
+            "meshes": [
+                "Articular disc of distal radio-ulnar joint.r"
+            ],
+            "attachmentText": "Triangular plate from the ulnar edge of the radius to the base of the ulnar styloid.",
+            "function": "Binds the radius to the ulna, separates the ulna from the carpus and cushions load through the ulnar side of the wrist.",
+            "note": "The centre of the triangular fibrocartilage complex (TFCC). Tears give ulnar-sided wrist pain, often with a fall or twisting."
+        },
+        "radiocarpal-capsule": {
+            "name": "Articular capsule of radiocarpal joint",
+            "kind": "capsule",
+            "joint": "wrist-joint",
+            "meshes": [
+                "Articular capsule of radiocarpal joint.r"
+            ],
+            "attachmentText": "Distal ends of the radius and ulna (via the disc) to the proximal row of carpal bones.",
+            "function": "Encloses the wrist joint; thickened by the palmar, dorsal and collateral ligaments."
+        },
+        "dorsal-radiocarpal-ligament": {
+            "name": "Dorsal radiocarpal ligament",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": [
+                "Dorsal radiocarpal ligament.r"
+            ],
+            "attachmentText": "Back of the distal radius, down and medially to the lunate and triquetrum.",
+            "function": "Limits flexion and keeps the carpus moving with the radius as the forearm turns.",
+            "tautText": "Taut in wrist flexion.",
+            "taut": [
+                {
+                    "control": "wristFlex",
+                    "points": [
+                        [
+                            -70,
+                            0.1
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            80,
+                            1.0
+                        ]
+                    ]
+                }
+            ]
+        },
+        "dorsal-ulnocarpal-ligament": {
+            "name": "Dorsal ulnocarpal ligament",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": [
+                "Dorsal ulnocarpal ligament.r"
+            ],
+            "attachmentText": "Back of the ulnar styloid region and disc to the triquetrum.",
+            "function": "Reinforces the back of the ulnar side of the wrist.",
+            "tautText": "Taut in wrist flexion.",
+            "taut": [
+                {
+                    "control": "wristFlex",
+                    "points": [
+                        [
+                            -70,
+                            0.1
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            80,
+                            0.9
+                        ]
+                    ]
+                }
+            ]
+        },
+        "radioscaphocapitate-ligament": {
+            "name": "Radioscaphocapitate ligament",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": [
+                "Radioscaphocapitate ligament.r"
+            ],
+            "attachmentText": "Radial styloid, across the waist of the scaphoid, to the capitate.",
+            "function": "The most lateral palmar radiocarpal ligament; supports the scaphoid like a sling.",
+            "tautText": "Taut in wrist extension.",
+            "taut": [
+                {
+                    "control": "wristFlex",
+                    "points": [
+                        [
+                            -70,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            80,
+                            0.15
+                        ]
+                    ]
+                }
+            ]
+        },
+        "radiocapitate-ligament": {
+            "name": "Radiocapitate (long radiolunate) ligament",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": [
+                "Radiocapitate ligament.r"
+            ],
+            "attachmentText": "Palmar rim of the distal radius, toward the lunate and capitate, next to the radioscaphocapitate ligament.",
+            "function": "Part of the palmar radiocarpal ligament. Stops the carpus sliding toward the ulna and limits extension.",
+            "tautText": "Taut in wrist extension.",
+            "taut": [
+                {
+                    "control": "wristFlex",
+                    "points": [
+                        [
+                            -70,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            80,
+                            0.15
+                        ]
+                    ]
+                }
+            ]
+        },
+        "ulnocarpal-ligaments": {
+            "name": "Palmar ulnocarpal ligaments",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": [
+                "Ulnolunate ligament.r",
+                "Ulnotriquetral ligament.r",
+                "Ulnocapitate ligament.r",
+                "Ulnopisiform ligament"
+            ],
+            "attachmentText": "Palmar edge of the TFCC disc and the base of the ulnar styloid, to the lunate, triquetrum, capitate and pisiform.",
+            "function": "Support the ulnar side of the carpus and limit extension. Part of the TFCC.",
+            "tautText": "Taut in wrist extension (and radial deviation).",
+            "taut": [
+                {
+                    "control": "wristFlex",
+                    "points": [
+                        [
+                            -70,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            80,
+                            0.15
+                        ]
+                    ]
+                }
+            ]
+        },
+        "radial-collateral-ligament-of-wrist": {
+            "name": "Radial collateral ligament of wrist",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": [
+                "Radial collateral ligament of wrist joint.r"
+            ],
+            "attachmentText": "Tip of the radial styloid to the scaphoid (and trapezium).",
+            "function": "Limits ulnar deviation.",
+            "tautText": "Taut in ulnar deviation.",
+            "taut": [
+                {
+                    "control": "wristDev",
+                    "points": [
+                        [
+                            -20,
+                            0.15
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            35,
+                            1.0
+                        ]
+                    ]
+                }
+            ]
+        },
+        "ulnar-collateral-ligament-of-wrist": {
+            "name": "Ulnar collateral ligament of wrist",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": [
+                "Ulnar collateral ligament of wrist joint.r"
+            ],
+            "attachmentText": "Ulnar styloid to the triquetrum and pisiform.",
+            "function": "Limits radial deviation. Part of the TFCC.",
+            "tautText": "Taut in radial deviation.",
+            "taut": [
+                {
+                    "control": "wristDev",
+                    "points": [
+                        [
+                            -20,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            35,
+                            0.15
+                        ]
+                    ]
+                }
+            ]
+        },
+        "scapholunate-interosseous-ligament": {
+            "name": "Scapholunate interosseous ligament",
+            "short": "SLIL",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": [
+                "Scapholunate interosseous ligament.r"
+            ],
+            "attachmentText": "Between the facing surfaces of the scaphoid and lunate; thickest on its dorsal side.",
+            "function": "The key stabiliser of the proximal row. Stops the scaphoid flexing and the lunate extending away from each other.",
+            "note": "Tears (often from a fall on the outstretched hand) cause a gap between the scaphoid and lunate on X-ray and, untreated, a pattern of arthritis called SLAC wrist. Tested with the Watson scaphoid shift test."
+        },
+        "lunotriquetral-ligaments": {
+            "name": "Lunotriquetral interosseous ligament",
+            "short": "LTIL",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": [
+                "Lunotriquetral interosseous ligament.r",
+                "Palmar lunotriquetral ligament.r"
+            ],
+            "attachmentText": "Between the facing surfaces of the lunate and triquetrum, with a thicker palmar part.",
+            "function": "Binds the lunate to the triquetrum on the ulnar side of the proximal row.",
+            "note": "Tears cause ulnar-sided wrist pain; tested with the lunotriquetral ballottement test."
+        },
+        "distal-row-intercarpal-ligaments": {
+            "name": "Intercarpal ligaments of the distal row",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": [
+                "Trapeziotrapezoidal interosseous ligament.r",
+                "Trapezoideocapitate interosseous ligament.r",
+                "Capitohamate interosseous ligament.r",
+                "Palmar trapezoideocapitate ligament.r",
+                "Palmar capitohamate ligament.r"
+            ],
+            "attachmentText": "Between the trapezium, trapezoid, capitate and hamate: interosseous and palmar sets.",
+            "function": "Bind the distal row so tightly that it moves as one unit with the metacarpals."
+        },
+        "palmar-midcarpal-ligaments": {
+            "name": "Palmar midcarpal (arcuate) ligaments",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": [
+                "Scaphocapitate ligament.r",
+                "Triquetrocapitate ligament.r",
+                "Triquetrohamate ligament.r",
+                "Palmar scaphotriquetral ligament.r"
+            ],
+            "attachmentText": "From the scaphoid and triquetrum of the proximal row to the capitate and hamate of the distal row, forming a V (arcuate) shape.",
+            "function": "Stabilise the midcarpal joint and guide the proximal row as the wrist deviates.",
+            "note": "Laxity of the triquetral side causes midcarpal instability, with a painful clunk on ulnar deviation."
+        },
+        "stt-ligament": {
+            "name": "Scaphotrapeziotrapezoidal ligament",
+            "short": "STT",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": [
+                "Scaphotrapeziotrapezoidal ligament.r"
+            ],
+            "attachmentText": "Distal pole of the scaphoid to the trapezium and trapezoid.",
+            "function": "Stabilises the distal scaphoid against the thumb's base."
+        },
+        "radiate-carpal-ligament": {
+            "name": "Radiate carpal ligament",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": [
+                "Radiate carpal ligament.r"
+            ],
+            "attachmentText": "Palmar surface of the head of the capitate, radiating to the scaphoid, lunate and triquetrum.",
+            "function": "Binds the capitate to the bones around it on the palmar side."
+        },
+        "dorsal-intercarpal-ligament": {
+            "name": "Dorsal intercarpal ligament",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": [
+                "Dorsal intercarpal ligaments.r",
+                "Dorsal scaphotriquetral ligament.r"
+            ],
+            "attachmentText": "Triquetrum across the back of the carpus to the scaphoid, trapezium and trapezoid.",
+            "function": "With the dorsal radiocarpal ligament, forms a V that stabilises the back of the wrist and the scaphoid.",
+            "tautText": "Taut in wrist flexion.",
+            "taut": [
+                {
+                    "control": "wristFlex",
+                    "points": [
+                        [
+                            -70,
+                            0.1
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            80,
+                            0.9
+                        ]
+                    ]
+                }
+            ]
+        },
+        "pisotriquetral-ligament": {
+            "name": "Pisotriquetral capsule and ligament",
+            "kind": "ligament",
+            "joint": "pisiform-joint",
+            "meshes": [
+                "Pisotriquetral ligament.r"
+            ],
+            "attachmentText": "Around the joint between the pisiform and the triquetrum.",
+            "function": "Holds the pisiform on the triquetrum."
+        },
+        "pisohamate-ligament": {
+            "name": "Pisohamate ligament",
+            "kind": "ligament",
+            "joint": "pisiform-joint",
+            "meshes": [
+                "Pisohamate ligament.r"
+            ],
+            "attachmentText": "Pisiform to the hook of the hamate.",
+            "function": "Carries the pull of flexor carpi ulnaris to the hamate. Forms the floor of the ulnar (Guyon's) canal.",
+            "note": "The ulnar nerve and artery pass through Guyon's canal over this ligament; compression there affects the hand only."
+        },
+        "pisometacarpal-ligament": {
+            "name": "Pisometacarpal ligament",
+            "kind": "ligament",
+            "joint": "pisiform-joint",
+            "meshes": [
+                "Pisometacarpal ligament.r"
+            ],
+            "attachmentText": "Pisiform to the base of the fifth metacarpal.",
+            "function": "Carries the pull of flexor carpi ulnaris on to the fifth metacarpal, so it acts on the wrist."
+        },
+        "carpometacarpal-ligaments": {
+            "name": "Dorsal and palmar carpometacarpal ligaments",
+            "kind": "ligament",
+            "joint": "carpometacarpal-joints",
+            "meshes": [
+                "Dorsal carpometacarpal ligaments.r",
+                "Palmar carpometacarpal ligaments.r"
+            ],
+            "attachmentText": "Distal row of carpal bones to the bases of the metacarpals, on the back and front.",
+            "function": "Bind the metacarpal bases to the carpus; very tight at the second and third, looser at the fourth and fifth.",
+            "note": "The thumb CMC joint has its own capsule and ligaments (including the anterior oblique or beak ligament); it is a common site of osteoarthritis."
+        },
+        "metacarpal-ligaments": {
+            "name": "Dorsal, palmar and interosseous metacarpal ligaments",
+            "kind": "ligament",
+            "joint": "carpometacarpal-joints",
+            "meshes": [
+                "Dorsal metacarpal ligaments.r",
+                "Palmar metacarpal ligaments.r",
+                "Interosseous metacarpal ligaments.r"
+            ],
+            "attachmentText": "Between the bases of neighbouring metacarpals (second to fifth).",
+            "function": "Bind the metacarpal bases together at the intermetacarpal joints."
+        },
+        "mcp-capsules": {
+            "name": "Articular capsules of metacarpophalangeal joints",
+            "kind": "capsule",
+            "joint": "mcp-joints",
+            "meshes": [
+                "Articular capsules of metacarpophalangeal joints.r"
+            ],
+            "attachmentText": "Around the margins of each metacarpal head and the base of its proximal phalanx; thickened in front by the palmar plate.",
+            "function": "Enclose the knuckle joints."
+        },
+        "mcp-collateral-ligaments": {
+            "name": "Collateral ligaments of MCP joints",
+            "kind": "ligament",
+            "joint": "mcp-joints",
+            "meshes": [
+                "Collateral metacarpophalangeal ligaments.r"
+            ],
+            "attachmentText": "Tubercles on the sides of each metacarpal head, running obliquely forward to the sides of the proximal phalanx base.",
+            "function": "Resist sideways bending at the knuckles. Because the metacarpal head is cam-shaped, they are slack in extension and tight in flexion.",
+            "tautText": "Taut in flexion; slack in extension (which is why the fingers can spread only when straight).",
+            "note": "Injury to the thumb's ulnar collateral ligament at the MCP joint is skier's or gamekeeper's thumb. Hands are splinted with MCPs flexed so these ligaments do not shorten."
+        },
+        "deep-transverse-metacarpal-ligament": {
+            "name": "Deep transverse metacarpal ligament",
+            "kind": "ligament",
+            "joint": "mcp-joints",
+            "meshes": [
+                "Deep transverse metacarpal ligament.r"
+            ],
+            "attachmentText": "Joins the palmar plates of the second to fifth MCP joints. (The thumb is not included, which frees it to oppose.)",
+            "function": "Ties the metacarpal heads together. The lumbricals pass in front of it and the interossei behind it."
+        },
+        "hand-ip-capsules": {
+            "name": "Articular capsules of interphalangeal joints of hand",
+            "kind": "capsule",
+            "joint": "hand-ip-joints",
+            "meshes": [
+                "Articular capsules of proximal interphalangeal joints.r",
+                "Articular capsules of distal interphalangeal joints.r"
+            ],
+            "attachmentText": "Around the margins of each PIP and DIP joint.",
+            "function": "Enclose the finger joints."
+        },
+        "hand-ip-collateral-ligaments": {
+            "name": "Collateral ligaments of interphalangeal joints of hand",
+            "kind": "ligament",
+            "joint": "hand-ip-joints",
+            "meshes": [
+                "Collateral interphalangeal ligaments of hand.r"
+            ],
+            "attachmentText": "Sides of each phalanx head to the sides of the next phalanx base.",
+            "function": "Stop the fingers bending sideways.",
+            "tautText": "At the PIP joint, tightest in extension; the joint is splinted straight to protect them."
+        },
+        "hand-palmar-plates": {
+            "name": "Palmar plates of interphalangeal joints",
+            "kind": "ligament",
+            "joint": "hand-ip-joints",
+            "meshes": [
+                "Palmar interphalangeal ligaments.r"
+            ],
+            "attachmentText": "Thick fibrocartilage across the front of each PIP and DIP joint, fixed firmly to the base of the more distal phalanx.",
+            "function": "Stop hyperextension of the finger joints.",
+            "tautText": "Taut in extension.",
+            "note": "PIP hyperextension injuries (jammed finger) damage the palmar plate; scarring can leave a flexion contracture."
+        },
+        "anterior-longitudinal-ligament": {
+            "name": "Anterior longitudinal ligament",
+            "short": "ALL",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": [
+                "Anterior longitudinal ligament"
+            ],
+            "attachmentText": "Front of the vertebral bodies and discs, from the occipital bone and anterior tubercle of the atlas down to the front of the sacrum.",
+            "function": "Limits extension of the spine. Broad and strong; it is the only long ligament that tightens in extension.",
+            "tautText": "Taut in extension.",
+            "taut": [
+                {
+                    "control": "trunkFlex",
+                    "points": [
+                        [
+                            -25,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.45
+                        ],
+                        [
+                            80,
+                            0.1
+                        ]
+                    ]
+                }
+            ],
+            "note": "Injured in whiplash hyperextension of the neck."
+        },
+        "posterior-longitudinal-ligament": {
+            "name": "Posterior longitudinal ligament",
+            "short": "PLL",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": [
+                "Posterior longitudinal ligament"
+            ],
+            "attachmentText": "Back of the vertebral bodies and discs, inside the vertebral canal, from the axis (where it continues up as the tectorial membrane) to the sacrum.",
+            "function": "Limits flexion. Narrower than the ALL and narrowest in the lumbar spine.",
+            "tautText": "Taut in flexion.",
+            "taut": [
+                {
+                    "control": "trunkFlex",
+                    "points": [
+                        [
+                            -25,
+                            0.15
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            80,
+                            1.0
+                        ]
+                    ]
+                }
+            ],
+            "note": "Because it narrows in the lumbar region and covers the middle of the disc, lumbar disc herniations usually bulge posterolaterally, beside it, toward the nerve roots."
+        },
+        "ligamenta-flava": {
+            "name": "Ligamenta flava",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": [
+                "Ligamenta flava"
+            ],
+            "attachmentText": "Between the laminae of neighbouring vertebrae, from the axis to the sacrum, forming the back wall of the vertebral canal.",
+            "function": "Elastic (yellow) ligaments that limit flexion, help the spine return to upright, and keep the canal wall smooth so it does not buckle into the cord.",
+            "tautText": "Under some tension even at rest; tightest in flexion.",
+            "taut": [
+                {
+                    "control": "trunkFlex",
+                    "points": [
+                        [
+                            -25,
+                            0.3
+                        ],
+                        [
+                            0,
+                            0.5
+                        ],
+                        [
+                            80,
+                            1.0
+                        ]
+                    ]
+                }
+            ],
+            "note": "Thickening with age contributes to spinal stenosis. A lumbar puncture needle passes through it."
+        },
+        "interspinous-ligaments": {
+            "name": "Interspinous ligaments",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": [
+                "Interspinous ligaments"
+            ],
+            "attachmentText": "Between neighbouring spinous processes, from root to tip.",
+            "function": "Limit flexion.",
+            "tautText": "Taut in flexion.",
+            "taut": [
+                {
+                    "control": "trunkFlex",
+                    "points": [
+                        [
+                            -25,
+                            0.05
+                        ],
+                        [
+                            0,
+                            0.3
+                        ],
+                        [
+                            80,
+                            1.0
+                        ]
+                    ]
+                }
+            ]
+        },
+        "supraspinous-ligament": {
+            "name": "Supraspinous ligament",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": [
+                "Supraspinous ligament"
+            ],
+            "attachmentText": "Over the tips of the spinous processes from C7 to the sacrum; above C7 it continues as the nuchal ligament.",
+            "function": "Limits flexion. The farthest ligament from the axis of movement, so it is the first to tighten.",
+            "tautText": "Taut in flexion.",
+            "taut": [
+                {
+                    "control": "trunkFlex",
+                    "points": [
+                        [
+                            -25,
+                            0.05
+                        ],
+                        [
+                            0,
+                            0.3
+                        ],
+                        [
+                            80,
+                            1.0
+                        ]
+                    ]
+                }
+            ]
+        },
+        "intertransverse-ligaments": {
+            "name": "Intertransverse ligaments",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": [
+                "Intertransverse ligaments.r"
+            ],
+            "attachmentText": "Between neighbouring transverse processes; best developed in the lumbar region.",
+            "function": "Limit side bending to the opposite side.",
+            "tautText": "The right-side ligaments are taut when the trunk bends to the left.",
+            "taut": [
+                {
+                    "control": "trunkLat",
+                    "points": [
+                        [
+                            -30,
+                            1.0
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            30,
+                            0.1
+                        ]
+                    ]
+                }
+            ]
+        },
+        "intervertebral-discs": {
+            "name": "Intervertebral discs (annulus fibrosus)",
+            "short": "Discs",
+            "kind": "disc",
+            "joint": "vertebral-joints",
+            "meshes": [
+                "Intervertebral disc C2-C3",
+                "Intervertebral disc C3-C4",
+                "Intervertebral disc C4-C5",
+                "Intervertebral disc C5-C6",
+                "Intervertebral disc C6-C7",
+                "Intervertebral disc C7-T1",
+                "Intervertebral disc T1-T2",
+                "Intervertebral disc T2-T3",
+                "Intervertebral disc T3-T4",
+                "Intervertebral disc T4-T5",
+                "Intervertebral disc T5-T6",
+                "Intervertebral disc T6-T7",
+                "Intervertebral disc T7-T8",
+                "Intervertebral disc T8-T9",
+                "Intervertebral disc T9-T10",
+                "Intervertebral disc T10-T11",
+                "Intervertebral disc T11-T12",
+                "Intervertebral disc T12-L1",
+                "Intervertebral disc L1-L2",
+                "Intervertebral disc L2-L3",
+                "Intervertebral disc L3-L4",
+                "Intervertebral disc L4-L5",
+                "Intervertebral disc L5-S1"
+            ],
+            "attachmentText": "Between the bodies of neighbouring vertebrae from C2–C3 to L5–S1, bound to the hyaline end plates above and below. There is no disc between the skull and atlas or between the atlas and axis.",
+            "function": "The annulus is rings of fibrocartilage whose fibres alternate direction from layer to layer, holding in the nucleus and resisting twisting. The discs make up about a quarter of the column's length.",
+            "tautText": "In flexion the back of the annulus is stretched and the nucleus is pushed backward; in extension the reverse.",
+            "note": "Lumbar discs (especially L4–L5 and L5–S1) and cervical discs (C5–C6 and C6–C7) herniate most often."
+        },
+        "nucleus-pulposus": {
+            "name": "Nucleus pulposus",
+            "kind": "disc",
+            "joint": "vertebral-joints",
+            "meshes": [
+                "Nucleus pulposus C2-C3",
+                "Nucleus pulposus C3-C4",
+                "Nucleus pulposus C4-C5",
+                "Nucleus pulposus C5-C6",
+                "Nucleus pulposus C6-C7",
+                "Nucleus pulposus C7-T1",
+                "Nucleus pulposus T1-T2",
+                "Nucleus pulposus T2-T3",
+                "Nucleus pulposus T3-T4",
+                "Nucleus pulposus T4-T5",
+                "Nucleus pulposus T5-T6",
+                "Nucleus pulposus T6-T7",
+                "Nucleus pulposus T7-T8",
+                "Nucleus pulposus T8-T9",
+                "Nucleus pulposus T9-T10",
+                "Nucleus pulposus T10-T11",
+                "Nucleus pulposus T11-T12",
+                "Nucleus pulposus T12-L1",
+                "Nucleus pulposus L1-L2",
+                "Nucleus pulposus L2-L3",
+                "Nucleus pulposus L3-L4",
+                "Nucleus pulposus L4-L5",
+                "Nucleus pulposus L5-S1"
+            ],
+            "attachmentText": "The gel centre of each disc, slightly behind its middle, enclosed by the annulus and the end plates.",
+            "function": "Spreads compressive load evenly over the end plates, acting like a water cushion. It loses water through the day and with age.",
+            "note": "A herniation is nucleus material pushing through a tear in the annulus, usually posterolaterally."
+        },
+        "radiate-ligament-of-head-of-rib": {
+            "name": "Radiate ligament of head of rib",
+            "kind": "ligament",
+            "joint": "costovertebral-joints",
+            "meshes": [
+                "Radiate ligament of head of rib.r"
+            ],
+            "attachmentText": "Front of the rib head, fanning out to the bodies of the two vertebrae and the disc between them.",
+            "function": "Binds the rib head to the vertebral bodies."
+        },
+        "intra-articular-ligament-of-head-of-rib": {
+            "name": "Intra-articular ligament of head of rib",
+            "kind": "ligament",
+            "joint": "costovertebral-joints",
+            "meshes": [
+                "Intra-articular ligament of head of rib.r",
+                "Intra-articular ligament of head of rib"
+            ],
+            "attachmentText": "Crest of the rib head to the intervertebral disc, splitting the joint into two cavities.",
+            "function": "Ties the rib head to the disc. Ribs 1, 10, 11 and 12 meet only one vertebra and have no such ligament."
+        },
+        "costotransverse-ligament": {
+            "name": "Costotransverse ligaments",
+            "kind": "ligament",
+            "joint": "costovertebral-joints",
+            "meshes": [
+                "Costotransverse ligament.r"
+            ],
+            "attachmentText": "Neck and tubercle of the rib to the transverse process of its own vertebra (costotransverse and lateral costotransverse ligaments) and the one above (superior costotransverse ligament).",
+            "function": "Hold the rib's tubercle against its transverse process, the pivot for rib movement in breathing."
+        },
+        "external-intercostal-membrane": {
+            "name": "External intercostal membrane",
+            "kind": "membrane",
+            "joint": "intercostal-membranes",
+            "meshes": [
+                "External intercostal membrane.r"
+            ],
+            "attachmentText": "Between neighbouring ribs at the front, from where the external intercostal muscle ends to the costochondral junctions and sternum.",
+            "function": "Continues the external intercostal layer forward to the sternum."
+        },
+        "internal-intercostal-membrane": {
+            "name": "Internal intercostal membrane",
+            "kind": "membrane",
+            "joint": "intercostal-membranes",
+            "meshes": [
+                "Internal intercostal membrane.r"
+            ],
+            "attachmentText": "Between neighbouring ribs at the back, from the angles of the ribs to the vertebral column.",
+            "function": "Continues the internal intercostal layer back to the spine."
+        },
+        "anterior-sacro-iliac-ligament": {
+            "name": "Anterior sacro-iliac ligament",
+            "kind": "ligament",
+            "joint": "sacro-iliac-joint",
+            "meshes": [
+                "Anterior sacro-iliac ligament.r"
+            ],
+            "attachmentText": "Thin band across the front of the joint, from the sacrum to the ilium.",
+            "function": "The front of the joint capsule. The weakest of the sacro-iliac ligaments.",
+            "note": "Often the first to give way, and a source of pain in pregnancy."
+        },
+        "interosseous-sacro-iliac-ligament": {
+            "name": "Interosseous sacro-iliac ligament",
+            "kind": "ligament",
+            "joint": "sacro-iliac-joint",
+            "meshes": [
+                "Interosseous sacro-iliac ligament.r"
+            ],
+            "attachmentText": "Short, thick fibres filling the gap between the sacral tuberosity and the iliac tuberosity, behind the joint surfaces.",
+            "function": "The strongest ligament of the joint; the main bond between sacrum and ilium."
+        },
+        "posterior-sacro-iliac-ligament": {
+            "name": "Posterior sacro-iliac ligament",
+            "kind": "ligament",
+            "joint": "sacro-iliac-joint",
+            "meshes": [
+                "Posterior sacro-iliac ligament.r"
+            ],
+            "attachmentText": "Posterior superior iliac spine and iliac crest to the lateral sacral crest. The long posterior band runs down to the third and fourth sacral segments.",
+            "function": "Holds the back of the joint together. The long posterior band limits counternutation.",
+            "tautText": "The long band is taut in counternutation (the sacral base tipping backward).",
+            "note": "Its long band can be felt just below the PSIS and is often tender in pelvic girdle pain."
+        },
+        "interpubic-disc": {
+            "name": "Interpubic disc",
+            "kind": "disc",
+            "joint": "pubic-symphysis-joint",
+            "meshes": [
+                "Interpubic disc",
+                "Pubic symphysis"
+            ],
+            "attachmentText": "Fibrocartilage between the hyaline-covered medial surfaces of the two pubic bones.",
+            "function": "Joins the pubic bones and absorbs shear through the front of the pelvic ring.",
+            "note": "Softens in pregnancy under the influence of relaxin; symphysis pubis dysfunction causes pain with single-leg stance."
+        },
+        "superior-pubic-ligament": {
+            "name": "Superior pubic ligament",
+            "kind": "ligament",
+            "joint": "pubic-symphysis-joint",
+            "meshes": [
+                "Superior pubic ligament"
+            ],
+            "attachmentText": "Across the top of the symphysis, from one pubic tubercle to the other.",
+            "function": "Strengthens the top of the joint."
+        },
+        "inferior-pubic-ligament": {
+            "name": "Inferior (arcuate) pubic ligament",
+            "kind": "ligament",
+            "joint": "pubic-symphysis-joint",
+            "meshes": [
+                "Inferior pubic ligament"
+            ],
+            "attachmentText": "Arches under the symphysis between the two inferior pubic rami, rounding off the top of the pubic arch.",
+            "function": "The strongest ligament of the symphysis."
+        },
+        "sacrotuberous-ligament": {
+            "name": "Sacrotuberous ligament",
+            "kind": "ligament",
+            "joint": "pelvic-ligaments",
+            "meshes": [
+                "Sacrotuberous ligament.r"
+            ],
+            "attachmentText": "Posterior iliac spines, the side of the sacrum and coccyx, down to the ischial tuberosity.",
+            "function": "Resists nutation (the sacral base tipping forward under body weight). Gluteus maximus and the long head of biceps femoris attach to it.",
+            "tautText": "Taut in nutation of the sacrum."
+        },
+        "sacrospinous-ligament": {
+            "name": "Sacrospinous ligament",
+            "kind": "ligament",
+            "joint": "pelvic-ligaments",
+            "meshes": [
+                "Sacrospinous ligament.r"
+            ],
+            "attachmentText": "Side of the lower sacrum and coccyx to the ischial spine, in front of the sacrotuberous ligament.",
+            "function": "Resists nutation and separates the greater sciatic foramen (above) from the lesser (below).",
+            "tautText": "Taut in nutation of the sacrum.",
+            "note": "Piriformis, the sciatic nerve and the gluteal vessels leave the pelvis through the greater sciatic foramen above it."
+        },
+        "iliolumbar-ligament": {
+            "name": "Iliolumbar ligament",
+            "kind": "ligament",
+            "joint": "pelvic-ligaments",
+            "meshes": [
+                "Iliolumbar ligament.r"
+            ],
+            "attachmentText": "Transverse process of L5 (and often L4) to the back of the iliac crest.",
+            "function": "Anchors L5 to the pelvis and limits its side bending, rotation and forward slip on the sacrum.",
+            "tautText": "The right ligament is taut in side bending to the left (and in flexion).",
+            "taut": [
+                {
+                    "control": "trunkLat",
+                    "points": [
+                        [
+                            -30,
+                            0.9
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            30,
+                            0.2
+                        ]
+                    ]
+                }
+            ]
+        },
+        "obturator-membrane": {
+            "name": "Obturator membrane",
+            "kind": "membrane",
+            "joint": "pelvic-ligaments",
+            "meshes": [
+                "Obturator membrane.r"
+            ],
+            "attachmentText": "Margins of the obturator foramen, leaving a gap at the top (the obturator canal).",
+            "function": "Closes the obturator foramen and gives origin to the obturator internus and externus. The obturator nerve and vessels pass through the canal at its top."
+        },
+        "sacrococcygeal-symphysis": {
+            "name": "Sacrococcygeal symphysis",
+            "kind": "disc",
+            "joint": "sacrococcygeal-joint",
+            "meshes": [
+                "Sacrococcygeal symphysis"
+            ],
+            "attachmentText": "Fibrocartilage disc and ligaments between the apex of the sacrum and the base of the coccyx.",
+            "function": "Joins the coccyx to the sacrum while letting it bend slightly.",
+            "note": "Falls onto the tailbone can sprain or dislocate this joint (coccydynia)."
+        },
+        "intercornual-ligament": {
+            "name": "Intercornual ligament",
+            "kind": "ligament",
+            "joint": "sacrococcygeal-joint",
+            "meshes": [
+                "Intercornual ligament.r"
+            ],
+            "attachmentText": "Between the sacral cornua and the coccygeal cornua.",
+            "function": "Binds the horns of the sacrum and coccyx together at the back."
+        },
+        "tmj-capsule": {
+            "name": "Articular capsule of temporomandibular joint",
+            "kind": "capsule",
+            "joint": "temporomandibular-joint",
+            "meshes": [
+                "Articular capsule of temporomandibular joint.r"
+            ],
+            "attachmentText": "Around the mandibular fossa and articular eminence, down to the neck of the mandible.",
+            "function": "Loose capsule that encloses the joint and attaches to the edges of the disc."
+        },
+        "tmj-disc": {
+            "name": "Articular disc of temporomandibular joint",
+            "kind": "disc",
+            "joint": "temporomandibular-joint",
+            "meshes": [
+                "Articular disc of temporomandibular joint.r"
+            ],
+            "attachmentText": "Between the condyle and the temporal bone, joined to the capsule all round, to the condyle's poles at the sides, and to the upper head of lateral pterygoid in front.",
+            "function": "Fits the condyle to the fossa and eminence, divides the joint into upper (gliding) and lower (hinging) compartments.",
+            "note": "Anterior disc displacement causes clicking on opening; if it does not reduce, opening locks."
+        },
+        "lateral-temporomandibular-ligament": {
+            "name": "Lateral (temporomandibular) ligament",
+            "kind": "ligament",
+            "joint": "temporomandibular-joint",
+            "meshes": [
+                "Lateral temporomandibular ligament.r"
+            ],
+            "attachmentText": "Articular tubercle on the zygomatic arch, down and back to the neck of the mandible.",
+            "function": "The main ligament of the joint. Stops the condyle sliding backward or down and limits how far the mouth opens by hinging alone.",
+            "tautText": "Taut at the end of the hinge phase of opening, which forces the condyle to glide forward."
+        },
+        "sphenomandibular-ligament": {
+            "name": "Sphenomandibular ligament",
+            "kind": "ligament",
+            "joint": "temporomandibular-joint",
+            "meshes": [
+                "Sphenomandibular ligament.r"
+            ],
+            "attachmentText": "Spine of the sphenoid to the lingula of the mandible, beside the mandibular foramen.",
+            "function": "Accessory ligament; acts as a swinging hinge for the mandible during opening.",
+            "note": "Landmark for the inferior alveolar nerve block in dentistry."
+        },
+        "stylomandibular-ligament": {
+            "name": "Stylomandibular ligament",
+            "kind": "ligament",
+            "joint": "temporomandibular-joint",
+            "meshes": [
+                "Stylomandibular ligament.r"
+            ],
+            "attachmentText": "Styloid process of the temporal bone to the angle of the mandible.",
+            "function": "Accessory ligament; limits protrusion of the jaw.",
+            "tautText": "Taut when the jaw is pushed forward (protrusion)."
+        },
+        "pterygospinous-ligament": {
+            "name": "Pterygospinous ligament",
+            "kind": "ligament",
+            "joint": "temporomandibular-joint",
+            "meshes": [
+                "Pterygospinous ligament.r"
+            ],
+            "attachmentText": "Lateral pterygoid plate to the spine of the sphenoid.",
+            "function": "Not a ligament of the joint itself; a band near it that sometimes ossifies and can press on branches of the mandibular nerve."
+        },
+        "nuchal-ligament": {
+            "name": "Nuchal ligament",
+            "kind": "ligament",
+            "joint": "craniovertebral-joints",
+            "meshes": [
+                "Nuchal ligament"
+            ],
+            "attachmentText": "External occipital protuberance and crest, down to the spinous process of C7, with a sheet attaching to the cervical spinous processes. It continues below as the supraspinous ligament.",
+            "function": "Limits neck flexion, helps hold the head up and gives a midline attachment for trapezius, splenius and other neck muscles.",
+            "tautText": "Taut in neck flexion.",
+            "taut": [
+                {
+                    "control": "neckFlex",
+                    "points": [
+                        [
+                            -55,
+                            0.05
+                        ],
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            50,
+                            1.0
+                        ]
+                    ]
+                }
+            ]
+        },
+        "transverse-ligament-of-atlas": {
+            "name": "Transverse ligament of atlas",
+            "kind": "ligament",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Between the tubercles on the inner sides of the lateral masses of the atlas, passing behind the dens. Small bands up to the occiput and down to the axis make it the cruciform ligament.",
+            "function": "Holds the dens against the anterior arch of the atlas, so the atlas cannot slide forward on the axis and the dens cannot press back on the spinal cord.",
+            "tautText": "Taut in neck flexion, when the atlas tends to slide forward.",
+            "note": "Weakened in rheumatoid arthritis and Down syndrome, so screen upper cervical stability before mobilising the neck. Tested with the Sharp-Purser test."
+        },
+        "alar-ligaments": {
+            "name": "Alar ligaments",
+            "kind": "ligament",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Sides of the tip of the dens, up and laterally to the medial sides of the occipital condyles.",
+            "function": "Check rotation of the head and atlas on the axis, and side bending of the head.",
+            "tautText": "Rotation to one side is limited mainly by the alar ligament of the opposite side; side bending is limited by the ligament on the opposite side.",
+            "note": "Tested with the alar ligament stress test: with a firm ligament, side bending the head makes the C2 spinous process move at once."
+        },
+        "apical-ligament-of-dens": {
+            "name": "Apical ligament of dens",
+            "kind": "ligament",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Tip of the dens to the front edge of the foramen magnum.",
+            "function": "A thin remnant of the notochord; adds little stability."
+        },
+        "tectorial-membrane": {
+            "name": "Tectorial membrane",
+            "kind": "membrane",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Back of the body of the axis up to the floor of the skull just inside the foramen magnum. It is the upward continuation of the posterior longitudinal ligament.",
+            "function": "Covers the dens and its ligaments from behind and limits flexion and extension of the upper neck.",
+            "tautText": "Taut in flexion of the head on the neck."
+        },
+        "anterior-atlanto-occipital-membrane": {
+            "name": "Anterior atlanto-occipital membrane",
+            "kind": "membrane",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Upper edge of the anterior arch of the atlas to the front edge of the foramen magnum. It continues the anterior longitudinal ligament upward.",
+            "function": "Closes the front of the gap between skull and atlas and limits extension of the head.",
+            "tautText": "Taut in extension of the head."
+        },
+        "posterior-atlanto-occipital-membrane": {
+            "name": "Posterior atlanto-occipital membrane",
+            "kind": "membrane",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Upper edge of the posterior arch of the atlas to the back edge of the foramen magnum.",
+            "function": "Closes the back of the gap between skull and atlas and limits flexion of the head. The vertebral artery and suboccipital nerve pass under its lateral edge.",
+            "tautText": "Taut in flexion of the head."
+        },
+        "stylohyoid-ligament": {
+            "name": "Stylohyoid ligament",
+            "kind": "ligament",
+            "joint": "hyoid-larynx",
+            "meshes": [
+                "Stylohyoid ligament.r"
+            ],
+            "attachmentText": "Tip of the styloid process to the lesser horn of the hyoid.",
+            "function": "Hangs the hyoid from the skull.",
+            "note": "Calcification of this ligament (Eagle syndrome) can cause throat pain on swallowing and turning the head."
+        },
+        "thyrohyoid-ligaments": {
+            "name": "Thyrohyoid membrane and ligaments",
+            "kind": "membrane",
+            "joint": "hyoid-larynx",
+            "meshes": [
+                "Median thyrohyoid ligament",
+                "Lateral thyrohyoid ligament.r"
+            ],
+            "attachmentText": "Upper border of the thyroid cartilage to the back of the hyoid; thickened in the midline (median thyrohyoid ligament) and at the back edges (lateral thyrohyoid ligaments).",
+            "function": "Hangs the larynx from the hyoid so they rise together in swallowing. The internal laryngeal nerve and superior laryngeal artery pierce it."
+        },
+        "median-cricothyroid-ligament": {
+            "name": "Median cricothyroid ligament",
+            "kind": "ligament",
+            "joint": "hyoid-larynx",
+            "meshes": [
+                "Median cricothyroid ligament"
+            ],
+            "attachmentText": "Lower border of the thyroid cartilage to the arch of the cricoid, in the midline.",
+            "function": "The front of the conus elasticus, closing the gap between the thyroid and cricoid cartilages.",
+            "note": "Felt as the soft dip below the Adam's apple; the site for an emergency airway (cricothyrotomy)."
+        },
+        "quadrangular-membrane": {
+            "name": "Quadrangular membrane",
+            "kind": "membrane",
+            "joint": "hyoid-larynx",
+            "meshes": [
+                "Quadrangular membrane.r"
+            ],
+            "attachmentText": "Side of the epiglottis to the arytenoid cartilage; its free lower edge is the vestibular ligament inside the false vocal fold.",
+            "function": "Forms the wall of the upper larynx (vestibule)."
+        },
+        "cricopharyngeal-ligament": {
+            "name": "Cricopharyngeal ligament",
+            "kind": "ligament",
+            "joint": "hyoid-larynx",
+            "meshes": [
+                "Cricopharyngeal ligament.r"
+            ],
+            "attachmentText": "Corniculate cartilages to the back of the cricoid lamina and the pharyngeal wall.",
+            "function": "Ties the back of the larynx to the pharynx."
+        }
     },
     "groups": {
         "hip-gluteal--gluteal": {

@@ -1,0 +1,716 @@
+{
+    "joints": {
+        "sternoclavicular-joint": {
+            "name": "Sternoclavicular joint",
+            "area": "shoulder",
+            "type": "Synovial saddle joint with an articular disc",
+            "summary": "The only bony joint between the upper limb and the trunk. The clavicle sits on the manubrium and first costal cartilage, and a disc between them acts as a shock absorber and a hinge.",
+            "closePacked": "Full arm elevation.",
+            "resting": "Arm resting by the side.",
+            "capsularPattern": "Pain at the extremes of range, especially horizontal adduction and full elevation.",
+            "views": [0, 0.2, 1]
+        },
+        "acromioclavicular-joint": {
+            "name": "Acromioclavicular joint",
+            "area": "shoulder",
+            "type": "Synovial plane joint",
+            "summary": "The outer end of the clavicle meets the acromion. The joint's own ligament is weak; the coracoclavicular ligaments below it do most of the work of holding the scapula to the clavicle.",
+            "closePacked": "Arm abducted to 90°.",
+            "resting": "Arm resting by the side.",
+            "capsularPattern": "Pain at the extremes of range, especially horizontal adduction and full elevation.",
+            "views": [0.5, -0.15, 1]
+        },
+        "scapular-ligaments": {
+            "name": "Ligaments of the scapula",
+            "area": "shoulder",
+            "type": "Ligaments that bridge parts of one bone (not a joint)",
+            "summary": "Bands that run between two points on the scapula: one forms a roof over the shoulder joint, and two bridge notches that nerves pass through.",
+            "views": [0.5, 0.5, -1]
+        },
+        "glenohumeral-joint": {
+            "name": "Glenohumeral (shoulder) joint",
+            "area": "shoulder",
+            "type": "Synovial ball-and-socket joint",
+            "summary": "A large head on a small, shallow socket: the most mobile and most often dislocated joint in the body. The labrum deepens the socket, the capsule is loose, and thickenings of the front of the capsule (the glenohumeral ligaments) limit lateral rotation and abduction.",
+            "closePacked": "Full abduction and lateral rotation.",
+            "resting": "About 40–55° abduction and 30° horizontal adduction (the scapular plane).",
+            "capsularPattern": "Lateral rotation most limited, then abduction, then medial rotation.",
+            "views": [0.6, 0.2, 1]
+        },
+        "elbow-joint": {
+            "name": "Elbow joint (with proximal radio-ulnar joint)",
+            "area": "arm",
+            "type": "Synovial hinge joint (humero-ulnar and humeroradial), sharing a capsule with the pivot joint between radius and ulna",
+            "summary": "The ulna hinges on the trochlea of the humerus, the radial head turns against the capitulum, and the annular ligament holds the radial head against the ulna so the forearm can pronate and supinate.",
+            "closePacked": "Full extension and supination (humero-ulnar).",
+            "resting": "About 70° flexion and 10° supination.",
+            "capsularPattern": "Flexion more limited than extension. At the proximal radio-ulnar joint, pronation and supination equally limited.",
+            "views": [-0.6, 0.2, 1]
+        },
+        "radio-ulnar-syndesmosis": {
+            "name": "Interosseous membrane of forearm",
+            "area": "forearm",
+            "type": "Fibrous joint (syndesmosis)",
+            "summary": "A sheet of fibres between the radius and ulna. Most fibres run down and medially from radius to ulna, so force pushed up through the hand onto the radius is passed to the ulna and on to the humerus.",
+            "views": [0, 0.1, 1]
+        },
+        "distal-radio-ulnar-joint": {
+            "name": "Distal radio-ulnar joint",
+            "area": "forearm",
+            "type": "Synovial pivot joint",
+            "summary": "The radius swings around the head of the ulna in pronation and supination. A triangular disc of fibrocartilage (part of the TFCC) binds the two bones and cushions the ulnar side of the wrist.",
+            "closePacked": "About 5° supination.",
+            "resting": "About 10° supination.",
+            "capsularPattern": "Pain at the extremes of pronation and supination.",
+            "views": [0.2, -0.3, 1]
+        },
+        "wrist-joint": {
+            "name": "Wrist (radiocarpal) joint",
+            "area": "forearm",
+            "type": "Synovial condyloid (ellipsoid) joint",
+            "summary": "The radius and the TFCC disc form a socket for the scaphoid, lunate and triquetrum. The palmar ligaments are thicker and more important than the dorsal ones, and most run obliquely, so the carpus moves with the radius when the forearm turns.",
+            "closePacked": "Extension with radial deviation.",
+            "resting": "Neutral with slight ulnar deviation.",
+            "capsularPattern": "Flexion and extension equally limited.",
+            "views": [0, -0.2, 1]
+        },
+        "midcarpal-joints": {
+            "name": "Midcarpal and intercarpal joints",
+            "area": "hand-area",
+            "type": "Synovial plane joints",
+            "summary": "Joints between the carpal bones of each row, and between the two rows (the midcarpal joint). About half of wrist flexion and extension happens here.",
+            "closePacked": "Extension.",
+            "resting": "Neutral or slight flexion with ulnar deviation.",
+            "capsularPattern": "Flexion and extension equally limited.",
+            "views": [0, -0.2, 1]
+        },
+        "pisiform-joint": {
+            "name": "Pisiform joint",
+            "area": "hand-area",
+            "type": "Synovial plane joint",
+            "summary": "The pisiform, a sesamoid in the tendon of flexor carpi ulnaris, glides on the triquetrum. Two ligaments carry the pull of flexor carpi ulnaris on to the hamate and fifth metacarpal.",
+            "views": [0.4, -0.2, 1]
+        },
+        "carpometacarpal-joints": {
+            "name": "Carpometacarpal and intermetacarpal joints",
+            "area": "hand-area",
+            "type": "Thumb: synovial saddle joint. Fingers: synovial plane joints",
+            "summary": "The thumb's joint with the trapezium is a saddle that allows opposition. The second and third finger joints barely move; the fourth and fifth move more, letting the palm cup.",
+            "closePacked": "Thumb: full opposition. Fingers: full flexion.",
+            "resting": "Thumb: midway between abduction and adduction, and between flexion and extension. Fingers: midway between flexion and extension.",
+            "capsularPattern": "Thumb: abduction more limited than extension. Fingers: equally limited in all directions.",
+            "views": [0, -0.3, 1]
+        },
+        "mcp-joints": {
+            "name": "Metacarpophalangeal (MCP) joints",
+            "area": "hand-area",
+            "type": "Synovial condyloid joints",
+            "summary": "The knuckles. Each has a palmar plate in front and two collateral ligaments that are slack in extension and tight in flexion, which is why a hand is splinted with the MCP joints flexed.",
+            "closePacked": "Fingers: full flexion. Thumb: full opposition.",
+            "resting": "Slight flexion with ulnar deviation.",
+            "capsularPattern": "Flexion more limited than extension.",
+            "views": [0, -0.3, 1]
+        },
+        "hand-ip-joints": {
+            "name": "Interphalangeal joints of the hand",
+            "area": "hand-area",
+            "type": "Synovial hinge joints",
+            "summary": "The PIP and DIP joints of the fingers and the single IP joint of the thumb. Each has a palmar plate and two collateral ligaments.",
+            "closePacked": "Full extension.",
+            "resting": "Slight flexion.",
+            "capsularPattern": "Flexion more limited than extension.",
+            "views": [0, -0.3, 1]
+        }
+    },
+    "ligaments": {
+        "sternoclavicular-capsule": {
+            "name": "Articular capsule of sternoclavicular joint",
+            "kind": "capsule",
+            "joint": "sternoclavicular-joint",
+            "meshes": ["Articular capsule of sternoclavicular joint.r"],
+            "attachmentText": "Margins of the sternal end of the clavicle, the clavicular notch of the manubrium and the first costal cartilage.",
+            "function": "Encloses the joint; thickened in front and behind by the sternoclavicular ligaments."
+        },
+        "anterior-sternoclavicular-ligament": {
+            "name": "Anterior sternoclavicular ligament",
+            "kind": "ligament",
+            "joint": "sternoclavicular-joint",
+            "meshes": ["Anterior sternoclavicular ligament.r"],
+            "attachmentText": "Front of the sternal end of the clavicle, down and medially to the front of the manubrium.",
+            "function": "Limits forward movement of the medial clavicle."
+        },
+        "posterior-sternoclavicular-ligament": {
+            "name": "Posterior sternoclavicular ligament",
+            "kind": "ligament",
+            "joint": "sternoclavicular-joint",
+            "meshes": ["Posterior sternoclavicular ligament.r"],
+            "attachmentText": "Back of the sternal end of the clavicle to the back of the manubrium.",
+            "function": "The strongest restraint of the joint; stops the medial clavicle moving backward.",
+            "note": "A posterior SC dislocation can press on the great vessels and trachea, so it is an emergency."
+        },
+        "interclavicular-ligament": {
+            "name": "Interclavicular ligament",
+            "kind": "ligament",
+            "joint": "sternoclavicular-joint",
+            "meshes": ["Interclavicular ligament.r"],
+            "attachmentText": "Across the top of the jugular notch, from one clavicle to the other, attaching to the manubrium.",
+            "function": "Limits downward movement (depression) of the clavicle."
+        },
+        "costoclavicular-ligament": {
+            "name": "Costoclavicular ligament",
+            "kind": "ligament",
+            "joint": "sternoclavicular-joint",
+            "meshes": ["Costoclavicular ligament.r"],
+            "attachmentText": "First rib and its costal cartilage, up to the impression on the underside of the medial clavicle.",
+            "function": "The main stabiliser of the SC joint. Limits elevation of the clavicle and acts as the pivot the clavicle turns around.",
+            "tautText": "Taut when the clavicle is elevated (shrugging) and at the extremes of protraction and retraction."
+        },
+        "sternoclavicular-disc": {
+            "name": "Articular disc of sternoclavicular joint",
+            "kind": "disc",
+            "joint": "sternoclavicular-joint",
+            "meshes": ["Articular disc of sternoclavicular joint.r"],
+            "attachmentText": "Upper back of the clavicle's sternal end, down to the first costal cartilage, dividing the joint into two cavities.",
+            "function": "Absorbs force passed along the clavicle from the upper limb and stops the clavicle riding up over the manubrium."
+        },
+        "acromioclavicular-capsule": {
+            "name": "Articular capsule of acromioclavicular joint",
+            "kind": "capsule",
+            "joint": "acromioclavicular-joint",
+            "meshes": ["Articular capsule of acromioclavicular joint.r"],
+            "attachmentText": "Margins of the acromial end of the clavicle and the medial edge of the acromion.",
+            "function": "Encloses the joint."
+        },
+        "acromioclavicular-ligament": {
+            "name": "Acromioclavicular ligament",
+            "kind": "ligament",
+            "joint": "acromioclavicular-joint",
+            "meshes": ["Acromioclavicular ligament.r"],
+            "attachmentText": "Top of the acromion to the top of the lateral end of the clavicle, over the joint.",
+            "function": "Controls front-to-back (horizontal) stability of the joint.",
+            "note": "A grade I AC sprain stretches this ligament; higher grades also tear the coracoclavicular ligaments."
+        },
+        "acromioclavicular-disc": {
+            "name": "Articular disc of acromioclavicular joint",
+            "kind": "disc",
+            "joint": "acromioclavicular-joint",
+            "meshes": ["Articular disc of acromioclavicular joint.r"],
+            "attachmentText": "A small, often incomplete wedge hanging from the top of the capsule.",
+            "function": "Cushions the joint; it often wears away in adults."
+        },
+        "conoid-ligament": {
+            "name": "Conoid ligament",
+            "kind": "ligament",
+            "joint": "acromioclavicular-joint",
+            "meshes": ["Conoid ligament.r"],
+            "attachmentText": "Root of the coracoid process, up to the conoid tubercle on the underside of the clavicle. Shaped like an inverted cone.",
+            "function": "The medial part of the coracoclavicular ligament. Stops the scapula dropping away from the clavicle and limits its forward tilt.",
+            "tautText": "Taut when the scapula is depressed (the arm pulled down) or tilts forward.",
+            "note": "The coracoclavicular ligaments are torn in grade III and higher AC separations, letting the clavicle ride up (step deformity)."
+        },
+        "trapezoid-ligament": {
+            "name": "Trapezoid ligament",
+            "kind": "ligament",
+            "joint": "acromioclavicular-joint",
+            "meshes": ["Trapezoid ligament.r"],
+            "attachmentText": "Upper surface of the coracoid process, up and laterally to the trapezoid line on the underside of the clavicle.",
+            "function": "The lateral part of the coracoclavicular ligament. Stops the acromion being driven under the clavicle.",
+            "tautText": "Taut when the scapula rotates or is pushed in toward the clavicle."
+        },
+        "coraco-acromial-ligament": {
+            "name": "Coraco-acromial ligament",
+            "kind": "ligament",
+            "joint": "scapular-ligaments",
+            "meshes": ["Coraco-acromial ligament.r"],
+            "attachmentText": "Lateral edge of the coracoid process to the tip of the acromion.",
+            "function": "With the acromion and coracoid it forms the coraco-acromial arch, a roof that stops the humeral head moving up.",
+            "note": "The supraspinatus tendon and subacromial bursa run under the arch; narrowing the space can cause subacromial pain (impingement)."
+        },
+        "superior-transverse-scapular-ligament": {
+            "name": "Superior transverse scapular ligament",
+            "kind": "ligament",
+            "joint": "scapular-ligaments",
+            "meshes": ["Superior transverse scapular ligament.r"],
+            "attachmentText": "Bridges the suprascapular notch on the upper border of the scapula.",
+            "function": "Turns the notch into a foramen. The suprascapular nerve passes under it; the artery passes over it.",
+            "note": "The nerve can be trapped here, weakening supraspinatus and infraspinatus."
+        },
+        "inferior-transverse-scapular-ligament": {
+            "name": "Inferior transverse scapular (spinoglenoid) ligament",
+            "kind": "ligament",
+            "joint": "scapular-ligaments",
+            "meshes": ["Inferior transverse scapular ligament.r"],
+            "attachmentText": "Lateral edge of the scapular spine to the back of the glenoid margin, bridging the spinoglenoid notch.",
+            "function": "Covers the suprascapular nerve and vessels as they pass to infraspinatus.",
+            "note": "Compression here (for example by a cyst) weakens infraspinatus alone."
+        },
+        "glenohumeral-capsule": {
+            "name": "Articular capsule of glenohumeral joint",
+            "kind": "capsule",
+            "joint": "glenohumeral-joint",
+            "meshes": ["Articular capsule of glenohumeral joint.r"],
+            "attachmentText": "Edge of the glenoid outside the labrum, to the anatomical neck of the humerus (lower on the medial side).",
+            "function": "Loose enough to let the humerus move freely. Its slack lower part (axillary pouch) tightens in abduction.",
+            "note": "In adhesive capsulitis (frozen shoulder) the capsule thickens and contracts, giving the capsular pattern: lateral rotation most limited."
+        },
+        "glenoid-labrum": {
+            "name": "Glenoid labrum",
+            "kind": "labrum",
+            "joint": "glenohumeral-joint",
+            "meshes": ["Glenoid labrum.r"],
+            "attachmentText": "Rim of the glenoid fossa; at the top it blends with the tendon of the long head of biceps.",
+            "function": "Fibrocartilage ring that deepens the socket and gives the capsule something to attach to.",
+            "note": "A Bankart lesion is a tear of the anterior-inferior labrum after anterior dislocation. A SLAP lesion is a tear at the top where the biceps attaches."
+        },
+        "superior-glenohumeral-ligament": {
+            "name": "Superior glenohumeral ligament",
+            "short": "SGHL",
+            "kind": "ligament",
+            "joint": "glenohumeral-joint",
+            "meshes": ["Superior glenohumeral ligament.r"],
+            "attachmentText": "Top of the glenoid and labrum, near the coracoid root, to the top of the lesser tubercle.",
+            "function": "Limits downward sliding of the humeral head and lateral rotation with the arm at the side.",
+            "tautText": "Taut in adduction and lateral rotation (arm by the side).",
+            "taut": [
+                {"control": "shoulderAbd", "points": [[-10, 1.0], [0, 0.8], [45, 0.4], [90, 0.15]]},
+                {"control": "shoulderRot", "points": [[-60, 0.9], [0, 0.45], [70, 0.2]]}
+            ]
+        },
+        "middle-glenohumeral-ligament": {
+            "name": "Middle glenohumeral ligament",
+            "short": "MGHL",
+            "kind": "ligament",
+            "joint": "glenohumeral-joint",
+            "meshes": ["Middle glenohumeral ligament.r"],
+            "attachmentText": "Front of the glenoid below the SGHL, to the front of the lesser tubercle.",
+            "function": "Limits lateral rotation and forward sliding of the humeral head in the middle range of abduction.",
+            "tautText": "Taut in lateral rotation with the arm at about 45° abduction.",
+            "taut": [
+                {"control": "shoulderRot", "points": [[-60, 1.0], [0, 0.4], [70, 0.15]]}
+            ]
+        },
+        "inferior-glenohumeral-ligament": {
+            "name": "Inferior glenohumeral ligament",
+            "short": "IGHL",
+            "kind": "ligament",
+            "joint": "glenohumeral-joint",
+            "meshes": ["Inferior glenohumeral ligament.r"],
+            "attachmentText": "Lower front of the glenoid and labrum, slinging under the head to the lower anatomical neck. It has an anterior band, a posterior band and the axillary pouch between them.",
+            "function": "The most important stabiliser against anterior dislocation when the arm is raised.",
+            "tautText": "Taut in abduction above 90°; its anterior band tightens with lateral rotation, its posterior band with medial rotation.",
+            "taut": [
+                {"control": "shoulderAbd", "points": [[-10, 0.1], [45, 0.35], [90, 0.75], [150, 1.0]]}
+            ],
+            "note": "Stressed in the apprehension test (abduction and lateral rotation)."
+        },
+        "coracohumeral-ligament": {
+            "name": "Coracohumeral ligament",
+            "kind": "ligament",
+            "joint": "glenohumeral-joint",
+            "meshes": ["Coracohumeral ligament.r"],
+            "attachmentText": "Lateral edge of the coracoid base, to the greater and lesser tubercles on either side of the bicipital groove.",
+            "function": "Strengthens the top of the capsule, covering the rotator interval. Limits lateral rotation and downward sliding with the arm at the side.",
+            "tautText": "Taut in adduction and lateral rotation.",
+            "taut": [
+                {"control": "shoulderAbd", "points": [[-10, 1.0], [0, 0.8], [45, 0.4], [90, 0.15]]},
+                {"control": "shoulderRot", "points": [[-60, 1.0], [0, 0.45], [70, 0.2]]}
+            ],
+            "note": "Thickened and contracted early in frozen shoulder."
+        },
+        "transverse-humeral-ligament": {
+            "name": "Transverse humeral ligament",
+            "kind": "ligament",
+            "joint": "glenohumeral-joint",
+            "meshes": ["Transverse humeral ligament.r"],
+            "attachmentText": "Bridges the intertubercular (bicipital) groove, from the greater to the lesser tubercle.",
+            "function": "Holds the tendon of the long head of biceps in its groove."
+        },
+        "elbow-capsule": {
+            "name": "Articular capsule of elbow joint",
+            "kind": "capsule",
+            "joint": "elbow-joint",
+            "meshes": ["Articular capsule of elbow joint.r"],
+            "attachmentText": "Above the coronoid and radial fossae in front and the olecranon fossa behind, down to the coronoid process, the annular ligament and the olecranon.",
+            "function": "Thin in front and behind so the joint can bend; thickened at the sides into the collateral ligaments."
+        },
+        "ucl-elbow": {
+            "name": "Ulnar collateral ligament of elbow",
+            "short": "UCL",
+            "kind": "ligament",
+            "joint": "elbow-joint",
+            "meshes": ["Ulnar collateral ligament.r"],
+            "attachmentText": "Medial epicondyle of the humerus, fanning to the coronoid process (anterior band) and the olecranon (posterior band), with a transverse band between them.",
+            "function": "Resists valgus stress (the forearm being pushed outward). The anterior band is the main restraint.",
+            "tautText": "The anterior band is taut through most of the range; the posterior band tightens in flexion.",
+            "taut": [
+                {"control": "elbowFlex", "points": [[0, 0.65], [60, 0.75], [145, 1.0]]}
+            ],
+            "note": "Overloaded in throwing; reconstruction is called Tommy John surgery. Tested with the valgus stress and moving valgus tests."
+        },
+        "rcl-elbow": {
+            "name": "Radial collateral ligament of elbow",
+            "short": "RCL",
+            "kind": "ligament",
+            "joint": "elbow-joint",
+            "meshes": ["Radial collateral ligament.r"],
+            "attachmentText": "Lateral epicondyle of the humerus, down to blend with the annular ligament. A lateral ulnar collateral band continues to the supinator crest of the ulna.",
+            "function": "Resists varus stress. Its lateral ulnar band stops the radius and ulna rotating off the humerus (posterolateral instability).",
+            "tautText": "Taut through the whole range of flexion."
+        },
+        "annular-ligament": {
+            "name": "Annular ligament of radius",
+            "kind": "ligament",
+            "joint": "elbow-joint",
+            "meshes": ["Annular ligament of radius.r"],
+            "attachmentText": "Front and back edges of the radial notch of the ulna, encircling the head of the radius.",
+            "function": "Holds the radial head against the ulna while it turns in pronation and supination.",
+            "note": "In young children the radial head can slip out of it when the arm is pulled (pulled elbow, nursemaid's elbow)."
+        },
+        "quadrate-ligament": {
+            "name": "Quadrate ligament",
+            "kind": "ligament",
+            "joint": "elbow-joint",
+            "meshes": ["Quadrate ligament.r"],
+            "attachmentText": "Lower edge of the radial notch of the ulna to the neck of the radius.",
+            "function": "Strengthens the bottom of the proximal radio-ulnar joint and limits spinning of the radial head.",
+            "tautText": "Taut at the extremes of rotation, especially supination.",
+            "taut": [
+                {"control": "forearmPro", "points": [[0, 1.0], [80, 0.35], [160, 0.65]]}
+            ]
+        },
+        "interosseous-membrane-of-forearm": {
+            "name": "Interosseous membrane of forearm",
+            "kind": "membrane",
+            "joint": "radio-ulnar-syndesmosis",
+            "meshes": ["Interosseous membrane of forearm.r"],
+            "attachmentText": "Interosseous borders of the radius and ulna; most fibres run down and medially from radius to ulna.",
+            "function": "Binds the bones, passes load from the radius to the ulna, and gives origin to deep forearm muscles.",
+            "tautText": "Tightest with the forearm in mid-position (between pronation and supination).",
+            "taut": [
+                {"control": "forearmPro", "points": [[0, 0.5], [80, 1.0], [160, 0.45]]}
+            ]
+        },
+        "oblique-cord": {
+            "name": "Oblique cord",
+            "kind": "ligament",
+            "joint": "radio-ulnar-syndesmosis",
+            "meshes": ["Oblique cord.r"],
+            "attachmentText": "Tuberosity of the ulna, down and laterally to the radius just below its tuberosity. Its fibres run opposite to those of the membrane.",
+            "function": "Binds the upper radius and ulna above the membrane.",
+            "tautText": "Taut in supination.",
+            "taut": [
+                {"control": "forearmPro", "points": [[0, 1.0], [80, 0.4], [160, 0.2]]}
+            ]
+        },
+        "dorsal-radio-ulnar-ligament": {
+            "name": "Dorsal radio-ulnar ligament",
+            "kind": "ligament",
+            "joint": "distal-radio-ulnar-joint",
+            "meshes": ["Dorsal radio-ulnar ligament.r"],
+            "attachmentText": "Dorsal edge of the ulnar notch of the radius to the ulnar styloid region, forming the back edge of the TFCC.",
+            "function": "Holds the distal radius and ulna together on the back.",
+            "tautText": "Classically taught as taut in pronation (some studies find the deep fibres act the other way).",
+            "taut": [
+                {"control": "forearmPro", "points": [[0, 0.2], [80, 0.45], [160, 1.0]]}
+            ]
+        },
+        "palmar-radio-ulnar-ligament": {
+            "name": "Palmar radio-ulnar ligament",
+            "kind": "ligament",
+            "joint": "distal-radio-ulnar-joint",
+            "meshes": ["Palmar radio-ulnar ligament.r"],
+            "attachmentText": "Palmar edge of the ulnar notch of the radius to the ulnar styloid region, forming the front edge of the TFCC.",
+            "function": "Holds the distal radius and ulna together on the front.",
+            "tautText": "Classically taught as taut in supination.",
+            "taut": [
+                {"control": "forearmPro", "points": [[0, 1.0], [80, 0.45], [160, 0.2]]}
+            ]
+        },
+        "druj-disc": {
+            "name": "Articular disc of distal radio-ulnar joint (TFCC)",
+            "short": "TFCC disc",
+            "kind": "disc",
+            "joint": "distal-radio-ulnar-joint",
+            "meshes": ["Articular disc of distal radio-ulnar joint.r"],
+            "attachmentText": "Triangular plate from the ulnar edge of the radius to the base of the ulnar styloid.",
+            "function": "Binds the radius to the ulna, separates the ulna from the carpus and cushions load through the ulnar side of the wrist.",
+            "note": "The centre of the triangular fibrocartilage complex (TFCC). Tears give ulnar-sided wrist pain, often with a fall or twisting."
+        },
+        "radiocarpal-capsule": {
+            "name": "Articular capsule of radiocarpal joint",
+            "kind": "capsule",
+            "joint": "wrist-joint",
+            "meshes": ["Articular capsule of radiocarpal joint.r"],
+            "attachmentText": "Distal ends of the radius and ulna (via the disc) to the proximal row of carpal bones.",
+            "function": "Encloses the wrist joint; thickened by the palmar, dorsal and collateral ligaments."
+        },
+        "dorsal-radiocarpal-ligament": {
+            "name": "Dorsal radiocarpal ligament",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": ["Dorsal radiocarpal ligament.r"],
+            "attachmentText": "Back of the distal radius, down and medially to the lunate and triquetrum.",
+            "function": "Limits flexion and keeps the carpus moving with the radius as the forearm turns.",
+            "tautText": "Taut in wrist flexion.",
+            "taut": [
+                {"control": "wristFlex", "points": [[-70, 0.1], [0, 0.4], [80, 1.0]]}
+            ]
+        },
+        "dorsal-ulnocarpal-ligament": {
+            "name": "Dorsal ulnocarpal ligament",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": ["Dorsal ulnocarpal ligament.r"],
+            "attachmentText": "Back of the ulnar styloid region and disc to the triquetrum.",
+            "function": "Reinforces the back of the ulnar side of the wrist.",
+            "tautText": "Taut in wrist flexion.",
+            "taut": [
+                {"control": "wristFlex", "points": [[-70, 0.1], [0, 0.4], [80, 0.9]]}
+            ]
+        },
+        "radioscaphocapitate-ligament": {
+            "name": "Radioscaphocapitate ligament",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": ["Radioscaphocapitate ligament.r"],
+            "attachmentText": "Radial styloid, across the waist of the scaphoid, to the capitate.",
+            "function": "The most lateral palmar radiocarpal ligament; supports the scaphoid like a sling.",
+            "tautText": "Taut in wrist extension.",
+            "taut": [
+                {"control": "wristFlex", "points": [[-70, 1.0], [0, 0.4], [80, 0.15]]}
+            ]
+        },
+        "radiocapitate-ligament": {
+            "name": "Radiocapitate (long radiolunate) ligament",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": ["Radiocapitate ligament.r"],
+            "attachmentText": "Palmar rim of the distal radius, toward the lunate and capitate, next to the radioscaphocapitate ligament.",
+            "function": "Part of the palmar radiocarpal ligament. Stops the carpus sliding toward the ulna and limits extension.",
+            "tautText": "Taut in wrist extension.",
+            "taut": [
+                {"control": "wristFlex", "points": [[-70, 1.0], [0, 0.4], [80, 0.15]]}
+            ]
+        },
+        "ulnocarpal-ligaments": {
+            "name": "Palmar ulnocarpal ligaments",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": [
+                "Ulnolunate ligament.r",
+                "Ulnotriquetral ligament.r",
+                "Ulnocapitate ligament.r",
+                "Ulnopisiform ligament"
+            ],
+            "attachmentText": "Palmar edge of the TFCC disc and the base of the ulnar styloid, to the lunate, triquetrum, capitate and pisiform.",
+            "function": "Support the ulnar side of the carpus and limit extension. Part of the TFCC.",
+            "tautText": "Taut in wrist extension (and radial deviation).",
+            "taut": [
+                {"control": "wristFlex", "points": [[-70, 1.0], [0, 0.4], [80, 0.15]]}
+            ]
+        },
+        "radial-collateral-ligament-of-wrist": {
+            "name": "Radial collateral ligament of wrist",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": ["Radial collateral ligament of wrist joint.r"],
+            "attachmentText": "Tip of the radial styloid to the scaphoid (and trapezium).",
+            "function": "Limits ulnar deviation.",
+            "tautText": "Taut in ulnar deviation.",
+            "taut": [
+                {"control": "wristDev", "points": [[-20, 0.15], [0, 0.4], [35, 1.0]]}
+            ]
+        },
+        "ulnar-collateral-ligament-of-wrist": {
+            "name": "Ulnar collateral ligament of wrist",
+            "kind": "ligament",
+            "joint": "wrist-joint",
+            "meshes": ["Ulnar collateral ligament of wrist joint.r"],
+            "attachmentText": "Ulnar styloid to the triquetrum and pisiform.",
+            "function": "Limits radial deviation. Part of the TFCC.",
+            "tautText": "Taut in radial deviation.",
+            "taut": [
+                {"control": "wristDev", "points": [[-20, 1.0], [0, 0.4], [35, 0.15]]}
+            ]
+        },
+        "scapholunate-interosseous-ligament": {
+            "name": "Scapholunate interosseous ligament",
+            "short": "SLIL",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": ["Scapholunate interosseous ligament.r"],
+            "attachmentText": "Between the facing surfaces of the scaphoid and lunate; thickest on its dorsal side.",
+            "function": "The key stabiliser of the proximal row. Stops the scaphoid flexing and the lunate extending away from each other.",
+            "note": "Tears (often from a fall on the outstretched hand) cause a gap between the scaphoid and lunate on X-ray and, untreated, a pattern of arthritis called SLAC wrist. Tested with the Watson scaphoid shift test."
+        },
+        "lunotriquetral-ligaments": {
+            "name": "Lunotriquetral interosseous ligament",
+            "short": "LTIL",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": ["Lunotriquetral interosseous ligament.r", "Palmar lunotriquetral ligament.r"],
+            "attachmentText": "Between the facing surfaces of the lunate and triquetrum, with a thicker palmar part.",
+            "function": "Binds the lunate to the triquetrum on the ulnar side of the proximal row.",
+            "note": "Tears cause ulnar-sided wrist pain; tested with the lunotriquetral ballottement test."
+        },
+        "distal-row-intercarpal-ligaments": {
+            "name": "Intercarpal ligaments of the distal row",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": [
+                "Trapeziotrapezoidal interosseous ligament.r",
+                "Trapezoideocapitate interosseous ligament.r",
+                "Capitohamate interosseous ligament.r",
+                "Palmar trapezoideocapitate ligament.r",
+                "Palmar capitohamate ligament.r"
+            ],
+            "attachmentText": "Between the trapezium, trapezoid, capitate and hamate: interosseous and palmar sets.",
+            "function": "Bind the distal row so tightly that it moves as one unit with the metacarpals."
+        },
+        "palmar-midcarpal-ligaments": {
+            "name": "Palmar midcarpal (arcuate) ligaments",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": [
+                "Scaphocapitate ligament.r",
+                "Triquetrocapitate ligament.r",
+                "Triquetrohamate ligament.r",
+                "Palmar scaphotriquetral ligament.r"
+            ],
+            "attachmentText": "From the scaphoid and triquetrum of the proximal row to the capitate and hamate of the distal row, forming a V (arcuate) shape.",
+            "function": "Stabilise the midcarpal joint and guide the proximal row as the wrist deviates.",
+            "note": "Laxity of the triquetral side causes midcarpal instability, with a painful clunk on ulnar deviation."
+        },
+        "stt-ligament": {
+            "name": "Scaphotrapeziotrapezoidal ligament",
+            "short": "STT",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": ["Scaphotrapeziotrapezoidal ligament.r"],
+            "attachmentText": "Distal pole of the scaphoid to the trapezium and trapezoid.",
+            "function": "Stabilises the distal scaphoid against the thumb's base."
+        },
+        "radiate-carpal-ligament": {
+            "name": "Radiate carpal ligament",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": ["Radiate carpal ligament.r"],
+            "attachmentText": "Palmar surface of the head of the capitate, radiating to the scaphoid, lunate and triquetrum.",
+            "function": "Binds the capitate to the bones around it on the palmar side."
+        },
+        "dorsal-intercarpal-ligament": {
+            "name": "Dorsal intercarpal ligament",
+            "kind": "ligament",
+            "joint": "midcarpal-joints",
+            "meshes": ["Dorsal intercarpal ligaments.r", "Dorsal scaphotriquetral ligament.r"],
+            "attachmentText": "Triquetrum across the back of the carpus to the scaphoid, trapezium and trapezoid.",
+            "function": "With the dorsal radiocarpal ligament, forms a V that stabilises the back of the wrist and the scaphoid.",
+            "tautText": "Taut in wrist flexion.",
+            "taut": [
+                {"control": "wristFlex", "points": [[-70, 0.1], [0, 0.4], [80, 0.9]]}
+            ]
+        },
+        "pisotriquetral-ligament": {
+            "name": "Pisotriquetral capsule and ligament",
+            "kind": "ligament",
+            "joint": "pisiform-joint",
+            "meshes": ["Pisotriquetral ligament.r"],
+            "attachmentText": "Around the joint between the pisiform and the triquetrum.",
+            "function": "Holds the pisiform on the triquetrum."
+        },
+        "pisohamate-ligament": {
+            "name": "Pisohamate ligament",
+            "kind": "ligament",
+            "joint": "pisiform-joint",
+            "meshes": ["Pisohamate ligament.r"],
+            "attachmentText": "Pisiform to the hook of the hamate.",
+            "function": "Carries the pull of flexor carpi ulnaris to the hamate. Forms the floor of the ulnar (Guyon's) canal.",
+            "note": "The ulnar nerve and artery pass through Guyon's canal over this ligament; compression there affects the hand only."
+        },
+        "pisometacarpal-ligament": {
+            "name": "Pisometacarpal ligament",
+            "kind": "ligament",
+            "joint": "pisiform-joint",
+            "meshes": ["Pisometacarpal ligament.r"],
+            "attachmentText": "Pisiform to the base of the fifth metacarpal.",
+            "function": "Carries the pull of flexor carpi ulnaris on to the fifth metacarpal, so it acts on the wrist."
+        },
+        "carpometacarpal-ligaments": {
+            "name": "Dorsal and palmar carpometacarpal ligaments",
+            "kind": "ligament",
+            "joint": "carpometacarpal-joints",
+            "meshes": ["Dorsal carpometacarpal ligaments.r", "Palmar carpometacarpal ligaments.r"],
+            "attachmentText": "Distal row of carpal bones to the bases of the metacarpals, on the back and front.",
+            "function": "Bind the metacarpal bases to the carpus; very tight at the second and third, looser at the fourth and fifth.",
+            "note": "The thumb CMC joint has its own capsule and ligaments (including the anterior oblique or beak ligament); it is a common site of osteoarthritis."
+        },
+        "metacarpal-ligaments": {
+            "name": "Dorsal, palmar and interosseous metacarpal ligaments",
+            "kind": "ligament",
+            "joint": "carpometacarpal-joints",
+            "meshes": [
+                "Dorsal metacarpal ligaments.r",
+                "Palmar metacarpal ligaments.r",
+                "Interosseous metacarpal ligaments.r"
+            ],
+            "attachmentText": "Between the bases of neighbouring metacarpals (second to fifth).",
+            "function": "Bind the metacarpal bases together at the intermetacarpal joints."
+        },
+        "mcp-capsules": {
+            "name": "Articular capsules of metacarpophalangeal joints",
+            "kind": "capsule",
+            "joint": "mcp-joints",
+            "meshes": ["Articular capsules of metacarpophalangeal joints.r"],
+            "attachmentText": "Around the margins of each metacarpal head and the base of its proximal phalanx; thickened in front by the palmar plate.",
+            "function": "Enclose the knuckle joints."
+        },
+        "mcp-collateral-ligaments": {
+            "name": "Collateral ligaments of MCP joints",
+            "kind": "ligament",
+            "joint": "mcp-joints",
+            "meshes": ["Collateral metacarpophalangeal ligaments.r"],
+            "attachmentText": "Tubercles on the sides of each metacarpal head, running obliquely forward to the sides of the proximal phalanx base.",
+            "function": "Resist sideways bending at the knuckles. Because the metacarpal head is cam-shaped, they are slack in extension and tight in flexion.",
+            "tautText": "Taut in flexion; slack in extension (which is why the fingers can spread only when straight).",
+            "note": "Injury to the thumb's ulnar collateral ligament at the MCP joint is skier's or gamekeeper's thumb. Hands are splinted with MCPs flexed so these ligaments do not shorten."
+        },
+        "deep-transverse-metacarpal-ligament": {
+            "name": "Deep transverse metacarpal ligament",
+            "kind": "ligament",
+            "joint": "mcp-joints",
+            "meshes": ["Deep transverse metacarpal ligament.r"],
+            "attachmentText": "Joins the palmar plates of the second to fifth MCP joints. (The thumb is not included, which frees it to oppose.)",
+            "function": "Ties the metacarpal heads together. The lumbricals pass in front of it and the interossei behind it."
+        },
+        "hand-ip-capsules": {
+            "name": "Articular capsules of interphalangeal joints of hand",
+            "kind": "capsule",
+            "joint": "hand-ip-joints",
+            "meshes": [
+                "Articular capsules of proximal interphalangeal joints.r",
+                "Articular capsules of distal interphalangeal joints.r"
+            ],
+            "attachmentText": "Around the margins of each PIP and DIP joint.",
+            "function": "Enclose the finger joints."
+        },
+        "hand-ip-collateral-ligaments": {
+            "name": "Collateral ligaments of interphalangeal joints of hand",
+            "kind": "ligament",
+            "joint": "hand-ip-joints",
+            "meshes": ["Collateral interphalangeal ligaments of hand.r"],
+            "attachmentText": "Sides of each phalanx head to the sides of the next phalanx base.",
+            "function": "Stop the fingers bending sideways.",
+            "tautText": "At the PIP joint, tightest in extension; the joint is splinted straight to protect them."
+        },
+        "hand-palmar-plates": {
+            "name": "Palmar plates of interphalangeal joints",
+            "kind": "ligament",
+            "joint": "hand-ip-joints",
+            "meshes": ["Palmar interphalangeal ligaments.r"],
+            "attachmentText": "Thick fibrocartilage across the front of each PIP and DIP joint, fixed firmly to the base of the more distal phalanx.",
+            "function": "Stop hyperextension of the finger joints.",
+            "tautText": "Taut in extension.",
+            "note": "PIP hyperextension injuries (jammed finger) damage the palmar plate; scarring can leave a flexion contracture."
+        }
+    }
+}

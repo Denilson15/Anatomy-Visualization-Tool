@@ -1,0 +1,322 @@
+{
+    "joints": {
+        "vertebral-joints": {
+            "name": "Joints of the vertebral column",
+            "area": "back",
+            "type": "Intervertebral discs (secondary cartilaginous joints) between the bodies, synovial plane facet (zygapophyseal) joints between the arches, and fibrous ligaments linking the arches",
+            "summary": "Each pair of vertebrae is joined by a disc in front and two facet joints behind, held together by long ligaments running the length of the column and short ones between neighbouring arches. Ligaments behind the bodies tighten in flexion; the anterior longitudinal ligament tightens in extension.",
+            "closePacked": "Full extension (facet joints).",
+            "resting": "Midway between flexion and extension.",
+            "capsularPattern": "Side flexion and rotation equally limited, then extension.",
+            "views": [1, 0.1, -0.6]
+        },
+        "costovertebral-joints": {
+            "name": "Costovertebral and costotransverse joints",
+            "area": "thorax-area",
+            "type": "Synovial plane joints",
+            "summary": "Each rib's head meets the bodies of two vertebrae and the disc between them, and its tubercle meets the transverse process of the lower vertebra. Together they set the axis for the bucket-handle and pump-handle movements of breathing.",
+            "views": [1, 0.3, -0.6]
+        },
+        "intercostal-membranes": {
+            "name": "Intercostal membranes",
+            "area": "thorax-area",
+            "type": "Membranes of the thoracic wall (not a joint)",
+            "summary": "Thin aponeurotic sheets that continue the intercostal muscles where the muscle fibres stop: the external membrane in front near the sternum, the internal membrane at the back near the spine.",
+            "views": [0.6, 0.1, 1]
+        },
+        "sacro-iliac-joint": {
+            "name": "Sacro-iliac joint",
+            "area": "abdomen",
+            "type": "Synovial plane joint in front, with a strong fibrous (syndesmosis) part behind",
+            "summary": "The sacrum is wedged between the two ilia and held mainly by ligaments. It moves only a few degrees: the sacral base nods forward (nutation) and back (counternutation).",
+            "capsularPattern": "Pain when the joint is stressed.",
+            "views": [0.4, 0.2, -1]
+        },
+        "pubic-symphysis-joint": {
+            "name": "Pubic symphysis",
+            "area": "abdomen",
+            "type": "Secondary cartilaginous joint (symphysis)",
+            "summary": "The two pubic bones meet in the midline across a fibrocartilage disc. It allows very small movements that let the pelvic ring flex under load, and it widens slightly in pregnancy.",
+            "views": [0, -0.2, 1]
+        },
+        "pelvic-ligaments": {
+            "name": "Ligaments of the pelvis",
+            "area": "abdomen",
+            "type": "Fibrous ligaments and membranes",
+            "summary": "Ligaments that bind the sacrum to the ilium and ischium, the lumbar spine to the pelvis, and close the obturator foramen. The sacrotuberous and sacrospinous ligaments turn the sciatic notches into the greater and lesser sciatic foramina.",
+            "views": [0.5, 0.1, -1]
+        },
+        "sacrococcygeal-joint": {
+            "name": "Sacrococcygeal joint",
+            "area": "abdomen",
+            "type": "Secondary cartilaginous joint (symphysis)",
+            "summary": "The coccyx meets the apex of the sacrum. It flexes slightly forward and back, more so during childbirth and sitting.",
+            "views": [0.3, -0.3, -1]
+        }
+    },
+    "ligaments": {
+        "anterior-longitudinal-ligament": {
+            "name": "Anterior longitudinal ligament",
+            "short": "ALL",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": ["Anterior longitudinal ligament"],
+            "attachmentText": "Front of the vertebral bodies and discs, from the occipital bone and anterior tubercle of the atlas down to the front of the sacrum.",
+            "function": "Limits extension of the spine. Broad and strong; it is the only long ligament that tightens in extension.",
+            "tautText": "Taut in extension.",
+            "taut": [
+                {"control": "trunkFlex", "points": [[-25, 1.0], [0, 0.45], [80, 0.1]]}
+            ],
+            "note": "Injured in whiplash hyperextension of the neck."
+        },
+        "posterior-longitudinal-ligament": {
+            "name": "Posterior longitudinal ligament",
+            "short": "PLL",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": ["Posterior longitudinal ligament"],
+            "attachmentText": "Back of the vertebral bodies and discs, inside the vertebral canal, from the axis (where it continues up as the tectorial membrane) to the sacrum.",
+            "function": "Limits flexion. Narrower than the ALL and narrowest in the lumbar spine.",
+            "tautText": "Taut in flexion.",
+            "taut": [
+                {"control": "trunkFlex", "points": [[-25, 0.15], [0, 0.4], [80, 1.0]]}
+            ],
+            "note": "Because it narrows in the lumbar region and covers the middle of the disc, lumbar disc herniations usually bulge posterolaterally, beside it, toward the nerve roots."
+        },
+        "ligamenta-flava": {
+            "name": "Ligamenta flava",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": ["Ligamenta flava"],
+            "attachmentText": "Between the laminae of neighbouring vertebrae, from the axis to the sacrum, forming the back wall of the vertebral canal.",
+            "function": "Elastic (yellow) ligaments that limit flexion, help the spine return to upright, and keep the canal wall smooth so it does not buckle into the cord.",
+            "tautText": "Under some tension even at rest; tightest in flexion.",
+            "taut": [
+                {"control": "trunkFlex", "points": [[-25, 0.3], [0, 0.5], [80, 1.0]]}
+            ],
+            "note": "Thickening with age contributes to spinal stenosis. A lumbar puncture needle passes through it."
+        },
+        "interspinous-ligaments": {
+            "name": "Interspinous ligaments",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": ["Interspinous ligaments"],
+            "attachmentText": "Between neighbouring spinous processes, from root to tip.",
+            "function": "Limit flexion.",
+            "tautText": "Taut in flexion.",
+            "taut": [
+                {"control": "trunkFlex", "points": [[-25, 0.05], [0, 0.3], [80, 1.0]]}
+            ]
+        },
+        "supraspinous-ligament": {
+            "name": "Supraspinous ligament",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": ["Supraspinous ligament"],
+            "attachmentText": "Over the tips of the spinous processes from C7 to the sacrum; above C7 it continues as the nuchal ligament.",
+            "function": "Limits flexion. The farthest ligament from the axis of movement, so it is the first to tighten.",
+            "tautText": "Taut in flexion.",
+            "taut": [
+                {"control": "trunkFlex", "points": [[-25, 0.05], [0, 0.3], [80, 1.0]]}
+            ]
+        },
+        "intertransverse-ligaments": {
+            "name": "Intertransverse ligaments",
+            "kind": "ligament",
+            "joint": "vertebral-joints",
+            "meshes": ["Intertransverse ligaments.r"],
+            "attachmentText": "Between neighbouring transverse processes; best developed in the lumbar region.",
+            "function": "Limit side bending to the opposite side.",
+            "tautText": "The right-side ligaments are taut when the trunk bends to the left.",
+            "taut": [
+                {"control": "trunkLat", "points": [[-30, 1.0], [0, 0.4], [30, 0.1]]}
+            ]
+        },
+        "intervertebral-discs": {
+            "name": "Intervertebral discs (annulus fibrosus)",
+            "short": "Discs",
+            "kind": "disc",
+            "joint": "vertebral-joints",
+            "meshes": [
+                "Intervertebral disc C2-C3", "Intervertebral disc C3-C4", "Intervertebral disc C4-C5",
+                "Intervertebral disc C5-C6", "Intervertebral disc C6-C7", "Intervertebral disc C7-T1",
+                "Intervertebral disc T1-T2", "Intervertebral disc T2-T3", "Intervertebral disc T3-T4",
+                "Intervertebral disc T4-T5", "Intervertebral disc T5-T6", "Intervertebral disc T6-T7",
+                "Intervertebral disc T7-T8", "Intervertebral disc T8-T9", "Intervertebral disc T9-T10",
+                "Intervertebral disc T10-T11", "Intervertebral disc T11-T12", "Intervertebral disc T12-L1",
+                "Intervertebral disc L1-L2", "Intervertebral disc L2-L3", "Intervertebral disc L3-L4",
+                "Intervertebral disc L4-L5", "Intervertebral disc L5-S1"
+            ],
+            "attachmentText": "Between the bodies of neighbouring vertebrae from C2–C3 to L5–S1, bound to the hyaline end plates above and below. There is no disc between the skull and atlas or between the atlas and axis.",
+            "function": "The annulus is rings of fibrocartilage whose fibres alternate direction from layer to layer, holding in the nucleus and resisting twisting. The discs make up about a quarter of the column's length.",
+            "tautText": "In flexion the back of the annulus is stretched and the nucleus is pushed backward; in extension the reverse.",
+            "note": "Lumbar discs (especially L4–L5 and L5–S1) and cervical discs (C5–C6 and C6–C7) herniate most often."
+        },
+        "nucleus-pulposus": {
+            "name": "Nucleus pulposus",
+            "kind": "disc",
+            "joint": "vertebral-joints",
+            "meshes": [
+                "Nucleus pulposus C2-C3", "Nucleus pulposus C3-C4", "Nucleus pulposus C4-C5",
+                "Nucleus pulposus C5-C6", "Nucleus pulposus C6-C7", "Nucleus pulposus C7-T1",
+                "Nucleus pulposus T1-T2", "Nucleus pulposus T2-T3", "Nucleus pulposus T3-T4",
+                "Nucleus pulposus T4-T5", "Nucleus pulposus T5-T6", "Nucleus pulposus T6-T7",
+                "Nucleus pulposus T7-T8", "Nucleus pulposus T8-T9", "Nucleus pulposus T9-T10",
+                "Nucleus pulposus T10-T11", "Nucleus pulposus T11-T12", "Nucleus pulposus T12-L1",
+                "Nucleus pulposus L1-L2", "Nucleus pulposus L2-L3", "Nucleus pulposus L3-L4",
+                "Nucleus pulposus L4-L5", "Nucleus pulposus L5-S1"
+            ],
+            "attachmentText": "The gel centre of each disc, slightly behind its middle, enclosed by the annulus and the end plates.",
+            "function": "Spreads compressive load evenly over the end plates, acting like a water cushion. It loses water through the day and with age.",
+            "note": "A herniation is nucleus material pushing through a tear in the annulus, usually posterolaterally."
+        },
+        "radiate-ligament-of-head-of-rib": {
+            "name": "Radiate ligament of head of rib",
+            "kind": "ligament",
+            "joint": "costovertebral-joints",
+            "meshes": ["Radiate ligament of head of rib.r"],
+            "attachmentText": "Front of the rib head, fanning out to the bodies of the two vertebrae and the disc between them.",
+            "function": "Binds the rib head to the vertebral bodies."
+        },
+        "intra-articular-ligament-of-head-of-rib": {
+            "name": "Intra-articular ligament of head of rib",
+            "kind": "ligament",
+            "joint": "costovertebral-joints",
+            "meshes": ["Intra-articular ligament of head of rib.r", "Intra-articular ligament of head of rib"],
+            "attachmentText": "Crest of the rib head to the intervertebral disc, splitting the joint into two cavities.",
+            "function": "Ties the rib head to the disc. Ribs 1, 10, 11 and 12 meet only one vertebra and have no such ligament."
+        },
+        "costotransverse-ligament": {
+            "name": "Costotransverse ligaments",
+            "kind": "ligament",
+            "joint": "costovertebral-joints",
+            "meshes": ["Costotransverse ligament.r"],
+            "attachmentText": "Neck and tubercle of the rib to the transverse process of its own vertebra (costotransverse and lateral costotransverse ligaments) and the one above (superior costotransverse ligament).",
+            "function": "Hold the rib's tubercle against its transverse process, the pivot for rib movement in breathing."
+        },
+        "external-intercostal-membrane": {
+            "name": "External intercostal membrane",
+            "kind": "membrane",
+            "joint": "intercostal-membranes",
+            "meshes": ["External intercostal membrane.r"],
+            "attachmentText": "Between neighbouring ribs at the front, from where the external intercostal muscle ends to the costochondral junctions and sternum.",
+            "function": "Continues the external intercostal layer forward to the sternum."
+        },
+        "internal-intercostal-membrane": {
+            "name": "Internal intercostal membrane",
+            "kind": "membrane",
+            "joint": "intercostal-membranes",
+            "meshes": ["Internal intercostal membrane.r"],
+            "attachmentText": "Between neighbouring ribs at the back, from the angles of the ribs to the vertebral column.",
+            "function": "Continues the internal intercostal layer back to the spine."
+        },
+        "anterior-sacro-iliac-ligament": {
+            "name": "Anterior sacro-iliac ligament",
+            "kind": "ligament",
+            "joint": "sacro-iliac-joint",
+            "meshes": ["Anterior sacro-iliac ligament.r"],
+            "attachmentText": "Thin band across the front of the joint, from the sacrum to the ilium.",
+            "function": "The front of the joint capsule. The weakest of the sacro-iliac ligaments.",
+            "note": "Often the first to give way, and a source of pain in pregnancy."
+        },
+        "interosseous-sacro-iliac-ligament": {
+            "name": "Interosseous sacro-iliac ligament",
+            "kind": "ligament",
+            "joint": "sacro-iliac-joint",
+            "meshes": ["Interosseous sacro-iliac ligament.r"],
+            "attachmentText": "Short, thick fibres filling the gap between the sacral tuberosity and the iliac tuberosity, behind the joint surfaces.",
+            "function": "The strongest ligament of the joint; the main bond between sacrum and ilium."
+        },
+        "posterior-sacro-iliac-ligament": {
+            "name": "Posterior sacro-iliac ligament",
+            "kind": "ligament",
+            "joint": "sacro-iliac-joint",
+            "meshes": ["Posterior sacro-iliac ligament.r"],
+            "attachmentText": "Posterior superior iliac spine and iliac crest to the lateral sacral crest. The long posterior band runs down to the third and fourth sacral segments.",
+            "function": "Holds the back of the joint together. The long posterior band limits counternutation.",
+            "tautText": "The long band is taut in counternutation (the sacral base tipping backward).",
+            "note": "Its long band can be felt just below the PSIS and is often tender in pelvic girdle pain."
+        },
+        "interpubic-disc": {
+            "name": "Interpubic disc",
+            "kind": "disc",
+            "joint": "pubic-symphysis-joint",
+            "meshes": ["Interpubic disc", "Pubic symphysis"],
+            "attachmentText": "Fibrocartilage between the hyaline-covered medial surfaces of the two pubic bones.",
+            "function": "Joins the pubic bones and absorbs shear through the front of the pelvic ring.",
+            "note": "Softens in pregnancy under the influence of relaxin; symphysis pubis dysfunction causes pain with single-leg stance."
+        },
+        "superior-pubic-ligament": {
+            "name": "Superior pubic ligament",
+            "kind": "ligament",
+            "joint": "pubic-symphysis-joint",
+            "meshes": ["Superior pubic ligament"],
+            "attachmentText": "Across the top of the symphysis, from one pubic tubercle to the other.",
+            "function": "Strengthens the top of the joint."
+        },
+        "inferior-pubic-ligament": {
+            "name": "Inferior (arcuate) pubic ligament",
+            "kind": "ligament",
+            "joint": "pubic-symphysis-joint",
+            "meshes": ["Inferior pubic ligament"],
+            "attachmentText": "Arches under the symphysis between the two inferior pubic rami, rounding off the top of the pubic arch.",
+            "function": "The strongest ligament of the symphysis."
+        },
+        "sacrotuberous-ligament": {
+            "name": "Sacrotuberous ligament",
+            "kind": "ligament",
+            "joint": "pelvic-ligaments",
+            "meshes": ["Sacrotuberous ligament.r"],
+            "attachmentText": "Posterior iliac spines, the side of the sacrum and coccyx, down to the ischial tuberosity.",
+            "function": "Resists nutation (the sacral base tipping forward under body weight). Gluteus maximus and the long head of biceps femoris attach to it.",
+            "tautText": "Taut in nutation of the sacrum."
+        },
+        "sacrospinous-ligament": {
+            "name": "Sacrospinous ligament",
+            "kind": "ligament",
+            "joint": "pelvic-ligaments",
+            "meshes": ["Sacrospinous ligament.r"],
+            "attachmentText": "Side of the lower sacrum and coccyx to the ischial spine, in front of the sacrotuberous ligament.",
+            "function": "Resists nutation and separates the greater sciatic foramen (above) from the lesser (below).",
+            "tautText": "Taut in nutation of the sacrum.",
+            "note": "Piriformis, the sciatic nerve and the gluteal vessels leave the pelvis through the greater sciatic foramen above it."
+        },
+        "iliolumbar-ligament": {
+            "name": "Iliolumbar ligament",
+            "kind": "ligament",
+            "joint": "pelvic-ligaments",
+            "meshes": ["Iliolumbar ligament.r"],
+            "attachmentText": "Transverse process of L5 (and often L4) to the back of the iliac crest.",
+            "function": "Anchors L5 to the pelvis and limits its side bending, rotation and forward slip on the sacrum.",
+            "tautText": "The right ligament is taut in side bending to the left (and in flexion).",
+            "taut": [
+                {"control": "trunkLat", "points": [[-30, 0.9], [0, 0.4], [30, 0.2]]}
+            ]
+        },
+        "obturator-membrane": {
+            "name": "Obturator membrane",
+            "kind": "membrane",
+            "joint": "pelvic-ligaments",
+            "meshes": ["Obturator membrane.r"],
+            "attachmentText": "Margins of the obturator foramen, leaving a gap at the top (the obturator canal).",
+            "function": "Closes the obturator foramen and gives origin to the obturator internus and externus. The obturator nerve and vessels pass through the canal at its top."
+        },
+        "sacrococcygeal-symphysis": {
+            "name": "Sacrococcygeal symphysis",
+            "kind": "disc",
+            "joint": "sacrococcygeal-joint",
+            "meshes": ["Sacrococcygeal symphysis"],
+            "attachmentText": "Fibrocartilage disc and ligaments between the apex of the sacrum and the base of the coccyx.",
+            "function": "Joins the coccyx to the sacrum while letting it bend slightly.",
+            "note": "Falls onto the tailbone can sprain or dislocate this joint (coccydynia)."
+        },
+        "intercornual-ligament": {
+            "name": "Intercornual ligament",
+            "kind": "ligament",
+            "joint": "sacrococcygeal-joint",
+            "meshes": ["Intercornual ligament.r"],
+            "attachmentText": "Between the sacral cornua and the coccygeal cornua.",
+            "function": "Binds the horns of the sacrum and coccyx together at the back."
+        }
+    }
+}

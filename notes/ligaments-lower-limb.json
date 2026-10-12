@@ -1,0 +1,757 @@
+{
+    "joints": {
+        "hip-joint": {
+            "name": "Hip joint",
+            "area": "hip-gluteal",
+            "type": "Synovial ball-and-socket joint",
+            "summary": "The femoral head sits deep in the acetabulum, deepened by the labrum. Three capsular ligaments spiral around the neck of the femur and wind tight in extension, which is why standing upright takes so little muscle work.",
+            "closePacked": "Full extension, medial rotation and abduction.",
+            "resting": "About 30° flexion, 30° abduction and slight lateral rotation.",
+            "capsularPattern": "Flexion, abduction and medial rotation most limited (medial rotation is sometimes the most limited).",
+            "views": [0, 0.2, 1]
+        },
+        "knee-joint": {
+            "name": "Knee joint",
+            "area": "thigh-knee",
+            "type": "Synovial modified hinge joint (tibiofemoral), plus the patellofemoral joint",
+            "summary": "The femur rolls and glides on the tibial plateaus, cushioned by the menisci. The cruciates control front-to-back sliding, the collaterals control side-to-side gapping, and the posterior capsule and its ligaments stop hyperextension.",
+            "closePacked": "Full extension with lateral rotation of the tibia (the screw-home position).",
+            "resting": "About 25° flexion.",
+            "capsularPattern": "Flexion more limited than extension.",
+            "views": [0.3, 0.1, 1]
+        },
+        "superior-tibiofibular": {
+            "name": "Superior (proximal) tibiofibular joint",
+            "area": "leg-ankle",
+            "type": "Synovial plane joint",
+            "summary": "The head of the fibula glides on the lateral condyle of the tibia. It moves a little whenever the ankle moves, because the fibula shifts as the talus spreads the ankle mortise.",
+            "closePacked": "Not described.",
+            "resting": "About 25° knee flexion and 10° plantarflexion.",
+            "capsularPattern": "Pain when the joint is stressed.",
+            "views": [1, 0.1, 0.4]
+        },
+        "tibiofibular-syndesmosis": {
+            "name": "Interosseous membrane and distal tibiofibular syndesmosis",
+            "area": "leg-ankle",
+            "type": "Fibrous joint (syndesmosis)",
+            "summary": "A sheet of fibres binds the tibia and fibula along their whole length, and strong ligaments hold their lower ends together to form the roof and walls of the ankle mortise.",
+            "closePacked": "Full dorsiflexion (the wide front of the talus spreads the mortise).",
+            "resting": "Plantarflexion.",
+            "views": [0.6, 0.1, 1]
+        },
+        "ankle-joint": {
+            "name": "Ankle (talocrural) joint",
+            "area": "leg-ankle",
+            "type": "Synovial hinge joint",
+            "summary": "The talus sits in the mortise formed by the tibia and fibula. Lateral ligaments (three separate bands) and the fan-shaped medial (deltoid) ligament stop the talus tipping or sliding.",
+            "closePacked": "Maximal dorsiflexion.",
+            "resting": "About 10° plantarflexion, midway between full inversion and eversion.",
+            "capsularPattern": "Plantarflexion more limited than dorsiflexion.",
+            "views": [1, 0.2, 0.6]
+        },
+        "subtalar-joint": {
+            "name": "Subtalar (talocalcaneal) joint",
+            "area": "foot-area",
+            "type": "Synovial plane joint",
+            "summary": "The talus sits on the calcaneus. Together with the talocalcaneonavicular joint it produces inversion and eversion of the foot.",
+            "closePacked": "Supination (inversion).",
+            "resting": "Midway between the extremes of range.",
+            "capsularPattern": "Limited varus (inversion) range.",
+            "views": [1, 0.3, 0.3]
+        },
+        "talocalcaneonavicular-joint": {
+            "name": "Talocalcaneonavicular joint",
+            "area": "foot-area",
+            "type": "Synovial ball-and-socket-like joint",
+            "summary": "The head of the talus sits in a socket formed by the navicular, the calcaneus and the spring ligament between them. It is the medial half of the transverse tarsal (midtarsal) joint.",
+            "closePacked": "Supination.",
+            "resting": "Midway between the extremes of range.",
+            "capsularPattern": "Dorsiflexion, plantarflexion, adduction and medial rotation limited (midtarsal pattern).",
+            "views": [-1, 0.4, 0.4]
+        },
+        "calcaneocuboid-joint": {
+            "name": "Calcaneocuboid joint",
+            "area": "foot-area",
+            "type": "Synovial saddle joint",
+            "summary": "The lateral half of the transverse tarsal joint. The long and short plantar ligaments underneath it are major supports of the lateral longitudinal arch.",
+            "closePacked": "Supination.",
+            "resting": "Midway between the extremes of range.",
+            "capsularPattern": "Dorsiflexion, plantarflexion, adduction and medial rotation limited (midtarsal pattern).",
+            "views": [0.6, -0.6, 0.3]
+        },
+        "intertarsal-joints": {
+            "name": "Other intertarsal joints",
+            "area": "foot-area",
+            "type": "Synovial plane joints (and fibrous interosseous links)",
+            "summary": "Small gliding joints between the navicular, cuboid and three cuneiforms. Each has dorsal, plantar and often interosseous ligaments, and together they let the midfoot twist slightly while staying a rigid lever for push-off.",
+            "views": [0.2, 1, 0.4]
+        },
+        "tarsometatarsal-joints": {
+            "name": "Tarsometatarsal (Lisfranc) joints",
+            "area": "foot-area",
+            "type": "Synovial plane joints",
+            "summary": "The bases of the metatarsals meet the cuneiforms and cuboid. The second metatarsal base is recessed between the cuneiforms like a keystone.",
+            "closePacked": "Supination.",
+            "resting": "Midway between supination and pronation.",
+            "capsularPattern": "None described.",
+            "views": [0.2, 1, 0.4]
+        },
+        "intermetatarsal-joints": {
+            "name": "Intermetatarsal joints",
+            "area": "foot-area",
+            "type": "Synovial plane joints",
+            "summary": "The bases of the lateral four metatarsals glide on each other. There is usually no ligament joining the bases of the first and second metatarsals.",
+            "views": [0.2, 1, 0.4]
+        },
+        "mtp-joints": {
+            "name": "Metatarsophalangeal (MTP) joints",
+            "area": "foot-area",
+            "type": "Synovial condyloid joints",
+            "summary": "The heads of the metatarsals meet the toes. A thick plantar plate under each joint and the deep transverse metatarsal ligament between them take load at push-off.",
+            "closePacked": "Full extension.",
+            "resting": "Neutral (great toe about 10° extension).",
+            "capsularPattern": "Great toe: extension more limited than flexion. Lesser toes: variable, tending toward limited flexion.",
+            "views": [0.2, 1, 0.6]
+        },
+        "foot-ip-joints": {
+            "name": "Interphalangeal joints of the foot",
+            "area": "foot-area",
+            "type": "Synovial hinge joints",
+            "summary": "Hinges between the phalanges of the toes, each with a capsule, two collateral ligaments and a plantar plate.",
+            "closePacked": "Full extension.",
+            "resting": "Slight flexion.",
+            "capsularPattern": "Flexion more limited than extension.",
+            "views": [0.2, 1, 0.6]
+        }
+    },
+    "ligaments": {
+        "hip-capsule": {
+            "name": "Articular capsule of hip joint",
+            "kind": "capsule",
+            "joint": "hip-joint",
+            "meshes": ["Articular capsule of hip joint.r", "Frenula capsulae.r"],
+            "attachmentText": "Rim of the acetabulum and transverse acetabular ligament, down to the intertrochanteric line in front and about halfway along the back of the femoral neck.",
+            "function": "Encloses the joint and carries the three capsular ligaments. The back of the neck is only partly covered, so the lateral half of the posterior neck is outside the capsule.",
+            "note": "The retinacular fibres (frenula) running up the neck carry the retinacular arteries to the femoral head. Displaced intracapsular neck fractures tear them, risking avascular necrosis."
+        },
+        "iliofemoral-ligament": {
+            "name": "Iliofemoral ligament",
+            "short": "Iliofemoral",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": ["Descending part of iliofemoral ligament.r", "Transverse part of iliofemoral ligament.r"],
+            "attachmentText": "Anterior inferior iliac spine and acetabular rim, fanning out in an inverted Y to the intertrochanteric line.",
+            "function": "Stops hyperextension of the hip. The strongest ligament in the body; it lets you stand by hanging on it with almost no muscle work.",
+            "tautText": "Taut in hip extension and lateral rotation; slack in flexion.",
+            "taut": [
+                {"control": "hipFlex", "points": [[-20, 1.0], [0, 0.75], [30, 0.35], [110, 0.1]]},
+                {"control": "hipRot", "points": [[-40, 0.95], [0, 0.4], [40, 0.2]]}
+            ],
+            "note": "Also called the Y ligament of Bigelow."
+        },
+        "pubofemoral-ligament": {
+            "name": "Pubofemoral ligament",
+            "short": "Pubofemoral",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": ["Pubofemoral ligament.r"],
+            "attachmentText": "Obturator crest and superior pubic ramus, blending with the capsule and the medial part of the iliofemoral ligament.",
+            "function": "Limits abduction and helps limit extension.",
+            "tautText": "Taut in abduction, extension and lateral rotation.",
+            "taut": [
+                {"control": "hipAbd", "points": [[-15, 0.2], [0, 0.4], [40, 1.0]]},
+                {"control": "hipFlex", "points": [[-20, 0.8], [0, 0.5], [60, 0.2]]},
+                {"control": "hipRot", "points": [[-40, 0.8], [0, 0.4], [40, 0.2]]}
+            ]
+        },
+        "ischiofemoral-ligament": {
+            "name": "Ischiofemoral ligament",
+            "short": "Ischiofemoral",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": ["Ischiofemoral ligament.r"],
+            "attachmentText": "Ischium behind the acetabulum, spiralling up and laterally over the back of the neck to the greater trochanter.",
+            "function": "The weakest of the three capsular ligaments. Limits medial rotation and extension.",
+            "tautText": "Taut in medial rotation and extension (and in adduction with the hip flexed).",
+            "taut": [
+                {"control": "hipRot", "points": [[-40, 0.2], [0, 0.4], [40, 1.0]]},
+                {"control": "hipFlex", "points": [[-20, 0.85], [0, 0.5], [90, 0.3]]}
+            ]
+        },
+        "zona-orbicularis": {
+            "name": "Zona orbicularis",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": ["Zona orbicularis.r"],
+            "attachmentText": "Deep circular fibres of the capsule, ringing the narrowest part of the femoral neck.",
+            "function": "Acts like a buttonhole that keeps the femoral head in the acetabulum."
+        },
+        "ligament-of-head-of-femur": {
+            "name": "Ligament of head of femur",
+            "short": "Lig. teres",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": ["Ligament of head of femur.r"],
+            "attachmentText": "Acetabular notch and transverse acetabular ligament to the fovea on the femoral head.",
+            "function": "Weak; adds little stability. Carries a small branch of the obturator artery to the femoral head.",
+            "tautText": "Taut when the hip is semi-flexed and adducted (and laterally rotated).",
+            "taut": [
+                {"control": "hipAbd", "points": [[-15, 0.9], [0, 0.4], [40, 0.1]]}
+            ],
+            "note": "Also called the ligamentum teres. Its artery matters in children; in adults it supplies little."
+        },
+        "acetabular-labrum": {
+            "name": "Acetabular labrum",
+            "kind": "labrum",
+            "joint": "hip-joint",
+            "meshes": ["Acetabular labrum.r"],
+            "attachmentText": "Rim of the acetabulum, continuing across the acetabular notch as the transverse acetabular ligament.",
+            "function": "Fibrocartilage ring that deepens the socket and seals in joint fluid.",
+            "note": "Labral tears are common with femoroacetabular impingement; they cause groin pain and clicking with flexion and rotation."
+        },
+        "transverse-acetabular-ligament": {
+            "name": "Transverse acetabular ligament",
+            "kind": "ligament",
+            "joint": "hip-joint",
+            "meshes": ["Transverse acetabular ligament.r"],
+            "attachmentText": "Bridges the acetabular notch at the bottom of the socket.",
+            "function": "Completes the ring of the labrum. Vessels and nerves enter the joint through the gap beneath it."
+        },
+        "acl": {
+            "name": "Anterior cruciate ligament",
+            "short": "ACL",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": ["Anterior cruciate ligament.r"],
+            "attachments": ["Anterior intercondylar area", "Intercondylar fossa"],
+            "attachmentText": "Anterior intercondylar area of the tibia, running up and back to the inner (medial) surface of the lateral femoral condyle.",
+            "function": "Stops the tibia sliding forward on the femur and limits hyperextension.",
+            "tautText": "Tight in full extension. Its anteromedial band stays fairly tight as the knee bends.",
+            "taut": [
+                {"control": "knee", "points": [[0, 1.0], [20, 0.7], [60, 0.55], [120, 0.6]]}
+            ],
+            "note": "Tested with the Lachman and anterior drawer tests. Often torn in non-contact pivoting or landing."
+        },
+        "pcl": {
+            "name": "Posterior cruciate ligament",
+            "short": "PCL",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": ["Posterior cruciate ligament.r"],
+            "attachments": ["Posterior intercondylar area", "Intercondylar fossa"],
+            "attachmentText": "Posterior intercondylar area of the tibia, running up and forward to the outer (lateral) surface of the medial femoral condyle.",
+            "function": "Stops the tibia sliding backward on the femur. Stronger than the ACL.",
+            "tautText": "Tightens as the knee bends; tightest in flexion.",
+            "taut": [
+                {"control": "knee", "points": [[0, 0.35], [30, 0.5], [90, 1.0], [120, 1.0]]}
+            ],
+            "note": "Tested with the posterior drawer test and posterior sag sign. Classic injury: dashboard impact on a bent knee."
+        },
+        "mcl": {
+            "name": "Tibial collateral ligament",
+            "short": "MCL",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": ["Superficial part of tibial collateral ligament.r", "Deep part of tibial collateral ligament.r"],
+            "attachments": ["Medial epicondyle of femur", "Medial condyle of tibia"],
+            "attachmentText": "Medial epicondyle of the femur to the medial condyle and upper medial shaft of the tibia. Its deep fibres attach to the medial meniscus.",
+            "function": "Resists valgus stress (the knee being pushed inward).",
+            "tautText": "Tight in full extension; slackens as the knee bends.",
+            "taut": [
+                {"control": "knee", "points": [[0, 1.0], [20, 0.75], [60, 0.4], [120, 0.3]]}
+            ],
+            "note": "Tested with the valgus stress test at 0° and 30°. Because it is joined to the medial meniscus, the two are often injured together."
+        },
+        "lcl": {
+            "name": "Fibular collateral ligament",
+            "short": "LCL",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": ["Fibular collateral ligament.r"],
+            "attachments": ["Lateral epicondyle of femur", "Head of fibula"],
+            "attachmentText": "Lateral epicondyle of the femur to the lateral surface of the head of the fibula. It is cord-like and stands clear of the joint capsule and the lateral meniscus.",
+            "function": "Resists varus stress (the knee being pushed outward).",
+            "tautText": "Tight in full extension; slackens as the knee bends.",
+            "taut": [
+                {"control": "knee", "points": [[0, 1.0], [20, 0.7], [60, 0.3], [120, 0.25]]}
+            ],
+            "note": "Tested with the varus stress test at 0° and 30°."
+        },
+        "patellar-ligament": {
+            "name": "Patellar ligament",
+            "short": "Patellar lig.",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [],
+            "between": ["patella-apex", "tibial-tuberosity"],
+            "attachments": ["Tibial tuberosity"],
+            "attachmentText": "Apex of the patella to the tibial tuberosity.",
+            "function": "Carries the pull of the quadriceps from the patella to the tibia. It is really the continuation of the quadriceps tendon.",
+            "tautText": "Under load whenever the quadriceps contracts; stretched further as the knee bends.",
+            "taut": [
+                {"control": "knee", "points": [[0, 0.45], [60, 0.75], [120, 0.95]]}
+            ],
+            "note": "Tapped for the knee-jerk (L3–L4) reflex. Overuse pain at its upper end is patellar tendinopathy (jumper's knee)."
+        },
+        "medial-meniscus": {
+            "name": "Medial meniscus",
+            "kind": "meniscus",
+            "joint": "knee-joint",
+            "meshes": ["Medial meniscus.r"],
+            "attachmentText": "C-shaped pad on the medial tibial plateau; its horns attach to the intercondylar area, and its rim is bound to the capsule and the deep part of the MCL.",
+            "function": "Spreads load across the joint, deepens the plateau and helps guide rolling and gliding.",
+            "note": "Firmly attached to the deep MCL, so it moves less and is torn more often than the lateral meniscus. Tested with McMurray's and Thessaly tests."
+        },
+        "lateral-meniscus": {
+            "name": "Lateral meniscus",
+            "kind": "meniscus",
+            "joint": "knee-joint",
+            "meshes": ["Lateral meniscus.r"],
+            "attachmentText": "Nearly circular pad on the lateral tibial plateau; its horns attach to the intercondylar area. Not attached to the LCL, and the popliteus tendon separates it from the capsule.",
+            "function": "Spreads load across the lateral compartment. More mobile than the medial meniscus; popliteus pulls it back during unlocking."
+        },
+        "coronary-ligaments": {
+            "name": "Coronary (meniscotibial) ligaments",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": [
+                "Anterior meniscotibial ligament (Medial meniscus).r",
+                "Posterior meniscotibial ligament (Medial meniscus).r",
+                "Anterior meniscotibial ligament (Lateral meniscus).r",
+                "Posterior meniscotibial ligament (Lateral meniscus).r"
+            ],
+            "attachmentText": "Short capsular fibres from the outer rims and horns of the menisci to the edges of the tibial plateaus.",
+            "function": "Anchor the menisci to the tibia while letting them shift a little as the knee moves."
+        },
+        "transverse-ligament-of-knee": {
+            "name": "Transverse ligament of knee",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": ["Transverse ligament of knee.r"],
+            "attachmentText": "Anterior horn of the medial meniscus to the anterior horn of the lateral meniscus.",
+            "function": "Ties the front ends of the two menisci together so they move as a unit."
+        },
+        "meniscopatellar-ligament": {
+            "name": "Meniscopatellar ligament",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": ["Meniscopatellar ligament.r"],
+            "attachmentText": "Edge of the patella to the anterior horn of the meniscus, in the capsule beside the patellar ligament.",
+            "function": "Pulls the menisci forward as the knee straightens, keeping them under the femoral condyles."
+        },
+        "knee-capsule": {
+            "name": "Articular capsule of knee joint",
+            "kind": "capsule",
+            "joint": "knee-joint",
+            "meshes": ["Articular capsule of knee joint.r"],
+            "attachmentText": "Margins of the femoral and tibial articular surfaces, open in front where the patella and patellar ligament replace it.",
+            "function": "Encloses the joint. Its posterior part, thickened by the oblique popliteal ligament, stops hyperextension.",
+            "tautText": "Posterior capsule taut in full extension."
+        },
+        "oblique-popliteal-ligament": {
+            "name": "Oblique popliteal ligament",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": ["Oblique popliteal ligament.r"],
+            "attachmentText": "An expansion of the semimembranosus tendon behind the medial tibial condyle, running up and laterally across the back of the capsule to the lateral femoral condyle.",
+            "function": "Strengthens the back of the capsule and resists hyperextension.",
+            "tautText": "Taut in full extension.",
+            "taut": [
+                {"control": "knee", "points": [[0, 1.0], [30, 0.4], [90, 0.2]]}
+            ]
+        },
+        "arcuate-popliteal-ligament": {
+            "name": "Arcuate popliteal ligament",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": ["Arcuate popliteal ligament.r"],
+            "attachmentText": "Head of the fibula, arching up and medially over the popliteus tendon to the back of the capsule.",
+            "function": "Part of the posterolateral corner. Resists varus and lateral rotation of the tibia.",
+            "tautText": "Taut in extension.",
+            "taut": [
+                {"control": "knee", "points": [[0, 0.9], [30, 0.6], [90, 0.3]]}
+            ]
+        },
+        "popliteofibular-ligament": {
+            "name": "Popliteofibular ligament",
+            "kind": "ligament",
+            "joint": "knee-joint",
+            "meshes": ["Popliteofibular ligament.r"],
+            "attachmentText": "Popliteus tendon to the head of the fibula.",
+            "function": "Key part of the posterolateral corner. Resists lateral rotation of the tibia and varus.",
+            "tautText": "Resists lateral rotation most at about 30° of flexion.",
+            "note": "Posterolateral corner injuries are tested with the dial test at 30° and 90°."
+        },
+        "infrapatellar-fat-pad": {
+            "name": "Infrapatellar fat pad",
+            "kind": "fat-pad",
+            "joint": "knee-joint",
+            "meshes": ["Infrapatellar fat pad.r"],
+            "attachmentText": "Fills the space behind the patellar ligament, below the patella and in front of the joint.",
+            "function": "Cushions the front of the knee and fills space as the joint changes shape.",
+            "note": "Painful when pinched (Hoffa's fat pad syndrome), often with hyperextension."
+        },
+        "superior-tibiofibular-capsule": {
+            "name": "Articular capsule of superior tibiofibular joint",
+            "kind": "capsule",
+            "joint": "superior-tibiofibular",
+            "meshes": ["Articular capsule of superior tibiofibular joint.r"],
+            "attachmentText": "Margins of the facets on the head of the fibula and the lateral condyle of the tibia.",
+            "function": "Encloses the joint."
+        },
+        "anterior-ligament-of-fibular-head": {
+            "name": "Anterior ligament of fibular head",
+            "kind": "ligament",
+            "joint": "superior-tibiofibular",
+            "meshes": ["Anterior ligament of fibular head.r"],
+            "attachmentText": "Front of the fibular head, up and medially to the front of the lateral tibial condyle.",
+            "function": "Holds the fibular head against the tibia."
+        },
+        "posterior-ligament-of-fibular-head": {
+            "name": "Posterior ligament of fibular head",
+            "kind": "ligament",
+            "joint": "superior-tibiofibular",
+            "meshes": ["Posterior ligament of fibular head.r"],
+            "attachmentText": "Back of the fibular head to the back of the lateral tibial condyle.",
+            "function": "Holds the fibular head against the tibia from behind."
+        },
+        "interosseous-membrane-of-leg": {
+            "name": "Interosseous membrane of leg",
+            "kind": "membrane",
+            "joint": "tibiofibular-syndesmosis",
+            "meshes": ["Interosseous membrane of leg.r"],
+            "attachmentText": "Interosseous borders of the tibia and fibula, its fibres running mostly down and laterally from tibia to fibula.",
+            "function": "Binds the two bones, divides the anterior and posterior compartments and gives origin to leg muscles."
+        },
+        "anterior-tibiofibular-ligament": {
+            "name": "Anterior inferior tibiofibular ligament",
+            "short": "AITFL",
+            "kind": "ligament",
+            "joint": "tibiofibular-syndesmosis",
+            "meshes": ["Anterior tibiofibular ligament.r"],
+            "attachmentText": "Front of the lower tibia, down and laterally to the front of the lateral malleolus.",
+            "function": "Holds the ankle mortise together at the front.",
+            "tautText": "Taut in dorsiflexion and lateral rotation of the foot, when the wide front of the talus spreads the mortise.",
+            "taut": [
+                {"control": "ankle", "points": [[-20, 1.0], [0, 0.5], [45, 0.2]]}
+            ],
+            "note": "Injured in a high ankle sprain (forced dorsiflexion with lateral rotation). Tested with the squeeze and external rotation tests."
+        },
+        "posterior-tibiofibular-ligament": {
+            "name": "Posterior inferior tibiofibular ligament",
+            "short": "PITFL",
+            "kind": "ligament",
+            "joint": "tibiofibular-syndesmosis",
+            "meshes": ["Posterior tibiofibular ligament.r"],
+            "attachmentText": "Back of the lower tibia to the back of the lateral malleolus.",
+            "function": "Holds the mortise together at the back. Stronger than the AITFL.",
+            "tautText": "Taut in dorsiflexion.",
+            "taut": [
+                {"control": "ankle", "points": [[-20, 0.9], [0, 0.45], [45, 0.2]]}
+            ]
+        },
+        "transverse-tibiofibular-ligament": {
+            "name": "Transverse tibiofibular ligament",
+            "kind": "ligament",
+            "joint": "tibiofibular-syndesmosis",
+            "meshes": ["Transverse tibiofibular ligament.r"],
+            "attachmentText": "Deep part of the posterior tibiofibular ligament, from the back of the tibia's lower edge to the lateral malleolus.",
+            "function": "Deepens the back of the mortise, acting like a labrum for the talus."
+        },
+        "atfl": {
+            "name": "Anterior talofibular ligament",
+            "short": "ATFL",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": ["Anterior talofibular ligament.r"],
+            "attachmentText": "Front of the lateral malleolus, forward and medially to the neck of the talus.",
+            "function": "Stops the talus sliding forward and limits inversion when the foot is pointed.",
+            "tautText": "Taut in plantarflexion, especially with inversion.",
+            "taut": [
+                {"control": "ankle", "points": [[-20, 0.15], [0, 0.4], [45, 1.0]]}
+            ],
+            "note": "The weakest lateral ligament and the most often sprained (plantarflexion with inversion). Tested with the anterior drawer test of the ankle."
+        },
+        "cfl": {
+            "name": "Calcaneofibular ligament",
+            "short": "CFL",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": ["Calcaneofibular ligament.r"],
+            "attachmentText": "Tip of the lateral malleolus, down and back to the lateral surface of the calcaneus. It crosses both the ankle and subtalar joints.",
+            "function": "Limits inversion, especially with the ankle in neutral or dorsiflexion.",
+            "tautText": "Taut in dorsiflexion and inversion.",
+            "taut": [
+                {"control": "ankle", "points": [[-20, 0.8], [0, 0.55], [45, 0.3]]}
+            ],
+            "note": "Usually the second lateral ligament to tear after the ATFL. Tested with the talar tilt test."
+        },
+        "ptfl": {
+            "name": "Posterior talofibular ligament",
+            "short": "PTFL",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": ["Posterior talofibular ligament.r"],
+            "attachmentText": "Malleolar fossa on the back of the lateral malleolus, running almost horizontally to the lateral tubercle of the talus.",
+            "function": "Stops the talus sliding backward. The strongest lateral ligament.",
+            "tautText": "Taut in dorsiflexion.",
+            "taut": [
+                {"control": "ankle", "points": [[-20, 1.0], [0, 0.4], [45, 0.1]]}
+            ],
+            "note": "Rarely torn, except in ankle dislocation."
+        },
+        "tibionavicular-ligament": {
+            "name": "Tibionavicular part of deltoid ligament",
+            "short": "Tibionavicular",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": ["Tibionavicular ligament.r"],
+            "attachmentText": "Front of the medial malleolus, forward to the tuberosity of the navicular, blending with the spring ligament.",
+            "function": "Superficial anterior band of the deltoid ligament. Limits eversion and abduction of the foot.",
+            "tautText": "Taut in plantarflexion and eversion.",
+            "taut": [
+                {"control": "ankle", "points": [[-20, 0.2], [0, 0.4], [45, 0.9]]}
+            ]
+        },
+        "tibiocalcaneal-ligament": {
+            "name": "Tibiocalcaneal part of deltoid ligament",
+            "short": "Tibiocalcaneal",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": ["Tibiocalcaneal ligament.r"],
+            "attachmentText": "Medial malleolus, straight down to the sustentaculum tali of the calcaneus.",
+            "function": "Middle band of the deltoid ligament. Limits eversion.",
+            "tautText": "Taut in eversion."
+        },
+        "posterior-tibiotalar-ligament": {
+            "name": "Posterior tibiotalar part of deltoid ligament",
+            "short": "Post. tibiotalar",
+            "kind": "ligament",
+            "joint": "ankle-joint",
+            "meshes": ["Posterior tibiotalar ligament.r"],
+            "attachmentText": "Back of the medial malleolus to the medial side and medial tubercle of the talus.",
+            "function": "The strongest band of the deltoid ligament. Limits eversion and backward sliding of the talus.",
+            "tautText": "Taut in dorsiflexion and eversion.",
+            "taut": [
+                {"control": "ankle", "points": [[-20, 0.9], [0, 0.4], [45, 0.15]]}
+            ],
+            "note": "The deltoid ligament is so strong that eversion injuries often fracture the medial malleolus instead of tearing it."
+        },
+        "talocalcaneal-interosseous-ligament": {
+            "name": "Talocalcaneal interosseous ligament",
+            "kind": "ligament",
+            "joint": "subtalar-joint",
+            "meshes": ["Talocalcaneal interosseous ligament.r"],
+            "attachmentText": "Fills the tarsal sinus and canal, from the groove under the talus to the groove on top of the calcaneus.",
+            "function": "The main bond between talus and calcaneus; the axis the subtalar joint turns around.",
+            "tautText": "Taut in eversion (its anterior fibres) and inversion (its posterior fibres)."
+        },
+        "talocalcaneal-ligaments": {
+            "name": "Anterior, lateral, medial and posterior talocalcaneal ligaments",
+            "kind": "ligament",
+            "joint": "subtalar-joint",
+            "meshes": [
+                "Anterior talocalcaneal ligament.r",
+                "Lateral talocalcaneal ligament.r",
+                "Medial talocalcaneal ligament.r",
+                "Posterior talocalcaneal ligament.r"
+            ],
+            "attachmentText": "Short bands around the subtalar joint, each from the talus to the calcaneus on its own side.",
+            "function": "Thicken the subtalar capsule and hold the talus on the calcaneus."
+        },
+        "talonavicular-ligament": {
+            "name": "Dorsal talonavicular ligament",
+            "kind": "ligament",
+            "joint": "talocalcaneonavicular-joint",
+            "meshes": ["Talonavicular ligament.r"],
+            "attachmentText": "Neck of the talus to the upper surface of the navicular.",
+            "function": "Thickens the top of the talonavicular capsule."
+        },
+        "spring-ligament": {
+            "name": "Plantar calcaneonavicular (spring) ligament",
+            "short": "Spring lig.",
+            "kind": "ligament",
+            "joint": "talocalcaneonavicular-joint",
+            "meshes": ["Plantar calcaneonavicular ligament.r"],
+            "attachmentText": "Sustentaculum tali of the calcaneus forward to the plantar surface of the navicular.",
+            "function": "Forms part of the socket for the head of the talus and holds up the medial longitudinal arch.",
+            "note": "Stretching or tearing it, often with tibialis posterior dysfunction, leads to acquired flatfoot."
+        },
+        "dorsal-calcaneocuboid-ligament": {
+            "name": "Dorsal calcaneocuboid ligament",
+            "kind": "ligament",
+            "joint": "calcaneocuboid-joint",
+            "meshes": ["Dorsal calcaneocuboid ligament.r"],
+            "attachmentText": "Upper surface of the calcaneus to the upper surface of the cuboid.",
+            "function": "Thickens the top of the calcaneocuboid capsule."
+        },
+        "bifurcate-ligament": {
+            "name": "Bifurcate ligament",
+            "kind": "ligament",
+            "joint": "calcaneocuboid-joint",
+            "meshes": ["Calcaneonavicular ligament.r", "Calcaneocuboid ligament.r"],
+            "attachmentText": "Upper front of the calcaneus, splitting in a Y to the navicular (calcaneonavicular part) and the cuboid (calcaneocuboid part).",
+            "function": "Binds the calcaneus to both bones in front of it, across the transverse tarsal joint.",
+            "note": "Can be sprained with lateral ankle sprains (inversion with plantarflexion)."
+        },
+        "short-plantar-ligament": {
+            "name": "Plantar calcaneocuboid (short plantar) ligament",
+            "short": "Short plantar",
+            "kind": "ligament",
+            "joint": "calcaneocuboid-joint",
+            "meshes": ["Plantar calcaneocuboid ligament.r"],
+            "attachmentText": "Front of the underside of the calcaneus to the underside of the cuboid, deep to the long plantar ligament.",
+            "function": "Supports the lateral longitudinal arch."
+        },
+        "long-plantar-ligament": {
+            "name": "Long plantar ligament",
+            "short": "Long plantar",
+            "kind": "ligament",
+            "joint": "calcaneocuboid-joint",
+            "meshes": ["Long plantar ligament.r"],
+            "attachmentText": "Underside of the calcaneus in front of its tubercles, forward to the ridge of the cuboid and on to the bases of the lateral metatarsals.",
+            "function": "The longest ligament of the foot. Supports the lateral longitudinal arch and roofs the tunnel for the fibularis longus tendon."
+        },
+        "cuboideonavicular-ligaments": {
+            "name": "Dorsal and plantar cuboideonavicular ligaments",
+            "kind": "ligament",
+            "joint": "intertarsal-joints",
+            "meshes": ["Dorsal cuboideonavicular ligament.r", "Plantar cuboideonavicular ligament.r"],
+            "attachmentText": "Navicular to cuboid, on the upper and lower surfaces.",
+            "function": "Bind the navicular to the cuboid."
+        },
+        "cuneonavicular-ligaments": {
+            "name": "Dorsal and plantar cuneonavicular ligaments",
+            "kind": "ligament",
+            "joint": "intertarsal-joints",
+            "meshes": ["Dorsal cuneonavicular ligaments.r", "Plantar cuneonavicular ligaments.r"],
+            "attachmentText": "Navicular to each of the three cuneiforms, on the upper and lower surfaces.",
+            "function": "Bind the navicular to the cuneiforms in front of it."
+        },
+        "intercuneiform-ligaments": {
+            "name": "Intercuneiform ligaments",
+            "kind": "ligament",
+            "joint": "intertarsal-joints",
+            "meshes": [
+                "Dorsal intercuneiform ligaments.r",
+                "Plantar intercuneiform ligaments.r",
+                "Intercuneiform interosseous ligaments.r"
+            ],
+            "attachmentText": "Between neighbouring cuneiforms: dorsal, plantar and interosseous sets.",
+            "function": "Bind the three cuneiforms into a firm transverse arch."
+        },
+        "cuneocuboid-ligaments": {
+            "name": "Cuneocuboid ligaments",
+            "kind": "ligament",
+            "joint": "intertarsal-joints",
+            "meshes": [
+                "Dorsal cuneocuboid ligament.r",
+                "Plantar cuneocuboid ligament.r",
+                "Cuneocuboid interosseous ligament.r"
+            ],
+            "attachmentText": "Lateral cuneiform to cuboid: dorsal, plantar and interosseous sets.",
+            "function": "Bind the lateral cuneiform to the cuboid across the transverse arch."
+        },
+        "tarsometatarsal-ligaments": {
+            "name": "Dorsal and plantar tarsometatarsal ligaments",
+            "kind": "ligament",
+            "joint": "tarsometatarsal-joints",
+            "meshes": ["Dorsal tarsometatarsal ligaments.r", "Plantar tarsometatarsal ligaments.r"],
+            "attachmentText": "Cuneiforms and cuboid to the bases of the metatarsals, on the upper and lower surfaces.",
+            "function": "Bind the metatarsal bases to the tarsus."
+        },
+        "cuneometatarsal-interosseous-ligaments": {
+            "name": "Cuneometatarsal interosseous ligaments",
+            "kind": "ligament",
+            "joint": "tarsometatarsal-joints",
+            "meshes": ["Cuneometatarsal interosseous ligaments.r"],
+            "attachmentText": "Cuneiforms to the sides of the metatarsal bases. The strongest runs from the medial cuneiform to the base of the second metatarsal (the Lisfranc ligament).",
+            "function": "Lock the second metatarsal base in its recess, the keystone of the midfoot.",
+            "note": "Lisfranc injuries tear this ligament; suspect one with midfoot pain and plantar bruising after a twist on a pointed foot."
+        },
+        "metatarsal-ligaments": {
+            "name": "Dorsal, plantar and interosseous metatarsal ligaments",
+            "kind": "ligament",
+            "joint": "intermetatarsal-joints",
+            "meshes": [
+                "Dorsal metatarsal ligaments.r",
+                "Plantar metatarsal ligaments.r",
+                "Metatarsal interosseous ligaments.r"
+            ],
+            "attachmentText": "Between the bases of neighbouring lateral metatarsals (second to fifth).",
+            "function": "Bind the metatarsal bases together."
+        },
+        "mtp-capsules": {
+            "name": "Articular capsules of metatarsophalangeal joints",
+            "kind": "capsule",
+            "joint": "mtp-joints",
+            "meshes": ["Articular capsules of metatarsophalangeal joints.r"],
+            "attachmentText": "Around the margins of each metatarsal head and the base of its proximal phalanx.",
+            "function": "Enclose the MTP joints."
+        },
+        "mtp-collateral-ligaments": {
+            "name": "Collateral ligaments of MTP joints",
+            "kind": "ligament",
+            "joint": "mtp-joints",
+            "meshes": ["Collateral metatarsophalangeal ligaments.r"],
+            "attachmentText": "Tubercles on the sides of each metatarsal head, down and forward to the sides of the proximal phalanx base.",
+            "function": "Resist side-to-side bending of the toes.",
+            "tautText": "Tightest in flexion."
+        },
+        "mtp-plantar-plates": {
+            "name": "Plantar plates of MTP joints",
+            "kind": "ligament",
+            "joint": "mtp-joints",
+            "meshes": ["Plantar metatarsophalangeal ligaments.r"],
+            "attachmentText": "Thick fibrocartilage under each MTP joint, firmly fixed to the proximal phalanx and loosely to the metatarsal neck.",
+            "function": "Limit hyperextension of the toes and protect the joint under load.",
+            "tautText": "Taut in toe extension (as at push-off).",
+            "note": "Tears cause pain under the second MTP joint and can let the toe drift upward. Turf toe is a sprain of the first MTP plantar complex."
+        },
+        "deep-transverse-metatarsal-ligament": {
+            "name": "Deep transverse metatarsal ligament",
+            "kind": "ligament",
+            "joint": "mtp-joints",
+            "meshes": ["Deep transverse metatarsal ligament.r"],
+            "attachmentText": "Joins the plantar plates of all five MTP joints.",
+            "function": "Ties the metatarsal heads together. The digital nerves pass below it.",
+            "note": "Compression of a digital nerve under it, often between the third and fourth heads, is Morton's neuroma."
+        },
+        "intersesamoid-ligament": {
+            "name": "Intersesamoid ligament",
+            "kind": "ligament",
+            "joint": "mtp-joints",
+            "meshes": ["Intersesamoid ligament.r"],
+            "attachmentText": "Between the two sesamoid bones under the first metatarsal head.",
+            "function": "Holds the sesamoids together in their grooves under the great toe."
+        },
+        "foot-ip-capsules": {
+            "name": "Articular capsules of interphalangeal joints of foot",
+            "kind": "capsule",
+            "joint": "foot-ip-joints",
+            "meshes": [
+                "Articular capsule of interphalangeal joint of great toe.r",
+                "Articular capsules of proximal interphalangeal joints of foot.r",
+                "Articular capsules of distal interphalangeal joints of foot.r"
+            ],
+            "attachmentText": "Around the margins of each interphalangeal joint of the toes.",
+            "function": "Enclose the joints of the toes."
+        },
+        "foot-ip-collateral-ligaments": {
+            "name": "Collateral ligaments of interphalangeal joints of foot",
+            "kind": "ligament",
+            "joint": "foot-ip-joints",
+            "meshes": ["Collateral interphalangeal ligaments of foot.r"],
+            "attachmentText": "Sides of each phalanx head to the sides of the next phalanx base.",
+            "function": "Stop the toes bending sideways."
+        },
+        "foot-ip-plantar-plates": {
+            "name": "Plantar ligaments of interphalangeal joints of foot",
+            "kind": "ligament",
+            "joint": "foot-ip-joints",
+            "meshes": ["Plantar interphalangeal ligaments.r"],
+            "attachmentText": "Fibrocartilage plates under each interphalangeal joint of the toes.",
+            "function": "Limit hyperextension of the toes."
+        }
+    }
+}

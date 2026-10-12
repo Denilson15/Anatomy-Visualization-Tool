@@ -35,6 +35,25 @@
         --font-display: "Literata", "Iowan Old Style", Georgia, serif;
         --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
         --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+        /* Stage overlays: frosted glass over the dark dissection table. */
+        --stage-glow: #232b31;
+        --stage-accent: #e46a5e;
+        --glass: rgba(17, 21, 24, 0.72);
+        --glass-line: rgba(255, 255, 255, 0.09);
+        --glass-hover: rgba(255, 255, 255, 0.07);
+        --glass-on: rgba(255, 255, 255, 0.13);
+
+        --panel-tint: #e8ecea;
+        --shadow-1: 0 1px 2px rgba(20, 30, 34, 0.06), 0 1px 1px rgba(20, 30, 34, 0.04);
+        --shadow-2: 0 6px 20px rgba(20, 30, 34, 0.1), 0 1px 3px rgba(20, 30, 34, 0.06);
+        --shadow-stage: 0 8px 28px rgba(0, 0, 0, 0.35);
+
+        --r-sm: 6px;
+        --r-md: 10px;
+        --r-lg: 14px;
+        --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+        --fast: 160ms;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -54,6 +73,9 @@
             --good: #4fbf7d;
             --draft: #f1c08a;
             --draft-line: #6b4a2c;
+            --panel-tint: #13171a;
+            --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35);
+            --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.3);
             color-scheme: dark;
         }
     }
@@ -74,6 +96,9 @@
         --good: #4fbf7d;
         --draft: #f1c08a;
         --draft-line: #6b4a2c;
+        --panel-tint: #13171a;
+        --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.35);
+        --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.45), 0 1px 3px rgba(0, 0, 0, 0.3);
         color-scheme: dark;
     }
 
@@ -122,9 +147,21 @@
         position: relative;
         min-width: 0;
         min-height: 0;
-        background: var(--stage);
+        /* A soft overhead light on the table; the canvas is transparent over it. */
+        background:
+            radial-gradient(ellipse 65% 55% at 50% 40%, var(--stage-glow) 0%, transparent 72%),
+            var(--stage);
         color: var(--stage-ink);
         overflow: hidden;
+    }
+
+    .glass {
+        background: var(--glass);
+        border: 1px solid var(--glass-line);
+        border-radius: var(--r-md);
+        box-shadow: var(--shadow-stage);
+        -webkit-backdrop-filter: blur(12px) saturate(1.2);
+        backdrop-filter: blur(12px) saturate(1.2);
     }
 
     #view {
@@ -149,28 +186,34 @@
         flex-wrap: wrap;
         align-items: center;
         gap: 2px;
+        padding: 3px;
         pointer-events: auto;
         min-width: 0;
+    }
+
+    .crumbs:empty {
+        display: none;
     }
 
     .crumbs button {
         border: 0;
         background: transparent;
         color: var(--stage-muted);
-        padding: 4px 6px;
-        border-radius: 6px;
+        padding: 4px 8px;
+        border-radius: var(--r-sm);
         font-size: 13px;
+        transition: color var(--fast) var(--ease), background-color var(--fast) var(--ease);
     }
 
     .crumbs button:hover {
         color: var(--stage-ink);
-        background: var(--stage-line);
+        background: var(--glass-hover);
     }
 
     .crumbs .here {
         color: var(--stage-ink);
         font-weight: 700;
-        padding: 4px 6px;
+        padding: 4px 8px;
         font-size: 13px;
     }
 
@@ -199,17 +242,24 @@
     .pill.draft {
         color: #f1c8a0;
         border: 1px solid #6b4a2c;
+        background: rgba(60, 38, 20, 0.55);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
     }
 
     .pill.progress {
         color: var(--stage-muted);
-        border: 1px solid var(--stage-line);
+        border: 1px solid var(--glass-line);
+        background: var(--glass);
+        font-family: var(--font-mono);
+        letter-spacing: 0;
+        text-transform: none;
     }
 
     .hint {
         position: absolute;
-        left: 12px;
-        top: 52px;
+        left: 16px;
+        top: 60px;
         margin: 0;
         font-size: 12px;
         color: var(--stage-muted);
@@ -252,17 +302,55 @@
         text-align: center;
         color: var(--stage-muted);
         font-size: 14px;
-        background: var(--stage);
+        background:
+            radial-gradient(ellipse 65% 55% at 50% 40%, var(--stage-glow) 0%, transparent 72%),
+            var(--stage);
         padding-inline: 16px;
+    }
+
+    .loading > div {
+        display: grid;
+        justify-items: center;
+        gap: 4px;
     }
 
     .loading strong {
         display: block;
         font-family: var(--font-display);
         color: var(--stage-ink);
-        font-size: 20px;
+        font-size: 22px;
         font-weight: 500;
-        margin-bottom: 6px;
+        letter-spacing: -0.01em;
+    }
+
+    .loading-bar {
+        position: relative;
+        width: 160px;
+        height: 3px;
+        margin-top: 12px;
+        border-radius: 99px;
+        background: var(--stage-line);
+        overflow: hidden;
+    }
+
+    .loading-bar::after {
+        content: "";
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 40%;
+        border-radius: inherit;
+        background: var(--stage-accent);
+        animation: loading-slide 1.3s var(--ease) infinite;
+    }
+
+    @keyframes loading-slide {
+        from {
+            transform: translateX(-100%);
+        }
+
+        to {
+            transform: translateX(250%);
+        }
     }
 
     .dock {
@@ -273,8 +361,8 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
-        padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
+        gap: 10px;
+        padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px));
         pointer-events: none;
     }
 
@@ -283,12 +371,9 @@
     }
 
     .joints {
-        width: 210px;
+        width: 230px;
         max-width: 100%;
-        border: 1px solid var(--stage-line);
-        border-radius: 10px;
-        background: rgba(20, 25, 28, 0.88);
-        backdrop-filter: blur(6px);
+        overflow: hidden;
     }
 
     .joints-head {
@@ -296,15 +381,22 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        padding: 7px 10px;
+        min-height: 34px;
+        padding: 8px 12px;
         border: 0;
         background: none;
         color: var(--stage-muted);
         font-size: 11px;
-        font-weight: 600;
+        font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         cursor: pointer;
+        transition: color var(--fast) var(--ease), background-color var(--fast) var(--ease);
+    }
+
+    .joints-head:hover {
+        color: var(--stage-ink);
+        background: var(--glass-hover);
     }
 
     .joints-head::after {
@@ -314,7 +406,7 @@
         border-right: 1.5px solid currentColor;
         border-bottom: 1.5px solid currentColor;
         transform: translateY(-2px) rotate(45deg);
-        transition: transform 0.15s;
+        transition: transform var(--fast) var(--ease);
     }
 
     .joints-head[aria-expanded="false"]::after {
@@ -323,13 +415,16 @@
 
     .joints-list {
         display: grid;
-        gap: 6px;
-        padding: 0 10px 9px;
+        gap: 8px;
+        padding: 2px 12px 12px;
+        max-height: min(46vh, 420px);
+        overflow-y: auto;
+        scrollbar-width: thin;
     }
 
     .ctl {
         display: grid;
-        gap: 1px;
+        gap: 3px;
     }
 
     .ctl label {
@@ -350,32 +445,137 @@
         font-variant-numeric: tabular-nums;
     }
 
+    /*
+     * Joint sliders. The track fills from the neutral (0°) position to the
+     * current angle, so flexion and extension read as opposite directions.
+     * --lo / --hi are set by app.js.
+     */
     .ctl input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
         width: 100%;
-        accent-color: #e46a5e;
+        height: 18px;
+        margin: 0;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .ctl input[type="range"]::-webkit-slider-runnable-track {
+        height: 4px;
+        border-radius: 99px;
+        background: linear-gradient(to right,
+                var(--stage-line) var(--lo, 0%),
+                var(--stage-accent) var(--lo, 0%),
+                var(--stage-accent) var(--hi, 0%),
+                var(--stage-line) var(--hi, 0%));
+    }
+
+    .ctl input[type="range"]::-moz-range-track {
+        height: 4px;
+        border-radius: 99px;
+        background: linear-gradient(to right,
+                var(--stage-line) var(--lo, 0%),
+                var(--stage-accent) var(--lo, 0%),
+                var(--stage-accent) var(--hi, 0%),
+                var(--stage-line) var(--hi, 0%));
+    }
+
+    .ctl input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 14px;
+        height: 14px;
+        margin-top: -5px;
+        border-radius: 50%;
+        background: var(--stage-ink);
+        border: 2px solid var(--stage-accent);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+        transition: transform var(--fast) var(--ease);
+    }
+
+    .ctl input[type="range"]::-moz-range-thumb {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--stage-ink);
+        border: 2px solid var(--stage-accent);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .ctl input[type="range"]:hover::-webkit-slider-thumb,
+    .ctl input[type="range"]:active::-webkit-slider-thumb {
+        transform: scale(1.2);
     }
 
     .toggles {
         display: flex;
         flex-wrap: wrap;
-        gap: 6px;
+        gap: 2px;
+        padding: 3px;
         max-width: 100%;
     }
 
     .chipbtn {
-        border: 1px solid var(--stage-line);
-        background: #1b2125;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-height: 30px;
+        border: 0;
+        background: transparent;
         color: var(--stage-muted);
-        border-radius: 999px;
+        border-radius: 7px;
         padding: 5px 11px;
-        font-size: 12px;
+        font-size: 12.5px;
         white-space: nowrap;
+        transition: color var(--fast) var(--ease), background-color var(--fast) var(--ease);
+    }
+
+    /* A dot in the colour of what the layer shows; lit when the layer is on. */
+    .chipbtn[aria-pressed]::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        border: 1.5px solid var(--dot, var(--stage-muted));
+        flex: 0 0 auto;
+    }
+
+    .chipbtn:hover {
+        color: var(--stage-ink);
+        background: var(--glass-hover);
     }
 
     .chipbtn[aria-pressed="true"] {
         color: var(--stage-ink);
-        border-color: #6d7a82;
-        background: #283037;
+        background: var(--glass-on);
+    }
+
+    .chipbtn[aria-pressed="true"]::before {
+        background: var(--dot, var(--stage-ink));
+    }
+
+    .chipbtn:active {
+        transform: translateY(1px);
+    }
+
+    /* Dots match the 3D colours in app.js COLORS (muscle, ligament, origin). */
+    #tg-muscles {
+        --dot: #c95a4e;
+    }
+
+    #tg-ligs {
+        --dot: var(--slack);
+    }
+
+    #tg-sites {
+        --dot: var(--origin);
+    }
+
+    .toggles .divider {
+        width: 1px;
+        align-self: stretch;
+        margin: 5px 3px;
+        background: var(--glass-line);
     }
 
     /* ---------------------------------------------------------------- panel */
@@ -389,40 +589,60 @@
         background: var(--paper);
     }
 
+    /* Tabs: a segmented control on a tinted track. */
     .tabs {
         display: flex;
         gap: 2px;
-        padding: 10px 12px 0;
-        border-bottom: 1px solid var(--line);
+        margin: 12px 12px 0;
+        padding: 3px;
+        border-radius: var(--r-md);
+        background: var(--panel-tint);
         overflow-x: auto;
+        scrollbar-width: none;
         flex: 0 0 auto;
     }
 
+    .tabs::-webkit-scrollbar {
+        display: none;
+    }
+
     .tab {
+        flex: 1 0 auto;
+        min-height: 34px;
         border: 0;
+        border-radius: 7px;
         background: transparent;
         color: var(--muted);
-        padding: 8px 10px 9px;
+        padding: 6px 12px;
         font-size: 14px;
-        border-bottom: 2px solid transparent;
         white-space: nowrap;
+        transition: color var(--fast) var(--ease), background-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+    }
+
+    .tab:hover {
+        color: var(--ink);
     }
 
     .tab[aria-selected="true"] {
         color: var(--ink);
         font-weight: 700;
-        border-bottom-color: var(--accent);
+        background: var(--paper-raised);
+        box-shadow: var(--shadow-1);
     }
 
     .scope-bar {
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 8px 18px;
+        padding: 10px 18px;
         font-size: 13px;
         color: var(--muted);
         border-bottom: 1px solid var(--line);
         flex: 0 0 auto;
+    }
+
+    .scope-bar:empty {
+        display: none;
     }
 
     .scope-bar b {
@@ -434,14 +654,21 @@
         border: 1px solid var(--line);
         background: var(--paper-raised);
         border-radius: 999px;
-        padding: 2px 10px;
+        padding: 3px 12px;
         font-size: 12.5px;
+        transition: border-color var(--fast) var(--ease), background-color var(--fast) var(--ease);
+    }
+
+    .scope-bar button:hover {
+        border-color: var(--muted);
     }
 
     .views {
         flex: 1 1 auto;
         overflow-y: auto;
         min-height: 0;
+        scrollbar-width: thin;
+        scrollbar-color: var(--line) transparent;
     }
 
     .pane {
@@ -897,10 +1124,109 @@
         gap: 5px;
     }
 
+    /* ---------------------------------------------------------- interaction */
+
+    .chip,
+    .card,
+    .opt,
+    .btn,
+    .listbtn,
+    .search {
+        transition:
+            border-color var(--fast) var(--ease),
+            background-color var(--fast) var(--ease),
+            box-shadow var(--fast) var(--ease),
+            transform var(--fast) var(--ease),
+            color var(--fast) var(--ease);
+    }
+
+    .card {
+        border-radius: var(--r-md);
+        box-shadow: var(--shadow-1);
+    }
+
+    .card:hover {
+        box-shadow: var(--shadow-2);
+        transform: translateY(-1px);
+    }
+
+    .chip:hover {
+        background: color-mix(in srgb, var(--paper-raised) 80%, var(--line));
+    }
+
+    .chip.prime:hover {
+        background: var(--accent-soft);
+        border-color: var(--accent);
+    }
+
+    .card:active,
+    .chip:active,
+    .opt:active,
+    .btn:active {
+        transform: translateY(1px);
+        box-shadow: none;
+    }
+
+    .btn {
+        box-shadow: var(--shadow-1);
+    }
+
+    .btn:hover {
+        background: color-mix(in srgb, var(--accent) 88%, var(--ink));
+        border-color: color-mix(in srgb, var(--accent) 88%, var(--ink));
+    }
+
+    .btn.ghost:hover {
+        background: var(--accent-soft);
+    }
+
+    .listbtn {
+        border-radius: var(--r-sm);
+        padding-inline: 8px;
+    }
+
+    .listbtn:hover {
+        background: var(--panel-tint);
+    }
+
+    .q,
+    .meter {
+        box-shadow: var(--shadow-1);
+    }
+
+    .opt {
+        background: var(--paper-raised);
+        min-height: 44px;
+    }
+
+    .opt:hover:not(.right):not(.wrong) {
+        border-color: var(--muted);
+        background: var(--panel-tint);
+    }
+
+    .search {
+        background: var(--panel-tint);
+        border-color: transparent;
+        border-radius: var(--r-md);
+        padding: 10px 12px;
+    }
+
+    .search:focus {
+        outline: none;
+        background: var(--paper-raised);
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .pop {
+        border-radius: var(--r-md);
+        box-shadow: var(--shadow-2);
+    }
+
     @media (max-width: 760px) {
         .app {
             grid-template-columns: minmax(0, 1fr);
-            grid-template-rows: 54% 46%;
+            grid-template-rows: 58% 42%;
         }
 
         .panel {
@@ -917,27 +1243,60 @@
             font-size: 22px;
         }
 
+        .stage-top {
+            inset: 8px 8px auto 8px;
+        }
+
+        .dock {
+            gap: 8px;
+            padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+        }
+
         .joints {
             width: 100%;
         }
 
         .joints-head {
-            padding: 5px 10px;
+            min-height: 36px;
+            padding: 6px 12px;
         }
 
         .joints-list {
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 2px 14px;
-            padding-bottom: 6px;
+            gap: 4px 14px;
+            max-height: 28vh;
+            padding-bottom: 8px;
         }
 
         .ctl label {
             font-size: 10px;
         }
 
+        /* One scrolling row instead of several wrapped rows over the body. */
+        .toggles {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none;
+            width: 100%;
+        }
+
+        .toggles::-webkit-scrollbar {
+            display: none;
+        }
+
         .chipbtn {
-            padding: 4px 9px;
-            font-size: 11.5px;
+            min-height: 36px;
+            padding: 4px 10px;
+            font-size: 12px;
+        }
+
+        .tabs {
+            margin: 8px 8px 0;
+        }
+
+        .tab {
+            min-height: 36px;
+            padding: 6px 10px;
         }
 
         .pill.progress {
@@ -946,8 +1305,25 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-        .bar i {
-            transition: none;
+        *,
+        *::before,
+        *::after {
+            transition: none !important;
+        }
+
+        .loading-bar::after {
+            animation: none;
+            width: 100%;
+            opacity: 0.6;
+        }
+
+        .card:hover,
+        .card:active,
+        .chip:active,
+        .opt:active,
+        .btn:active,
+        .chipbtn:active {
+            transform: none;
         }
     }
 </style>
@@ -958,7 +1334,7 @@
         <div class="labels" id="labels"></div>
 
         <div class="stage-top">
-            <nav class="crumbs" id="crumbs" aria-label="Location"></nav>
+            <nav class="crumbs glass" id="crumbs" aria-label="Location"></nav>
             <div class="stage-pills">
                 <span class="pill progress" id="progress" hidden></span>
                 <span class="pill draft" title="Not yet checked by a reviewer">Draft content</span>
@@ -967,16 +1343,17 @@
         <p class="hint" id="hint">Drag to turn · pinch or scroll to zoom · tap the body to narrow your focus</p>
 
         <div class="dock" id="dock">
-            <div class="joints" id="joints">
+            <div class="joints glass" id="joints">
                 <button class="joints-head" id="joints-head" type="button" aria-expanded="true" aria-controls="controls">Joints</button>
                 <div class="joints-list" id="controls"></div>
             </div>
-            <div class="toggles">
+            <div class="toggles glass" role="toolbar" aria-label="Layers">
                 <button class="chipbtn" id="tg-muscles" type="button" aria-pressed="true">Muscles</button>
                 <button class="chipbtn" id="tg-ligs" type="button" aria-pressed="false">Ligaments</button>
                 <button class="chipbtn" id="tg-deep" type="button" aria-pressed="false">Deep layer</button>
                 <button class="chipbtn" id="tg-cords" type="button" aria-pressed="false">Lines of pull</button>
                 <button class="chipbtn" id="tg-sites" type="button" aria-pressed="false">Attachments</button>
+                <span class="divider" aria-hidden="true"></span>
                 <button class="chipbtn" id="tg-reset" type="button">Reset pose</button>
             </div>
         </div>
@@ -985,6 +1362,7 @@
             <div>
                 <strong>PT Anatomy Atlas</strong>
                 <span id="loading-text">Loading the skeleton…</span>
+                <span class="loading-bar" aria-hidden="true"></span>
             </div>
         </div>
     </section>
@@ -1206,9 +1584,10 @@ function lowerFirst(text) {
 const canvas = $("#view");
 const stage = $("#stage");
 
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+// Transparent so the stage's CSS lighting gradient shows behind the body.
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.setClearColor(0x14181b, 1);
+renderer.setClearColor(0x000000, 0);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, 1, 1, 4000);
@@ -2927,10 +3306,18 @@ function renderControls() {
             return `
                 <div class="ctl">
                     <label for="ctl-${id}">${escapeHtml(control.label)} <output id="out-${id}">${value}°</output></label>
-                    <input id="ctl-${id}" type="range" min="${control.min}" max="${control.max}" value="${value}" step="1" data-control="${id}">
+                    <input id="ctl-${id}" type="range" min="${control.min}" max="${control.max}" value="${value}" step="1" data-control="${id}" style="${sliderFill(control, value)}">
                 </div>`;
         })
         .join("");
+}
+
+// Track fill from the neutral (0°) position to the current angle.
+function sliderFill(control, value) {
+    const span = control.max - control.min || 1;
+    const zero = ((clamp(0, control.min, control.max) - control.min) / span) * 100;
+    const here = ((value - control.min) / span) * 100;
+    return `--lo: ${Math.min(zero, here).toFixed(1)}%; --hi: ${Math.max(zero, here).toFixed(1)}%`;
 }
 
 function setPose(id, value) {
@@ -2939,6 +3326,7 @@ function setPose(id, value) {
     const input = $(`#ctl-${id}`);
     if (input) {
         input.value = Math.round(state.pose[id]);
+        input.style.cssText = sliderFill(control, state.pose[id]);
         $(`#out-${id}`).textContent = `${Math.round(state.pose[id])}°`;
     }
     state.dirty = true;
@@ -4232,7 +4620,8 @@ function setJointsOpen(open) {
 $("#joints-head").addEventListener("click", () => {
     setJointsOpen($("#joints-head").getAttribute("aria-expanded") !== "true");
 });
-setJointsOpen(storageGet(JOINTS_KEY, true) !== false);
+// Phones start with the panel folded so it does not cover the body.
+setJointsOpen(storageGet(JOINTS_KEY, !matchMedia("(max-width: 760px)").matches) !== false);
 
 document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") {

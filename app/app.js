@@ -183,9 +183,10 @@ function lowerFirst(text) {
 const canvas = $("#view");
 const stage = $("#stage");
 
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+// Transparent so the stage's CSS lighting gradient shows behind the body.
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.setClearColor(0x14181b, 1);
+renderer.setClearColor(0x000000, 0);
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, 1, 1, 4000);
@@ -1904,10 +1905,18 @@ function renderControls() {
             return `
                 <div class="ctl">
                     <label for="ctl-${id}">${escapeHtml(control.label)} <output id="out-${id}">${value}°</output></label>
-                    <input id="ctl-${id}" type="range" min="${control.min}" max="${control.max}" value="${value}" step="1" data-control="${id}">
+                    <input id="ctl-${id}" type="range" min="${control.min}" max="${control.max}" value="${value}" step="1" data-control="${id}" style="${sliderFill(control, value)}">
                 </div>`;
         })
         .join("");
+}
+
+// Track fill from the neutral (0°) position to the current angle.
+function sliderFill(control, value) {
+    const span = control.max - control.min || 1;
+    const zero = ((clamp(0, control.min, control.max) - control.min) / span) * 100;
+    const here = ((value - control.min) / span) * 100;
+    return `--lo: ${Math.min(zero, here).toFixed(1)}%; --hi: ${Math.max(zero, here).toFixed(1)}%`;
 }
 
 function setPose(id, value) {
@@ -1916,6 +1925,7 @@ function setPose(id, value) {
     const input = $(`#ctl-${id}`);
     if (input) {
         input.value = Math.round(state.pose[id]);
+        input.style.cssText = sliderFill(control, state.pose[id]);
         $(`#out-${id}`).textContent = `${Math.round(state.pose[id])}°`;
     }
     state.dirty = true;
@@ -3209,7 +3219,8 @@ function setJointsOpen(open) {
 $("#joints-head").addEventListener("click", () => {
     setJointsOpen($("#joints-head").getAttribute("aria-expanded") !== "true");
 });
-setJointsOpen(storageGet(JOINTS_KEY, true) !== false);
+// Phones start with the panel folded so it does not cover the body.
+setJointsOpen(storageGet(JOINTS_KEY, !matchMedia("(max-width: 760px)").matches) !== false);
 
 document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") {

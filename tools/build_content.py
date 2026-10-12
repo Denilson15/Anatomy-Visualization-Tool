@@ -2,7 +2,8 @@
 Merge the written notes into the app's content files and check them.
 
 Reads:
-    notes/base.json, notes/<region>.json, notes/movements.json, notes/nerves.json
+    notes/base.json, notes/<region>.json, notes/ligaments-<region>.json,
+    notes/movements.json, notes/nerves.json
     app/body.json (generated from the atlas)
 
 Writes:
@@ -43,6 +44,17 @@ for name in REGION_FILES:
     data = json.loads((NOTES / name).read_text())
     groups.update(data["groups"])
     muscles.update(data["muscles"])
+
+joints = {}
+ligaments = {}
+for name in REGION_FILES:
+    data = json.loads((NOTES / f"ligaments-{name}").read_text())
+    for joint_id in data["joints"]:
+        assert joint_id not in joints, f"joint '{joint_id}' defined twice"
+    for ligament_id in data["ligaments"]:
+        assert ligament_id not in ligaments, f"ligament '{ligament_id}' defined twice"
+    joints.update(data["joints"])
+    ligaments.update(data["ligaments"])
 
 errors = []
 warnings = []
@@ -110,6 +122,49 @@ for muscle_id, muscle in muscles.items():
         if movement and muscle_id not in movement["prime"] + movement["assist"]:
             warnings.append(f"'{muscle_id}' lists '{action}' but the movement does not include it")
 
+# --- Joints and ligaments --------------------------------------------------
+LIGAMENT_KINDS = {"ligament", "capsule", "disc", "labrum", "meniscus", "membrane", "fat-pad"}
+LIGAMENT_REQUIRED = ["name", "kind", "joint", "meshes", "attachmentText", "function"]
+area_ids = {node for node, info in body["tree"].items() if info.get("region")}
+
+for joint_id, joint in joints.items():
+    for field in ("name", "area", "type", "summary"):
+        if field not in joint:
+            errors.append(f"joint '{joint_id}' is missing '{field}'")
+    if joint.get("area") not in area_ids:
+        errors.append(f"joint '{joint_id}' names unknown area '{joint.get('area')}'")
+
+mesh_owner = {}
+for ligament_id, ligament in ligaments.items():
+    for field in LIGAMENT_REQUIRED:
+        if field not in ligament:
+            errors.append(f"ligament '{ligament_id}' is missing '{field}'")
+    if ligament.get("kind") not in LIGAMENT_KINDS:
+        errors.append(f"ligament '{ligament_id}' has unknown kind '{ligament.get('kind')}'")
+    if ligament.get("joint") not in joints:
+        errors.append(f"ligament '{ligament_id}' names unknown joint '{ligament.get('joint')}'")
+    for mesh_name in ligament.get("meshes", []):
+        if body["meshes"].get(mesh_name, {}).get("kind") != "ligament":
+            errors.append(f"ligament '{ligament_id}' names unknown mesh '{mesh_name}'")
+        if mesh_name in mesh_owner:
+            errors.append(f"mesh '{mesh_name}' is in both '{mesh_owner[mesh_name]}' and '{ligament_id}'")
+        mesh_owner[mesh_name] = ligament_id
+    for site in ligament.get("between", []):
+        if site not in base["sites"]:
+            errors.append(f"ligament '{ligament_id}' names unknown site '{site}'")
+    for rule in ligament.get("taut", []):
+        if rule["control"] not in control_ids:
+            errors.append(f"ligament '{ligament_id}' taut rule names unknown control '{rule['control']}'")
+        angles = [point[0] for point in rule["points"]]
+        if angles != sorted(angles) or not all(0 <= point[1] <= 1 for point in rule["points"]):
+            errors.append(f"ligament '{ligament_id}' taut points must be sorted with values 0-1")
+        if "tautText" not in ligament:
+            errors.append(f"ligament '{ligament_id}' has a taut rule but no tautText")
+
+for mesh_name, mesh in body["meshes"].items():
+    if mesh["kind"] == "ligament" and mesh_name not in mesh_owner:
+        errors.append(f"atlas structure '{mesh_name}' has no ligament notes")
+
 # --- Attachment correction -------------------------------------------------
 meshes = body["meshes"]
 
@@ -165,7 +220,9 @@ report.insert(4, f"Kept {counts['kept']}, relabelled {counts['swapped']}, droppe
 report.insert(5, "")
 
 # --- Write -----------------------------------------------------------------
-content = dict(base)
+content = {key: value for key, value in base.items() if key not in ("ligaments", "structures")}
+content["joints"] = joints
+content["ligaments"] = ligaments
 content["groups"] = groups
 content["muscles"] = muscles
 content["movements"] = movements
@@ -176,6 +233,8 @@ content["nerves"] = nerves
 (NOTES / "attachment-report.md").write_text("\n".join(report) + "\n")
 
 print(f"muscles {len(muscles)}, groups {len(groups)}, movements {len(movements)}, nerves {len(nerves)}")
+modelled = sum(1 for ligament in ligaments.values() if ligament["meshes"] or ligament.get("between"))
+print(f"joints {len(joints)}, ligaments {len(ligaments)} ({modelled} in 3D, {len(mesh_owner)} meshes)")
 print(f"attachments: kept {counts['kept']}, relabelled {counts['swapped']}, dropped {counts['dropped']}")
 both = sum(1 for a in attachments.values() if a["origin"] and a["insertion"])
 print(f"muscles with both attachments marked: {both} of {len(attachments)}")

@@ -1,0 +1,191 @@
+{
+    "joints": {
+        "temporomandibular-joint": {
+            "name": "Temporomandibular joint",
+            "area": "head",
+            "type": "Synovial modified hinge joint with an articular disc",
+            "summary": "The mandibular condyle sits in the mandibular fossa of the temporal bone, with a disc between them. Opening starts as a hinge in the lower compartment, then the condyle and disc glide forward onto the articular eminence in the upper compartment.",
+            "closePacked": "Maximal retrusion (teeth clenched).",
+            "resting": "Mouth slightly open, lips together, teeth not touching.",
+            "capsularPattern": "Limited mouth opening.",
+            "views": [1, 0, 0.3]
+        },
+        "craniovertebral-joints": {
+            "name": "Craniovertebral joints and nuchal ligament",
+            "area": "neck",
+            "type": "Atlanto-occipital: synovial condyloid. Atlanto-axial: synovial pivot (median) and plane (lateral)",
+            "summary": "The skull rocks on the atlas for nodding (yes), and the atlas turns around the dens of the axis for about half of all neck rotation (no). There are no discs here, so ligaments do all the work of holding the joints together, and several of them protect the spinal cord.",
+            "views": [1, 0.2, -0.5]
+        },
+        "hyoid-larynx": {
+            "name": "Ligaments of the hyoid and larynx",
+            "area": "neck",
+            "type": "Fibrous ligaments and membranes",
+            "summary": "Ligaments and membranes that hang the hyoid from the skull and bind the cartilages of the larynx to the hyoid and to each other.",
+            "views": [0.8, 0, 1]
+        }
+    },
+    "ligaments": {
+        "tmj-capsule": {
+            "name": "Articular capsule of temporomandibular joint",
+            "kind": "capsule",
+            "joint": "temporomandibular-joint",
+            "meshes": ["Articular capsule of temporomandibular joint.r"],
+            "attachmentText": "Around the mandibular fossa and articular eminence, down to the neck of the mandible.",
+            "function": "Loose capsule that encloses the joint and attaches to the edges of the disc."
+        },
+        "tmj-disc": {
+            "name": "Articular disc of temporomandibular joint",
+            "kind": "disc",
+            "joint": "temporomandibular-joint",
+            "meshes": ["Articular disc of temporomandibular joint.r"],
+            "attachmentText": "Between the condyle and the temporal bone, joined to the capsule all round, to the condyle's poles at the sides, and to the upper head of lateral pterygoid in front.",
+            "function": "Fits the condyle to the fossa and eminence, divides the joint into upper (gliding) and lower (hinging) compartments.",
+            "note": "Anterior disc displacement causes clicking on opening; if it does not reduce, opening locks."
+        },
+        "lateral-temporomandibular-ligament": {
+            "name": "Lateral (temporomandibular) ligament",
+            "kind": "ligament",
+            "joint": "temporomandibular-joint",
+            "meshes": ["Lateral temporomandibular ligament.r"],
+            "attachmentText": "Articular tubercle on the zygomatic arch, down and back to the neck of the mandible.",
+            "function": "The main ligament of the joint. Stops the condyle sliding backward or down and limits how far the mouth opens by hinging alone.",
+            "tautText": "Taut at the end of the hinge phase of opening, which forces the condyle to glide forward."
+        },
+        "sphenomandibular-ligament": {
+            "name": "Sphenomandibular ligament",
+            "kind": "ligament",
+            "joint": "temporomandibular-joint",
+            "meshes": ["Sphenomandibular ligament.r"],
+            "attachmentText": "Spine of the sphenoid to the lingula of the mandible, beside the mandibular foramen.",
+            "function": "Accessory ligament; acts as a swinging hinge for the mandible during opening.",
+            "note": "Landmark for the inferior alveolar nerve block in dentistry."
+        },
+        "stylomandibular-ligament": {
+            "name": "Stylomandibular ligament",
+            "kind": "ligament",
+            "joint": "temporomandibular-joint",
+            "meshes": ["Stylomandibular ligament.r"],
+            "attachmentText": "Styloid process of the temporal bone to the angle of the mandible.",
+            "function": "Accessory ligament; limits protrusion of the jaw.",
+            "tautText": "Taut when the jaw is pushed forward (protrusion)."
+        },
+        "pterygospinous-ligament": {
+            "name": "Pterygospinous ligament",
+            "kind": "ligament",
+            "joint": "temporomandibular-joint",
+            "meshes": ["Pterygospinous ligament.r"],
+            "attachmentText": "Lateral pterygoid plate to the spine of the sphenoid.",
+            "function": "Not a ligament of the joint itself; a band near it that sometimes ossifies and can press on branches of the mandibular nerve."
+        },
+        "nuchal-ligament": {
+            "name": "Nuchal ligament",
+            "kind": "ligament",
+            "joint": "craniovertebral-joints",
+            "meshes": ["Nuchal ligament"],
+            "attachmentText": "External occipital protuberance and crest, down to the spinous process of C7, with a sheet attaching to the cervical spinous processes. It continues below as the supraspinous ligament.",
+            "function": "Limits neck flexion, helps hold the head up and gives a midline attachment for trapezius, splenius and other neck muscles.",
+            "tautText": "Taut in neck flexion.",
+            "taut": [
+                {"control": "neckFlex", "points": [[-55, 0.05], [0, 0.4], [50, 1.0]]}
+            ]
+        },
+        "transverse-ligament-of-atlas": {
+            "name": "Transverse ligament of atlas",
+            "kind": "ligament",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Between the tubercles on the inner sides of the lateral masses of the atlas, passing behind the dens. Small bands up to the occiput and down to the axis make it the cruciform ligament.",
+            "function": "Holds the dens against the anterior arch of the atlas, so the atlas cannot slide forward on the axis and the dens cannot press back on the spinal cord.",
+            "tautText": "Taut in neck flexion, when the atlas tends to slide forward.",
+            "note": "Weakened in rheumatoid arthritis and Down syndrome, so screen upper cervical stability before mobilising the neck. Tested with the Sharp-Purser test."
+        },
+        "alar-ligaments": {
+            "name": "Alar ligaments",
+            "kind": "ligament",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Sides of the tip of the dens, up and laterally to the medial sides of the occipital condyles.",
+            "function": "Check rotation of the head and atlas on the axis, and side bending of the head.",
+            "tautText": "Rotation to one side is limited mainly by the alar ligament of the opposite side; side bending is limited by the ligament on the opposite side.",
+            "note": "Tested with the alar ligament stress test: with a firm ligament, side bending the head makes the C2 spinous process move at once."
+        },
+        "apical-ligament-of-dens": {
+            "name": "Apical ligament of dens",
+            "kind": "ligament",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Tip of the dens to the front edge of the foramen magnum.",
+            "function": "A thin remnant of the notochord; adds little stability."
+        },
+        "tectorial-membrane": {
+            "name": "Tectorial membrane",
+            "kind": "membrane",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Back of the body of the axis up to the floor of the skull just inside the foramen magnum. It is the upward continuation of the posterior longitudinal ligament.",
+            "function": "Covers the dens and its ligaments from behind and limits flexion and extension of the upper neck.",
+            "tautText": "Taut in flexion of the head on the neck."
+        },
+        "anterior-atlanto-occipital-membrane": {
+            "name": "Anterior atlanto-occipital membrane",
+            "kind": "membrane",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Upper edge of the anterior arch of the atlas to the front edge of the foramen magnum. It continues the anterior longitudinal ligament upward.",
+            "function": "Closes the front of the gap between skull and atlas and limits extension of the head.",
+            "tautText": "Taut in extension of the head."
+        },
+        "posterior-atlanto-occipital-membrane": {
+            "name": "Posterior atlanto-occipital membrane",
+            "kind": "membrane",
+            "joint": "craniovertebral-joints",
+            "meshes": [],
+            "attachmentText": "Upper edge of the posterior arch of the atlas to the back edge of the foramen magnum.",
+            "function": "Closes the back of the gap between skull and atlas and limits flexion of the head. The vertebral artery and suboccipital nerve pass under its lateral edge.",
+            "tautText": "Taut in flexion of the head."
+        },
+        "stylohyoid-ligament": {
+            "name": "Stylohyoid ligament",
+            "kind": "ligament",
+            "joint": "hyoid-larynx",
+            "meshes": ["Stylohyoid ligament.r"],
+            "attachmentText": "Tip of the styloid process to the lesser horn of the hyoid.",
+            "function": "Hangs the hyoid from the skull.",
+            "note": "Calcification of this ligament (Eagle syndrome) can cause throat pain on swallowing and turning the head."
+        },
+        "thyrohyoid-ligaments": {
+            "name": "Thyrohyoid membrane and ligaments",
+            "kind": "membrane",
+            "joint": "hyoid-larynx",
+            "meshes": ["Median thyrohyoid ligament", "Lateral thyrohyoid ligament.r"],
+            "attachmentText": "Upper border of the thyroid cartilage to the back of the hyoid; thickened in the midline (median thyrohyoid ligament) and at the back edges (lateral thyrohyoid ligaments).",
+            "function": "Hangs the larynx from the hyoid so they rise together in swallowing. The internal laryngeal nerve and superior laryngeal artery pierce it."
+        },
+        "median-cricothyroid-ligament": {
+            "name": "Median cricothyroid ligament",
+            "kind": "ligament",
+            "joint": "hyoid-larynx",
+            "meshes": ["Median cricothyroid ligament"],
+            "attachmentText": "Lower border of the thyroid cartilage to the arch of the cricoid, in the midline.",
+            "function": "The front of the conus elasticus, closing the gap between the thyroid and cricoid cartilages.",
+            "note": "Felt as the soft dip below the Adam's apple; the site for an emergency airway (cricothyrotomy)."
+        },
+        "quadrangular-membrane": {
+            "name": "Quadrangular membrane",
+            "kind": "membrane",
+            "joint": "hyoid-larynx",
+            "meshes": ["Quadrangular membrane.r"],
+            "attachmentText": "Side of the epiglottis to the arytenoid cartilage; its free lower edge is the vestibular ligament inside the false vocal fold.",
+            "function": "Forms the wall of the upper larynx (vestibule)."
+        },
+        "cricopharyngeal-ligament": {
+            "name": "Cricopharyngeal ligament",
+            "kind": "ligament",
+            "joint": "hyoid-larynx",
+            "meshes": ["Cricopharyngeal ligament.r"],
+            "attachmentText": "Corniculate cartilages to the back of the cricoid lamina and the pharyngeal wall.",
+            "function": "Ties the back of the larynx to the pharynx."
+        }
+    }
+}

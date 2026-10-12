@@ -25,7 +25,7 @@
         --insertion: #df7417;
         --nerve: #c99600;
         --taut: #d23a2c;
-        --slack: #a39f96;
+        --slack: #c59a5c;
         --good: #2c8a52;
         --draft: #9a5a17;
         --draft-line: #e7c79f;
@@ -47,7 +47,7 @@
             --insertion: #f39a4a;
             --nerve: #f0c440;
             --taut: #ef5a4b;
-            --slack: #8d8a83;
+            --slack: #c59a5c;
             --good: #4fbf7d;
             --draft: #f1c08a;
             --draft-line: #6b4a2c;
@@ -67,7 +67,7 @@
         --insertion: #f39a4a;
         --nerve: #f0c440;
         --taut: #ef5a4b;
-        --slack: #8d8a83;
+        --slack: #c59a5c;
         --good: #4fbf7d;
         --draft: #f1c08a;
         --draft-line: #6b4a2c;
@@ -268,19 +268,65 @@
         right: 0;
         bottom: 0;
         display: flex;
-        gap: 14px;
-        align-items: flex-end;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
         padding: 10px 12px calc(10px + env(safe-area-inset-bottom, 0px));
-        background: linear-gradient(to top, rgba(14, 17, 19, 0.96), rgba(14, 17, 19, 0.75) 70%, rgba(14, 17, 19, 0));
-        overflow-x: auto;
-        scrollbar-width: thin;
+        pointer-events: none;
+    }
+
+    .dock > * {
+        pointer-events: auto;
+    }
+
+    .joints {
+        width: 210px;
+        max-width: 100%;
+        border: 1px solid var(--stage-line);
+        border-radius: 10px;
+        background: rgba(20, 25, 28, 0.88);
+        backdrop-filter: blur(6px);
+    }
+
+    .joints-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 7px 10px;
+        border: 0;
+        background: none;
+        color: var(--stage-muted);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    .joints-head::after {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-right: 1.5px solid currentColor;
+        border-bottom: 1.5px solid currentColor;
+        transform: translateY(-2px) rotate(45deg);
+        transition: transform 0.15s;
+    }
+
+    .joints-head[aria-expanded="false"]::after {
+        transform: translateY(2px) rotate(-135deg);
+    }
+
+    .joints-list {
+        display: grid;
+        gap: 6px;
+        padding: 0 10px 9px;
     }
 
     .ctl {
         display: grid;
-        gap: 2px;
-        min-width: 136px;
-        flex: 0 0 auto;
+        gap: 1px;
     }
 
     .ctl label {
@@ -308,9 +354,9 @@
 
     .toggles {
         display: flex;
+        flex-wrap: wrap;
         gap: 6px;
-        flex: 0 0 auto;
-        padding-bottom: 2px;
+        max-width: 100%;
     }
 
     .chipbtn {
@@ -868,8 +914,27 @@
             font-size: 22px;
         }
 
-        .ctl {
-            min-width: 120px;
+        .joints {
+            width: 100%;
+        }
+
+        .joints-head {
+            padding: 5px 10px;
+        }
+
+        .joints-list {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 2px 14px;
+            padding-bottom: 6px;
+        }
+
+        .ctl label {
+            font-size: 10px;
+        }
+
+        .chipbtn {
+            padding: 4px 9px;
+            font-size: 11.5px;
         }
 
         .pill.progress {
@@ -899,9 +964,13 @@
         <p class="hint" id="hint">Drag to turn · pinch or scroll to zoom · tap the body to narrow your focus</p>
 
         <div class="dock" id="dock">
-            <div id="controls" style="display: contents"></div>
+            <div class="joints" id="joints">
+                <button class="joints-head" id="joints-head" type="button" aria-expanded="true" aria-controls="controls">Joints</button>
+                <div class="joints-list" id="controls"></div>
+            </div>
             <div class="toggles">
                 <button class="chipbtn" id="tg-muscles" type="button" aria-pressed="true">Muscles</button>
+                <button class="chipbtn" id="tg-ligs" type="button" aria-pressed="false">Ligaments</button>
                 <button class="chipbtn" id="tg-deep" type="button" aria-pressed="false">Deep layer</button>
                 <button class="chipbtn" id="tg-cords" type="button" aria-pressed="false">Lines of pull</button>
                 <button class="chipbtn" id="tg-sites" type="button" aria-pressed="false">Attachments</button>

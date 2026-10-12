@@ -13,8 +13,11 @@ const COLORS = {
     muscle: 0xb34a3f,
     muscleMirror: 0xa04238,
     tissue: 0xd9cdbd,
-    ligament: 0xcfc8bb,
+    ligament: 0xc59a5c,
     meniscus: 0xa8c4cf,
+    cartilage: 0xa8c4cf,
+    capsule: 0xd6b98a,
+    fatPad: 0xe3cf7c,
     origin: 0x3a86e0,
     insertion: 0xf08a2a,
     neutralSite: 0x8e9aa2,
@@ -22,7 +25,7 @@ const COLORS = {
     prime: 0xd8483a,
     assist: 0xe99a8c,
     lost: 0x5d6368,
-    slack: 0xbfb8aa,
+    slack: 0xc59a5c,
     amber: 0xf0a43a,
     taut: 0xe23c2d,
     correct: 0x3cbf74,
@@ -66,14 +69,30 @@ const AREA_VIEW = {
     "foot-area": [-0.7, 0.6, 1],
 };
 
+/* What each kind of joint structure is called in the panel. */
+const KIND_LABEL = {
+    ligament: "Ligament",
+    capsule: "Joint capsule",
+    disc: "Disc",
+    labrum: "Labrum",
+    meniscus: "Meniscus",
+    membrane: "Membrane",
+    "fat-pad": "Fat pad",
+};
+
+/* Special views for single ligaments where the joint's own view hides them. */
 const LIGAMENT_VIEW = {
-    acl: VIEWS.front,
     pcl: VIEWS.back,
     mcl: VIEWS.medial,
     lcl: VIEWS.right,
     "patellar-ligament": VIEWS.right,
     "medial-meniscus": [0.2, 1, 0.5],
     "lateral-meniscus": [-0.2, 1, 0.5],
+    "oblique-popliteal-ligament": VIEWS.back,
+    "arcuate-popliteal-ligament": VIEWS.back,
+    "ischiofemoral-ligament": [-0.5, 0.2, -1],
+    "posterior-longitudinal-ligament": [-1, 0.2, -0.2],
+    "ligamenta-flava": [-0.6, 0.3, -1],
 };
 
 const LANDMARK_SKIP = /(Bones|Muscles|Joints|system|nodes|plexus|Bursae|Fasciae|compartment|Taeniae|bladder|membrane|joint|Interosseous|Pelvic|Bony|surface$|^Body of)/i;
@@ -86,7 +105,7 @@ const state = {
     body: null,
     content: null,
     pose: {},
-    show: { muscles: true, deep: false, cords: false, sites: false },
+    show: { muscles: true, deep: false, cords: false, sites: false, ligaments: false },
     tab: "explore",
     node: "body",
     selection: null,
@@ -259,19 +278,23 @@ function setupEntities() {
         const bonesGroup = tree[area].children.find((child) => child.endsWith("--bones"));
         tree[area].children = [
             ...groupOrder.filter((gid) => content.groups[gid].area === area),
-            ...(area === "thigh-knee" ? ["knee-joint"] : []),
+            ...Object.keys(content.joints).filter((jid) => content.joints[jid].area === area),
             ...(bonesGroup ? [bonesGroup] : []),
         ];
     }
     for (const [gid, group] of Object.entries(content.groups)) {
         tree[gid] = { name: group.name, parent: group.area, children: group.children, summary: group.summary };
     }
-    tree["knee-joint"] = {
-        name: "Knee ligaments",
-        parent: "thigh-knee",
-        summary: "The ligaments that hold the femur and tibia together, and the menisci that sit between them.",
-        children: [...Object.keys(content.ligaments), ...Object.keys(content.structures)],
-    };
+    // Each joint is a node under its area; its children are its ligaments and other structures.
+    for (const [jid, joint] of Object.entries(content.joints)) {
+        tree[jid] = {
+            name: joint.name,
+            parent: joint.area,
+            summary: joint.summary,
+            joint: true,
+            children: Object.keys(content.ligaments).filter((lid) => content.ligaments[lid].joint === jid),
+        };
+    }
 
     const groupOf = {};
     for (const [gid, group] of Object.entries(content.groups)) {
@@ -312,13 +335,8 @@ function setupEntities() {
     }
 
     for (const [id, ligament] of Object.entries(content.ligaments)) {
-        entities.ligaments[id] = { ...ligament, id };
-        ownedMeshes[id] = [ligament.mesh, ...(ligament.extraMeshes ?? [])].filter(Boolean);
-    }
-
-    for (const [id, structure] of Object.entries(content.structures)) {
-        entities.structures[id] = { ...structure, id };
-        ownedMeshes[id] = [structure.mesh];
+        entities.ligaments[id] = { ...ligament, id, area: content.joints[ligament.joint].area };
+        ownedMeshes[id] = [...ligament.meshes];
     }
 
     for (const [id, site] of Object.entries(content.sites)) {
@@ -360,10 +378,25 @@ function setupEntities() {
  * Loading binary meshes
  * ======================================================================== */
 
+let meshOwnerIndex = null;
+
 function ownerOf(meshName) {
     const info = state.body.meshes[meshName];
     if (info.kind === "patch") {
         return { type: "patch", id: meshName };
+    }
+    if (!meshOwnerIndex) {
+        meshOwnerIndex = {};
+        for (const [type, group] of Object.entries(entities)) {
+            for (const id of Object.keys(group)) {
+                for (const name of ownedMeshes[id] ?? []) {
+                    meshOwnerIndex[name] ??= { type: type.replace(/s$/, ""), id };
+                }
+            }
+        }
+    }
+    if (meshOwnerIndex[meshName]) {
+        return meshOwnerIndex[meshName];
     }
     for (const [type, group] of Object.entries(entities)) {
         for (const [id, entity] of Object.entries(group)) {
@@ -442,6 +475,11 @@ function buildPart(name, info, buffer, mirror = false) {
     mesh.userData.part = key;
     mesh.matrixAutoUpdate = false;
     scene.add(mesh);
+
+    if (info.kind === "ligament") {
+        // Many small ligaments are single quads in the atlas; draw both faces.
+        material.side = THREE.DoubleSide;
+    }
 
     if (info.kind === "patch") {
         material.polygonOffset = true;
@@ -745,8 +783,47 @@ function lengthRatio(muscleId, matrices = segmentMatrices) {
     return pathLength(path.points) / restLength[muscleId];
 }
 
-function ligamentTension(id) {
-    return clamp(interpolate(entities.ligaments[id].taut, state.pose.knee ?? 0), 0, 1);
+/**
+ * Tension of a ligament in a pose, 0 (slack) to 1 (taut), from the rules in its
+ * notes: the highest value among its controls. Null when it has no rule.
+ */
+function ligamentTension(id, pose = state.pose) {
+    const rules = entities.ligaments[id]?.taut;
+    if (!rules?.length) {
+        return null;
+    }
+    return clamp(Math.max(...rules.map((rule) => interpolate(rule.points, pose[rule.control] ?? 0))), 0, 1);
+}
+
+function tensionWord(tension) {
+    return tension > 0.85 ? "Taut" : tension > 0.55 ? "Tightening" : "Slack";
+}
+
+/** Display colour of a ligament: tension colours when it has a rule, otherwise by kind. */
+function ligamentColor(id) {
+    // While a taut-or-slack question is open, colours would give the answer away.
+    const asked = state.tab === "quiz" && state.quiz?.current;
+    const hideTension = asked && asked.pose && !asked.answered;
+    const tension = hideTension ? null : ligamentTension(id);
+    if (tension !== null) {
+        return tensionColor(tension).getHex();
+    }
+    const kind = entities.ligaments[id]?.kind;
+    if (kind === "meniscus" || kind === "disc" || kind === "labrum") return COLORS.cartilage;
+    if (kind === "capsule") return COLORS.capsule;
+    if (kind === "fat-pad") return COLORS.fatPad;
+    return COLORS.ligament;
+}
+
+/** Controls that change the tension of any ligament in the list. */
+function tensionControls(ligamentIds) {
+    const ids = new Set();
+    for (const id of ligamentIds) {
+        for (const rule of entities.ligaments[id]?.taut ?? []) {
+            ids.add(rule.control);
+        }
+    }
+    return state.body.controls.map((control) => control.id).filter((id) => ids.has(id));
 }
 
 function tensionColor(tension) {
@@ -836,7 +913,7 @@ function rebuildCords() {
     if (ends?.every(Boolean)) {
         const band = new THREE.Mesh(
             tubeAlong(ends, 0.7),
-            new THREE.MeshStandardMaterial({ color: tensionColor(ligamentTension("patellar-ligament")), roughness: 0.6 }),
+            new THREE.MeshStandardMaterial({ color: ligamentColor("patellar-ligament"), roughness: 0.6 }),
         );
         band.userData.ligament = "patellar-ligament";
         band.userData.band = true;
@@ -1076,6 +1153,9 @@ function highlightSets() {
     }
 
     if (!selection) {
+        if (tree[state.node]?.joint || (tab === "quiz" && quiz?.current?.ligament)) {
+            sets.hideMuscles = true;
+        }
         return sets;
     }
 
@@ -1089,7 +1169,7 @@ function highlightSets() {
         for (const patch of musclePatches(muscle, "insertion")) {
             sets.patches.set(patch, "insertion");
         }
-    } else if (selection.type === "ligament" || selection.type === "structure") {
+    } else if (selection.type === "ligament") {
         sets.focus.add(selection.id);
         sets.dimOthers = true;
         sets.hideMuscles = true;
@@ -1129,7 +1209,7 @@ function applyAppearance() {
     const scoped = new Set(musclesInScope());
     const atBody = state.node === "body";
     const segments = scopeSegments();
-    const kneeGroup = state.node === "knee-joint";
+    const jointNode = Boolean(tree[state.node]?.joint);
     const scopeRegion = ancestors(state.node).find((nodeId) => REGION_IDS.includes(nodeId)) ?? null;
 
     for (const part of Object.values(parts)) {
@@ -1179,7 +1259,7 @@ function applyAppearance() {
             }
 
             const inScope = atBody || (part.kind === "tissue" ? scopeHasArea(entities.tissues[id]?.area) : scoped.has(id));
-            const ghost = { color: base, opacity: kneeGroup ? 0.05 : 0.08 };
+            const ghost = { color: base, opacity: 0.08 };
 
             // The mirrored left side is context for the whole-body view only.
             if (part.mirror) {
@@ -1206,7 +1286,7 @@ function applyAppearance() {
                 setLook(part, { color: base, emissive: 0x3a1408, emissiveIntensity: 1 });
             } else if (sets.lost.has(id)) {
                 setLook(part, { color: COLORS.lost, opacity: 0.9 });
-            } else if (sets.dimOthers || !inScope || kneeGroup) {
+            } else if (sets.dimOthers || !inScope || jointNode) {
                 setLook(part, ghost);
             } else {
                 setLook(part, { color: base });
@@ -1216,23 +1296,26 @@ function applyAppearance() {
 
         if (part.kind === "ligament") {
             const id = owner?.id;
-            if (owner?.type === "structure") {
-                const focused = sets.focus.has(id);
-                setLook(part, {
-                    color: COLORS.meniscus,
-                    emissive: focused ? 0x204050 : 0,
-                    emissiveIntensity: focused ? 1 : 0,
-                    opacity: sets.dimOthers && !focused ? 0.35 : 1,
-                });
+            if (!id || !ligamentShown(id, sets)) {
+                setLook(part, { visible: false });
                 continue;
             }
             const focused = sets.focus.has(id);
-            const color = tensionColor(id ? ligamentTension(id) : 0).getHex();
+            const color = ligamentColor(id);
+            const kind = entities.ligaments[id].kind;
+            // Capsules and membranes are see-through so the ligaments inside them show.
+            let opacity = kind === "capsule" ? 0.38 : kind === "membrane" ? 0.6 : 1;
+            if (sets.dimOthers && !focused) {
+                opacity = Math.min(opacity, 0.22);
+            }
+            if (focused) {
+                opacity = Math.max(opacity, kind === "capsule" ? 0.6 : 1);
+            }
             setLook(part, {
                 color,
                 emissive: focused ? color : 0,
                 emissiveIntensity: focused ? 0.35 : 0,
-                opacity: sets.dimOthers && !focused ? 0.3 : 1,
+                opacity,
             });
         }
     }
@@ -1249,6 +1332,34 @@ function applyAppearance() {
     rebuildLabels();
 }
 
+/**
+ * Ligaments are shown for the open joint, for the joint of the selected
+ * ligament, or everywhere in scope when the Ligaments toggle is on.
+ */
+function ligamentShown(id, sets) {
+    const ligament = entities.ligaments[id];
+    if (!ligament) {
+        return false;
+    }
+    const { selection } = state;
+    if (selection?.type === "ligament") {
+        return entities.ligaments[selection.id]?.joint === ligament.joint;
+    }
+    if (tree[state.node]?.joint) {
+        return state.node === ligament.joint;
+    }
+    if (state.tab === "quiz" && state.quiz?.current?.ligament) {
+        const asked = entities.ligaments[state.quiz.current.ligament];
+        if (asked?.joint === ligament.joint) {
+            return true;
+        }
+    }
+    if (selection || sets.dimOthers) {
+        return false;
+    }
+    return state.show.ligaments && scopeHasArea(ligament.area);
+}
+
 function scopeHasArea(area) {
     const areas = areasUnder(state.node);
     return !areas || areas.includes(area);
@@ -1257,9 +1368,10 @@ function scopeHasArea(area) {
 function styleBand(band) {
     const { selection } = state;
     const focused = selection?.type === "ligament" && selection.id === "patellar-ligament";
-    const dim = selection && !focused && ["ligament", "structure"].includes(selection.type);
-    const outOfScope = !scopeIncludesKnee() && state.node !== "body";
-    band.visible = !outOfScope;
+    const dim = selection && !focused && selection.type === "ligament";
+    band.visible = true;
+    band.material.color.setHex(ligamentColor("patellar-ligament"));
+    band.visible = band.visible && ligamentShown("patellar-ligament", highlightSets());
     band.material.transparent = Boolean(dim);
     band.material.opacity = dim ? 0.3 : 1;
     band.material.emissive.copy(focused ? band.material.color : new THREE.Color(0));
@@ -1356,12 +1468,22 @@ function rebuildLabels() {
         return;
     }
 
-    if (state.node === "knee-joint" || selection?.type === "ligament") {
-        for (const [id, ligament] of Object.entries(entities.ligaments)) {
-            if (selection?.type === "ligament" && selection.id !== id) {
-                continue;
-            }
-            add(ligament.short, null, "#" + tensionColor(ligamentTension(id)).getHexString(), () => ligamentAnchor(id));
+    if (selection?.type === "ligament") {
+        const ligament = entities.ligaments[selection.id];
+        add(ligament.short ?? ligament.name, KIND_LABEL[ligament.kind], "#" + new THREE.Color(ligamentColor(selection.id)).getHexString(),
+            () => ligamentAnchor(selection.id));
+        return;
+    }
+
+    if (tree[state.node]?.joint) {
+        // Label the named ligaments; capsules and big sheets explain themselves.
+        const ids = tree[state.node].children.filter((id) => {
+            const ligament = entities.ligaments[id];
+            return (ligament.meshes.length || ligament.between) && !["capsule", "membrane"].includes(ligament.kind);
+        });
+        for (const id of ids.slice(0, 12)) {
+            const ligament = entities.ligaments[id];
+            add(ligament.short ?? ligament.name, null, "#" + new THREE.Color(ligamentColor(id)).getHexString(), () => ligamentAnchor(id));
         }
     }
 }
@@ -1372,12 +1494,18 @@ function ligamentAnchor(id) {
         const ends = ligament.between.map((site) => sitePoint(site));
         return ends.every(Boolean) ? ends[0].add(ends[1]).multiplyScalar(0.5) : null;
     }
-    const part = parts[ligament.mesh];
-    if (!part) {
-        return null;
+    const samples = [];
+    for (const name of ligament.meshes) {
+        const part = parts[name];
+        if (!part) {
+            continue;
+        }
+        const count = part.base.length / 3;
+        for (const v of [0, Math.floor(count / 3), Math.floor((2 * count) / 3)]) {
+            samples.push(skinVertex(part, v));
+        }
     }
-    const count = part.base.length / 3;
-    return averagePoints([0, Math.floor(count / 3), Math.floor((2 * count) / 3)].map((v) => skinVertex(part, v)));
+    return averagePoints(samples);
 }
 
 function placeLabels() {
@@ -1500,10 +1628,17 @@ function frameCurrent() {
             frameBox(boxOfMeshes([muscle.mesh]), 1.25, groupView(muscle.groupName, muscle.area));
             return;
         }
-        if (type === "ligament" || type === "structure") {
-            const view = LIGAMENT_VIEW[selection.id] ?? VIEWS.front;
-            const names = entities.ligaments[selection.id]?.between ? ["Patella.r"] : ownedMeshes[selection.id];
-            frameBox(boxOfMeshes(names), 2.6, view);
+        if (type === "ligament") {
+            const ligament = entities.ligaments[selection.id];
+            const view = LIGAMENT_VIEW[selection.id] ?? jointView(ligament.joint);
+            let names = ligament.between ? ["Patella.r"] : ownedMeshes[selection.id];
+            if (!names.length) {
+                // Not modelled: frame the joint's bones instead.
+                names = jointMeshes(ligament.joint);
+            }
+            const box = boxOfMeshes(names);
+            const small = box.isEmpty() || box.getSize(new THREE.Vector3()).length() < 8;
+            frameBox(box.isEmpty() ? boxOfSegments(scopeSegments(ligament.area)) : box, small ? 1.9 : 1.5, view);
             return;
         }
         if (type === "patch" || type === "site") {
@@ -1524,8 +1659,10 @@ function frameCurrent() {
         frameBox(boxOfMeshes(Object.keys(parts).filter((key) => parts[key].kind === "bone")), 0.95, [-0.25, 0.08, 1]);
         return;
     }
-    if (node === "knee-joint") {
-        frameBox(boxOfMeshes(ownedMeshes.acl.concat(ownedMeshes.lcl, ownedMeshes.mcl)), 2.2, VIEWS.front);
+    if (tree[node]?.joint) {
+        const box = boxOfMeshes(jointMeshes(node));
+        const small = box.getSize(new THREE.Vector3()).length() < 10;
+        frameBox(box.isEmpty() ? boxOfSegments(scopeSegments(node)) : box, small ? 2.4 : 1.35, jointView(node));
         return;
     }
 
@@ -1549,6 +1686,27 @@ function frameCurrent() {
     frameBox(box.union(muscleBox), 1.0, view);
 }
 
+/** Mesh names of every modelled structure of a joint. */
+function jointMeshes(jointId) {
+    const names = [];
+    for (const id of tree[jointId]?.children ?? []) {
+        names.push(...(ownedMeshes[id] ?? []));
+        if (entities.ligaments[id]?.between) {
+            names.push("Patella.r");
+        }
+    }
+    return names;
+}
+
+/** Camera direction for a joint. The notes give +x toward the body's right side, which is -x in the scene. */
+function jointView(jointId) {
+    const view = state.content.joints[jointId]?.views;
+    if (!view) {
+        return AREA_VIEW[state.content.joints[jointId]?.area] ?? VIEWS.front;
+    }
+    return [-view[0], view[1], view[2]];
+}
+
 /** Camera direction that looks at `point` from outside the given box. */
 function viewToward(point, box = null) {
     const centre = box && !box.isEmpty() ? box.getCenter(new THREE.Vector3()) : new THREE.Vector3(0, point.y, 0);
@@ -1568,7 +1726,6 @@ function entityType(id) {
     if (tree[id]) return "node";
     if (entities.muscles[id]) return "muscle";
     if (entities.ligaments[id]) return "ligament";
-    if (entities.structures[id]) return "structure";
     if (entities.bones[id]) return "bone";
     if (entities.tissues[id]) return "tissue";
     if (entities.sites[id]) return "site";
@@ -1595,7 +1752,7 @@ function patchTitle(patch) {
 
 function entityName(id) {
     if (tree[id]) return tree[id].name;
-    const group = entities.muscles[id] ?? entities.ligaments[id] ?? entities.structures[id]
+    const group = entities.muscles[id] ?? entities.ligaments[id]
         ?? entities.bones[id] ?? entities.tissues[id] ?? entities.sites[id];
     if (group) return group.name;
     if (state.body.meshes[id]?.kind === "patch") return patchTitle(id);
@@ -1739,6 +1896,7 @@ function renderControls() {
         return;
     }
     renderedControls = key;
+    $("#joints").hidden = ids.length === 0;
     $("#controls").innerHTML = ids
         .map((id) => {
             const control = controlById(id);
@@ -1935,8 +2093,11 @@ function describeChild(id) {
         return notes ? `${state.content.nerves[notes.nerve].name} · ${notes.roots}` : "";
     }
     if (entities.ligaments[id]) return entities.ligaments[id].function;
-    if (entities.structures[id]) return "Fibrocartilage pad between femur and tibia";
     if (entities.bones[id]) return "";
+    if (tree[id]?.joint) {
+        const count = tree[id].children.length;
+        return `${state.content.joints[id].type} · ${count} structure${count === 1 ? "" : "s"}`;
+    }
     if (tree[id]) {
         if (tree[id].controls || REGION_IDS.includes(id)) {
             return `${musclesInScope(id).length} muscles`;
@@ -1953,7 +2114,7 @@ function card(id) {
     return `
         <button class="card" type="button" data-open="${escapeHtml(id)}">
             <span class="nm">${escapeHtml(entityName(id))}</span>
-            ${description ? `<span class="ds">${linkTerms(description)}</span>` : ""}
+            ${description ? `<span class="ds">${escapeHtml(description)}</span>` : ""}
         </button>`;
 }
 
@@ -1967,7 +2128,7 @@ function renderNodePane(id) {
     const isBody = id === "body";
     const isRegion = ["head-neck", "trunk", "upper-limb", "lower-limb"].includes(id);
     let html = `
-        <div class="eyebrow">${isBody ? "Start here" : isRegion ? "Region" : node.controls ? "Area" : "Group"}</div>
+        <div class="eyebrow">${isBody ? "Start here" : isRegion ? "Region" : node.controls ? "Area" : node.joint ? "Joint" : "Group"}</div>
         <h2>${escapeHtml(node.name)}</h2>`;
 
     if (isBody) {
@@ -1980,23 +2141,23 @@ function renderNodePane(id) {
         html += `<p class="lede">Joints you can move here: ${escapeHtml(controlNames(node.controls))}.</p>`;
     }
 
-    if (id === "knee-joint") {
-        html += `
-            <div class="legend">
-                <span><i class="key" style="--k: var(--slack)"></i>Slack</span>
-                <span><i class="key" style="--k: #f0a43a"></i>Tightening</span>
-                <span><i class="key" style="--k: var(--taut)"></i>Taut</span>
-            </div>
-            <div class="actions-row"><button class="btn" type="button" data-sweep="knee">Bend and straighten the knee</button></div>`;
+    if (node.joint) {
+        html += jointFacts(id);
     }
 
-    html += `<h3>${isBody ? "Regions" : isRegion ? "Areas" : "Inside"}</h3><div class="cards">`;
+    const heading = isBody ? "Regions" : isRegion ? "Areas" : node.joint ? "Ligaments and structures" : "Inside";
+    html += `<h3>${heading}</h3><div class="cards">`;
     for (const child of node.children ?? []) {
         html += card(child);
     }
     html += `</div>`;
 
-    if (!isBody) {
+    if (node.joint) {
+        html += `
+            <div class="actions-row">
+                <button class="btn ghost" type="button" data-quiz-joint="${escapeHtml(id)}">Quiz me on this joint</button>
+            </div>`;
+    } else if (!isBody) {
         html += `
             <div class="legend">
                 <span><i class="key" style="--k: var(--origin)"></i>Origin</span>
@@ -2005,6 +2166,47 @@ function renderNodePane(id) {
             </div>`;
     }
     return html;
+}
+
+/** Type, close-packed and resting positions, capsular pattern, and live tension controls. */
+function jointFacts(jointId) {
+    const joint = state.content.joints[jointId];
+    const seen = new Set();
+    const rows = [
+        ["Type", joint.type],
+        ["Close-packed", joint.closePacked],
+        ["Resting (loose-packed)", joint.resting],
+        ["Capsular pattern", joint.capsularPattern],
+    ].filter(([, value]) => value);
+    let html = `<dl class="facts">${rows
+        .map(([label, value]) => `<div class="fact"><dt>${label}</dt><dd><span>${linkTerms(value, seen)}</span></dd></div>`)
+        .join("")}</dl>`;
+    html += tensionControlsBlock(tree[jointId].children);
+    return html;
+}
+
+/** Legend and play buttons for the controls that change these ligaments' tension. */
+function tensionControlsBlock(ligamentIds) {
+    const controls = tensionControls(ligamentIds);
+    if (!controls.length) {
+        return "";
+    }
+    const buttons = controls
+        .map((id) => `<button class="btn" type="button" data-sweep="${escapeHtml(id)}"><span class="play" aria-hidden="true">▶</span> ${escapeHtml(sweepLabel(id))}</button>`)
+        .join("");
+    return `
+        <div class="legend">
+            <span><i class="key" style="--k: var(--slack)"></i>Slack</span>
+            <span><i class="key" style="--k: #f0a43a"></i>Tightening</span>
+            <span><i class="key" style="--k: var(--taut)"></i>Taut</span>
+        </div>
+        <p class="lede">Ligaments with a taut rule change colour as you move the sliders. Other structures keep their own colour (cartilage blue, capsules see-through).</p>
+        <div class="actions-row">${buttons}</div>`;
+}
+
+function sweepLabel(controlId) {
+    const control = controlById(controlId);
+    return `${control.positive} ↔ ${lowerFirst(control.negative)}`;
 }
 
 function nerveLabel(muscle) {
@@ -2093,24 +2295,58 @@ function renderMusclePane(muscle) {
 
 function renderLigamentPane(id) {
     const ligament = entities.ligaments[id];
+    const joint = state.content.joints[ligament.joint];
     const seen = new Set();
-    return `
-        <div class="eyebrow">Knee ligament <span class="badge notes">Notes</span> <span class="badge draft">Draft · unreviewed</span></div>
+    const modelled = ligament.meshes.length || ligament.between;
+    let html = `
+        <div class="eyebrow">${escapeHtml(KIND_LABEL[ligament.kind])} · ${escapeHtml(joint.name)}
+            ${modelled ? "" : '<span class="badge">Not modelled in 3D</span>'}
+            <span class="badge draft">Draft · unreviewed</span></div>
         <h2>${escapeHtml(ligament.name)}</h2>
         <dl class="facts">
-            <div class="fact"><dt>Attaches</dt><dd>${linkTerms(ligament.attachmentText, seen)}</dd></div>
-            <div class="fact"><dt>Job</dt><dd>${linkTerms(ligament.function, seen)}</dd></div>
-            <div class="fact"><dt>Taut in</dt><dd>${linkTerms(ligament.tautText, seen)}</dd></div>
-        </dl>
-        <div class="meter">
-            <div class="meter-row">
-                <span>Tension at <b id="tension-angle">0°</b> of knee flexion</span>
-                <strong id="tension-word">Taut</strong>
+            <div class="fact"><dt>Attaches</dt><dd><span>${linkTerms(ligament.attachmentText, seen)}</span></dd></div>
+            <div class="fact"><dt>Job</dt><dd><span>${linkTerms(ligament.function, seen)}</span></dd></div>
+            ${ligament.tautText ? `<div class="fact"><dt>Taut in</dt><dd><span>${linkTerms(ligament.tautText, seen)}</span></dd></div>` : ""}
+        </dl>`;
+    if (!modelled) {
+        html += `<p class="lede">The 3D atlas does not include this structure, so the view shows the joint around it.</p>`;
+    }
+    if (ligament.taut?.length) {
+        html += `
+            <div class="meter">
+                <div class="meter-row">
+                    <span id="tension-pose">In this pose</span>
+                    <strong id="tension-word">Slack</strong>
+                </div>
+                <div class="bar"><i id="tension-bar"></i></div>
+                <span class="lede">Colours follow the rule written for this ligament, not a physics simulation. Move a slider, or press play.</span>
             </div>
-            <div class="bar"><i id="tension-bar"></i></div>
-            <span class="lede">Colours follow the rule written for this ligament, not a physics simulation.</span>
-        </div>
-        <div class="actions-row"><button class="btn" type="button" data-sweep="knee">Bend and straighten the knee</button></div>`;
+            <div class="actions-row">${tensionControls([id])
+                .map((control) => `<button class="btn" type="button" data-sweep="${escapeHtml(control)}"><span class="play" aria-hidden="true">▶</span> ${escapeHtml(sweepLabel(control))}</button>`)
+                .join("")}</div>`;
+    }
+    if (ligament.note) {
+        html += `<p class="note">${linkTerms(ligament.note, seen)}</p>`;
+    }
+    html += `
+        <div class="actions-row">
+            <button class="btn ghost" type="button" data-open="${escapeHtml(ligament.joint)}">All of the ${escapeHtml(lowerFirst(joint.name))}</button>
+        </div>`;
+    return html;
+}
+
+/** "Hip flexion 30°, hip rotation 0°" for the controls that drive a ligament. */
+function poseText(controlIds) {
+    return controlIds
+        .map((id) => {
+            const control = controlById(id);
+            const value = Math.round(state.pose[id] ?? 0);
+            if (value === 0) {
+                return `${lowerFirst(control.label)} neutral`;
+            }
+            return `${lowerFirst(value > 0 ? control.positive : control.negative)} ${Math.abs(value)}°`;
+        })
+        .join(", ");
 }
 
 function attachmentsBlock(patches) {
@@ -2165,9 +2401,6 @@ function renderExplore() {
         html = renderMusclePane(entities.muscles[selection.id]);
     } else if (selection.type === "ligament") {
         html = renderLigamentPane(selection.id);
-    } else if (selection.type === "structure") {
-        const structure = entities.structures[selection.id];
-        html = `<div class="eyebrow">Knee joint <span class="badge draft">Draft · unreviewed</span></div><h2>${escapeHtml(structure.name)}</h2><p>${linkTerms(structure.text)}</p>`;
     } else if (selection.type === "site" || selection.type === "patch") {
         html = renderAttachmentPane(selection);
     } else if (selection.type === "bone") {
@@ -2204,12 +2437,12 @@ function updateLiveReadouts() {
     }
     if (selection?.type === "ligament") {
         const bar = $("#tension-bar");
-        if (!bar) {
+        const tension = ligamentTension(selection.id);
+        if (!bar || tension === null) {
             return;
         }
-        const tension = ligamentTension(selection.id);
-        $("#tension-angle").textContent = `${Math.round(state.pose.knee ?? 0)}°`;
-        $("#tension-word").textContent = tension > 0.85 ? "Taut" : tension > 0.55 ? "Tightening" : "Slack";
+        $("#tension-pose").textContent = `With ${poseText(tensionControls([selection.id]))}`;
+        $("#tension-word").textContent = tensionWord(tension);
         bar.style.setProperty("--w", `${tension * 100}%`);
         bar.style.setProperty("--c", "#" + tensionColor(tension).getHexString());
     }
@@ -2347,10 +2580,11 @@ function renderMovements() {
 
 const paneQuiz = $("#pane-quiz");
 const QUIZ_KEY = "pt-atlas-quiz-v1";
+const JOINTS_KEY = "pt-atlas-joints-open";
 
 /** The node a quiz covers: the open group, or its area when the group has no muscles. */
 function quizNode(node = state.node) {
-    if (node === "knee-joint" || musclesInScope(node).length) {
+    if (tree[node]?.joint || musclesInScope(node).length) {
         return node;
     }
     return scopeNode(node);
@@ -2375,16 +2609,100 @@ function quizItems(focus = null, node = quizNode()) {
             items.push({ key: `action:${id}`, kind: "action", muscle: id });
         }
     }
-    const kneeLigaments = node === "knee-joint" || (tree[node]?.controls && scopeIncludesKnee());
-    if (!focus && kneeLigaments) {
-        for (const id of Object.keys(entities.ligaments)) {
+    if (!focus) {
+        for (const id of ligamentsInQuiz(node)) {
+            const ligament = entities.ligaments[id];
             items.push({ key: `ligament:${id}`, kind: "ligament", ligament: id });
-            if (id !== "patellar-ligament") {
+            items.push({ key: `attach:${id}`, kind: "attach", ligament: id });
+            if (ligament.taut?.length) {
                 items.push({ key: `taut:${id}`, kind: "taut", ligament: id });
+            }
+        }
+        for (const jointId of jointsInQuiz(node)) {
+            const joint = state.content.joints[jointId];
+            if (joint.closePacked && joint.closePacked !== "Not described.") {
+                items.push({ key: `cpp:${jointId}`, kind: "cpp", joint: jointId });
+            }
+            if (joint.capsularPattern) {
+                items.push({ key: `capsular:${jointId}`, kind: "capsular", joint: jointId });
             }
         }
     }
     return items;
+}
+
+/** Joints a quiz on this node covers: the joint itself, or every joint in the areas below it. */
+function jointsInQuiz(node) {
+    if (tree[node]?.joint) {
+        return [node];
+    }
+    const areas = areasUnder(node);
+    return Object.keys(state.content.joints).filter((id) => !areas || areas.includes(state.content.joints[id].area));
+}
+
+function ligamentsInQuiz(node) {
+    // Named ligaments make good questions; capsules and fat pads mostly do not.
+    const joints = new Set(jointsInQuiz(node));
+    return Object.keys(entities.ligaments).filter((id) => {
+        const ligament = entities.ligaments[id];
+        return joints.has(ligament.joint) && !["capsule", "fat-pad"].includes(ligament.kind);
+    });
+}
+
+/** Wrong answers drawn first from the same joint, then the same area, then anywhere. */
+function ligamentPool(id, field) {
+    const ligament = entities.ligaments[id];
+    const all = Object.values(entities.ligaments).filter((other) => other.id !== id && other.kind !== "capsule");
+    const tiers = [
+        all.filter((other) => other.joint === ligament.joint),
+        all.filter((other) => other.area === ligament.area && other.joint !== ligament.joint),
+        all.filter((other) => tree[other.area]?.parent === tree[ligament.area]?.parent && other.area !== ligament.area),
+        all,
+    ];
+    const pool = [];
+    for (const tier of tiers) {
+        for (const other of shuffle(tier)) {
+            const value = other[field];
+            if (value && value !== ligament[field] && !pool.includes(value)) {
+                pool.push(value);
+            }
+        }
+        if (pool.length >= 3) {
+            break;
+        }
+    }
+    return pool;
+}
+
+/** A clear pose for a taut/slack question: an end of a rule's range where the answer is not borderline. */
+function tautProbe(ligament) {
+    const options = [];
+    for (const rule of ligament.taut) {
+        const control = controlById(rule.control);
+        for (const angle of [control.min, control.max, 0]) {
+            const pose = { [rule.control]: angle };
+            const tension = ligamentTension(ligament.id, pose);
+            if (tension >= 0.8 || tension <= 0.35) {
+                options.push({ control: rule.control, angle, taut: tension >= 0.8 });
+            }
+        }
+    }
+    return options.length ? options[Math.floor(Math.random() * options.length)] : null;
+}
+
+function probeText(probe) {
+    const control = controlById(probe.control);
+    if (probe.control === "forearmPro") {
+        return probe.angle <= 10 ? "In full supination" : probe.angle >= 150 ? "In full pronation" : "In mid-position";
+    }
+    if (probe.angle === 0 && (probe.control === "knee" || probe.control === "elbowFlex")) {
+        return `With the ${probe.control === "knee" ? "knee" : "elbow"} fully straight (0°)`;
+    }
+    if (probe.angle === 0) {
+        return `With the ${lowerFirst(control.label).replace(/ (flexion|abduction|rotation|deviation)$/, "")} in neutral (0°)`;
+    }
+    const name = probe.angle > 0 ? control.positive : control.negative;
+    return `In ${Math.abs(probe.angle)}° of ${lowerFirst(name)}`;
 }
 
 function loadBoxes() {
@@ -2462,19 +2780,52 @@ function buildQuestion(item) {
 
     if (item.kind === "ligament") {
         const ligament = entities.ligaments[item.ligament];
-        question.text = `Which ligament does this job? ${ligament.function}`;
-        question.options = choices(ligament.name, Object.values(entities.ligaments).map((l) => l.name));
+        question.ligament = ligament.id;
+        question.text = `Which structure does this job? ${ligament.function}`;
+        question.options = shuffle([ligament.name, ...ligamentPool(ligament.id, "name").slice(0, 3)]);
         question.correct = ligament.name;
-        question.explain = `${ligament.name}. ${ligament.tautText}`;
+        question.explain = `${ligament.name}: ${ligament.attachmentText}${ligament.tautText ? ` ${ligament.tautText}` : ""}`;
+        return question;
+    }
+
+    if (item.kind === "attach") {
+        const ligament = entities.ligaments[item.ligament];
+        question.ligament = ligament.id;
+        question.text = `Which structure attaches like this? ${ligament.attachmentText}`;
+        question.options = shuffle([ligament.name, ...ligamentPool(ligament.id, "name").slice(0, 3)]);
+        question.correct = ligament.name;
+        question.explain = `${ligament.name}. ${ligament.function}`;
+        return question;
+    }
+
+    if (item.kind === "cpp" || item.kind === "capsular") {
+        const joint = state.content.joints[item.joint];
+        const field = item.kind === "cpp" ? "closePacked" : "capsularPattern";
+        const pool = Object.values(state.content.joints)
+            .map((other) => other[field])
+            .filter((value) => value && value !== joint[field] && value !== "Not described.");
+        question.text = item.kind === "cpp"
+            ? `What is the close-packed position of the ${lowerFirst(joint.name)}?`
+            : `What is the capsular pattern of the ${lowerFirst(joint.name)}?`;
+        question.options = choices(joint[field], pool);
+        question.correct = joint[field];
+        question.explain = item.kind === "cpp"
+            ? `${joint.closePacked} Resting position: ${lowerFirst(joint.resting ?? "not described.")}`
+            : joint.capsularPattern;
         return question;
     }
 
     const ligament = entities.ligaments[item.ligament];
-    const angle = Math.random() < 0.5 ? 0 : 90;
-    question.text = `With the knee ${angle === 0 ? "fully straight" : "bent to 90°"}, is the ${ligament.short} taut or slack?`;
+    const probe = tautProbe(ligament);
+    if (!probe) {
+        return buildQuestion({ ...item, kind: "ligament", key: `ligament:${ligament.id}` });
+    }
+    question.ligament = ligament.id;
+    question.text = `${probeText(probe)}, is the ${ligament.short ?? lowerFirst(ligament.name)} taut or slack?`;
     question.options = ["Taut", "Slack"];
-    question.correct = interpolate(ligament.taut, angle) > 0.7 ? "Taut" : "Slack";
+    question.correct = probe.taut ? "Taut" : "Slack";
     question.explain = ligament.tautText;
+    question.pose = probe;
     return question;
 }
 
@@ -2503,6 +2854,13 @@ function nextQuestion() {
         const segments = scopeSegments(scopeNode()) ?? new Set(segmentOrder);
         const box = boxOfSegments(segments);
         frameBox(box, 1.0, point ? viewToward(point, box) : VIEWS.front);
+    } else if (current?.ligament) {
+        // Show the joint, without naming which structure is asked about.
+        const jointId = entities.ligaments[current.ligament].joint;
+        const box = boxOfMeshes(jointMeshes(jointId));
+        if (!box.isEmpty()) {
+            frameBox(box, box.getSize(new THREE.Vector3()).length() < 10 ? 2.4 : 1.35, jointView(jointId));
+        }
     }
 }
 
@@ -2517,6 +2875,11 @@ function answerQuiz(choice) {
     state.quiz.score.total++;
     if (current.right) state.quiz.score.right++;
     recordAnswer(current.key, current.right);
+    if (current.pose) {
+        // Put the joint in the asked position so the colours show the answer.
+        setPose(current.pose.control, current.pose.angle);
+    }
+    applyAppearance();
     renderQuiz();
 }
 
@@ -2770,7 +3133,15 @@ document.addEventListener("click", (event) => {
         return;
     }
     if (data.sweep) {
-        playMotion({ control: "knee", from: 0, to: 110 });
+        const control = controlById(data.sweep);
+        if (control) {
+            playMotion({ control: control.id, from: Math.round(control.min * 0.9), to: Math.round(control.max * 0.9) });
+        }
+        return;
+    }
+    if (data.quizJoint) {
+        showTab("quiz", { skipRender: true });
+        startQuiz(null);
         return;
     }
     if ("quizStart" in data) {
@@ -2825,8 +3196,20 @@ toggle("#tg-muscles", "muscles");
 toggle("#tg-deep", "deep");
 toggle("#tg-cords", "cords");
 toggle("#tg-sites", "sites");
+toggle("#tg-ligs", "ligaments");
 
 $("#tg-reset").addEventListener("click", resetPose);
+
+function setJointsOpen(open) {
+    $("#joints-head").setAttribute("aria-expanded", String(open));
+    $("#controls").hidden = !open;
+    storageSet(JOINTS_KEY, open);
+}
+
+$("#joints-head").addEventListener("click", () => {
+    setJointsOpen($("#joints-head").getAttribute("aria-expanded") !== "true");
+});
+setJointsOpen(storageGet(JOINTS_KEY, true) !== false);
 
 document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") {
@@ -2860,8 +3243,16 @@ function tick(now) {
         state.dirty = false;
         applyPose();
         for (const part of Object.values(parts)) {
-            if (part.kind === "ligament" && part.owner?.type === "ligament" && part.mesh.visible) {
-                part.mesh.material.color.copy(tensionColor(ligamentTension(part.owner.id)));
+            if (part.kind === "ligament" && part.mesh.visible && entities.ligaments[part.owner?.id]?.taut) {
+                part.mesh.material.color.setHex(ligamentColor(part.owner.id));
+                if (part.mesh.material.emissiveIntensity > 0) {
+                    part.mesh.material.emissive.setHex(ligamentColor(part.owner.id));
+                }
+            }
+        }
+        for (const child of cordGroup.children) {
+            if (child.userData.band) {
+                child.material.color.setHex(ligamentColor(child.userData.ligament));
             }
         }
     }

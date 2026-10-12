@@ -2,7 +2,12 @@
 Build the publishable app: inline app.js into index.html and copy the data.
 
 Usage:
-    python build.py <src_dir> <dist_dir>
+    python build.py <src_dir> <dist_dir> [--artifact]
+
+By default the page is a complete standalone document (doctype, language,
+mobile viewport) for GitHub Pages or any static host. With --artifact the
+page is left as a fragment, because the artifact host wraps it in its own
+document skeleton.
 """
 
 import base64
@@ -13,6 +18,7 @@ from pathlib import Path
 
 SRC = Path(sys.argv[1])
 DIST = Path(sys.argv[2])
+ARTIFACT = "--artifact" in sys.argv[3:]
 DIST.mkdir(parents=True, exist_ok=True)
 
 page = (SRC / "index.html").read_text(encoding="utf-8")
@@ -21,6 +27,17 @@ script = (SRC / "app.js").read_text(encoding="utf-8")
 tag = '<script type="module" src="app.js"></script>'
 assert tag in page, "script tag not found"
 page = page.replace(tag, f'<script type="module">\n{script}\n</script>')
+
+if not ARTIFACT:
+    head = "\n".join([
+        "<!doctype html>",
+        '<html lang="en">',
+        '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
+    ])
+    page = f"{head}\n{page}\n</html>\n"
+    # Stop GitHub Pages running Jekyll over the site.
+    (DIST / ".nojekyll").write_text("")
+
 (DIST / "index.html").write_text(page, encoding="utf-8")
 
 for name in ["anatomy.json", "body.json", "attachments.json"]:

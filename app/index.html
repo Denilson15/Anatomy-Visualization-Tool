@@ -568,6 +568,12 @@
         --dot: var(--origin);
     }
 
+    /* These layers have no colour of their own in 3D, so no dot. */
+    #tg-deep::before,
+    #tg-cords::before {
+        content: none;
+    }
+
     .toggles .divider {
         width: 1px;
         align-self: stretch;
